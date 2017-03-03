@@ -22,6 +22,11 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <bean id="HostelService" class="nju.edu.hostel.service.bean.HostelServiceBean"></bean>
+    <bean id="ManagerService" class="nju.edu.hostel.service.bean.ManagerServiceBean"></bean>
+    <bean id="UserService" class="nju.edu.hostel.service.bean.UserServiceBean"></bean>
+    <bean id="VIPService" class="nju.edu.hostel.service.bean.VIPServiceBean"></bean>
+
     <!-- 表示JPA Repository所在的包 -->
     <jpa:repositories base-package="nju.edu.hostel.respository"/>
 

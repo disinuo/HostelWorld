@@ -68,106 +68,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="435">
               <caret line="47" column="13" lean-forward="false" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
-              <folding>
-                <element signature="e#449#450#0" expanded="false" />
-                <element signature="e#476#477#0" expanded="false" />
-                <element signature="e#547#548#0" expanded="false" />
-                <element signature="e#574#575#0" expanded="false" />
-                <element signature="e#631#632#0" expanded="false" />
-                <element signature="e#658#659#0" expanded="false" />
-                <element signature="e#722#723#0" expanded="false" />
-                <element signature="e#749#750#0" expanded="false" />
-                <element signature="e#818#819#0" expanded="false" />
-                <element signature="e#845#846#0" expanded="false" />
-                <element signature="e#929#930#0" expanded="false" />
-                <element signature="e#956#957#0" expanded="false" />
-                <element signature="e#1040#1041#0" expanded="false" />
-                <element signature="e#1067#1068#0" expanded="false" />
-                <element signature="e#1149#1150#0" expanded="false" />
-                <element signature="e#1176#1177#0" expanded="false" />
-                <element signature="e#1254#1255#0" expanded="false" />
-                <element signature="e#1281#1282#0" expanded="false" />
-                <element signature="e#1354#1355#0" expanded="false" />
-                <element signature="e#1381#1382#0" expanded="false" />
-                <element signature="e#1452#1453#0" expanded="false" />
-                <element signature="e#1479#1480#0" expanded="false" />
-                <element signature="e#1538#1539#0" expanded="false" />
-                <element signature="e#1562#1563#0" expanded="false" />
-                <element signature="e#1635#1636#0" expanded="false" />
-                <element signature="e#1662#1663#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HostelService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/HostelService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1920">
-              <caret line="131" column="7" lean-forward="false" selection-start-line="131" selection-start-column="7" selection-end-line="131" selection-end-column="7" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ManagerService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/ManagerService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="19" column="30" lean-forward="false" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VIPServiceBean.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/bean/VIPServiceBean.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="64" column="25" lean-forward="false" selection-start-line="64" selection-start-column="25" selection-end-line="64" selection-end-column="25" />
-              <folding>
-                <element signature="e#379#380#0" expanded="false" />
-                <element signature="e#406#407#0" expanded="false" />
-                <element signature="e#466#467#0" expanded="false" />
-                <element signature="e#493#494#0" expanded="false" />
-                <element signature="e#555#556#0" expanded="false" />
-                <element signature="e#582#583#0" expanded="false" />
-                <element signature="e#676#677#0" expanded="false" />
-                <element signature="e#703#704#0" expanded="false" />
-                <element signature="e#762#763#0" expanded="false" />
-                <element signature="e#789#790#0" expanded="false" />
-                <element signature="e#850#851#0" expanded="false" />
-                <element signature="e#877#878#0" expanded="false" />
-                <element signature="e#935#936#0" expanded="false" />
-                <element signature="e#962#963#0" expanded="false" />
-                <element signature="e#1013#1014#0" expanded="false" />
-                <element signature="e#1040#1041#0" expanded="false" />
-                <element signature="e#1098#1099#0" expanded="false" />
-                <element signature="e#1125#1126#0" expanded="false" />
-                <element signature="e#1191#1192#0" expanded="false" />
-                <element signature="e#1218#1219#0" expanded="false" />
-                <element signature="e#1290#1291#0" expanded="false" />
-                <element signature="e#1317#1318#0" expanded="false" />
-                <element signature="e#1387#1388#0" expanded="false" />
-                <element signature="e#1414#1415#0" expanded="false" />
-                <element signature="e#1482#1483#0" expanded="false" />
-                <element signature="e#1509#1510#0" expanded="false" />
-                <element signature="e#1579#1580#0" expanded="false" />
-                <element signature="e#1606#1607#0" expanded="false" />
-                <element signature="e#1686#1687#0" expanded="false" />
-                <element signature="e#1713#1714#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VIPService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/VIPService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1740">
-              <caret line="119" column="20" lean-forward="false" selection-start-line="119" selection-start-column="20" selection-end-line="119" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -176,101 +76,43 @@
       <file leaf-file-name="UserServiceBean.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/bean/UserServiceBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+            <state relative-caret-position="77">
+              <caret line="15" column="8" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
               <folding>
-                <element signature="e#388#389#0" expanded="false" />
-                <element signature="e#415#416#0" expanded="false" />
-                <element signature="e#476#477#0" expanded="false" />
-                <element signature="e#503#504#0" expanded="false" />
-                <element signature="e#563#564#0" expanded="false" />
-                <element signature="e#590#591#0" expanded="false" />
-                <element signature="e#643#644#0" expanded="false" />
-                <element signature="e#670#671#0" expanded="false" />
-                <element signature="e#734#735#0" expanded="false" />
-                <element signature="e#761#762#0" expanded="false" />
-                <element signature="e#838#839#0" expanded="false" />
-                <element signature="e#865#866#0" expanded="false" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#862#863#0" expanded="true" />
+                <element signature="e#915#916#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ManagerServiceBean.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/bean/ManagerServiceBean.java">
+      <file leaf-file-name="MainController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/controller/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-              <folding>
-                <element signature="e#363#364#0" expanded="false" />
-                <element signature="e#390#391#0" expanded="false" />
-                <element signature="e#474#475#0" expanded="false" />
-                <element signature="e#501#502#0" expanded="false" />
-                <element signature="e#562#563#0" expanded="false" />
-                <element signature="e#589#590#0" expanded="false" />
-                <element signature="e#648#649#0" expanded="false" />
-                <element signature="e#675#676#0" expanded="false" />
-                <element signature="e#739#740#0" expanded="false" />
-                <element signature="e#766#767#0" expanded="false" />
-                <element signature="e#827#828#0" expanded="false" />
-                <element signature="e#854#855#0" expanded="false" />
-                <element signature="e#935#936#0" expanded="false" />
-                <element signature="e#962#963#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="persistence.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="20" lean-forward="true" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+            <state relative-caret-position="159">
+              <caret line="32" column="46" lean-forward="false" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Livebill.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/model/Livebill.java">
+      <file leaf-file-name="users.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/users.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="7" column="3" lean-forward="false" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#486#487#0" expanded="false" />
-                <element signature="e#511#512#0" expanded="false" />
-                <element signature="e#544#545#0" expanded="false" />
-                <element signature="e#572#573#0" expanded="false" />
-                <element signature="e#673#674#0" expanded="false" />
-                <element signature="e#700#701#0" expanded="false" />
-                <element signature="e#740#741#0" expanded="false" />
-                <element signature="e#772#773#0" expanded="false" />
-                <element signature="e#872#873#0" expanded="false" />
-                <element signature="e#907#908#0" expanded="false" />
-                <element signature="e#960#961#0" expanded="false" />
-                <element signature="e#1008#1009#0" expanded="false" />
-                <element signature="e#1113#1114#0" expanded="false" />
-                <element signature="e#1142#1143#0" expanded="false" />
-                <element signature="e#1186#1187#0" expanded="false" />
-                <element signature="e#1222#1223#0" expanded="false" />
-                <element signature="e#1307#1308#0" expanded="false" />
-                <element signature="e#1334#1335#0" expanded="false" />
-                <element signature="e#1372#1373#0" expanded="false" />
-                <element signature="e#1404#1405#0" expanded="false" />
-                <element signature="e#2479#2480#0" expanded="false" />
-                <element signature="e#2508#2509#0" expanded="false" />
-                <element signature="e#2552#2553#0" expanded="false" />
-                <element signature="e#2588#2589#0" expanded="false" />
-                <element signature="e#2691#2692#0" expanded="false" />
-                <element signature="e#2717#2718#0" expanded="false" />
-                <element signature="e#2752#2753#0" expanded="false" />
-                <element signature="e#2782#2783#0" expanded="false" />
-                <element signature="e#2906#2907#0" expanded="false" />
-                <element signature="e#2933#2934#0" expanded="false" />
-                <element signature="e#2971#2972#0" expanded="false" />
-                <element signature="e#3003#3004#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="287">
+              <caret line="50" column="20" lean-forward="false" selection-start-line="50" selection-start-column="20" selection-end-line="50" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserRepository.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/respository/UserRepository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -371,9 +213,7 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/springContext.xml" />
         <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/model/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/dao/Impl/BaseDaoImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/bean/UserServiceBean.java" />
         <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/dao/BaseDao.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/users.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/dao/UserDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/dao/Impl/UserDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/model/BookBillEntity.java" />
@@ -382,11 +222,9 @@
         <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/model/UserEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/model/VipEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/model/HostelEntity.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml" />
         <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/respository/RoomRespository.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/rooms.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/model/LiveBillEntity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/controller/MainController.java" />
         <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/respository/UserRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/UserService.java" />
         <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/bean/HostelServiceBean.java" />
@@ -398,6 +236,10 @@
         <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/model/LiveBill.java" />
         <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/model/Livebill.java" />
         <option value="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/bean/UserServiceBean.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/users.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/controller/MainController.java" />
       </list>
     </option>
   </component>
@@ -470,6 +312,14 @@
               <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -486,14 +336,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="META-INF" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -520,6 +362,36 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="hostel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hostel_springmvc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hostel_springmvc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hostel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="service" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -550,36 +422,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="respository" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hostel_springmvc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hostel_springmvc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hostel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dao" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1134,12 +976,12 @@
       <option name="presentableId" value="Default" />
       <updated>1488469619793</updated>
       <workItem from="1488469624478" duration="24525000" />
-      <workItem from="1488521337727" duration="48000" />
+      <workItem from="1488521337727" duration="1868000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24573000" />
+    <option name="totallyTimeSpent" value="26393000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -1164,12 +1006,12 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16164383" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2890411" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26655897" sideWeight="0.16666667" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26655897" sideWeight="0.8333333" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26655897" sideWeight="0.16955684" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26655897" sideWeight="0.83044314" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1261,26 +1103,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="10" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/model/User.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="107">
           <caret line="11" column="14" lean-forward="false" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/springContext.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="70" column="8" lean-forward="false" selection-start-line="70" selection-start-column="8" selection-end-line="70" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1330,6 +1156,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="123">
           <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#464#465#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1337,6 +1167,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="365">
           <caret line="29" column="23" lean-forward="false" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1408,25 +1241,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="25" column="62" lean-forward="false" selection-start-line="25" selection-start-column="62" selection-end-line="25" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/model/Vip.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="9" column="39" lean-forward="false" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/users.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="53" column="16" lean-forward="false" selection-start-line="53" selection-start-column="16" selection-end-line="53" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -1448,6 +1266,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1500,17 +1319,7 @@
         <state relative-caret-position="135">
           <caret line="9" column="11" lean-forward="false" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
           <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/respository/UserRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1527,60 +1336,7 @@
         <state relative-caret-position="195">
           <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/controller/MainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="36" column="20" lean-forward="false" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="2" column="29" lean-forward="false" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/bean/HostelServiceBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="47" column="13" lean-forward="false" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
-          <folding>
-            <element signature="e#449#450#0" expanded="false" />
-            <element signature="e#476#477#0" expanded="false" />
-            <element signature="e#547#548#0" expanded="false" />
-            <element signature="e#574#575#0" expanded="false" />
-            <element signature="e#631#632#0" expanded="false" />
-            <element signature="e#658#659#0" expanded="false" />
-            <element signature="e#722#723#0" expanded="false" />
-            <element signature="e#749#750#0" expanded="false" />
-            <element signature="e#818#819#0" expanded="false" />
-            <element signature="e#845#846#0" expanded="false" />
-            <element signature="e#929#930#0" expanded="false" />
-            <element signature="e#956#957#0" expanded="false" />
-            <element signature="e#1040#1041#0" expanded="false" />
-            <element signature="e#1067#1068#0" expanded="false" />
-            <element signature="e#1149#1150#0" expanded="false" />
-            <element signature="e#1176#1177#0" expanded="false" />
-            <element signature="e#1254#1255#0" expanded="false" />
-            <element signature="e#1281#1282#0" expanded="false" />
-            <element signature="e#1354#1355#0" expanded="false" />
-            <element signature="e#1381#1382#0" expanded="false" />
-            <element signature="e#1452#1453#0" expanded="false" />
-            <element signature="e#1479#1480#0" expanded="false" />
-            <element signature="e#1538#1539#0" expanded="false" />
-            <element signature="e#1562#1563#0" expanded="false" />
-            <element signature="e#1635#1636#0" expanded="false" />
-            <element signature="e#1662#1663#0" expanded="false" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1647,27 +1403,6 @@
         <state relative-caret-position="1740">
           <caret line="119" column="20" lean-forward="false" selection-start-line="119" selection-start-column="20" selection-end-line="119" selection-end-column="20" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/bean/UserServiceBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding>
-            <element signature="e#388#389#0" expanded="false" />
-            <element signature="e#415#416#0" expanded="false" />
-            <element signature="e#476#477#0" expanded="false" />
-            <element signature="e#503#504#0" expanded="false" />
-            <element signature="e#563#564#0" expanded="false" />
-            <element signature="e#590#591#0" expanded="false" />
-            <element signature="e#643#644#0" expanded="false" />
-            <element signature="e#670#671#0" expanded="false" />
-            <element signature="e#734#735#0" expanded="false" />
-            <element signature="e#761#762#0" expanded="false" />
-            <element signature="e#838#839#0" expanded="false" />
-            <element signature="e#865#866#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1782,8 +1517,86 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="20" lean-forward="true" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+        <state relative-caret-position="225">
+          <caret line="15" column="12" lean-forward="false" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/bean/HostelServiceBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="47" column="13" lean-forward="false" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/bean/UserServiceBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="77">
+          <caret line="15" column="8" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#862#863#0" expanded="true" />
+            <element signature="e#915#916#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="40" column="16" lean-forward="false" selection-start-line="40" selection-start-column="16" selection-end-line="40" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/respository/UserRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="10" column="17" lean-forward="false" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/admin/users.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="50" column="20" lean-forward="false" selection-start-line="50" selection-start-column="20" selection-end-line="50" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/springContext.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="45" column="0" lean-forward="true" selection-start-line="41" selection-start-column="3" selection-end-line="45" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-88">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="10" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/controller/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="32" column="46" lean-forward="false" selection-start-line="32" selection-start-column="46" selection-end-line="32" selection-end-column="46" />
           <folding />
         </state>
       </provider>

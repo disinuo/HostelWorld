@@ -6,6 +6,7 @@ import nju.edu.hostel.model.Room;
 import nju.edu.hostel.model.User;
 import nju.edu.hostel.respository.RoomRespository;
 import nju.edu.hostel.respository.UserRepository;
+import nju.edu.hostel.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,7 +19,7 @@ import java.util.List;
 @RequestMapping("/")
 public class MainController {
     @Autowired
-    UserRepository userRepository;
+    UserService userService;
     @Autowired
     RoomRespository roomRespository;
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -29,10 +30,10 @@ public class MainController {
     @RequestMapping(value = "/admin/users", method = RequestMethod.GET)
     public String getUsers(ModelMap modelMap) {
         // 查询user表中所有记录
-        List<User> userList = userRepository.findAll();
+        User user= userService.getById(1000000);
 
         // 将所有记录传递给要返回的jsp页面，放在userList当中
-        modelMap.addAttribute("userList", userList);
+        modelMap.addAttribute("user", user);
 
         // 返回pages目录下的admin/users.jsp页面
         return "admin/users";

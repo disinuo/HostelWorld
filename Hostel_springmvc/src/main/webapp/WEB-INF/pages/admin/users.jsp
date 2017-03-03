@@ -33,38 +33,43 @@
 
     <h3>所有用户 <a href="/admin/users/add" type="button" class="btn btn-primary btn-sm">添加</a></h3>
 
-    <!-- 如果用户列表为空 -->
-    <c:if test="${empty userList}">
-        <div class="alert alert-warning" role="alert">
-            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>User表为空，请<a href="/admin/users/add" type="button" class="btn btn-primary btn-sm">添加</a>
-        </div>
-    </c:if>
+    <%--<!-- 如果用户列表为空 -->--%>
+    <%--<c:if test="${empty userList}">--%>
+        <%--<div class="alert alert-warning" role="alert">--%>
+            <%--<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>User表为空，请<a href="/admin/users/add" type="button" class="btn btn-primary btn-sm">添加</a>--%>
+        <%--</div>--%>
+    <%--</c:if>--%>
 
     <!-- 如果用户列表非空 -->
-    <c:if test="${!empty userList}">
-        <table class="table table-bordered table-striped">
-            <tr>
-                <th>ID</th>
-                <th>昵称</th>
-                <th>姓名</th>
-                <th>密码</th>
-                <th>操作</th>
-            </tr>
+    <c:if test="${!empty user}">
+        <li>${user.id}</li>
+        <li>${user.userName}</li>
+        <li>${user.type}</li>
+        <li>${user.password}</li>
+        <%--<table class="table table-bordered table-striped">--%>
+            <%--<tr>--%>
+                <%--<th>ID</th>--%>
+                <%--<th>昵称</th>--%>
+                <%--<th>姓名</th>--%>
+                <%--<th>密码</th>--%>
+                <%--<th>操作</th>--%>
+            <%--</tr>--%>
 
-            <c:forEach items="${userList}" var="user">
-                <tr>
-                    <td>${user.id}</td>
-                    <td>${user.userName}</td>
-                    <td>${user.type}</td>
-                    <td>${user.password}</td>
-                    <td>
-                        <a href="/admin/users/show/${user.id}" type="button" class="btn btn-sm btn-success">详情</a>
-                        <a href="/admin/users/update/${user.id}" type="button" class="btn btn-sm btn-warning">修改</a>
-                        <a href="/admin/users/delete/${user.id}" type="button" class="btn btn-sm btn-danger">删除</a>
-                    </td>
-                </tr>
-            </c:forEach>
-        </table>
+            <%----%>
+            <%--<c:forEach items="${userList}" var="user">--%>
+                <%--<tr>--%>
+                    <%--<td>${user.id}</td>--%>
+                    <%--<td>${user.userName}</td>--%>
+                    <%--<td>${user.type}</td>--%>
+                    <%--<td>${user.password}</td>--%>
+                    <%--<td>--%>
+                        <%--<a href="/admin/users/show/${user.id}" type="button" class="btn btn-sm btn-success">详情</a>--%>
+                        <%--<a href="/admin/users/update/${user.id}" type="button" class="btn btn-sm btn-warning">修改</a>--%>
+                        <%--<a href="/admin/users/delete/${user.id}" type="button" class="btn btn-sm btn-danger">删除</a>--%>
+                    <%--</td>--%>
+                <%--</tr>--%>
+            <%--</c:forEach>--%>
+        <%--</table>--%>
     </c:if>
 </div>
 
