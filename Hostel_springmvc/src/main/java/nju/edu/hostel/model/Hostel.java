@@ -10,7 +10,7 @@ import java.util.Collection;
 @Table(name = "hostel", schema = "hostel", catalog = "")
 public class Hostel {
     private int id;
-    private byte permitted;
+    private boolean permitted;
     private String phone;
     private String address;
     private String name;
@@ -31,11 +31,11 @@ public class Hostel {
 
     @Basic
     @Column(name = "permitted", nullable = false)
-    public byte getPermitted() {
+    public boolean getPermitted() {
         return permitted;
     }
 
-    public void setPermitted(byte permitted) {
+    public void setPermitted(boolean permitted) {
         this.permitted = permitted;
     }
 
@@ -85,15 +85,15 @@ public class Hostel {
         return true;
     }
 
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (int) permitted;
-        result = 31 * result + (phone != null ? phone.hashCode() : 0);
-        result = 31 * result + (address != null ? address.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        return result;
-    }
+//    @Override
+//    public int hashCode() {
+//        int result = id;
+//        result = 31 * result + (int) permitted;
+//        result = 31 * result + (phone != null ? phone.hashCode() : 0);
+//        result = 31 * result + (address != null ? address.hashCode() : 0);
+//        result = 31 * result + (name != null ? name.hashCode() : 0);
+//        return result;
+//    }
 
     @OneToMany(mappedBy = "hostel")
     public Collection<Bookbill> getBookbills() {

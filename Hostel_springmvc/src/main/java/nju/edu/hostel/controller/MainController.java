@@ -2,10 +2,12 @@
  * Created by disinuo on 17/3/3.
  */
 package nju.edu.hostel.controller;
+import nju.edu.hostel.model.Hostel;
 import nju.edu.hostel.model.Room;
 import nju.edu.hostel.model.User;
 import nju.edu.hostel.respository.RoomRespository;
 import nju.edu.hostel.respository.UserRepository;
+import nju.edu.hostel.service.HostelService;
 import nju.edu.hostel.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,12 +18,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/test")
 public class MainController {
     @Autowired
     UserService userService;
     @Autowired
-    RoomRespository roomRespository;
+    HostelService hostelService;
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index() {
         return "index";
@@ -39,11 +41,11 @@ public class MainController {
         return "admin/users";
     }
     @RequestMapping(value = "/admin/rooms", method = RequestMethod.GET)
-    public String getRooms(ModelMap modelMap) {
+    public String getHostels(ModelMap modelMap) {
         // 查询user表中所有记录
-        List<Room> rooms=roomRespository.findAll();
+        List<Hostel> hostels=hostelService.getAllPermittedHostels();
         // 将所有记录传递给要返回的jsp页面，放在userList当中
-        modelMap.addAttribute("roomList", rooms);
+        modelMap.addAttribute("hostelList", hostels);
 
         // 返回pages目录下的admin/users.jsp页面
         return "admin/rooms";

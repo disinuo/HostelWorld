@@ -7,7 +7,7 @@ import java.util.Date;
  * Created by disinuo on 17/3/3.
  */
 @Entity
-@Table(name = "bookbill", schema = "hostel", catalog = "")
+@Table(name = "bookbills", schema = "hostel", catalog = "")
 public class Bookbill {
     private int id;
     private Date liveInDate;

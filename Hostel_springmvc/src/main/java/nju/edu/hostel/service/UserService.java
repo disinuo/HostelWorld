@@ -2,7 +2,6 @@ package nju.edu.hostel.service;
 
 import nju.edu.hostel.model.*;
 import nju.edu.hostel.util.ResultMessage;
-import nju.edu.hostel.util.UserType;
 
 import java.util.List;
 
@@ -45,7 +44,7 @@ public interface UserService {
      * @param type
      * @return
      */
-    public List<User> getByType(UserType type);
+    public List<User> getByType(String type);
 
     /**
      * 用户通过用户名,密码登录，
@@ -54,5 +53,5 @@ public interface UserService {
      * @param password
      * @return
      */
-    public UserType login(String userName, String password);
+    public User login(String userName, String password);
 }

@@ -132,5 +132,7 @@ public interface HostelService {
      */
     public List<Livebill> getAllLiveBills(int hostelId);
 
+    public List<Hostel> getAllPermittedHostels();
+
 
 }

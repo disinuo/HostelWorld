@@ -33,14 +33,14 @@
 
 
     <!-- 如果用户列表为空 -->
-    <c:if test="${empty roomList}">
+    <c:if test="${empty hostelList}">
         <div class="alert alert-warning" role="alert">
             <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>User表为空，请<a href="/admin/users/add" type="button" class="btn btn-primary btn-sm">添加</a>
         </div>
     </c:if>
 
     <!-- 如果用户列表非空 -->
-    <c:if test="${!empty roomList}">
+    <c:if test="${!empty hostelList}">
         <table class="table table-bordered table-striped">
             <tr>
                 <th>ID</th>
@@ -50,10 +50,11 @@
                 <th>操作</th>
             </tr>
 
-            <c:forEach items="${roomList}" var="room">
+            <c:forEach items="${hostelList}" var="hostel">
                 <tr>
-                    <td>${room.id}</td>
-                    <td>${room.hostel.address}</td>
+                    <td>${hostel.id}</td>
+                    <td>${hostel.address}</td>
+                    <td>${hostel.name}</td>
                 </tr>
             </c:forEach>
         </table>

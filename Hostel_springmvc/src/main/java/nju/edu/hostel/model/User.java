@@ -1,5 +1,6 @@
 package nju.edu.hostel.model;
 
+
 import javax.persistence.*;
 
 /**

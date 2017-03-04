@@ -2,6 +2,7 @@ package nju.edu.hostel.dao.Impl;
 
 import nju.edu.hostel.dao.BaseDao;
 import nju.edu.hostel.dao.UserDao;
+import nju.edu.hostel.util.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -24,12 +25,25 @@ public class UserDaoImpl  implements UserDao{
     BaseDao baseDao;
     @Override
     public boolean ifExist(int id) {
-        System.out.println("UserDaoImpl  id= "+id);
-        String hql="FROM User user WHERE user.id=:id";
-        User user=(User) baseDao.findById(User.class, id);
-        if(user!=null) return true;
-        else return false;
+//        System.out.println("UserDaoImpl  id= "+id);
+//        String hql="FROM User user WHERE user.id=:id";
+//        User user=(User) baseDao.findById(User.class, id);
+//        if(user!=null) return true;
+//        else return false;
+        return true;
     }
+
+    @Override
+    public User getById(int id) {
+        return null;
+//        return (User)baseDao.findById(User.class,id);
+    }
+
+    @Override
+    public List<User> findByColunms(String[] columns, Object[] values) {
+        return baseDao.findByColunms(User.class,columns,values);
+    }
+
 //
 //    @Override
 //    public <S extends T> S save(S s) {

@@ -4,12 +4,16 @@ import nju.edu.hostel.model.Vip;
 import nju.edu.hostel.service.VIPService;
 import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.model.*;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 /**
  * Created by disinuo on 17/3/3.
  */
+@Transactional
+@Service
 public class VIPServiceBean implements VIPService{
     @Override
     public ResultMessage add(String vipName, String password) {

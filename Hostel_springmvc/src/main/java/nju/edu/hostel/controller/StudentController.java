@@ -17,8 +17,9 @@ public class StudentController {
         return new ModelAndView("student", "command", new StudentVO());
     }
     @RequestMapping(value = "/addStudent", method = RequestMethod.POST)
-    public String addStudent(@ModelAttribute("SpringWeb")StudentVO student,
+    public String addStudent(@ModelAttribute StudentVO student,
                              ModelMap model) {
+        System.out.println(student.getName());
         model.addAttribute("name", student.getName());
         model.addAttribute("age", student.getAge());
         model.addAttribute("id", student.getId());

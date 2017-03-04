@@ -1,22 +1,23 @@
 package nju.edu.hostel.service.bean;
 
-import nju.edu.hostel.respository.UserRepository;
+import nju.edu.hostel.dao.UserDao;
 import nju.edu.hostel.service.UserService;
 import nju.edu.hostel.util.ResultMessage;
-import nju.edu.hostel.util.UserType;
 import nju.edu.hostel.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 /**
  * Created by disinuo on 17/3/3.
  */
+@Transactional
 @Service
 public class UserServiceBean implements UserService {
     @Autowired
-    UserRepository userRepository;
+    UserDao userDao;
     @Override
     public ResultMessage add(String userName, String password) {
         return null;
@@ -34,16 +35,24 @@ public class UserServiceBean implements UserService {
 
     @Override
     public User getById(int userId) {
-        return userRepository.findOne(userId);
+        return userDao.getById(userId);
     }
 
     @Override
-    public List<User> getByType(UserType type) {
+    public List<User> getByType(String type) {
         return null;
     }
 
     @Override
-    public UserType login(String userName, String password) {
-        return null;
+    public User login(String userName, String password) {
+        String[] keys={"userName","password"};
+        Object[] values={userName,password};
+        List<User> ans=userDao.findByColunms(keys,values);
+        if(ans==null) {
+            return null;
+        }
+        else {
+            return ans.get(0);
+        }
     }
 }
