@@ -35,7 +35,7 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public Hostel getById(int hostelId) {
-        return null;
+        return hostelDao.getById(hostelId);
     }
 
     @Override
@@ -70,12 +70,14 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public List<BookBill> getAllBookBills(int hostelId) {
-        return null;
+
+        return getById(hostelId).getBookBills();
     }
 
     @Override
     public List<PayBill> getAllPayBills(int hostelId) {
-        return null;
+
+        return getById(hostelId).getPayBills();
     }
 
     @Override
@@ -85,11 +87,11 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public List<LiveBill> getAllLiveBills(int hostelId) {
-        return null;
+        return getById(hostelId).getLiveBills();
     }
 
     @Override
-    public List<Hostel> getAllPermittedHostels() {
-        return hostelDao.get();
+    public List<Room> getAllRooms(int hostelId){
+        return getById(hostelId).getRooms();
     }
 }

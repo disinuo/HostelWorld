@@ -15,7 +15,7 @@ public class DisPatcher {
     public static ModelAndView roleToHomePage(String role){
         switch (role){
             case ROLE_VIP:
-                return new ModelAndView("redirect:/vip/rooms");
+                return new ModelAndView("redirect:/vip/hostels");
             case ROLE_HOSTEL:return new ModelAndView("hostel/index");
             case ROLE_MANAGER:return new ModelAndView("manager/index");
             default: return new ModelAndView("notExist");

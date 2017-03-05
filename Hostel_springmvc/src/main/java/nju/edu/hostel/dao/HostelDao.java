@@ -9,4 +9,5 @@ import java.util.List;
  */
 public interface HostelDao {
     public List<Hostel> get();
+    public Hostel getById(int hostelId);
 }

@@ -132,7 +132,12 @@ public interface HostelService {
      */
     public List<LiveBill> getAllLiveBills(int hostelId);
 
-    public List<Hostel> getAllPermittedHostels();
+    /**
+     * 得到该客栈的所有房间
+     * @param hostelId
+     * @return
+     */
+    public List<Room> getAllRooms(int hostelId);
 
 
 }

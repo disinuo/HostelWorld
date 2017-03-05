@@ -8,14 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Hostel|VIP</title>
+    <title>VIP|所有客栈</title>
 </head>
 <body>
-<%@include file="navigation.jsp" %>
+<%@include file="component/navigation.jsp" %>
 
 Hello 亲爱的VIP
-<jsp:include page="info.jsp" flush="true"/>
+<jsp:include page="component/info.jsp" flush="true"/>
 
-<jsp:include page="../common/roomList.jsp" flush="true"/>
+<jsp:include page="../common/hostelList.jsp" flush="true"/>
 </body>
 </html>

@@ -12,11 +12,11 @@
     <title>VIP|预订记录</title>
 </head>
 <body>
-<%@include file="navigation.jsp" %>
+<%@include file="component/navigation.jsp" %>
 
 Hello 亲爱的VIP<br>
 这是预订记录~~~~
-<jsp:include page="info.jsp" flush="true"/>
+<jsp:include page="component/info.jsp" flush="true"/>
 <c:if test="${empty bookBills}">
     没有预订记录
 </c:if>

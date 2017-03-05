@@ -1,6 +1,7 @@
 package nju.edu.hostel.service.bean;
 
 import nju.edu.hostel.dao.BookDao;
+import nju.edu.hostel.dao.HostelDao;
 import nju.edu.hostel.dao.VIPDao;
 import nju.edu.hostel.model.Vip;
 import nju.edu.hostel.service.VIPService;
@@ -23,6 +24,8 @@ public class VIPServiceBean implements VIPService{
     VIPDao vipDao;
     @Autowired
     BookDao bookDao;
+    @Autowired
+    HostelDao hostelDao;
     @Override
     public ResultMessage add(String vipName, String password) {
         return null;
@@ -104,8 +107,7 @@ public class VIPServiceBean implements VIPService{
     }
 
     @Override
-    public List<Room> getAllRooms() {
-        //TODO
-        return StubData.getRooms();
+    public List<Hostel> getAllPermittedHostels() {
+        return hostelDao.get();
     }
 }

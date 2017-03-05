@@ -38,7 +38,7 @@ public class VipController {
     @RequestMapping(value = "/bookList")
     public ModelAndView showBookList(@ModelAttribute("vip") VipVO vipVO,
                                      ModelMap model){
-        System.out.println("/BookList: VIPController---showBookList ");
+        System.out.println("/bookList: VIPController---showBookList ");
 //        ModelAndView mo= checkLoggedIn(user);
 //        if(mo==null){
             int id=vipVO.getId();
@@ -48,7 +48,7 @@ public class VipController {
 //        }else return mo;
 
     }
-    @RequestMapping(value = "/rooms")
+    @RequestMapping(value = "/hostels")
     public ModelAndView showRooms(@ModelAttribute OnLineUserVO user,
                                   ModelMap model){
         ModelAndView mo= checkLoggedIn(user);
@@ -56,10 +56,10 @@ public class VipController {
             int id=user.getId();
             Vip vip=vipService.getById(id);
             VipVO vipVO=new VipVO(vip);
-            List<Room> rooms=vipService.getAllRooms();
-            model.addAttribute("rooms",rooms);
+            List<Hostel>  hostels=vipService.getAllPermittedHostels();
+            model.addAttribute("hostels",hostels);
             model.addAttribute("vip",vipVO);
-            return new ModelAndView("vip/roomListPage");
+            return new ModelAndView("vip/hostelListPage");
         }else return mo;
 
     }

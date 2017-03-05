@@ -12,6 +12,7 @@ import java.util.Set;
 public class Hostel {
     private int id;
     private boolean permitted;
+    private String img;
     private String phone;
     private String address;
     private String name;
@@ -28,6 +29,15 @@ public class Hostel {
 
     public void setId(int id) {
         this.id = id;
+    }
+    @Basic
+    @Column(name = "img", nullable = true, length = 255)
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     @Basic

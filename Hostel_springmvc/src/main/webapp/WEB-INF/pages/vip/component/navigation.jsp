@@ -14,7 +14,7 @@
 <body>
 <div>
     <ul>
-        <li><a href="/vip/rooms">所有房间</a></li>
+        <li><a href="/vip/hostels">所有房间</a></li>
         <li><a href="/vip/bookList">我的预订</a></li>
         <li><a href="/vip/payList">我的消费</a></li>
         <li><a href="/vip/liveList">住房记录</a></li>

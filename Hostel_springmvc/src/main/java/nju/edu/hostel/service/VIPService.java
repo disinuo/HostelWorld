@@ -138,5 +138,9 @@ public interface VIPService {
      */
     public ResultMessage scoreToMoney(int vipId, double score);
 
-    public List<Room> getAllRooms();
+    /**
+     * 返回所有通过总经理审批的客栈
+     * @return
+     */
+    public List<Hostel> getAllPermittedHostels();
 }

@@ -20,4 +20,8 @@ public class HostelDaoImpl implements HostelDao{
         Object[] values={true};
         return baseDao.findByColunms(Hostel.class,columnName,values);
     }
+    @Override
+    public Hostel getById(int hostelId){
+        return baseDao.getById(Hostel.class,hostelId);
+    }
 }
