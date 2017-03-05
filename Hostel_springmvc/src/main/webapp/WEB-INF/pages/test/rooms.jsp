@@ -27,7 +27,7 @@
     <![endif]-->
 </head>
 <body>
-<div class="container">
+<div class="vip-info-container">
     <h1>SpringMVC 博客系统-用户管理</h1>
     <hr/>
 

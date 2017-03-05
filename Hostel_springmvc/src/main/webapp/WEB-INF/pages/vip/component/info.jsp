@@ -16,8 +16,8 @@
     <title>selfInfo</title>
 </head>
 <body>
-<div class="container">
-<img class="avatar" src="../../img/head.jpg" alt="头像">
+<div class="vip-info-container">
+<img class="vip-avatar" src="../../img/head.jpg" alt="头像">
 
 <%--${onlineUser.id}--%>
 <%--${onlineUser.userName}--%>

@@ -1,18 +1,20 @@
 <%--
   Created by IntelliJ IDEA.
   User: disinuo
-  Date: 17/3/4
-  Time: 01:55
+  Date: 17/3/5
+  Time: 22:11
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Hostel|NotExist</title>
+    <title>Title</title>
+    <link type="text/css" rel="stylesheet" href="../../css/common.css"/>
 </head>
 <body>
-<%@include file="./common/header.jsp" %>
-不存在该用户
+<div class="header">
+    我是Header！~~~~~~~~~~
+</div>
+
 </body>
-<%--<jsp:include page="included.html" flush="true" />--%>
 </html>

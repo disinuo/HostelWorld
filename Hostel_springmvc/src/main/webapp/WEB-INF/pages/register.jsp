@@ -13,6 +13,7 @@
     <title>Hostel|注册</title>
 </head>
 <body>
+<%@include file="./common/header.jsp" %>
 <form:form method="post" action="/register" role="form">
     <table>
         <tr>

@@ -11,9 +11,11 @@
     <title>Title</title>
 </head>
 <body>
+<%@include file="../common/header.jsp" %>
 <%@include file="component/navigation.jsp" %>
 
 <jsp:include page="component/info.jsp" flush="true"/>
+<jsp:include page="component/hostelHeader.jsp" />
 <jsp:include page="../common/roomList.jsp" flush="true"/>
 </body>
 </html>

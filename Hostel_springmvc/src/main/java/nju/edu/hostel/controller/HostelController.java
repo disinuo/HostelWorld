@@ -1,5 +1,6 @@
 package nju.edu.hostel.controller;
 
+import nju.edu.hostel.model.Hostel;
 import nju.edu.hostel.model.Room;
 import nju.edu.hostel.service.HostelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,9 @@ public class HostelController {
     @RequestMapping(value = "/rooms")
     public ModelAndView showRooms(@RequestParam("hostelId")int hostelId, ModelMap model){
         List<Room> rooms=hostelService.getAllRooms(hostelId);
+        Hostel hostel=hostelService.getById(hostelId);
         model.addAttribute("rooms",rooms);
+        model.addAttribute("hostel",hostel);
         return new ModelAndView("vip/hostelDetailPage",model);
     }
 }

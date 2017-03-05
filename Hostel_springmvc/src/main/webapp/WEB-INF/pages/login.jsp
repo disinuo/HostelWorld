@@ -15,6 +15,7 @@
 </head>
 
 <body>
+<%@include file="./common/header.jsp" %>
 <form:form method="post" action="/" role="form">
     <table>
         <tr>

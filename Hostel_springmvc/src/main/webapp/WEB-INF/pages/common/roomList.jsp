@@ -21,7 +21,7 @@
         <tr>
             <td>房间名</td>
             <td>图片</td>
-            <td>房间价格</td>
+            <td>价格</td>
         </tr>
         </thead>
         <tbody>
@@ -29,7 +29,7 @@
             <tr>
                 <td>${room.name}</td>
                 <td>${room.img}</td>
-                <td>${room.price}</td>
+                <td>${room.price}元</td>
             </tr>
         </c:forEach>
         </tbody>

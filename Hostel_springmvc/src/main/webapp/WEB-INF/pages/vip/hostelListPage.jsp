@@ -11,6 +11,7 @@
     <title>VIP|所有客栈</title>
 </head>
 <body>
+<%@include file="../common/header.jsp" %>
 <%@include file="component/navigation.jsp" %>
 
 Hello 亲爱的VIP

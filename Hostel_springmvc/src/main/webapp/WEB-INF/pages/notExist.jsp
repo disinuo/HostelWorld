@@ -11,6 +11,7 @@
     <title>Hostel|NotExist</title>
 </head>
 <body>
+<%@include file="./common/header.jsp" %>
 不存在该用户
 </body>
 <%--<jsp:include page="included.html" flush="true" />--%>
