@@ -4,6 +4,7 @@ import nju.edu.hostel.dao.BookDao;
 import nju.edu.hostel.dao.VIPDao;
 import nju.edu.hostel.model.Vip;
 import nju.edu.hostel.service.VIPService;
+import nju.edu.hostel.test.StubData;
 import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,16 +86,26 @@ public class VIPServiceBean implements VIPService{
 
     @Override
     public List<PayBill> getAllPayBills(int vipId) {
-        return null;
+
+        Vip vip=getById(vipId);
+        return vip.getPayBills();
+
     }
 
     @Override
     public List<LiveBill> getAllLiveBills(int vipId) {
-        return null;
+        Vip vip=getById(vipId);
+        return vip.getLiveBills();
     }
 
     @Override
     public ResultMessage scoreToMoney(int vipId, double score) {
         return null;
+    }
+
+    @Override
+    public List<Room> getAllRooms() {
+        //TODO
+        return StubData.getRooms();
     }
 }

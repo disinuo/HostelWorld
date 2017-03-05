@@ -1,7 +1,6 @@
 package nju.edu.hostel.controller;
 
-import nju.edu.hostel.model.BookBill;
-import nju.edu.hostel.model.Vip;
+import nju.edu.hostel.model.*;
 import nju.edu.hostel.service.VIPService;
 import nju.edu.hostel.util.DisPatcher;
 import nju.edu.hostel.vo.OnLineUserVO;
@@ -20,8 +19,8 @@ import java.util.List;
  * Created by disinuo on 17/3/5.
  */
 @Controller
-@RequestMapping("/vip")
 @SessionAttributes(types = {VipVO.class,OnLineUserVO.class})
+@RequestMapping("/vip")
 public class VipController {
     @Autowired
     VIPService vipService;
@@ -37,39 +36,47 @@ public class VipController {
 
 
     @RequestMapping(value = "/bookList")
-    public ModelAndView showBookList(@ModelAttribute OnLineUserVO user, ModelMap model){
+    public ModelAndView showBookList(@ModelAttribute("vip") VipVO vipVO,
+                                     ModelMap model){
         System.out.println("/BookList: VIPController---showBookList ");
-        ModelAndView mo= checkLoggedIn(user);
-        if(mo==null){
-            int id=user.getId();
-            System.out.println(user.getId());
-            Vip vip=vipService.getById(id);
-
-            VipVO vipVO=new VipVO(vip);
+//        ModelAndView mo= checkLoggedIn(user);
+//        if(mo==null){
+            int id=vipVO.getId();
             List<BookBill> bookBills=vipService.getAllBookBills(id);
-            model.addAttribute("vip",vipVO);
             model.addAttribute("bookBills",bookBills);
             return new ModelAndView("vip/bookListPage");
-        }else return mo;
+//        }else return mo;
 
     }
     @RequestMapping(value = "/rooms")
-    public ModelAndView showRooms(@ModelAttribute OnLineUserVO user, ModelMap model){
+    public ModelAndView showRooms(@ModelAttribute OnLineUserVO user,
+                                  ModelMap model){
         ModelAndView mo= checkLoggedIn(user);
         if(mo==null){
-            Vip vip=vipService.getById(user.getId());
+            int id=user.getId();
+            Vip vip=vipService.getById(id);
+            VipVO vipVO=new VipVO(vip);
+            List<Room> rooms=vipService.getAllRooms();
+            model.addAttribute("rooms",rooms);
+            model.addAttribute("vip",vipVO);
             return new ModelAndView("vip/roomListPage");
         }else return mo;
 
     }
 
     @RequestMapping(value = "/payList")
-    public ModelAndView showPayList(){
-
+    public ModelAndView showPayList(@ModelAttribute("vip") VipVO vipVO,
+                                    ModelMap model){
+        int id=vipVO.getId();
+        List<PayBill> payBills=vipService.getAllPayBills(id);
+        model.addAttribute("payBills",payBills);
         return new ModelAndView("vip/payListPage");
     }
     @RequestMapping(value = "/liveList")
-    public ModelAndView showLiveList(){
+    public ModelAndView showLiveList(@ModelAttribute("vip") VipVO vipVO,
+                                     ModelMap model){
+        List<LiveBill> liveBills=vipService.getAllLiveBills(vipVO.getId());
+        model.addAttribute("liveBills",liveBills);
         return new ModelAndView("vip/LiveListPage");
     }
 }

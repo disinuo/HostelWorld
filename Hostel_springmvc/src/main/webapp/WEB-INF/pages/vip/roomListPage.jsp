@@ -15,6 +15,7 @@
 
 Hello 亲爱的VIP
 <jsp:include page="info.jsp" flush="true"/>
+
 <jsp:include page="../common/roomList.jsp" flush="true"/>
 </body>
 </html>

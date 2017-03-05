@@ -20,7 +20,7 @@ public class Vip {
     private String state;
     private int time;
     private List<BookBill> bookBills;
-    private List<LiveBill> liveBillsById;
+    private List<LiveBill> liveBills;
     private List<PayBill> payBills;
 
     @Id
@@ -174,12 +174,12 @@ public class Vip {
     }
 
     @OneToMany(mappedBy = "vip")
-    public List<LiveBill> getLiveBillsById() {
-        return liveBillsById;
+    public List<LiveBill> getLiveBills() {
+        return liveBills;
     }
 
-    public void setLiveBillsById(List<LiveBill> liveBillsById) {
-        this.liveBillsById = liveBillsById;
+    public void setLiveBills(List<LiveBill> liveBillsById) {
+        this.liveBills = liveBillsById;
     }
 
     @OneToMany(mappedBy = "vip")

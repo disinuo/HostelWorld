@@ -1,6 +1,7 @@
 package nju.edu.hostel.model;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -14,10 +15,10 @@ public class Hostel {
     private String phone;
     private String address;
     private String name;
-    private Set<BookBill> bookBills;
-    private Set<LiveBill> liveBills;
-    private Set<PayBill> payBills;
-    private Set<Room> rooms;
+    private List<BookBill> bookBills;
+    private List<LiveBill> liveBills;
+    private List<PayBill> payBills;
+    private List<Room> rooms;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -96,38 +97,38 @@ public class Hostel {
 //    }
 
     @OneToMany(mappedBy = "hostel")
-    public Set<BookBill> getBookBills() {
+    public List<BookBill> getBookBills() {
         return bookBills;
     }
 
-    public void setBookBills(Set<BookBill> bookBills) {
+    public void setBookBills(List<BookBill> bookBills) {
         this.bookBills = bookBills;
     }
 
     @OneToMany(mappedBy = "hostel")
-    public Set<LiveBill> getLiveBills() {
+    public List<LiveBill> getLiveBills() {
         return liveBills;
     }
 
-    public void setLiveBills(Set<LiveBill> liveBills) {
+    public void setLiveBills(List<LiveBill> liveBills) {
         this.liveBills = liveBills;
     }
 
     @OneToMany(mappedBy = "hostel")
-    public Set<PayBill> getPayBills() {
+    public List<PayBill> getPayBills() {
         return payBills;
     }
 
-    public void setPayBills(Set<PayBill> payBills) {
+    public void setPayBills(List<PayBill> payBills) {
         this.payBills = payBills;
     }
 
     @OneToMany(mappedBy = "hostel")
-    public Set<Room> getRooms() {
+    public List<Room> getRooms() {
         return rooms;
     }
 
-    public void setRooms(Set<Room> rooms) {
+    public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
     }
 }

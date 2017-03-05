@@ -138,4 +138,5 @@ public interface VIPService {
      */
     public ResultMessage scoreToMoney(int vipId, double score);
 
+    public List<Room> getAllRooms();
 }

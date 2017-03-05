@@ -11,7 +11,7 @@ public class Room {
     private int id;
     private double price;
     private String img;
-    private Byte valid;
+    private boolean valid;
     private String name;
     private Hostel hostel;
 
@@ -47,11 +47,11 @@ public class Room {
 
     @Basic
     @Column(name = "valid", nullable = true)
-    public Byte getValid() {
+    public boolean getValid() {
         return valid;
     }
 
-    public void setValid(Byte valid) {
+    public void setValid(boolean valid) {
         this.valid = valid;
     }
 
@@ -75,23 +75,10 @@ public class Room {
         if (id != that.id) return false;
         if (Double.compare(that.price, price) != 0) return false;
         if (img != null ? !img.equals(that.img) : that.img != null) return false;
-        if (valid != null ? !valid.equals(that.valid) : that.valid != null) return false;
+        if (valid != that.valid)  return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
 
         return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        result = id;
-        temp = Double.doubleToLongBits(price);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (img != null ? img.hashCode() : 0);
-        result = 31 * result + (valid != null ? valid.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        return result;
     }
 
     @ManyToOne

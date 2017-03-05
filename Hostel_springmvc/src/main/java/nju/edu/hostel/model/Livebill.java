@@ -10,8 +10,9 @@ import java.util.Date;
 @Table(name = "livebill", schema = "hostel", catalog = "")
 public class LiveBill {
     private int id;
-    private String type;
-    private int userRealName;
+    //true代表入店，false代表离店
+    private boolean type;
+    private String userRealName;
     private String idCard;
     private Date date;
     private Hostel hostel;
@@ -29,22 +30,22 @@ public class LiveBill {
     }
 
     @Basic
-    @Column(name = "type", nullable = false, length = 255)
-    public String getType() {
+    @Column(name = "type", nullable = false)
+    public boolean getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(boolean type) {
         this.type = type;
     }
 
     @Basic
     @Column(name = "userRealName", nullable = false)
-    public int getUserRealName() {
+    public String getUserRealName() {
         return userRealName;
     }
 
-    public void setUserRealName(int userRealName) {
+    public void setUserRealName(String userRealName) {
         this.userRealName = userRealName;
     }
 
@@ -76,23 +77,14 @@ public class LiveBill {
         LiveBill that = (LiveBill) o;
 
         if (id != that.id) return false;
-        if (userRealName != that.userRealName) return false;
-        if (type != null ? !type.equals(that.type) : that.type != null) return false;
+        if (userRealName  != null ? !userRealName.equals(that.userRealName):that.idCard!=null) return false;
+        if (type != that.type) return false;
         if (idCard != null ? !idCard.equals(that.idCard) : that.idCard != null) return false;
         if (date != null ? !date.equals(that.date) : that.date != null) return false;
 
         return true;
     }
 
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (type != null ? type.hashCode() : 0);
-        result = 31 * result + userRealName;
-        result = 31 * result + (idCard != null ? idCard.hashCode() : 0);
-        result = 31 * result + (date != null ? date.hashCode() : 0);
-        return result;
-    }
 
     @ManyToOne
     @JoinColumn(name = "hostelId", referencedColumnName = "id", nullable = false)

@@ -7,9 +7,9 @@
         <class>nju.edu.hostel.model.Room</class>
         <class>nju.edu.hostel.model.User</class>
         <class>nju.edu.hostel.model.Vip</class>
-        <class>nju.edu.hostel.model.Livebill</class>
-        <class>nju.edu.hostel.model.Bookbill</class>
-        <class>nju.edu.hostel.model.Paybill</class>
+        <class>nju.edu.hostel.model.LiveBill</class>
+        <class>nju.edu.hostel.model.BookBill</class>
+        <class>nju.edu.hostel.model.PayBill</class>
 
         <properties>
             <!-- 使用MySQL方言 -->
