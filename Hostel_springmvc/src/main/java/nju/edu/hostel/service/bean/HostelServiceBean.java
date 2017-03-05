@@ -44,17 +44,17 @@ public class HostelServiceBean implements HostelService {
     }
 
     @Override
-    public ResultMessage enrollPay(Paybill paybill) {
+    public ResultMessage enrollPay(PayBill payBill) {
         return null;
     }
 
     @Override
-    public ResultMessage liveIn(int hostelId, Livebill liveInBill) {
+    public ResultMessage liveIn(int hostelId, LiveBill liveInBill) {
         return null;
     }
 
     @Override
-    public ResultMessage depart(int hostelId, Livebill departBill) {
+    public ResultMessage depart(int hostelId, LiveBill departBill) {
         return null;
     }
 
@@ -69,12 +69,12 @@ public class HostelServiceBean implements HostelService {
     }
 
     @Override
-    public List<Bookbill> getAllBookBills(int hostelId) {
+    public List<BookBill> getAllBookBills(int hostelId) {
         return null;
     }
 
     @Override
-    public List<Paybill> getAllPayBills(int hostelId) {
+    public List<PayBill> getAllPayBills(int hostelId) {
         return null;
     }
 
@@ -84,7 +84,7 @@ public class HostelServiceBean implements HostelService {
     }
 
     @Override
-    public List<Livebill> getAllLiveBills(int hostelId) {
+    public List<LiveBill> getAllLiveBills(int hostelId) {
         return null;
     }
 

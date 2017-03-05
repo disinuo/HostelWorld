@@ -51,10 +51,10 @@ public interface HostelService {
      包括会员的消费、非会员的消费
      非会员的线下消费也当做是交到总经理账户中了。
      所以总经理还是根据记录在系统里的账单进行【结算】
-     * @param paybill
+     * @param payBill
      * @return
      */
-    public ResultMessage enrollPay(Paybill paybill);
+    public ResultMessage enrollPay(PayBill payBill);
 
     /**
      * 登记住户的入店信息：
@@ -63,7 +63,7 @@ public interface HostelService {
      * @param liveInBill
      * @return
      */
-    public ResultMessage liveIn(int hostelId, Livebill liveInBill);
+    public ResultMessage liveIn(int hostelId, LiveBill liveInBill);
 
     /**
      * 登记住户的离店信息:
@@ -73,7 +73,7 @@ public interface HostelService {
      * @param departBill
      * @return
      */
-    public ResultMessage depart(int hostelId, Livebill departBill);
+    public ResultMessage depart(int hostelId, LiveBill departBill);
 
     /**
      * 客栈发布房间计划,只能发布自己客栈的房间计划
@@ -101,7 +101,7 @@ public interface HostelService {
      * @param hostelId
      * @return
      */
-    public List<Bookbill> getAllBookBills(int hostelId);
+    public List<BookBill> getAllBookBills(int hostelId);
 
     /**
      * 获取本店财务情况
@@ -113,7 +113,7 @@ public interface HostelService {
      * @param hostelId
      * @return
      */
-    public List<Paybill> getAllPayBills(int hostelId);
+    public List<PayBill> getAllPayBills(int hostelId);
 
     /**
      * 获取本店总收入
@@ -130,7 +130,7 @@ public interface HostelService {
      * @param hostelId
      * @return
      */
-    public List<Livebill> getAllLiveBills(int hostelId);
+    public List<LiveBill> getAllLiveBills(int hostelId);
 
     public List<Hostel> getAllPermittedHostels();
 

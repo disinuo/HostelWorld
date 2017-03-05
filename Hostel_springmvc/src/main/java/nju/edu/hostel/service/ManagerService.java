@@ -27,14 +27,14 @@ public interface ManagerService {
      * @param bankPassword
      * @return
      */
-    public List<Paybill> count(int managerId, String bankPassword);
+    public List<PayBill> count(int managerId, String bankPassword);
 
     /**
      * 获取所有预订数据，包括预订和取消预订
      * 【前置】以总经理身份登录
      * @return
      */
-    public List<Bookbill> getAllBookBills();
+    public List<BookBill> getAllBookBills();
 
     /**
      * 获取所有消费数据
@@ -42,25 +42,25 @@ public interface ManagerService {
 
      * @return
      */
-    public List<Paybill> getAllPayBills();
+    public List<PayBill> getAllPayBills();
 
     /**
      * 获取所有会员的消费数据
      * @return
      */
-    public List<Paybill> getAllPayBillsOfVIP();
+    public List<PayBill> getAllPayBillsOfVIP();
 
     /**
      * 获取所有住店数据
      * @return
      */
-    public List<Livebill> getAllLiveBills();
+    public List<LiveBill> getAllLiveBills();
 
     /**
      * 获取指定客栈的所以住店数据
      * @param hostelId
      * @return
      */
-    public List<Livebill> getAllLiveBillsByHostel(int hostelId);
+    public List<LiveBill> getAllLiveBillsByHostel(int hostelId);
 
 }

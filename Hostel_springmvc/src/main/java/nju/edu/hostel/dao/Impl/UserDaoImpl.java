@@ -2,7 +2,6 @@ package nju.edu.hostel.dao.Impl;
 
 import nju.edu.hostel.dao.BaseDao;
 import nju.edu.hostel.dao.UserDao;
-import nju.edu.hostel.util.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -41,7 +40,8 @@ public class UserDaoImpl  implements UserDao{
 
     @Override
     public List<User> findByColunms(String[] columns, Object[] values) {
-        return baseDao.findByColunms(User.class,columns,values);
+        List<User> users=baseDao.findByColunms(User.class,columns,values);
+        return users;
     }
 
 //

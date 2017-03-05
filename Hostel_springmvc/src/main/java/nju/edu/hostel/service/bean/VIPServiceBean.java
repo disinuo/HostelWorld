@@ -1,9 +1,12 @@
 package nju.edu.hostel.service.bean;
 
+import nju.edu.hostel.dao.BookDao;
+import nju.edu.hostel.dao.VIPDao;
 import nju.edu.hostel.model.Vip;
 import nju.edu.hostel.service.VIPService;
 import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.model.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +18,10 @@ import java.util.List;
 @Transactional
 @Service
 public class VIPServiceBean implements VIPService{
+    @Autowired
+    VIPDao vipDao;
+    @Autowired
+    BookDao bookDao;
     @Override
     public ResultMessage add(String vipName, String password) {
         return null;
@@ -52,7 +59,7 @@ public class VIPServiceBean implements VIPService{
 
     @Override
     public Vip getById(int vipId) {
-        return null;
+        return vipDao.getById(vipId);
     }
 
     @Override
@@ -61,7 +68,7 @@ public class VIPServiceBean implements VIPService{
     }
 
     @Override
-    public ResultMessage book(Bookbill bookBill) {
+    public ResultMessage book(BookBill bookBill) {
         return null;
     }
 
@@ -71,17 +78,18 @@ public class VIPServiceBean implements VIPService{
     }
 
     @Override
-    public List<Bookbill> getAllBookBills(int vipId) {
+    public List<BookBill> getAllBookBills(int vipId) {
+        Vip vip=getById(vipId);
+        return vip.getBookBills();
+    }
+
+    @Override
+    public List<PayBill> getAllPayBills(int vipId) {
         return null;
     }
 
     @Override
-    public List<Paybill> getAllPayBills(int vipId) {
-        return null;
-    }
-
-    @Override
-    public List<Livebill> getAllLiveBills(int vipId) {
+    public List<LiveBill> getAllLiveBills(int vipId) {
         return null;
     }
 

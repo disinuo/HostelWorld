@@ -3,51 +3,45 @@
  */
 package nju.edu.hostel.controller;
 import nju.edu.hostel.model.Hostel;
-import nju.edu.hostel.model.Room;
 import nju.edu.hostel.model.User;
-import nju.edu.hostel.respository.RoomRespository;
-import nju.edu.hostel.respository.UserRepository;
 import nju.edu.hostel.service.HostelService;
 import nju.edu.hostel.service.UserService;
+import nju.edu.hostel.util.DisPatcher;
+import nju.edu.hostel.vo.OnLineUserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
+import static nju.edu.hostel.util.Constants.ROLE_HOSTEL;
+import static nju.edu.hostel.util.Constants.ROLE_MANAGER;
+import static nju.edu.hostel.util.Constants.ROLE_VIP;
+
 @Controller
-@RequestMapping("/test")
+@RequestMapping("/")
+@SessionAttributes(types = {OnLineUserVO.class})
 public class MainController {
-    @Autowired
-    UserService userService;
-    @Autowired
-    HostelService hostelService;
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index() {
-        return "index";
+    @RequestMapping(value = "/" ,method=RequestMethod.GET)
+    public ModelAndView showHomePage(@ModelAttribute OnLineUserVO onLineUserVO){
+        try {
+            System.out.print("用户已登录");
+            return DisPatcher.roleToHomePage(onLineUserVO.getType());
+
+        }catch (Exception e){
+            return new ModelAndView("redirect:/login");
+        }
+//        if(onLineUserVO!=null){
+//            System.out.print("用户已登录");
+//            return DisPatcher.roleToHomePage(onLineUserVO.getType());
+//
+//        }else {
+//        }
     }
 
-    @RequestMapping(value = "/admin/users", method = RequestMethod.GET)
-    public String getUsers(ModelMap modelMap) {
-        // 查询user表中所有记录
-        User user= userService.getById(1000000);
-
-        // 将所有记录传递给要返回的jsp页面，放在userList当中
-        modelMap.addAttribute("user", user);
-
-        // 返回pages目录下的admin/users.jsp页面
-        return "admin/users";
-    }
-    @RequestMapping(value = "/admin/rooms", method = RequestMethod.GET)
-    public String getHostels(ModelMap modelMap) {
-        // 查询user表中所有记录
-        List<Hostel> hostels=hostelService.getAllPermittedHostels();
-        // 将所有记录传递给要返回的jsp页面，放在userList当中
-        modelMap.addAttribute("hostelList", hostels);
-
-        // 返回pages目录下的admin/users.jsp页面
-        return "admin/rooms";
-    }
 }

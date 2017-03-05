@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ui.ModelMap;
 @Controller
+@RequestMapping("/student")
 public class StudentController {
     @RequestMapping(value = "/student", method = RequestMethod.GET)
     public ModelAndView student() {
-        return new ModelAndView("student", "command", new StudentVO());
+        return new ModelAndView("test/student", "command", new StudentVO());
     }
     @RequestMapping(value = "/addStudent", method = RequestMethod.POST)
     public String addStudent(@ModelAttribute StudentVO student,
@@ -23,6 +24,6 @@ public class StudentController {
         model.addAttribute("name", student.getName());
         model.addAttribute("age", student.getAge());
         model.addAttribute("id", student.getId());
-        return "result";
+        return "test/result";
     }
 }

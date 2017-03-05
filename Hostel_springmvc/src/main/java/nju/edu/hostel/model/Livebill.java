@@ -8,7 +8,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "livebill", schema = "hostel", catalog = "")
-public class Livebill {
+public class LiveBill {
     private int id;
     private String type;
     private int userRealName;
@@ -73,7 +73,7 @@ public class Livebill {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Livebill that = (Livebill) o;
+        LiveBill that = (LiveBill) o;
 
         if (id != that.id) return false;
         if (userRealName != that.userRealName) return false;

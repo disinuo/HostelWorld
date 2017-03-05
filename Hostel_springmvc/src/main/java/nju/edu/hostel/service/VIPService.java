@@ -85,7 +85,7 @@ public interface VIPService {
      * @param bookBill
      * @return
      */
-    public ResultMessage book(Bookbill bookBill);
+    public ResultMessage book(BookBill bookBill);
 
     /**
      * 会员取消预订。bookId是预定订单id，会在预订订单生成时自动生成
@@ -105,7 +105,7 @@ public interface VIPService {
      * @param vipId
      * @return
      */
-    public List<Bookbill> getAllBookBills(int vipId);
+    public List<BookBill> getAllBookBills(int vipId);
 
     /**
      * 获取本人消费数据
@@ -117,7 +117,7 @@ public interface VIPService {
      * @param vipId
      * @return
      */
-    public List<Paybill> getAllPayBills(int vipId);
+    public List<PayBill> getAllPayBills(int vipId);
 
     /**
      * 获取本人住店数据，包含入店、离店信息
@@ -127,7 +127,7 @@ public interface VIPService {
      * @param vipId
      * @return
      */
-    public List<Livebill> getAllLiveBills(int vipId);
+    public List<LiveBill> getAllLiveBills(int vipId);
 
     /**
      * 会员将指定的积分数换成会员卡余额

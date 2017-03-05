@@ -20,32 +20,32 @@ public class ManagerServiceBean implements ManagerService {
     }
 
     @Override
-    public List<Paybill> count(int managerId, String bankPassword) {
+    public List<PayBill> count(int managerId, String bankPassword) {
         return null;
     }
 
     @Override
-    public List<Bookbill> getAllBookBills() {
+    public List<BookBill> getAllBookBills() {
         return null;
     }
 
     @Override
-    public List<Paybill> getAllPayBills() {
+    public List<PayBill> getAllPayBills() {
         return null;
     }
 
     @Override
-    public List<Paybill> getAllPayBillsOfVIP() {
+    public List<PayBill> getAllPayBillsOfVIP() {
         return null;
     }
 
     @Override
-    public List<Livebill> getAllLiveBills() {
+    public List<LiveBill> getAllLiveBills() {
         return null;
     }
 
     @Override
-    public List<Livebill> getAllLiveBillsByHostel(int hostelId) {
+    public List<LiveBill> getAllLiveBillsByHostel(int hostelId) {
         return null;
     }
 }

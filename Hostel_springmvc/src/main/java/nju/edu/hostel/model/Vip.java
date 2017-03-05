@@ -1,7 +1,7 @@
 package nju.edu.hostel.model;
 
 import javax.persistence.*;
-import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by disinuo on 17/3/3.
@@ -19,9 +19,9 @@ public class Vip {
     private double score;
     private String state;
     private int time;
-    private Collection<Bookbill> bookbills;
-    private Collection<Livebill> liveBillsById;
-    private Collection<Paybill> paybills;
+    private List<BookBill> bookBills;
+    private List<LiveBill> liveBillsById;
+    private List<PayBill> payBills;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -165,29 +165,29 @@ public class Vip {
     }
 
     @OneToMany(mappedBy = "vip")
-    public Collection<Bookbill> getBookbills() {
-        return bookbills;
+    public List<BookBill> getBookBills() {
+        return bookBills;
     }
 
-    public void setBookbills(Collection<Bookbill> bookbills) {
-        this.bookbills = bookbills;
+    public void setBookBills(List<BookBill> bookBills) {
+        this.bookBills = bookBills;
     }
 
     @OneToMany(mappedBy = "vip")
-    public Collection<Livebill> getLiveBillsById() {
+    public List<LiveBill> getLiveBillsById() {
         return liveBillsById;
     }
 
-    public void setLiveBillsById(Collection<Livebill> liveBillsById) {
+    public void setLiveBillsById(List<LiveBill> liveBillsById) {
         this.liveBillsById = liveBillsById;
     }
 
     @OneToMany(mappedBy = "vip")
-    public Collection<Paybill> getPaybills() {
-        return paybills;
+    public List<PayBill> getPayBills() {
+        return payBills;
     }
 
-    public void setPaybills(Collection<Paybill> paybills) {
-        this.paybills = paybills;
+    public void setPayBills(List<PayBill> payBills) {
+        this.payBills = payBills;
     }
 }

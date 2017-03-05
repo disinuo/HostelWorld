@@ -1,7 +1,6 @@
 package nju.edu.hostel.dao;
 
 import nju.edu.hostel.model.User;
-import nju.edu.hostel.util.UserType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

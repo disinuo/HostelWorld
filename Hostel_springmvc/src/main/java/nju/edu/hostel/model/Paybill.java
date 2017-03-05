@@ -8,7 +8,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "paybill", schema = "hostel", catalog = "")
-public class Paybill {
+public class PayBill {
     private int id;
     private byte counted;
     private String userRealName;
@@ -84,7 +84,7 @@ public class Paybill {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Paybill that = (Paybill) o;
+        PayBill that = (PayBill) o;
 
         if (id != that.id) return false;
         if (counted != that.counted) return false;

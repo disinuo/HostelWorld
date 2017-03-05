@@ -20,7 +20,8 @@ public class UserServiceBean implements UserService {
     UserDao userDao;
     @Override
     public ResultMessage add(String userName, String password) {
-        return null;
+        //TODO
+        return ResultMessage.SUCCESS;
     }
 
     @Override
@@ -45,6 +46,7 @@ public class UserServiceBean implements UserService {
 
     @Override
     public User login(String userName, String password) {
+        System.out.print("UserServiceBean-login "+userName+"  "+password);
         String[] keys={"userName","password"};
         Object[] values={userName,password};
         List<User> ans=userDao.findByColunms(keys,values);

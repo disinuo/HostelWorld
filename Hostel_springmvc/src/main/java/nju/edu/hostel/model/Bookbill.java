@@ -7,8 +7,8 @@ import java.util.Date;
  * Created by disinuo on 17/3/3.
  */
 @Entity
-@Table(name = "bookbills", schema = "hostel", catalog = "")
-public class Bookbill {
+@Table(name = "bookbill", schema = "hostel", catalog = "")
+public class BookBill {
     private int id;
     private Date liveInDate;
     private Date createDate;
@@ -51,7 +51,7 @@ public class Bookbill {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Bookbill that = (Bookbill) o;
+        BookBill that = (BookBill) o;
 
         if (id != that.id) return false;
         if (liveInDate != null ? !liveInDate.equals(that.liveInDate) : that.liveInDate != null) return false;

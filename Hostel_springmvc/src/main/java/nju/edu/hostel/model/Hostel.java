@@ -1,7 +1,7 @@
 package nju.edu.hostel.model;
 
 import javax.persistence.*;
-import java.util.Collection;
+import java.util.Set;
 
 /**
  * Created by disinuo on 17/3/3.
@@ -14,10 +14,10 @@ public class Hostel {
     private String phone;
     private String address;
     private String name;
-    private Collection<Bookbill> bookbills;
-    private Collection<Livebill> livebills;
-    private Collection<Paybill> paybills;
-    private Collection<Room> rooms;
+    private Set<BookBill> bookBills;
+    private Set<LiveBill> liveBills;
+    private Set<PayBill> payBills;
+    private Set<Room> rooms;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -96,38 +96,38 @@ public class Hostel {
 //    }
 
     @OneToMany(mappedBy = "hostel")
-    public Collection<Bookbill> getBookbills() {
-        return bookbills;
+    public Set<BookBill> getBookBills() {
+        return bookBills;
     }
 
-    public void setBookbills(Collection<Bookbill> bookbills) {
-        this.bookbills = bookbills;
-    }
-
-    @OneToMany(mappedBy = "hostel")
-    public Collection<Livebill> getLivebills() {
-        return livebills;
-    }
-
-    public void setLivebills(Collection<Livebill> livebills) {
-        this.livebills = livebills;
+    public void setBookBills(Set<BookBill> bookBills) {
+        this.bookBills = bookBills;
     }
 
     @OneToMany(mappedBy = "hostel")
-    public Collection<Paybill> getPaybills() {
-        return paybills;
+    public Set<LiveBill> getLiveBills() {
+        return liveBills;
     }
 
-    public void setPaybills(Collection<Paybill> paybills) {
-        this.paybills = paybills;
+    public void setLiveBills(Set<LiveBill> liveBills) {
+        this.liveBills = liveBills;
     }
 
     @OneToMany(mappedBy = "hostel")
-    public Collection<Room> getRooms() {
+    public Set<PayBill> getPayBills() {
+        return payBills;
+    }
+
+    public void setPayBills(Set<PayBill> payBills) {
+        this.payBills = payBills;
+    }
+
+    @OneToMany(mappedBy = "hostel")
+    public Set<Room> getRooms() {
         return rooms;
     }
 
-    public void setRooms(Collection<Room> rooms) {
+    public void setRooms(Set<Room> rooms) {
         this.rooms = rooms;
     }
 }
