@@ -1,26 +1,22 @@
 <%--
   Created by IntelliJ IDEA.
   User: disinuo
-  Date: 17/3/4
-  Time: 20:48
+  Date: 17/3/5
+  Time: 22:49
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="nju.edu.hostel.vo.OnLineUserVO"%>
-<%@ page import="nju.edu.hostel.vo.VipVO" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <html>
 <head>
-    <link type="text/css" rel="stylesheet" href="../../css/vip_info.css"/>
-    <title>selfInfo</title>
+    <title>Title</title>
+    <link type="text/css" rel="stylesheet" href="../../css/vip_selfPanel.css"/>
 </head>
 <body>
-<div class="vip-info-container">
-<img class="vip-avatar" src="../../img/head.jpg" alt="头像">
+<div >
+    <img class="vip-avatar" src="../../img/head.jpg" alt="头像">
 
-<%--${onlineUser.id}--%>
-<%--${onlineUser.userName}--%>
+    <%--${onlineUser.id}--%>
+    <%--${onlineUser.userName}--%>
     <table>
         <tbody>
         <tr><td>用户名：</td><td>${vip.realName}</td></tr>
@@ -33,6 +29,5 @@
     </table>
 
 </div>
-
 </body>
 </html>

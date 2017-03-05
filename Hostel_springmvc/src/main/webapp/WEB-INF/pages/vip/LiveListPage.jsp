@@ -17,7 +17,7 @@
 
 Hello 亲爱的VIP<br>
 这是住房记录
-<jsp:include page="component/info.jsp" flush="true"/>
+<jsp:include page="component/selfPanel.jsp" flush="true"/>
 <c:if test="${empty liveBills}">
     没有住房记录
 </c:if>

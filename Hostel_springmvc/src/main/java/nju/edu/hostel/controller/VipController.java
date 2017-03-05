@@ -3,13 +3,16 @@ package nju.edu.hostel.controller;
 import nju.edu.hostel.model.*;
 import nju.edu.hostel.service.VIPService;
 import nju.edu.hostel.util.DisPatcher;
+import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.vo.OnLineUserVO;
+import nju.edu.hostel.vo.TopUpVO;
 import nju.edu.hostel.vo.VipVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -77,6 +80,25 @@ public class VipController {
                                      ModelMap model){
         List<LiveBill> liveBills=vipService.getAllLiveBills(vipVO.getId());
         model.addAttribute("liveBills",liveBills);
-        return new ModelAndView("vip/LiveListPage");
+        return new ModelAndView("vip/liveListPage");
+    }
+
+    @RequestMapping(value = "/topUp",method = RequestMethod.GET)
+    public ModelAndView getTopUpPage(@ModelAttribute("vip") VipVO vipVO,
+                                     ModelMap model){
+        model.addAttribute("topUp",new TopUpVO());
+        return new ModelAndView("vip/topUpPage",model);
+    }
+    @RequestMapping(value = "/topUp",method = RequestMethod.POST)
+    public ModelAndView topUpPage(@ModelAttribute("vip") VipVO vipVO,
+                           @ModelAttribute("topUp")TopUpVO topUpVO,
+                                     ModelMap model){
+        ResultMessage resMssg=vipService.topUp(topUpVO.getMoney(),vipVO.getId(),topUpVO.getBankPassword());
+        if(resMssg==ResultMessage.SUCCESS){
+            model.addAttribute("message","充值成功");
+        }else {
+            model.addAttribute("message","充值失败");
+        }
+        return new ModelAndView("vip/topUpPage",model);
     }
 }

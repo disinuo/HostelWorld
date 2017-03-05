@@ -17,7 +17,7 @@
 
 Hello 亲爱的VIP<br>
 这是预订记录~~~~
-<jsp:include page="component/info.jsp" flush="true"/>
+<jsp:include page="component/selfPanel.jsp" flush="true"/>
 <c:if test="${empty bookBills}">
     没有预订记录
 </c:if>

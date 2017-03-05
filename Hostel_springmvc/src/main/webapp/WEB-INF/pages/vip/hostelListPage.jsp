@@ -15,7 +15,7 @@
 <%@include file="component/navigation.jsp" %>
 
 Hello 亲爱的VIP
-<jsp:include page="component/info.jsp" flush="true"/>
+<jsp:include page="component/selfPanel.jsp" flush="true"/>
 
 <jsp:include page="../common/hostelList.jsp" flush="true"/>
 </body>

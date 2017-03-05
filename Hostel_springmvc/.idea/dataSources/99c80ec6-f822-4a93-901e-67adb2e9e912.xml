@@ -395,71 +395,86 @@
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
+      <DefaultExpression>&apos;root&apos;</DefaultExpression>
     </column>
     <column id="90" parent="12" name="type">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="91" parent="12" name="PRIMARY">
+    <column id="91" parent="12" name="bankId">
+      <Position>5</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="92" parent="12" name="bankPassword">
+      <Position>6</Position>
+      <DataType>varchar(255)|0</DataType>
+      <DefaultExpression>&apos;root&apos;</DefaultExpression>
+    </column>
+    <column id="93" parent="12" name="bankMoney">
+      <Position>7</Position>
+      <DataType>double|0</DataType>
+      <DefaultExpression>&apos;3000&apos;</DefaultExpression>
+    </column>
+    <key id="94" parent="12" name="PRIMARY">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="92" parent="13" name="id">
+    <column id="95" parent="13" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="93" parent="13" name="realName">
+    <column id="96" parent="13" name="realName">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="94" parent="13" name="idCard">
+    <column id="97" parent="13" name="idCard">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="95" parent="13" name="avatar">
+    <column id="98" parent="13" name="avatar">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="96" parent="13" name="moneyLeft">
+    <column id="99" parent="13" name="moneyLeft">
       <Position>5</Position>
       <DataType>double|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="97" parent="13" name="moneyPaid">
+    <column id="100" parent="13" name="moneyPaid">
       <Position>6</Position>
       <DataType>double|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="98" parent="13" name="level">
+    <column id="101" parent="13" name="level">
       <Position>7</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="99" parent="13" name="score">
+    <column id="102" parent="13" name="score">
       <Position>8</Position>
       <DataType>double|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="100" parent="13" name="state">
+    <column id="103" parent="13" name="state">
       <Position>9</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;unactivated&apos;</DefaultExpression>
     </column>
-    <column id="101" parent="13" name="time">
+    <column id="104" parent="13" name="time">
       <Position>10</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <key id="102" parent="13" name="PRIMARY">
+    <key id="105" parent="13" name="PRIMARY">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>

@@ -2,6 +2,7 @@ package nju.edu.hostel.service.bean;
 
 import nju.edu.hostel.dao.BookDao;
 import nju.edu.hostel.dao.HostelDao;
+import nju.edu.hostel.dao.UserDao;
 import nju.edu.hostel.dao.VIPDao;
 import nju.edu.hostel.model.Vip;
 import nju.edu.hostel.service.VIPService;
@@ -26,6 +27,8 @@ public class VIPServiceBean implements VIPService{
     BookDao bookDao;
     @Autowired
     HostelDao hostelDao;
+    @Autowired
+    UserDao userDao;
     @Override
     public ResultMessage add(String vipName, String password) {
         return null;
@@ -43,6 +46,8 @@ public class VIPServiceBean implements VIPService{
 
     @Override
     public ResultMessage topUp(double money, int vipId, String bankPassword) {
+        System.out.println("In VIPServiceBean--topUp");
+        System.out.println("VIP 充值金额"+money+" id:"+vipId+" 密码:"+bankPassword);
         return null;
     }
 

@@ -13,6 +13,9 @@ public class User {
     private String userName;
     private String password;
     private String type;
+    private String bankId;
+    private String bankPassword;
+    private String bankMoney;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -54,27 +57,32 @@ public class User {
         this.type = type;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        User that = (User) o;
-
-        if (id != that.id) return false;
-        if (userName != null ? !userName.equals(that.userName) : that.userName != null) return false;
-        if (password != null ? !password.equals(that.password) : that.password != null) return false;
-        if (type != null ? !type.equals(that.type) : that.type != null) return false;
-
-        return true;
+    @Basic
+    @Column(name = "bankId", nullable = false, length = 255)
+    public String getBankId() {
+        return bankId;
+    }
+    public void setBankId(String bankId) {
+        this.bankId = bankId;
     }
 
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (userName != null ? userName.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (type != null ? type.hashCode() : 0);
-        return result;
+    @Basic
+    @Column(name = "bankPassword", nullable = false, length = 255)
+    public String getBankPassword() {
+        return bankPassword;
+    }
+
+    public void setBankPassword(String bankPassword) {
+        this.bankPassword = bankPassword;
+    }
+
+    @Basic
+    @Column(name = "bankMoney", nullable = false, length = 255)
+    public String getBankMoney() {
+        return bankMoney;
+    }
+
+    public void setBankMoney(String bankMoney) {
+        this.bankMoney = bankMoney;
     }
 }
