@@ -1,6 +1,7 @@
 package nju.edu.hostel.service.bean;
 
 import nju.edu.hostel.dao.HostelDao;
+import nju.edu.hostel.dao.RoomDao;
 import nju.edu.hostel.model.*;
 import nju.edu.hostel.service.HostelService;
 import nju.edu.hostel.util.ResultMessage;
@@ -18,6 +19,8 @@ import java.util.List;
 public class HostelServiceBean implements HostelService {
     @Autowired
     HostelDao hostelDao;
+    @Autowired
+    RoomDao roomDao;
     @Override
     public ResultMessage add(String hostelName, String password) {
         return null;
@@ -93,5 +96,9 @@ public class HostelServiceBean implements HostelService {
     @Override
     public List<Room> getAllRooms(int hostelId){
         return getById(hostelId).getRooms();
+    }
+    @Override
+    public Room getRoomById(int roomId){
+        return roomDao.getById(roomId);
     }
 }

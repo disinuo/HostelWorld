@@ -1,6 +1,7 @@
 package nju.edu.hostel.controller;
 
 import nju.edu.hostel.model.*;
+import nju.edu.hostel.service.HostelService;
 import nju.edu.hostel.service.VIPService;
 import nju.edu.hostel.util.DisPatcher;
 import nju.edu.hostel.util.ResultMessage;
@@ -10,12 +11,10 @@ import nju.edu.hostel.vo.VipVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,7 +26,8 @@ import java.util.List;
 public class VipController {
     @Autowired
     VIPService vipService;
-
+    @Autowired
+    HostelService hostelService;
     ModelAndView resOfCheckLoggedIn;
 
     private ModelAndView checkLoggedIn(OnLineUserVO user){
@@ -90,7 +90,7 @@ public class VipController {
         return new ModelAndView("vip/topUpPage",model);
     }
     @RequestMapping(value = "/topUp",method = RequestMethod.POST)
-    public ModelAndView topUpPage(@ModelAttribute("vip") VipVO vipVO,
+    public ModelAndView topUp(@ModelAttribute("vip") VipVO vipVO,
                            @ModelAttribute("topUp")TopUpVO topUpVO,
                                      ModelMap model){
         ResultMessage resMssg=vipService.topUp(topUpVO.getMoney(),vipVO.getId(),topUpVO.getBankPassword());
@@ -100,5 +100,30 @@ public class VipController {
             model.addAttribute("message","充值失败");
         }
         return new ModelAndView("vip/topUpPage",model);
+    }
+
+    @RequestMapping(value = "/book" ,method = RequestMethod.GET)
+    public ModelAndView showBookPage(@RequestParam("roomId") int roomId,
+                                     ModelMap model){
+        Room room=hostelService.getRoomById(roomId);
+        model.addAttribute("room",room);
+        model.addAttribute("bookBill",new BookBill());
+        return new ModelAndView("vip/bookPage",model);
+    }
+
+    @RequestMapping(value = "/book" ,method = RequestMethod.POST)
+    public ModelAndView book(
+//            @ModelAttribute("bookBill")BookBill bookBill,
+//                             @ModelAttribute("room")Room room,
+                             @ModelAttribute("vip")VipVO vipVO,
+                                     ModelMap model){
+
+//        bookBill.setHostel(room.getHostel());
+//        bookBill.setCreateDate(new Date());
+//        bookBill.setRoom(room);
+//        bookBill.setVip(vipService.getById(vipVO.getId()));
+//        ResultMessage resMssg=vipService.book(bookBill);
+//        model.addAttribute("message",resMssg);
+        return new ModelAndView("redirect:/vip/bookList",model);
     }
 }

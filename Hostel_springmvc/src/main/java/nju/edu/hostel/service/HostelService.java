@@ -139,5 +139,12 @@ public interface HostelService {
      */
     public List<Room> getAllRooms(int hostelId);
 
+    /**
+     * 按照房间的id得到房间
+     * @param roomId
+     * @return
+     */
+    public Room getRoomById(int roomId);
+
 
 }

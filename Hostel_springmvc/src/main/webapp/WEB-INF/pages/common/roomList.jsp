@@ -30,6 +30,7 @@
                 <td>${room.name}</td>
                 <td>${room.img}</td>
                 <td>${room.price}元</td>
+                <td><button><a href="/vip/book?roomId=${room.id}">预订</a></button></td>
             </tr>
         </c:forEach>
         </tbody>

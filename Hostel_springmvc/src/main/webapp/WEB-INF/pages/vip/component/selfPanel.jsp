@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="nju.edu.hostel.vo.OnLineUserVO"%>
 <%@ page import="nju.edu.hostel.vo.VipVO" %>
+<%@ page import="nju.edu.hostel.util.VIPState" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
@@ -19,6 +20,12 @@
 <div class="vip-self-container">
     <jsp:include page="info.jsp" flush="true"/>
     <button><a href="/vip/topUp">充值</a></button>
+    <% VIPState stopState=VIPState.STOP; %>
+
+    <c:if test="${!(vip.state eq stopSate)}">
+            <button>停卡</button>
+    </c:if>
+
 </div>
 
 

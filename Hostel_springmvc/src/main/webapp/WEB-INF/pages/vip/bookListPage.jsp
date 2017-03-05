@@ -45,7 +45,7 @@ Hello 亲爱的VIP<br>
         </c:forEach>
         </tbody>
     </table>
-
+${message}
 </c:if>
 </body>
 </html>
