@@ -33,15 +33,20 @@ public class RegisterController {
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ModelAndView handleRegisterRequest (@ModelAttribute UserVO userVO, RedirectAttributes attr,ModelMap model){
 
-        ResultMessage rmsg=userService.add(userVO.getUserName(),userVO.getPassword());
+        ResultMessage rmsg=userService.register(userVO.getUserName(),userVO.getPassword());
         if(rmsg==ResultMessage.SUCCESS){
             System.out.println("注册成功");
             attr.addFlashAttribute("userName",userVO.getUserName());
             attr.addFlashAttribute("password",userVO.getPassword());
             return new ModelAndView("redirect:/login");
+        }else if(rmsg==ResultMessage.DUPLICATE_NAME){
+            System.out.println("该用户名已存在~换一个吧");
+            return new ModelAndView("redirect:/register");
+
         }else {
             System.out.println("注册失败");
             return new ModelAndView("notExist");
+
         }
     }
 }
