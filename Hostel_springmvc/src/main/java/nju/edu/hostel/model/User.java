@@ -11,11 +11,11 @@ import javax.persistence.*;
 public class User {
     private int id;
     private String userName;
-    private String password;
-    private String type;
+    private String password="root";
+    private String type="vip";
     private String bankId;
-    private String bankPassword;
-    private String bankMoney;
+    private String bankPassword="bankroot";
+    private double bankMoney=3000;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -78,11 +78,11 @@ public class User {
 
     @Basic
     @Column(name = "bankMoney", nullable = false, length = 255)
-    public String getBankMoney() {
+    public double getBankMoney() {
         return bankMoney;
     }
 
-    public void setBankMoney(String bankMoney) {
+    public void setBankMoney(double bankMoney) {
         this.bankMoney = bankMoney;
     }
 }

@@ -1,5 +1,7 @@
 package nju.edu.hostel.model;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -17,6 +19,8 @@ public class BookBill {
     private Room room;
 
     @Id
+    @GenericGenerator(name="dsn" , strategy="increment")
+    @GeneratedValue(generator="dsn")
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;

@@ -1,5 +1,8 @@
 package nju.edu.hostel.model;
 
+import nju.edu.hostel.util.VIPState;
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,20 +13,22 @@ import java.util.List;
 @Table(name = "vip", schema = "hostel", catalog = "")
 public class Vip {
     private int id;
-    private String realName;
+    private String realName="匿名";
     private String idCard;
     private String avatar;
-    private double moneyLeft;
-    private double moneyPaid;
-    private int level;
-    private double score;
-    private String state;
-    private int time;
+    private double moneyLeft=0;
+    private double moneyPaid=0;
+    private int level=0;
+    private double score=0;
+    private String state= VIPState.UNACTIVATED.toString();
+    private int time=0;
     private List<BookBill> bookBills;
     private List<LiveBill> liveBills;
     private List<PayBill> payBills;
 
     @Id
+    @GenericGenerator(name="dsn" , strategy="increment")
+    @GeneratedValue(generator="dsn")
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;
@@ -31,6 +36,8 @@ public class Vip {
 
     public void setId(int id) {
         this.id = id;
+        String idCard="11111119700101"+id;
+        setIdCard(idCard);
     }
 
     @Basic

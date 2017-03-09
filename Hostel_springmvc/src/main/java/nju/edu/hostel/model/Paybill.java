@@ -1,5 +1,7 @@
 package nju.edu.hostel.model;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -10,7 +12,7 @@ import java.util.Date;
 @Table(name = "paybill", schema = "hostel", catalog = "")
 public class PayBill {
     private int id;
-    private byte counted;
+    private boolean counted=false;
     private String userRealName;
     private String idCard;
     private double money;
@@ -20,6 +22,8 @@ public class PayBill {
     private Room room;
 
     @Id
+    @GenericGenerator(name="dsn" , strategy="increment")
+    @GeneratedValue(generator="dsn")
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;
@@ -31,11 +35,11 @@ public class PayBill {
 
     @Basic
     @Column(name = "counted", nullable = false)
-    public byte getCounted() {
+    public boolean getCounted() {
         return counted;
     }
 
-    public void setCounted(byte counted) {
+    public void setCounted(boolean counted) {
         this.counted = counted;
     }
 
@@ -96,19 +100,6 @@ public class PayBill {
         return true;
     }
 
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        result = id;
-        result = 31 * result + (int) counted;
-        result = 31 * result + (userRealName != null ? userRealName.hashCode() : 0);
-        result = 31 * result + (idCard != null ? idCard.hashCode() : 0);
-        temp = Double.doubleToLongBits(money);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (createDate != null ? createDate.hashCode() : 0);
-        return result;
-    }
 
     @ManyToOne
     @JoinColumn(name = "hostelId", referencedColumnName = "id", nullable = false)

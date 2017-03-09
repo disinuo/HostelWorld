@@ -1,5 +1,7 @@
 package nju.edu.hostel.model;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 
 /**
@@ -9,13 +11,15 @@ import javax.persistence.*;
 @Table(name = "room", schema = "hostel", catalog = "")
 public class Room {
     private int id;
-    private double price;
+    private double price=299;
     private String img;
-    private boolean valid;
+    private boolean valid=true;
     private String name;
     private Hostel hostel;
 
     @Id
+    @GenericGenerator(name="dsn" , strategy="increment")
+    @GeneratedValue(generator="dsn")
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;
