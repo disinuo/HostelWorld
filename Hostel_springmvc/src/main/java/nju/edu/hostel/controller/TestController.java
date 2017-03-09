@@ -34,7 +34,7 @@
 //    @RequestMapping(value = "/admin/users", method = RequestMethod.GET)
 //    public String getUsers(ModelMap modelMap) {
 //        // 查询user表中所有记录
-//        User user= userService.getById(1000000);
+//        User user= userService.get(1000000);
 //
 //        // 将所有记录传递给要返回的jsp页面，放在userList当中
 //        modelMap.addAttribute("user", user);

@@ -7,7 +7,7 @@ public enum VIPState {
     /**
      * 未激活
      */
-    UN_ACTIVATED("未激活"),
+    UNACTIVATED("未激活"),
     /**
      * 正常
      */

@@ -28,7 +28,6 @@ public class UserServiceBean implements UserService {
     HostelDao hostelDao;
     @Override
     public ResultMessage register(Class<?> c,String userName, String password) {
-        //TODO
         List users=userDao.getByRestrictEqual("userName",userName);
         if(users.size()!=0) return ResultMessage.DUPLICATE_NAME;
         int userId=0;
@@ -41,7 +40,7 @@ public class UserServiceBean implements UserService {
                 return ResultMessage.FAILURE;
             }
         }
-        if(c==Hostel.class){
+        else if(c==Hostel.class){
             Hostel hostel=new Hostel();
             hostel.setName(userName);
             try {
@@ -70,12 +69,35 @@ public class UserServiceBean implements UserService {
     }
     @Override
     public ResultMessage delete(int userId) {
+        //TODO
         return null;
     }
 
     @Override
-    public ResultMessage update(User user) {
-        return null;
+    public ResultMessage modifyPassword(int id, String original,String password) {
+        User user=userDao.get(id);
+        if(!user.getPassword().equals(original)){
+            return ResultMessage.WRONG_ORIGINAL;
+        }
+        if(original.equals(password)){
+            return ResultMessage.NOT_CHANGE;
+        }
+        user.setPassword(password);
+        return userDao.update(user);
+    }
+
+    @Override
+    public ResultMessage modifyBankMoneyTo(int id, double money) {
+        User user=userDao.get(id);
+        user.setBankMoney(money);
+        return userDao.update(user);
+    }
+
+    @Override
+    public ResultMessage modifyBankMoneyBy(int id, double offset) {
+        User user=userDao.get(id);
+        user.setBankMoney(user.getBankMoney()+offset);
+        return userDao.update(user);
     }
 
     @Override
@@ -85,7 +107,7 @@ public class UserServiceBean implements UserService {
 
     @Override
     public List<User> getByType(String type) {
-        return null;
+        return userDao.getByRestrictEqual("type",type);
     }
 
     @Override
@@ -100,6 +122,19 @@ public class UserServiceBean implements UserService {
         }
         else {
             return ans.get(0);
+        }
+    }
+    @Override
+    public ResultMessage checkUser(String userName,String password){
+        List<User> users=userDao.getByRestrictEqual("userName",userName);
+        if(users==null||users.size()==0){
+            return ResultMessage.NOT_EXIST;
+        }
+        User user=users.get(0);
+        if(user.getPassword().equals(password)){
+            return ResultMessage.SUCCESS;
+        }else{
+            return ResultMessage.WRONG_PASSWORD;
         }
     }
 }

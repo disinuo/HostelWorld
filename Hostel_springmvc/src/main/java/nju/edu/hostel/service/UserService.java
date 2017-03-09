@@ -14,7 +14,7 @@ public interface UserService {
      * 若用户名已存在则不能注册
      * @param userName
      * @param password
-     * @return
+     * @return DUPLICATE_NAME,FAILURE,SUCCESS
      */
     public ResultMessage register(Class<?> c,String userName, String password);
 
@@ -22,7 +22,7 @@ public interface UserService {
      * 注册新会员
      * @param userName
      * @param password
-     * @return
+     * @return DUPLICATE_NAME,FAILURE,SUCCESS
      */
     public ResultMessage register(String userName, String password);
 
@@ -34,12 +34,28 @@ public interface UserService {
     public ResultMessage delete(int userId);
 
     /**
-     * 系统更新用户，包括会员、旅馆分店
-     * @param user
-     * @return
+     * 修改密码
+     * @param id
+     * @param password
+     * @return WRONG_ORIGINAL,NOT_CHANGE,FAILURE,SUCCESS
      */
-    public ResultMessage update(User user);
+    public ResultMessage modifyPassword(int id,String original,String password);
 
+    /**
+     * 将银行卡余额改至money
+     * @param id
+     * @param money
+     * @return SUCCESS,FAILURE
+     */
+    public ResultMessage modifyBankMoneyTo(int id,double money);
+
+    /**
+     * offset可以为正/负。正就是加钱~负是扣钱
+     * @param id
+     * @param offset
+     * @return SUCCESS,FAILURE
+     */
+    public ResultMessage modifyBankMoneyBy(int id,double offset);
     /**
      * 通过用户ID获取用户数据
      * @param userId
@@ -50,7 +66,7 @@ public interface UserService {
     /**
      * 通过用户种类获取用户列表，种类有会员、旅馆分店、总经理
      * @param type
-     * @return
+     * @return SUCCESS,FAILURE
      */
     public List<User> getByType(String type);
 
@@ -60,6 +76,15 @@ public interface UserService {
      * @param userName
      * @param password
      * @return
+     * //TODO
      */
     public User login(String userName, String password);
+
+    /**
+     * 通过用户id,password验证用户情况
+     * @param userName
+     * @param password
+     * @return NOT_EXIST,SUCCESS,WRONG_PASSWORD
+     */
+    public ResultMessage checkUser(String userName,String password);
 }

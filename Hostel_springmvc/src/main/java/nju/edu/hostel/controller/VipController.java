@@ -1,5 +1,8 @@
 package nju.edu.hostel.controller;
 
+import nju.edu.hostel.dao.Impl.TestTableDaoImpl;
+import nju.edu.hostel.dao.UserDao;
+import nju.edu.hostel.dao.VIPDao;
 import nju.edu.hostel.model.*;
 import nju.edu.hostel.service.HostelService;
 import nju.edu.hostel.service.VIPService;
@@ -28,6 +31,10 @@ public class VipController {
     VIPService vipService;
     @Autowired
     HostelService hostelService;
+    @Autowired
+    TestTableDaoImpl testTableDao;//TODO
+    @Autowired
+    UserDao userDao;
     ModelAndView resOfCheckLoggedIn;
 
     private ModelAndView checkLoggedIn(OnLineUserVO user){
@@ -86,11 +93,26 @@ public class VipController {
     @RequestMapping(value = "/topUp",method = RequestMethod.GET)
     public ModelAndView getTopUpPage(@ModelAttribute("vip") VipVO vipVO,
                                      ModelMap model){
+//TODO
+//        Test_Table test=new Test_Table();
+//        test.setName("testaaa");
+//        test.setBankMoney(0);
+//        test.setId(666);
+//        int id=testTableDao.addAndGetId(test);
+//        User user=new User();
+//        user.setUserName("GOYaaa");
+//        user.setId(666);
+//        user.setBankId("1111111111110000666");
+//        userDao.add(user);
+//        System.out.println("VipController--topUp---try test.add  ID= "+id);
         model.addAttribute("topUp",new TopUpVO());
         return new ModelAndView("vip/topUpPage",model);
     }
+
+
     @RequestMapping(value = "/topUp",method = RequestMethod.POST)
-    public ModelAndView topUp(@ModelAttribute("vip") VipVO vipVO,
+    @ResponseBody
+    public ModelMap topUp(@ModelAttribute("vip") VipVO vipVO,
                            @ModelAttribute("topUp")TopUpVO topUpVO,
                                      ModelMap model){
         ResultMessage resMssg=vipService.topUp(topUpVO.getMoney(),vipVO.getId(),topUpVO.getBankPassword());
@@ -99,7 +121,7 @@ public class VipController {
         }else {
             model.addAttribute("message","充值失败");
         }
-        return new ModelAndView("vip/topUpPage",model);
+        return model;
     }
 
     @RequestMapping(value = "/book" ,method = RequestMethod.GET)
@@ -121,7 +143,7 @@ public class VipController {
 //        bookBill.setHostel(room.getHostel());
 //        bookBill.setCreateDate(new Date());
 //        bookBill.setRoom(room);
-//        bookBill.setVip(vipService.getById(vipVO.getId()));
+//        bookBill.setVip(vipService.get(vipVO.getId()));
 //        ResultMessage resMssg=vipService.book(bookBill);
 //        model.addAttribute("message",resMssg);
         return new ModelAndView("redirect:/vip/bookList",model);

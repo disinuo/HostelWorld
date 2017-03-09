@@ -1,12 +1,10 @@
 package nju.edu.hostel.service.bean;
 
-import nju.edu.hostel.dao.BookDao;
 import nju.edu.hostel.dao.HostelDao;
 import nju.edu.hostel.dao.UserDao;
 import nju.edu.hostel.dao.VIPDao;
 import nju.edu.hostel.model.Vip;
 import nju.edu.hostel.service.VIPService;
-import nju.edu.hostel.test.StubData;
 import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +22,12 @@ public class VIPServiceBean implements VIPService{
     @Autowired
     VIPDao vipDao;
     @Autowired
-    BookDao bookDao;
-    @Autowired
     HostelDao hostelDao;
     @Autowired
     UserDao userDao;
     @Override
     public ResultMessage add(String vipName, String password) {
+
         return null;
     }
 
@@ -68,7 +65,7 @@ public class VIPServiceBean implements VIPService{
 
     @Override
     public Vip getById(int vipId) {
-        return vipDao.getById(vipId);
+        return vipDao.get(vipId);
     }
 
     @Override
@@ -113,6 +110,6 @@ public class VIPServiceBean implements VIPService{
 
     @Override
     public List<Hostel> getAllPermittedHostels() {
-        return hostelDao.get();
+        return hostelDao.getByRestrictEqual("permitted",true);
     }
 }

@@ -2,8 +2,10 @@
  * Created by disinuo on 17/3/3.
  */
 package nju.edu.hostel.controller;
+import nju.edu.hostel.dao.BaseDao;
 import nju.edu.hostel.model.Hostel;
 import nju.edu.hostel.model.User;
+import nju.edu.hostel.model.Vip;
 import nju.edu.hostel.service.HostelService;
 import nju.edu.hostel.service.UserService;
 import nju.edu.hostel.util.DisPatcher;

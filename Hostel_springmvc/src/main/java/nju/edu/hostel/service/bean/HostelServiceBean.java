@@ -38,7 +38,7 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public Hostel getById(int hostelId) {
-        return hostelDao.getById(hostelId);
+        return hostelDao.get(hostelId);
     }
 
     @Override
@@ -99,6 +99,6 @@ public class HostelServiceBean implements HostelService {
     }
     @Override
     public Room getRoomById(int roomId){
-        return roomDao.getById(roomId);
+        return roomDao.get(roomId);
     }
 }
