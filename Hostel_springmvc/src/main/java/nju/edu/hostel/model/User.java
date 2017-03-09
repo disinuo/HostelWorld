@@ -13,7 +13,7 @@ public class User {
     private String userName;
     private String password="root";
     private String type="vip";
-    private String bankId;
+    private String bankId;//AutoSet = 111111111111 + id
     private String bankPassword="bankroot";
     private double bankMoney=3000;
 
@@ -25,6 +25,8 @@ public class User {
 
     public void setId(int id) {
         this.id = id;
+        String bankId="111111111111"+id;
+        setBankId(bankId);
     }
 
     @Basic
