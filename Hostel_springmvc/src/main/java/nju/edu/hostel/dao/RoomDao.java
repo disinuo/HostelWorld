@@ -1,10 +1,22 @@
 package nju.edu.hostel.dao;
 
 import nju.edu.hostel.model.Room;
+import nju.edu.hostel.util.ResultMessage;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by disinuo on 17/3/3.
  */
 public interface RoomDao {
-    public Room getById(int id);
+    public Room get(int id);
+    public Room load(int id);
+    public List<Room> getByRestrictEqual(String column, Object value);
+    public List<Room> getByRestrictEqual(Map<String,Object> map);
+
+    public int add(Room room)throws Exception;
+    public ResultMessage update(Room room);
+
+
 }

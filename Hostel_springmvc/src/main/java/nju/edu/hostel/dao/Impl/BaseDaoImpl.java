@@ -1,12 +1,16 @@
 package nju.edu.hostel.dao.Impl;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
+
 import nju.edu.hostel.dao.BaseDao;
 import nju.edu.hostel.util.ResultMessage;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
@@ -18,11 +22,106 @@ public class BaseDaoImpl implements BaseDao {
 
 	@Autowired
 	protected SessionFactory sessionFactory;
+	private Session getNewSession(){
+		return sessionFactory.openSession();
+	}
+	private Session getCurrentSession(){
+		Session session=sessionFactory.getCurrentSession();
+		return session==null?getNewSession():session;
+	}
 
 	@Override
-	public Session getSession() {
-		return sessionFactory.getCurrentSession();
+	public int save(Object entity) throws Exception {
+		Session session=getNewSession();
+		Transaction tr=session.beginTransaction();
+		try {
+			int id=(Integer) session.save(entity);
+			return id;
+		}catch (Exception e){
+			throw e;
+		}finally {
+			tr.commit();
+			session.clear();
+			session.close();
+		}
 	}
+
+	@Override
+	public ResultMessage saveOrUpdate(Object entity) {
+		Session session=getNewSession();
+		Transaction tr=session.beginTransaction();
+		try {
+			session.saveOrUpdate(entity);
+		}catch (Exception e){
+			return ResultMessage.FAILURE;
+		}finally {
+			tr.commit();
+			session.clear();
+			session.close();
+		}
+		return ResultMessage.SUCCESS;
+	}
+
+	@Override
+	public ResultMessage update(Object entity) {
+		Session session=getNewSession();
+		Transaction tr=session.beginTransaction();
+		try {
+			session.update(entity);
+		}catch (Exception e){
+			return ResultMessage.FAILURE;
+		}finally {
+			tr.commit();
+			session.clear();
+			session.close();
+		}
+		return ResultMessage.SUCCESS;
+	}
+
+	@Override
+	public <T> T getEntity(Class<T> c, int id) {
+		Session session=getNewSession();
+		T entity=session.get(c,id);
+		return entity;
+	}
+
+	@Override
+	public <T> T loadProxy(Class<T> c, int id) {
+		Session session=getNewSession();
+		T entity=session.load(c,id);
+		return entity;
+	}
+
+	@Override
+	public <T> List<T> getAll(Class<T> c) {
+		Session session=getNewSession();
+		Criteria criteria=session.createCriteria(c);
+		List list=criteria.list();
+		return list;
+	}
+
+	@Override
+	public <T> List<T> getByRestrictEqual(Class<T> c, String column, Object value) {
+		Session session=getNewSession();
+		Criteria criteria=session.createCriteria(c);
+		criteria.add(Restrictions.eq(column,value));
+		return criteria.list();
+	}
+
+	@Override
+	public <T> List<T> getByRestrictEqual(Class<T> c,Map<String,Object> map){
+		Session session=getNewSession();
+		Criteria criteria=session.createCriteria(c);
+		for(Map.Entry<String,Object> entry:map.entrySet()){
+			criteria.add(Restrictions.eq(entry.getKey(),entry.getValue()));
+		}
+		return criteria.list();
+	}
+/*********************
+@Override
+public Session getSession() {
+	return sessionFactory.getCurrentSession();
+}
 
 	@Override
 	public Session getNewSession() {
@@ -187,7 +286,7 @@ public class BaseDaoImpl implements BaseDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T> T getById(Class<T> c, int id) {
+	public <T> T get(Class<T> c, int id) {
 		Session session = getNewSession();
 		return (T) session.get(c, id);
 	}
@@ -300,4 +399,5 @@ public class BaseDaoImpl implements BaseDao {
 
 	}
 
+******/
 }
