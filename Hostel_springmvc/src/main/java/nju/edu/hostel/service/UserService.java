@@ -16,7 +16,15 @@ public interface UserService {
      * @param password
      * @return
      */
-    public ResultMessage add(String userName, String password);
+    public ResultMessage register(Class<?> c,String userName, String password);
+
+    /**
+     * 注册新会员
+     * @param userName
+     * @param password
+     * @return
+     */
+    public ResultMessage register(String userName, String password);
 
     /**
      * 系统删除用户，包括会员、旅馆分店
