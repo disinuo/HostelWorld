@@ -15,7 +15,7 @@ public class Hostel {
     private int id;
     private boolean permitted=false;
     private String img;
-    private String phone;
+    private String phone="66668888";
     private String address;
     private String name;
     private List<BookBill> bookBills;

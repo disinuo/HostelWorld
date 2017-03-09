@@ -14,7 +14,7 @@ import java.util.List;
 public class Vip {
     private int id;
     private String realName="匿名";
-    private String idCard;
+    private String idCard="111111197001011111";
     private String avatar;
     private double moneyLeft=0;
     private double moneyPaid=0;
@@ -36,8 +36,6 @@ public class Vip {
 
     public void setId(int id) {
         this.id = id;
-        String idCard="11111119700101"+id;
-        setIdCard(idCard);
     }
 
     @Basic
