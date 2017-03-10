@@ -20,12 +20,20 @@ public enum ResultMessage {
      */
     NOT_CHANGE,
     /**
+     * 余额不足
+     */
+    NOT_ENOUGH_MONEY,
+    /**
      * 不存在
      */
     NOT_EXIST,
     /**
      * 密码错误
      */
-    WRONG_PASSWORD
+    WRONG_PASSWORD,
+    /**
+     * 已经停卡
+     */
+    ALREADY_STOP
 
 }

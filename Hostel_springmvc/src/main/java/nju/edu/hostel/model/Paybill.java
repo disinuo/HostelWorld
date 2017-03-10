@@ -1,5 +1,6 @@
 package nju.edu.hostel.model;
 
+import nju.edu.hostel.util.DateParser;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -16,7 +17,7 @@ public class PayBill {
     private String userRealName;
     private String idCard;
     private double money;
-    private Date createDate;
+    private long createDate;
     private Hostel hostel;
     private Vip vip;
     private Room room;
@@ -75,29 +76,12 @@ public class PayBill {
 
     @Basic
     @Column(name = "createDate", nullable = false)
-    public Date getCreateDate() {
+    public long getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(long createDate) {
         this.createDate = createDate;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        PayBill that = (PayBill) o;
-
-        if (id != that.id) return false;
-        if (counted != that.counted) return false;
-        if (Double.compare(that.money, money) != 0) return false;
-        if (userRealName != null ? !userRealName.equals(that.userRealName) : that.userRealName != null) return false;
-        if (idCard != null ? !idCard.equals(that.idCard) : that.idCard != null) return false;
-        if (createDate != null ? !createDate.equals(that.createDate) : that.createDate != null) return false;
-
-        return true;
     }
 
 
@@ -129,5 +113,9 @@ public class PayBill {
 
     public void setRoom(Room room) {
         this.room = room;
+    }
+    @Transient
+    public String getCreateDateStr(){
+        return DateParser.longToStr(this.createDate);
     }
 }

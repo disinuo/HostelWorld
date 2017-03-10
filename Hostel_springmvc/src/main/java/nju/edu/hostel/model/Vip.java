@@ -22,8 +22,8 @@ public class Vip {
     private int level=0;
     private double score=0;
     private String state= VIPState.UNACTIVATED.toString();
-    private Date activateDate;
-    private Date pauseDate;
+    private long activateDate;
+    private long pauseDate;
     private List<BookBill> bookBills;
     private List<LiveBill> liveBills;
     private List<PayBill> payBills;
@@ -51,18 +51,18 @@ public class Vip {
 
     @Basic
     @Column(name = "activateDate", nullable = false)
-    public Date getActivateDate() {
+    public long getActivateDate() {
         return activateDate;
     }
-    public void setActivateDate(Date activateDate) {
+    public void setActivateDate(long activateDate) {
         this.activateDate = activateDate;
     }
     @Basic
     @Column(name = "pauseDate", nullable = false)
-    public Date getPauseDate() {
+    public long getPauseDate() {
         return pauseDate;
     }
-    public void setPauseDate(Date pauseDate) {
+    public void setPauseDate(long pauseDate) {
         this.pauseDate = pauseDate;
     }
 

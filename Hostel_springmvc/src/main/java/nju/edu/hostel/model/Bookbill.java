@@ -1,5 +1,6 @@
 package nju.edu.hostel.model;
 
+import nju.edu.hostel.util.DateParser;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -12,8 +13,8 @@ import java.util.Date;
 @Table(name = "bookbill", schema = "hostel", catalog = "")
 public class BookBill {
     private int id;
-    private Date liveInDate;
-    private Date createDate;
+    private long liveInDate;
+    private long createDate;
     private Hostel hostel;
     private Vip vip;
     private Room room;
@@ -43,21 +44,21 @@ public class BookBill {
 
     @Basic
     @Column(name = "liveInDate", nullable = false)
-    public Date getLiveInDate() {
+    public long getLiveInDate() {
         return liveInDate;
     }
 
-    public void setLiveInDate(Date liveInDate) {
+    public void setLiveInDate(long liveInDate) {
         this.liveInDate = liveInDate;
     }
 
     @Basic
     @Column(name = "createDate", nullable = true)
-    public Date getCreateDate() {
+    public long getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(long createDate) {
         this.createDate = createDate;
     }
 
@@ -90,5 +91,13 @@ public class BookBill {
 
     public void setRoom(Room room) {
         this.room = room;
+    }
+    @Transient
+    public String getCreateDateStr(){
+        return DateParser.longToStr(this.createDate);
+    }
+    @Transient
+    public String getLiveInDateStr(){
+        return DateParser.longToStr(this.liveInDate);
     }
 }

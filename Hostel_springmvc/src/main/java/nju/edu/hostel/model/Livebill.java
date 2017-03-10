@@ -1,5 +1,6 @@
 package nju.edu.hostel.model;
 
+import nju.edu.hostel.util.DateParser;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -16,7 +17,7 @@ public class LiveBill {
     private boolean type;
     private String userRealName;
     private String idCard;
-    private Date date;
+    private long date;
     private Hostel hostel;
     private Vip vip;
     private Room room;
@@ -65,30 +66,13 @@ public class LiveBill {
 
     @Basic
     @Column(name = "date", nullable = false)
-    public Date getDate() {
+    public long getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(long date) {
         this.date = date;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        LiveBill that = (LiveBill) o;
-
-        if (id != that.id) return false;
-        if (userRealName  != null ? !userRealName.equals(that.userRealName):that.idCard!=null) return false;
-        if (type != that.type) return false;
-        if (idCard != null ? !idCard.equals(that.idCard) : that.idCard != null) return false;
-        if (date != null ? !date.equals(that.date) : that.date != null) return false;
-
-        return true;
-    }
-
 
     @ManyToOne
     @JoinColumn(name = "hostelId", referencedColumnName = "id", nullable = false)
@@ -118,5 +102,10 @@ public class LiveBill {
 
     public void setRoom(Room room) {
         this.room = room;
+    }
+
+    @Transient
+    public String getDateStr(){
+        return DateParser.longToStr(this.date);
     }
 }
