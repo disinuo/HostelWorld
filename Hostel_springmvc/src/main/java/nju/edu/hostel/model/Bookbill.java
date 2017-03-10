@@ -17,7 +17,8 @@ public class BookBill {
     private Hostel hostel;
     private Vip vip;
     private Room room;
-    private boolean valid=true;
+    private boolean valid=true;//如果类型为true，valid为false 就代表该预订已被取消
+
 
     @Id
     @GenericGenerator(name="dsn" , strategy="increment")
@@ -26,10 +27,19 @@ public class BookBill {
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
+
+    @Basic
+    @Column(name = "valid", nullable = false)
+    public boolean isValid() {
+        return valid;
+    }
+    public void setValid(boolean valid) {
+        this.valid = valid;
+    }
+
 
     @Basic
     @Column(name = "liveInDate", nullable = false)
@@ -51,36 +61,6 @@ public class BookBill {
         this.createDate = createDate;
     }
 
-    @Basic
-    @Column(name = "valid", nullable = false)
-    public boolean isValid() {
-        return valid;
-    }
-
-    public void setValid(boolean valid) {
-        this.valid = valid;
-    }
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        BookBill that = (BookBill) o;
-
-        if (id != that.id) return false;
-        if (liveInDate != null ? !liveInDate.equals(that.liveInDate) : that.liveInDate != null) return false;
-        if (createDate != null ? !createDate.equals(that.createDate) : that.createDate != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (liveInDate != null ? liveInDate.hashCode() : 0);
-        result = 31 * result + (createDate != null ? createDate.hashCode() : 0);
-        return result;
-    }
 
     @ManyToOne
     @JoinColumn(name = "hostelId", referencedColumnName = "id", nullable = false)
