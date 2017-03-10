@@ -7,10 +7,7 @@ import java.util.Map;
 
 import nju.edu.hostel.dao.BaseDao;
 import nju.edu.hostel.util.ResultMessage;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
@@ -23,10 +20,12 @@ public class BaseDaoImpl implements BaseDao {
 	@Autowired
 	protected SessionFactory sessionFactory;
 	private Session getNewSession(){
+
 		return sessionFactory.openSession();
 	}
 	private Session getCurrentSession(){
 		Session session=sessionFactory.getCurrentSession();
+
 		return session==null?getNewSession():session;
 	}
 
@@ -81,6 +80,7 @@ public class BaseDaoImpl implements BaseDao {
 	@Override
 	public <T> T getEntity(Class<T> c, int id) {
 		Session session=getNewSession();
+
 		T entity=session.get(c,id);
 		return entity;
 	}
