@@ -219,6 +219,7 @@ public class VIPServiceBean implements VIPService{
     private ResultMessage restore(Vip vip) {
         if(vip.getState().equals(VIPState.PAUSED.toString())){
             vip.setState(VIPState.NORMAL.toString());
+            vip.setActivateDate(new Date().getTime());
             return ResultMessage.SUCCESS;
         }else if(vip.getState().equals(VIPState.STOP.toString())){
             //已停卡，不可恢复
