@@ -17,12 +17,7 @@ public interface VIPService {
      */
     public ResultMessage delete(int vipId);
 
-    /**
-     * 激活会员账号，会员卡状态由【未激活】改为【正常】
-     * @param vipId
-     * @return
-     */
-    public ResultMessage activate(int vipId);
+
 
     /**
      * 会员充值，需要会员id和银行卡支付密码
@@ -42,13 +37,6 @@ public interface VIPService {
      * @return
      */
     public ResultMessage pause(int vipId);
-
-    /**
-     * 会员状态由【暂停】恢复到【正常】
-     * @param vipId
-     * @return
-     */
-    public ResultMessage restore(int vipId);
 
     /**
      * 暂停一年后，会员一直未支付到规定余额，则该会员卡状态改为【停止】，

@@ -37,15 +37,6 @@ public class VIPServiceBean implements VIPService{
         return null;
     }
 
-    @Override
-    public ResultMessage activate(int vipId) {
-        Vip vip=vipDao.load(vipId);
-        if(vip.getState().equals(VIPState.UNACTIVATED.toString())){
-            vip.setState(VIPState.NORMAL.toString());
-            return vipDao.update(vip);
-        }
-        return ResultMessage.SUCCESS;
-    }
 
     @Override
     public ResultMessage topUp(double money, int vipId, String bankPassword) {
@@ -64,26 +55,23 @@ public class VIPServiceBean implements VIPService{
         if(bankMoney<money){
             return ResultMessage.NOT_ENOUGH_MONEY;
         }
-
         //        ----真的可以开始充值啦！------
-
         ResultMessage msg=userService.modifyBankMoneyBy(vipId,-money);
         vip.setMoneyLeft(vip.getMoneyLeft()+money);
         if(msg==ResultMessage.SUCCESS){
-            if(vip.getState().equals(VIPState.UNACTIVATED.toString())&&money>=MONEY_ACTIVATE){
-                vip.setState(VIPState.NORMAL.toString());
-            }else if(vip.getState().equals(VIPState.PAUSED.toString())&&money>=MONEY_LEAST){
-                vip.setState(VIPState.NORMAL.toString());
+            if(money>=MONEY_ACTIVATE){
+                activate(vip);
+            }
+            if(money>=MONEY_LEAST){
+                restore(vip);
             }
             return vipDao.update(vip);
         }else {
             return ResultMessage.FAILURE;
         }
     }
-
-    @Override
     public ResultMessage pause(int vipId) {
-        Vip vip=vipDao.load(vipId);
+        Vip vip=vipDao.get(vipId);
         if(vip.getState().equals(VIPState.NORMAL.toString())){
             vip.setState(VIPState.PAUSED.toString());
             return vipDao.update(vip);
@@ -92,19 +80,6 @@ public class VIPServiceBean implements VIPService{
         return ResultMessage.FAILURE;
     }
 
-    @Override
-    public ResultMessage restore(int vipId) {
-        Vip vip=vipDao.load(vipId);
-        if(vip.getState().equals(VIPState.PAUSED.toString())){
-            vip.setState(VIPState.NORMAL.toString());
-            return vipDao.update(vip);
-        }else if(vip.getState().equals(VIPState.STOP.toString())){
-            //已停卡，不可恢复
-            return ResultMessage.FAILURE;
-        }
-        //未激活不能【恢复】，正常无需恢复。
-        return ResultMessage.FAILURE;
-    }
 
     @Override
     public ResultMessage stop(int vipId) {
@@ -166,5 +141,35 @@ public class VIPServiceBean implements VIPService{
     @Override
     public List<Hostel> getAllPermittedHostels() {
         return hostelDao.getByRestrictEqual("permitted",true);
+    }
+    /**
+     * 会员状态由【暂停】恢复到【正常】
+     * 不会同步数据库！
+     * @param vip
+     * @return
+     */
+    private ResultMessage restore(Vip vip) {
+        if(vip.getState().equals(VIPState.PAUSED.toString())){
+            vip.setState(VIPState.NORMAL.toString());
+            return ResultMessage.SUCCESS;
+        }else if(vip.getState().equals(VIPState.STOP.toString())){
+            //已停卡，不可恢复
+            return ResultMessage.FAILURE;
+        }
+        //未激活不能【恢复】，正常无需恢复。
+        return ResultMessage.FAILURE;
+    }
+    /**
+     * 激活会员账号，会员卡状态由【未激活】改为【正常】
+     * 不会同步数据库！
+     * @param vip
+     * @return
+     */
+    private ResultMessage activate(Vip vip) {
+        if(vip.getState().equals(VIPState.UNACTIVATED.toString())){
+            vip.setState(VIPState.NORMAL.toString());
+            return ResultMessage.SUCCESS;
+        }
+        return ResultMessage.SUCCESS;
     }
 }
