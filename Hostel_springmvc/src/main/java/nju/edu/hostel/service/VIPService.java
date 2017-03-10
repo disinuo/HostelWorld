@@ -9,13 +9,6 @@ import java.util.List;
  * Created by disinuo on 17/3/2.
  */
 public interface VIPService {
-    /**
-     * 注册新会员
-     * @param vipName
-     * @param password
-     * @return
-     */
-    public ResultMessage add(String vipName, String password);
 
     /**
      * 删除会员
@@ -33,11 +26,13 @@ public interface VIPService {
 
     /**
      * 会员充值，需要会员id和银行卡支付密码
+     * 从银行卡扣钱，会员卡加钱
      在这个方法里判断会员卡是否为【未激活】、【暂停】、【停止】（停止则不能交费）
      * @param money
      * @param vipId
      * @param bankPassword
-     * @return
+     * @return WRONG_PASSWORD,NOT_ENOUGH_MONEY(银行卡余额不足)
+     *         ALREADY_STOP(停卡，不能充值)
      */
     public ResultMessage topUp(double money, int vipId, String bankPassword);
 
@@ -98,8 +93,7 @@ public interface VIPService {
 
     /**
      * 获取本人预订数据，包括预订和取消预订
-     比如 2016-12-02 预订 标间 入住时间2016-12-10
-     2晚 358元+图片
+     比如 2016-12-02 预订 标间 入住时间2016-12-10  2晚 358元+图片
      2016-12-02 取消预订 标间 入住时间2016-12-10   2晚 358元+图片
      2016-12-02 预订 豪华总统套房 入住时间2016-12-10   2晚 2288元+图片
      * @param vipId

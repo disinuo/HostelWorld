@@ -4,14 +4,18 @@ import nju.edu.hostel.dao.HostelDao;
 import nju.edu.hostel.dao.UserDao;
 import nju.edu.hostel.dao.VIPDao;
 import nju.edu.hostel.model.Vip;
+import nju.edu.hostel.service.UserService;
 import nju.edu.hostel.service.VIPService;
 import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.model.*;
+import nju.edu.hostel.util.VIPState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
+import static nju.edu.hostel.util.Constants.*;
 
 /**
  * Created by disinuo on 17/3/3.
@@ -25,42 +29,88 @@ public class VIPServiceBean implements VIPService{
     HostelDao hostelDao;
     @Autowired
     UserDao userDao;
-    @Override
-    public ResultMessage add(String vipName, String password) {
-
-        return null;
-    }
-
+    @Autowired
+    UserService userService;
     @Override
     public ResultMessage delete(int vipId) {
+        //TODO
         return null;
     }
 
     @Override
     public ResultMessage activate(int vipId) {
-        return null;
+        Vip vip=vipDao.load(vipId);
+        if(vip.getState().equals(VIPState.UNACTIVATED.toString())){
+            vip.setState(VIPState.NORMAL.toString());
+            return vipDao.update(vip);
+        }
+        return ResultMessage.SUCCESS;
     }
 
     @Override
     public ResultMessage topUp(double money, int vipId, String bankPassword) {
         System.out.println("In VIPServiceBean--topUp");
         System.out.println("VIP 充值金额"+money+" id:"+vipId+" 密码:"+bankPassword);
-        return null;
+        User user=userDao.get(vipId);
+        Vip vip=vipDao.get(vipId);
+        //已停卡，则不能充值
+        if(vip.getState().equals(VIPState.STOP.toString())){
+            return ResultMessage.ALREADY_STOP;
+        }
+        if(!user.getBankPassword().equals(bankPassword)){
+            return ResultMessage.WRONG_PASSWORD;
+        }
+        double bankMoney=user.getBankMoney();
+        if(bankMoney<money){
+            return ResultMessage.NOT_ENOUGH_MONEY;
+        }
+
+        //        ----真的可以开始充值啦！------
+
+        ResultMessage msg=userService.modifyBankMoneyBy(vipId,-money);
+        vip.setMoneyLeft(vip.getMoneyLeft()+money);
+        if(msg==ResultMessage.SUCCESS){
+            if(vip.getState().equals(VIPState.UNACTIVATED.toString())&&money>=MONEY_ACTIVATE){
+                vip.setState(VIPState.NORMAL.toString());
+            }else if(vip.getState().equals(VIPState.PAUSED.toString())&&money>=MONEY_LEAST){
+                vip.setState(VIPState.NORMAL.toString());
+            }
+            return vipDao.update(vip);
+        }else {
+            return ResultMessage.FAILURE;
+        }
     }
 
     @Override
     public ResultMessage pause(int vipId) {
-        return null;
+        Vip vip=vipDao.load(vipId);
+        if(vip.getState().equals(VIPState.NORMAL.toString())){
+            vip.setState(VIPState.PAUSED.toString());
+            return vipDao.update(vip);
+        }
+        //未激活--不能暂停。已停卡--不能暂停。已暂停--不能暂停。。
+        return ResultMessage.FAILURE;
     }
 
     @Override
     public ResultMessage restore(int vipId) {
-        return null;
+        Vip vip=vipDao.load(vipId);
+        if(vip.getState().equals(VIPState.PAUSED.toString())){
+            vip.setState(VIPState.NORMAL.toString());
+            return vipDao.update(vip);
+        }else if(vip.getState().equals(VIPState.STOP.toString())){
+            //已停卡，不可恢复
+            return ResultMessage.FAILURE;
+        }
+        //未激活不能【恢复】，正常无需恢复。
+        return ResultMessage.FAILURE;
     }
 
     @Override
     public ResultMessage stop(int vipId) {
-        return null;
+        Vip vip=vipDao.load(vipId);
+        vip.setState(VIPState.STOP.toString());
+        return vipDao.update(vip);
     }
 
     @Override
@@ -70,16 +120,19 @@ public class VIPServiceBean implements VIPService{
 
     @Override
     public ResultMessage update(Vip vip) {
-        return null;
+        return vipDao.update(vip);
     }
 
     @Override
     public ResultMessage book(BookBill bookBill) {
+        //TODO
         return null;
     }
 
     @Override
     public ResultMessage unbook(int vipId, int bookId) {
+        //TODO
+
         return null;
     }
 
@@ -105,6 +158,8 @@ public class VIPServiceBean implements VIPService{
 
     @Override
     public ResultMessage scoreToMoney(int vipId, double score) {
+        //TODO
+
         return null;
     }
 
