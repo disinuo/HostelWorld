@@ -2,6 +2,9 @@ package nju.edu.hostel.service;
 
 import nju.edu.hostel.model.*;
 import nju.edu.hostel.util.ResultMessage;
+import nju.edu.hostel.vo.LiveInVO;
+import nju.edu.hostel.vo.LiveOutVO;
+import nju.edu.hostel.vo.RoomVO;
 
 import java.util.List;
 
@@ -9,14 +12,6 @@ import java.util.List;
  * Created by disinuo on 17/3/2.
  */
 public interface HostelService {
-    /**
-     * 注册新客栈，需要总经理的审批
-     * @param hostelName
-     * @param password
-     * @return
-     */
-    public ResultMessage add(String hostelName, String password);
-
     /**
      * 删除客栈
      * @param hostelId
@@ -59,29 +54,35 @@ public interface HostelService {
     /**
      * 登记住户的入店信息：
      住户真实名字，住户身份证号，入住日期，入住房间
-     * @param hostelId
-     * @param liveInBill
+     * @param liveInVO
      * @return
      */
-    public ResultMessage liveIn(int hostelId, LiveBill liveInBill);
+    public ResultMessage liveIn(LiveInVO liveInVO);
 
     /**
      * 登记住户的离店信息:
      * 住户真实名字，住户身份证号，离店日期，入住房间
      * 【前置】该住户已住店，且未登记离店
-     * @param hostelId
-     * @param departBill
+     * @param liveOutVO
      * @return
      */
-    public ResultMessage depart(int hostelId, LiveBill departBill);
+    public ResultMessage depart(LiveOutVO liveOutVO);
 
     /**
      * 客栈发布房间计划,只能发布自己客栈的房间计划
      * @param hostelId
-     * @param rooms
+     * @param roomVOs
      * @return
      */
-    public ResultMessage addRoom(int hostelId, List<Room> rooms);
+    public ResultMessage addRoom(int hostelId, List<RoomVO> roomVOs);
+
+    /**
+     * 客栈发布房间计划,只能发布自己客栈的房间计划
+     * @param hostelId
+     * @param roomVO
+     * @return
+     */
+    public ResultMessage addRoom(int hostelId, RoomVO roomVO);
 
     /**
      * 客栈更新房间计划（包括将该房间置为不可用，就是下架~），只能更新自己客栈的房间计划

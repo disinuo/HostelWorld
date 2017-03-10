@@ -44,6 +44,18 @@ public class RoomDaoImpl implements RoomDao {
     public int add(Room room) throws Exception {
         return baseDao.save(room);
     }
+    @Override
+    public ResultMessage add(List<Room> rooms){
+        for(Room room:rooms){
+            try {
+                baseDao.save(room);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return ResultMessage.FAILURE;
+            }
+        }
+        return ResultMessage.SUCCESS;
+    }
 
     @Override
     public ResultMessage update(Room room) {

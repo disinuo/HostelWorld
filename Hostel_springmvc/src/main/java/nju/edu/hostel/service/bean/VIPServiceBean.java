@@ -166,6 +166,8 @@ public class VIPServiceBean implements VIPService{
         }else if(nowDate>=bookBill.getLiveInDate()){//超过了订单的入住时间
             return ResultMessage.LATE_TIME;
         }else {
+            //退钱
+            payMoney(vipId,-MONEY_BOOK);
             //使该预订订单失效！~~~
             bookBill.setValid(false);
             return bookBillDao.update(bookBill);
@@ -242,7 +244,6 @@ public class VIPServiceBean implements VIPService{
         }
         return ResultMessage.SUCCESS;
     }
-
 
     @Override
     public ResultMessage payMoney(int vipId,double money){

@@ -1,5 +1,6 @@
 package nju.edu.hostel.model;
 
+import nju.edu.hostel.util.RequestState;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -13,7 +14,7 @@ import javax.persistence.*;
 public class Request {
     private int id;
     private Hostel hostel;
-    private String state;
+    private String state= RequestState.UNCHECK.toString();
 
     @Id
     @GenericGenerator(name="dsn" , strategy="increment")

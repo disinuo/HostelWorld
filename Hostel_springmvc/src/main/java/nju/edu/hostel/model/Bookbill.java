@@ -19,7 +19,6 @@ public class BookBill {
     private Room room;
     private boolean valid=true;//如果类型为true，valid为false 就代表该预订已被取消
 
-
     @Id
     @GenericGenerator(name="dsn" , strategy="increment")
     @GeneratedValue(generator="dsn")

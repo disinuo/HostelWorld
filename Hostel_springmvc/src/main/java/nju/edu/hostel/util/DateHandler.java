@@ -18,6 +18,20 @@ public class DateHandler {
         return formatter.format(date);
     }
 
+    /**
+     * 将毫秒转化成天数
+     * @param milli
+     * @return
+     */
+    public static double milliSecondToDay(long milli){
+        double ans=milli/(1000*60*60*24);
+        return ans;
+    }
+
+    public static long dayToMilliSecond(double day){
+        long ans=(long)(day*24*60*60*1000);
+        return ans;
+    }
     public static long strToLong(String time){
         try {
             Date date=formatter.parse(time);

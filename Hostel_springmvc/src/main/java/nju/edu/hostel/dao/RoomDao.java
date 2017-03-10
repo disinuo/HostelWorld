@@ -16,6 +16,7 @@ public interface RoomDao {
     public List<Room> getByRestrictEqual(Map<String,Object> map);
 
     public int add(Room room)throws Exception;
+    public ResultMessage add(List<Room> rooms);
     public ResultMessage update(Room room);
 
 

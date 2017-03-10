@@ -37,4 +37,10 @@ public class BookVO {
     public void setRoomId(int roomId) {
         this.roomId = roomId;
     }
+
+    public BookVO(String liveInDate, int vipId, int roomId) {
+        this.liveInDate = liveInDate;
+        this.vipId = vipId;
+        this.roomId = roomId;
+    }
 }

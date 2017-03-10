@@ -44,6 +44,24 @@ public class BaseDaoImpl implements BaseDao {
 			session.close();
 		}
 	}
+//	@Override
+//	public ResultMessage save(List<Object> entitys){
+//		Session session=getNewSession();
+//		Transaction tr=session.beginTransaction();
+//		try {
+//			for(Object entity:entitys){
+//				session.save(entity);
+//			}
+//			return ResultMessage.SUCCESS;
+//		}catch (Exception e){
+//			e.printStackTrace();
+//			return ResultMessage.FAILURE;
+//		}finally {
+//			tr.commit();
+//			session.clear();
+//			session.close();
+//		}
+//	}
 
 	@Override
 	public ResultMessage saveOrUpdate(Object entity) {
@@ -52,6 +70,7 @@ public class BaseDaoImpl implements BaseDao {
 		try {
 			session.saveOrUpdate(entity);
 		}catch (Exception e){
+			e.printStackTrace();
 			return ResultMessage.FAILURE;
 		}finally {
 			tr.commit();
@@ -68,6 +87,7 @@ public class BaseDaoImpl implements BaseDao {
 		try {
 			session.merge(entity);
 		}catch (Exception e){
+			e.printStackTrace();
 			return ResultMessage.FAILURE;
 		}finally {
 			tr.commit();
