@@ -17,6 +17,7 @@ public class BookBill {
     private Hostel hostel;
     private Vip vip;
     private Room room;
+    private boolean valid=true;
 
     @Id
     @GenericGenerator(name="dsn" , strategy="increment")
@@ -50,6 +51,15 @@ public class BookBill {
         this.createDate = createDate;
     }
 
+    @Basic
+    @Column(name = "valid", nullable = false)
+    public boolean isValid() {
+        return valid;
+    }
+
+    public void setValid(boolean valid) {
+        this.valid = valid;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
