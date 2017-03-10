@@ -4,6 +4,7 @@ import nju.edu.hostel.util.VIPState;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,7 +22,8 @@ public class Vip {
     private int level=0;
     private double score=0;
     private String state= VIPState.UNACTIVATED.toString();
-    private int time=0;
+    private Date activateDate;
+    private Date pauseDate;
     private List<BookBill> bookBills;
     private List<LiveBill> liveBills;
     private List<PayBill> payBills;
@@ -43,9 +45,25 @@ public class Vip {
     public String getRealName() {
         return realName;
     }
-
     public void setRealName(String realName) {
         this.realName = realName;
+    }
+
+    @Basic
+    @Column(name = "activateDate", nullable = false)
+    public Date getActivateDate() {
+        return activateDate;
+    }
+    public void setActivateDate(Date activateDate) {
+        this.activateDate = activateDate;
+    }
+    @Basic
+    @Column(name = "pauseDate", nullable = false)
+    public Date getPauseDate() {
+        return pauseDate;
+    }
+    public void setPauseDate(Date pauseDate) {
+        this.pauseDate = pauseDate;
     }
 
     @Basic
@@ -116,57 +134,6 @@ public class Vip {
 
     public void setState(String state) {
         this.state = state;
-    }
-
-    @Basic
-    @Column(name = "time", nullable = false)
-    public int getTime() {
-        return time;
-    }
-
-    public void setTime(int time) {
-        this.time = time;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Vip vipEntity = (Vip) o;
-
-        if (id != vipEntity.id) return false;
-        if (Double.compare(vipEntity.moneyLeft, moneyLeft) != 0) return false;
-        if (Double.compare(vipEntity.moneyPaid, moneyPaid) != 0) return false;
-        if (level != vipEntity.level) return false;
-        if (Double.compare(vipEntity.score, score) != 0) return false;
-        if (time != vipEntity.time) return false;
-        if (realName != null ? !realName.equals(vipEntity.realName) : vipEntity.realName != null) return false;
-        if (idCard != null ? !idCard.equals(vipEntity.idCard) : vipEntity.idCard != null) return false;
-        if (avatar != null ? !avatar.equals(vipEntity.avatar) : vipEntity.avatar != null) return false;
-        if (state != null ? !state.equals(vipEntity.state) : vipEntity.state != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        result = id;
-        result = 31 * result + (realName != null ? realName.hashCode() : 0);
-        result = 31 * result + (idCard != null ? idCard.hashCode() : 0);
-        result = 31 * result + (avatar != null ? avatar.hashCode() : 0);
-        temp = Double.doubleToLongBits(moneyLeft);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(moneyPaid);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + level;
-        temp = Double.doubleToLongBits(score);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (state != null ? state.hashCode() : 0);
-        result = 31 * result + time;
-        return result;
     }
 
     @OneToMany(mappedBy = "vip")
