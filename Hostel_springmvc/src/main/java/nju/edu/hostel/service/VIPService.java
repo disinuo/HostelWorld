@@ -12,11 +12,16 @@ import java.util.List;
 public interface VIPService {
 
     /**
-     * 删除会员
-     * @param vipId
-     * @return
+     * 给LoginController提供的接口
+     * 检查会员的【激活时间】【暂停卡时间】
+     * 如果到期要改变状态
+     *
+     * 激活一年后，会员卡余额不足则该会员卡状态改为【暂停】，能查记录，但不能预订、结账
+     *
+     * 暂停一年后，会员一直未支付到规定余额，则该会员卡状态改为【停止】，
+     * 能查记录，但不能预订、结账，且不可恢复
      */
-    public ResultMessage delete(int vipId);
+    public void init(int vipId);
 
     /**
      * 增/减【会员卡】余额
@@ -41,16 +46,8 @@ public interface VIPService {
     public ResultMessage topUp(double money, int vipId, String bankPassword);
 
     /**
-     * 激活一年后，会员卡余额不足则该会员卡状态改为【暂停】，能查记录，但不能预订、结账
-     * @param vipId
-     * @return
-     */
-    public ResultMessage pause(int vipId);
-
-    /**
-     * 暂停一年后，会员一直未支付到规定余额，则该会员卡状态改为【停止】，
+     * 用户发出停卡请求
      * 能查记录，但不能预订、结账，且不可恢复
-     * 【前置】暂停满一年，卡余额不足或用户发出停卡请求
      * @param vipId
      * @return
      */

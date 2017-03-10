@@ -29,9 +29,46 @@ import static nju.edu.hostel.util.Constants.*;
 @Service
 public class VIPServiceBean implements VIPService{
     @Override
-    public ResultMessage delete(int vipId) {
-        //TODO
-        return null;
+    public void init(int vipId){
+        //TODO 写完了 但是没测试
+        Vip vip=getById(vipId);
+        VIPState vipState=VIPState.strToVipState(vip.getState());
+        if(vipState==VIPState.UNACTIVATED||vipState==VIPState.STOP){
+            //未激活or停卡 不涉及根据时间改变状态
+            return;
+        }else{
+            long today=new Date().getTime();
+            if(vipState==VIPState.PAUSED){
+                //卡被暂停了。若时间超过一年 则变为stop
+                long pauseDate=vip.getPauseDate();
+                if(DateHandler.milliSecondToDay(today-pauseDate)>=DAY_OF_PAUSE_TO_STOP){
+                    //暂停超过？天
+                    vip.setState(VIPState.STOP.toString());
+                    vipDao.update(vip);
+                }
+            }else if(vipState==VIPState.NORMAL){
+                //卡是正常状态。检测激活时间
+                long activateDate=vip.getActivateDate();
+                double moneyLeft=vip.getMoneyLeft();
+                double dayDifference=DateHandler.milliSecondToDay(today-activateDate);
+                if(dayDifference>=DAY_OF_NORMAL_TO_PAUSE){
+                    if(moneyLeft<MONEY_LEAST){
+                        //激活超过?天,但不超过?1+?2天
+                        //卡余额不足，状态变成暂停，并记录暂停时间
+                        if(dayDifference<=(DAY_OF_NORMAL_TO_PAUSE+DAY_OF_PAUSE_TO_STOP)){
+                            vip.setState(VIPState.PAUSED.toString());
+                            vip.setPauseDate(activateDate+DateHandler.dayToMilliSecond(1));
+                        }else {//激活超过?1+?2天，卡余额不足，直接停卡！
+                            vip.setState(VIPState.STOP.toString());
+                        }
+                    }else {//余额还足~ 更新激活日期为当前时间
+                        vip.setActivateDate(new Date().getTime());
+                    }
+                    vipDao.update(vip);
+                }
+            }
+        }
+
     }
 
     @Override
@@ -56,10 +93,10 @@ public class VIPServiceBean implements VIPService{
         ResultMessage msg=userService.modifyBankMoneyBy(vipId,-money);
         vip.setMoneyLeft(vip.getMoneyLeft()+money);
         if(msg==ResultMessage.SUCCESS){
-            if(money>=MONEY_ACTIVATE){//需要的话去激活
+            if(money>=MONEY_ACTIVATE){//一次性交费大于？，需要的话去激活
                 activate(vip);
             }
-            if(money>=MONEY_LEAST){//需要的话去恢复
+            if(vip.getMoneyLeft()>=MONEY_LEAST){//累计交费大于？，需要的话去恢复
                 restore(vip);
             }
             return vipDao.update(vip);
@@ -68,22 +105,9 @@ public class VIPServiceBean implements VIPService{
         }
     }
 
-    public ResultMessage pause(int vipId) {
-        //TODO 要在用户登录时检测已激活时间，满一年就检查余额
-        Vip vip=vipDao.get(vipId);
-        if(vip.getState().equals(VIPState.NORMAL.toString())){
-            vip.setState(VIPState.PAUSED.toString());
-            vip.setPauseDate((new Date()).getTime());
-            return vipDao.update(vip);
-        }
-        //未激活--不能暂停。已停卡--不能暂停。已暂停--不能暂停。。
-        return ResultMessage.FAILURE;
-    }
-
 
     @Override
     public ResultMessage stop(int vipId) {
-        //TODO 要在用户登录时检测已暂停时间，满一年就停卡
         Vip vip=vipDao.load(vipId);
         vip.setState(VIPState.STOP.toString());
         return vipDao.update(vip);
@@ -170,7 +194,6 @@ public class VIPServiceBean implements VIPService{
 
     @Override
     public ResultMessage scoreToMoney(int vipId, double score) {
-        //TODO
         Vip vip=getById(vipId);
         double originalScore=vip.getScore();
         if(originalScore<score){
