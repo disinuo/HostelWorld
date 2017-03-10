@@ -66,7 +66,7 @@ public class BaseDaoImpl implements BaseDao {
 		Session session=getNewSession();
 		Transaction tr=session.beginTransaction();
 		try {
-			session.update(entity);
+			session.merge(entity);
 		}catch (Exception e){
 			return ResultMessage.FAILURE;
 		}finally {
@@ -79,7 +79,23 @@ public class BaseDaoImpl implements BaseDao {
 
 	@Override
 	public <T> T getEntity(Class<T> c, int id) {
-		Session session=getNewSession();
+
+		Session session = sessionFactory.getCurrentSession();
+		if (session != null) {
+			session.clear(); // internal cache clear
+		}
+
+		Cache cache = sessionFactory.getCache();
+
+		if (cache != null) {
+			cache.evictAllRegions(); // Evict data from all query regions.
+			cache.evictCollectionRegions();
+			cache.evictDefaultQueryRegion();
+			cache.evictEntityRegions();
+			cache.evictQueryRegions();
+			cache.evictNaturalIdRegions();
+		}
+//		Session session=getNewSession();
 
 		T entity=session.get(c,id);
 		return entity;
