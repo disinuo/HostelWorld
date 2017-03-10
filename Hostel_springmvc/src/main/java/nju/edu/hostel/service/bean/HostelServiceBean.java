@@ -48,6 +48,7 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public ResultMessage enrollPay(PayBill payBill) {
+//        TODO 如果顾客是会员 消费要积分的！还要升级！还可能优惠！
         return null;
     }
 

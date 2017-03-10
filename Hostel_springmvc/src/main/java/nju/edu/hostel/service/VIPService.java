@@ -2,6 +2,7 @@ package nju.edu.hostel.service;
 
 import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.model.*;
+import nju.edu.hostel.vo.BookVO;
 
 import java.util.List;
 
@@ -17,7 +18,15 @@ public interface VIPService {
      */
     public ResultMessage delete(int vipId);
 
-
+    /**
+     * 增/减【会员卡】余额
+     * offset为+是从会员卡里扣钱
+     * 包括  用户预订扣钱，取消预订加钱，结账扣钱
+     * 设置为public是为了 比如客栈结账的时候，会员选择【会员卡支付】，
+     * 客栈要负责在会员的卡扣钱
+     * @return NOT_ENOUGH_MONEY,SUCCESS,FAILURE
+     */
+    public ResultMessage payMoney(int vipId,double offset);
 
     /**
      * 会员充值，需要会员id和银行卡支付密码
@@ -27,7 +36,7 @@ public interface VIPService {
      * @param vipId
      * @param bankPassword
      * @return WRONG_PASSWORD,NOT_ENOUGH_MONEY(银行卡余额不足)
-     *         ALREADY_STOP(停卡，不能充值)
+     *         VIP_STATE_STOP(停卡，不能充值)
      */
     public ResultMessage topUp(double money, int vipId, String bankPassword);
 
@@ -65,17 +74,17 @@ public interface VIPService {
     /**
      * 会员预订房间（可能会余额不足），
      考虑会员级别不同，预订费变化
-     * @param bookBill
+     * @param bookVO
      * @return
      */
-    public ResultMessage book(BookBill bookBill);
+    public ResultMessage book(BookVO bookVO);
 
     /**
      * 会员取消预订。bookId是预定订单id，会在预订订单生成时自动生成
      * 【前置】会员有未结账的预订记录
      * @param vipId
      * @param bookId
-     * @return
+     * @return NO_AUTHORITY,LATE_TIME,SUCESS,FAILURE;
      */
     public ResultMessage unbook(int vipId, int bookId);
 

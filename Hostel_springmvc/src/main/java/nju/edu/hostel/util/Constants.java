@@ -21,4 +21,15 @@ public class Constants {
      * 预订扣费
      */
     public static final double MONEY_BOOK=20;
+
+    /**
+     * 积分与消费金额的转换比例
+     * 即 1积分可兑换？钱
+     */
+    public static double RATE_SCORE_TO_MONEY=0.01;
+    /**
+     * 消费金额与积分的转换比例
+     * 即 1元钱可兑换?积分
+     */
+    public static double RATE_MONEY_TO_SCORE=10;
 }

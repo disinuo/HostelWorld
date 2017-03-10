@@ -1,10 +1,9 @@
 package nju.edu.hostel.model;
 
-import nju.edu.hostel.util.DateParser;
+import nju.edu.hostel.util.DateHandler;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.Date;
 
 /**
  * Created by disinuo on 17/3/3.
@@ -106,6 +105,6 @@ public class LiveBill {
 
     @Transient
     public String getDateStr(){
-        return DateParser.longToStr(this.date);
+        return DateHandler.longToStr(this.date);
     }
 }
