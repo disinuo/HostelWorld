@@ -18,6 +18,7 @@ public class Hostel {
     private String phone="66668888";
     private String address;
     private String name;
+    private double moneyUncounted;
     private List<BookBill> bookBills;
     private List<LiveBill> liveBills;
     private List<PayBill> payBills;
@@ -39,7 +40,6 @@ public class Hostel {
     public String getImg() {
         return img;
     }
-
     public void setImg(String img) {
         this.img = img;
     }
@@ -49,9 +49,17 @@ public class Hostel {
     public boolean getPermitted() {
         return permitted;
     }
-
     public void setPermitted(boolean permitted) {
         this.permitted = permitted;
+    }
+
+    @Basic
+    @Column(name = "moneyUncounted", nullable = false)
+    public double getMoneyUncounted() {
+        return moneyUncounted;
+    }
+    public void setMoneyUncounted(double moneyUncounted) {
+        this.moneyUncounted = moneyUncounted;
     }
 
     @Basic

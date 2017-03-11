@@ -69,7 +69,7 @@ public class UserServiceBean implements UserService {
     }
     @Override
     public ResultMessage delete(int userId) {
-        //TODO
+        //TODO delete
         return null;
     }
 

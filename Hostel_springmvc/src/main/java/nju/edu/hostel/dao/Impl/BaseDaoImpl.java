@@ -28,7 +28,7 @@ public class BaseDaoImpl implements BaseDao {
 
 		return session==null?getNewSession():session;
 	}
-
+//TODO 可能要新加【返回排序结果】的接口
 	@Override
 	public int save(Object entity) throws Exception {
 		Session session=getNewSession();
@@ -232,7 +232,7 @@ public Session getSession() {
 
 	@Override
 	public ResultMessage delete(Class<?> c, String[] ids) {
-		// TODO 可能要做回滚
+		// 可能要做回滚
 		for (String id : ids) {
 			Object obj = getSession().get(c, id);
 			if (obj != null) {
@@ -413,7 +413,6 @@ public Session getSession() {
 	@Override
 	public <T> List<T> findByColunmsDesc(Class<T> c, String[] columns,
 										 Object[] values, String descColumn) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

@@ -12,7 +12,6 @@ import javax.persistence.*;
 @Table(name = "paybill", schema = "hostel", catalog = "")
 public class PayBill {
     private int id;
-    private boolean counted=false;
     private String userRealName;
     private String idCard;
     private double money;
@@ -31,16 +30,6 @@ public class PayBill {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    @Basic
-    @Column(name = "counted", nullable = false)
-    public boolean getCounted() {
-        return counted;
-    }
-
-    public void setCounted(boolean counted) {
-        this.counted = counted;
     }
 
     @Basic

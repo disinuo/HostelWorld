@@ -28,7 +28,6 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public ResultMessage init(int hostelId){
-        //TODO 没测试
         Hostel hostel=getById(hostelId);
         if(!hostel.getPermitted()){//店还没通过审核
             List<RequestOpen> requests=requestDao.getOpenRequestByRestrictEqual("hostel",hostel);
@@ -111,10 +110,13 @@ public class HostelServiceBean implements HostelService {
             vip.setLevel(VIP_MONEY_TO_LEVEL(vipPaidAll));
             vipDao.update(vip);
         }else {//顾客不是会员，直接生成账单
-            payBill.setMoney(payVO.getMoney());
+            payBill.setMoney(moneyToPay);
         }
         try {
             payBillDao.add(payBill);
+            Hostel hostel=room.getHostel();
+            hostel.setMoneyUncounted(hostel.getMoneyUncounted()+moneyToPay);
+            hostelDao.update(hostel);
             return moneyToPay;
         }catch (Exception e){
             e.printStackTrace();

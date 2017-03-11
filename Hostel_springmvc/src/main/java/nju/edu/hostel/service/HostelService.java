@@ -13,6 +13,7 @@ import java.util.List;
  * Created by disinuo on 17/3/2.
  */
 public interface HostelService {
+//    TODO 等整个写好了之后  再加一下  各种单子的删、改
     /**
      * 初始化
      * 包括 若本登录的客栈未通过审批的话，
@@ -58,7 +59,7 @@ public interface HostelService {
      * 登记住户的结账
      包括会员的消费、非会员的消费
      非会员的线下消费也当做是交到总经理账户中了。
-     所以总经理还是根据记录在系统里的账单进行【结算】
+     所以总经理还是根据各个客栈的`未结算金额`进行【结算】
      * @param payVO
      * @return 实际顾客应支付的值
      */
