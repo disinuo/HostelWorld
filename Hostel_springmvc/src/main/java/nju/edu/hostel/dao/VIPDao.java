@@ -13,7 +13,7 @@ public interface VIPDao {
     public Vip load(int id);
     public List<Vip> getByRestrictEqual(String column, Object value);
     public List<Vip> getByRestrictEqual(Map<String,Object> map);
-
+    public List<Vip> getAll();
     public int add(Vip vip)throws Exception;
     public ResultMessage update(Vip vip);
 

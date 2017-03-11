@@ -20,7 +20,7 @@ public interface HostelService {
      * 通过申请就不提示了！
      * 只是提示~！！
      * 具体比如如果总经理同意申请，是在总经理service那边改变的客栈permitted属性
-     * @return :.REMIND_REQUEST,REQUEST_DENIED,REQUEST_UNCHECK,SUCCESS;
+     * @return :.REMIND_REQUEST,REQUEST_DENIED,REQUEST_UNCHECKED,SUCCESS;
      */
     public ResultMessage init(int hostelId);
     /**
@@ -67,13 +67,22 @@ public interface HostelService {
     /**
      * 会员选择用会员卡支付的时候，店员会选择这个服务。
      * 将enRollPay的返回值传过来
-     * 给vipId的会员卡扣钱。
+     * 给vipId的会员卡扣钱。收到的钱会加到总经理的账户。
      * 若余额不足店员应该提示顾客，以其他方式支付
      * @param vipId
      * @param money
      * @return NOT_ENOUGH_MONEY,SUCCESS,FAILURE
      */
     public ResultMessage vipPay(int vipId,double money);
+
+    /**
+     * 非会员结账的时候 或会员选择不用会员卡支付的时候
+     * 店员要调用这个服务！
+     * 收到的钱会加到总经理的账户
+     * @param money
+     * @return
+     */
+    public ResultMessage unVipPay(double money);
 
     /**
      * 登记住户的入店信息：

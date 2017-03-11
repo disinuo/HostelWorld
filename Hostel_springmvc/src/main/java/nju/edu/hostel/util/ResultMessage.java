@@ -55,5 +55,17 @@ public enum ResultMessage {
      * 卡未激活
      */
     VIP_STATE_UNACTIVATED,
+    /**
+     * 请求还在等待中~
+     */
+    REQUEST_UNCHECKED,
+    /**
+     * 请求被拒绝
+     */
+    REQUEST_DENIED,
+    /**
+     * 提醒客栈去提交申请~
+     */
+    REMIND_REQUEST,
 
 }

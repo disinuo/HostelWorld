@@ -2,7 +2,8 @@ package nju.edu.hostel.dao.Impl;
 
 import nju.edu.hostel.dao.BaseDao;
 import nju.edu.hostel.dao.RequestDao;
-import nju.edu.hostel.model.Request;
+import nju.edu.hostel.model.RequestModify;
+import nju.edu.hostel.model.RequestOpen;
 import nju.edu.hostel.util.ResultMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,35 +20,71 @@ public class RequestDaoImpl implements RequestDao {
     BaseDao baseDao;
 
     @Override
-    public Request get(int id) {
-        return baseDao.getEntity(Request.class,id);
+    public RequestOpen getOpenRequest(int id) {
+        return baseDao.getEntity(RequestOpen.class,id);
     }
 
     @Override
-    public Request load(int id) {
-        return baseDao.loadProxy(Request.class,id);
+    public RequestOpen loadOpenRequest(int id) {
+        return baseDao.loadProxy(RequestOpen.class,id);
     }
 
     @Override
-    public List<Request> getByRestrictEqual(String column, Object value) {
+    public List<RequestOpen> getOpenRequestByRestrictEqual(String column, Object value) {
 
-        return baseDao.getByRestrictEqual(Request.class,column,value);
+        return baseDao.getByRestrictEqual(RequestOpen.class,column,value);
     }
 
     @Override
-    public List<Request> getByRestrictEqual(Map<String, Object> map) {
+    public List<RequestOpen> getOpenRequestByRestrictEqual(Map<String, Object> map) {
 
-        return baseDao.getByRestrictEqual(Request.class,map);
+        return baseDao.getByRestrictEqual(RequestOpen.class,map);
 
+    }
+    @Override
+    public int addOpenRequest(RequestOpen requestOpen) throws Exception {
+        return baseDao.save(requestOpen);
     }
 
     @Override
-    public int add(Request request) throws Exception {
-        return baseDao.save(request);
+    public ResultMessage updateOpenRequest(RequestOpen requestOpen) {
+        return baseDao.update(requestOpen);
+    }
+//    ==========================
+@Override
+public RequestModify getModifyRequest(int id) {
+    return baseDao.getEntity(RequestModify.class,id);
+}
+
+    @Override
+    public RequestModify loadModifyRequest(int id) {
+        return baseDao.loadProxy(RequestModify.class,id);
     }
 
     @Override
-    public ResultMessage update(Request request) {
-        return baseDao.update(request);
+    public List<RequestModify> getModifyRequestByRestrictEqual(String column, Object value) {
+
+        return baseDao.getByRestrictEqual(RequestModify.class,column,value);
     }
+
+    @Override
+    public List<RequestModify> getModifyRequestByRestrictEqual(Map<String, Object> map) {
+
+        return baseDao.getByRestrictEqual(RequestModify.class,map);
+
+    }
+    @Override
+    public int addModifyRequest(RequestModify requestModify) throws Exception {
+        return baseDao.save(requestModify);
+    }
+
+    @Override
+    public ResultMessage updateModifyRequest(RequestModify requestModify) {
+        return baseDao.update(requestModify);
+    }
+    
+    
+    
+    
+    
 }

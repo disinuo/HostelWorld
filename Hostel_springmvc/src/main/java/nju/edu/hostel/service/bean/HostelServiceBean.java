@@ -4,6 +4,7 @@ import nju.edu.hostel.dao.*;
 import nju.edu.hostel.model.*;
 import nju.edu.hostel.service.HostelService;
 import nju.edu.hostel.service.VIPService;
+import nju.edu.hostel.util.RequestState;
 import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.vo.LiveInVO;
 import nju.edu.hostel.vo.LiveOutVO;
@@ -27,19 +28,19 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public ResultMessage init(int hostelId){
-        //TODO init 提示开店申请状态。修改店信息申请的状态就不提示啦
+        //TODO 没测试
         Hostel hostel=getById(hostelId);
         if(!hostel.getPermitted()){//店还没通过审核
-            List<RequestOpen> requests=requestDao.getOpenRequestByRestrictEqual("hostelId",hostelId);
+            List<RequestOpen> requests=requestDao.getOpenRequestByRestrictEqual("hostel",hostel);
             if(requests==null||requests.size()==0){//客栈没提交过申请，提醒
                 return ResultMessage.REMIND_REQUEST;
             }else {
                 for(RequestOpen req:requests){//有一个拒绝的，就返回拒绝
-                    if(req.getState().equals(ResultMessage.REQUEST_DENIED)){
+                    if(req.getState().equals(RequestState.DENIED.toString())){
                         return ResultMessage.REQUEST_DENIED;
                     }
                 }//否则返回 等待中
-                return ResultMessage.REQUEST_UNCHECK;
+                return ResultMessage.REQUEST_UNCHECKED;
             }
         }
         return ResultMessage.SUCCESS;
@@ -122,7 +123,17 @@ public class HostelServiceBean implements HostelService {
     }
     @Override
     public ResultMessage vipPay(int vipId,double money){
-        return vipService.payMoney(vipId,money);
+        ResultMessage msg=vipService.payMoney(vipId,money);
+        if(msg!=ResultMessage.SUCCESS){
+            return msg;
+        }
+       return unVipPay(money);
+    }
+    @Override
+    public ResultMessage unVipPay(double money){
+        User manager=userDao.get(MANAGER_ID);
+        manager.setBankMoney(manager.getBankMoney()+money);
+        return userDao.update(manager);
     }
     @Override
     public ResultMessage liveIn(LiveInVO liveInVO){
@@ -244,6 +255,8 @@ public class HostelServiceBean implements HostelService {
     RoomDao roomDao;
     @Autowired
     RequestDao requestDao;
+    @Autowired
+    UserDao userDao;
     @Autowired
     VIPDao vipDao;
     @Autowired

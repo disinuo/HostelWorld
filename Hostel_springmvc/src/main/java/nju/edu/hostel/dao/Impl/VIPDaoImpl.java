@@ -30,6 +30,10 @@ public class VIPDaoImpl implements VIPDao {
         return baseDao.loadProxy(Vip.class,id);
 
     }
+    @Override
+    public List<Vip> getAll(){
+        return baseDao.getAll(Vip.class);
+    }
 
     @Override
     public List<Vip> getByRestrictEqual(String column, Object value) {

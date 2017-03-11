@@ -9,15 +9,31 @@ import java.util.List;
  * Created by disinuo on 17/3/2.
  */
 public interface ManagerService {
-
     /**
-     * 总经理审批收到的开店申请
-     第二个参数为true即同意，反之不同意
-     * @param hostelId
-     * @param ifApprove
+     * 总经理点击【审批开店申请】or登陆的时候调用
+     * 返回所有未审批的开店申请
      * @return
      */
-    public ResultMessage approve(int hostelId, Boolean ifApprove);
+    public List<RequestOpen> getOpenRequests();
+
+    /**
+     * 总经理点击【审批店信息修改申请】or登陆的时候调用
+     * 返回所有未审批的店信息修改申请
+     * @return
+     */
+    public List<RequestModify> getModifyRequests();
+    /**
+     * 总经理审批收到的开店申请
+     * @param requestOpen
+     * @return
+     */
+    public ResultMessage updateOpenRequest(RequestOpen requestOpen);
+    /**
+     * 总经理审批收到的店信息更改申请
+     * @param requestModify
+     * @return
+     */
+    public ResultMessage updateModifyRequest(RequestModify requestModify);
 
     /**
      * 总经理结算

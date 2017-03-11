@@ -145,4 +145,5 @@ public class Hostel {
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
     }
+
 }

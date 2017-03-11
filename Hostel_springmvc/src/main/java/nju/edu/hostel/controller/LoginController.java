@@ -1,18 +1,18 @@
 package nju.edu.hostel.controller;
 
 import nju.edu.hostel.dao.BaseDao;
-import nju.edu.hostel.model.BookBill;
-import nju.edu.hostel.model.Room;
-import nju.edu.hostel.model.User;
-import nju.edu.hostel.model.Vip;
+import nju.edu.hostel.model.*;
 import nju.edu.hostel.service.HostelService;
+import nju.edu.hostel.service.ManagerService;
 import nju.edu.hostel.service.UserService;
 import nju.edu.hostel.service.VIPService;
 import nju.edu.hostel.util.DateHandler;
 import nju.edu.hostel.util.DisPatcher;
+import nju.edu.hostel.util.RequestState;
 import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.vo.BookVO;
 import nju.edu.hostel.vo.OnLineUserVO;
+import nju.edu.hostel.vo.PayVO;
 import nju.edu.hostel.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,19 +39,41 @@ public class LoginController {
     VIPService vipService;
     @Autowired
     HostelService hostelService;
+    @Autowired
+    ManagerService managerService;
     @RequestMapping(value = "/login")
     public ModelAndView showLoginPage( ModelMap model) {
+        ResultMessage msg=hostelService.init(9990004);
+        System.out.println(msg);
+
 //        Vip vip=vipService.getById(1000000);
 //        BookVO bookVO=new BookVO();
 //        bookVO.setLiveInDate("2017-03-28");
 //        bookVO.setRoomId(100002);
 //        bookVO.setVipId(1000001);
 //        Room room=hostelService.getRoomById(100001);
-
+        System.out.println("=====================================");
+        List<RequestModify> requests=managerService.getModifyRequests();
+//        for(RequestOpen requestOpen:requestOpens){
+//            Hostel hostel=requestOpen.getHostel();
+//            System.out.println(requestOpen.getId()+" "+hostel.getId()+" "+
+//            hostel.getName()+" "+hostel.getAddress());
+//            requestOpen.setState(RequestState.DENIED.toString());
+//            managerService.updateOpenRequest(requestOpen);
+//        }
+        System.out.println("=====================================");
+        msg=hostelService.init(9990004);
+        System.out.println(msg);
+//        List<Hostel> hostels=hostelService.getAllPermittedHostels();
+//        for(Hostel hostel:hostels){
+//            System.out.println(hostel.getId()+" "+
+//            hostel.getName()+" "+hostel.getAddress());
+//        }
 
 //        List<BookBill> bookBills=vipService.getAllBookBills(1000000);
-        ResultMessage msg=hostelService.requestManager(9990004);
-        System.out.println(msg);
+//        PayVO payVO=new PayVO("邸思诺","111111199604011111",200,1000000,100003);
+//        double money=hostelService.enrollPay(payVO);
+//        ResultMessage msg=
 //        resMssg=vipService.unbook(1000000,bookBills.get(3).getId());
 //        System.out.println(resMssg);
 //        resMssg=vipService.topUp(200,1000003,"bankroot");

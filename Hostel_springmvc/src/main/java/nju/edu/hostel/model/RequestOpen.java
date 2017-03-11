@@ -9,12 +9,12 @@ import javax.persistence.*;
  * Created by disinuo on 17/3/11.
  */
 @Entity
-@Table(name = "request", schema = "hostel", catalog = "")
+@Table(name = "request_open", schema = "hostel", catalog = "")
 
-public class Request {
+public class RequestOpen {
     private int id;
     private Hostel hostel;
-    private String state= RequestState.UNCHECK.toString();
+    private String state= RequestState.UNCHECKED.toString();
 
     @Id
     @GenericGenerator(name="dsn" , strategy="increment")
