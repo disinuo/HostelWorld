@@ -186,4 +186,14 @@ public interface HostelService {
      * @return
      */
     public List<Hostel> getAllPermittedHostels();
+
+    /**
+     * 获得hostelId的客栈没有被结算的账单，
+     * 给总经理看结算详情的时候用的~
+     * 总经理的结算界面默认不显示这些，只显示各个客栈需要结算的金额
+     * 要总经理点某一个客栈再显示这些详情
+     * @param hostelId
+     * @return
+     */
+    public List<PayBill> getAllUncountedPayBills(int hostelId);
 }

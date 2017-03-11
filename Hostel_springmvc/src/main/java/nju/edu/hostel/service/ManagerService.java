@@ -42,41 +42,20 @@ public interface ManagerService {
      * @param managerId
      * @param bankPassword
      * @return
+     * //TODO 可考虑添加按客栈结算，就是总经理可以只给某个客栈结算~
      */
-    public List<PayBill> count(int managerId, String bankPassword);
+    public ResultMessage count(int managerId, String bankPassword);
+
 
     /**
-     * 获取所有预订数据，包括预订和取消预订
-     * 【前置】以总经理身份登录
+     * 获取所有通过审批的客栈
+     * 包含了每个客栈的住店、预订、消费的所有记录
      * @return
      */
-    public List<BookBill> getAllBookBills();
-
+    public List<Hostel> getAllPermittedHostels();
     /**
-     * 获取所有消费数据
-     *【前置】以总经理身份登录
-
-     * @return
+     * 获取所有会员
+     * 包含了每个会员的住店、预订、消费的所有记录
      */
-    public List<PayBill> getAllPayBills();
-
-    /**
-     * 获取所有会员的消费数据
-     * @return
-     */
-    public List<PayBill> getAllPayBillsOfVIP();
-
-    /**
-     * 获取所有住店数据
-     * @return
-     */
-    public List<LiveBill> getAllLiveBills();
-
-    /**
-     * 获取指定客栈的所以住店数据
-     * @param hostelId
-     * @return
-     */
-    public List<LiveBill> getAllLiveBillsByHostel(int hostelId);
-
+    public List<Vip> getAllVips();
 }

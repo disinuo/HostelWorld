@@ -24,6 +24,10 @@ public enum ResultMessage {
      */
     NO_AUTHORITY,
     /**
+     * 没有结算的必要，就是各个客栈都没有消费记录
+     */
+    NO_NEED_COUNT,
+    /**
      *新密码未做改变
      */
     NOT_CHANGE,

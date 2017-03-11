@@ -14,8 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import static nju.edu.hostel.util.Constants.*;
-import java.util.Date;
-import java.util.List;
+
+import java.util.*;
 
 //import static nju.edu.hostel.util.Constants.RATE_MONEY_TO_SCORE;
 
@@ -249,6 +249,13 @@ public class HostelServiceBean implements HostelService {
     @Override
     public List<Hostel> getAllPermittedHostels() {
         return hostelDao.getByRestrictEqual("permitted",true);
+    }
+    @Override
+    public List<PayBill> getAllUncountedPayBills(int hostelId){
+        Map map = new HashMap<String,Object>();
+        map.put("hostelId",hostelId);
+        map.put("counted",false);
+        return payBillDao.getByRestrictEqual(map);
     }
 //   ----------------------------------------
     @Autowired
