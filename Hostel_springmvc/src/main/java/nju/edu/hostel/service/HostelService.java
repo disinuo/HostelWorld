@@ -48,9 +48,20 @@ public interface HostelService {
      非会员的线下消费也当做是交到总经理账户中了。
      所以总经理还是根据记录在系统里的账单进行【结算】
      * @param payVO
-     * @return
+     * @return 实际顾客应支付的值
      */
-    public ResultMessage enrollPay(PayVO payVO);
+    public double enrollPay(PayVO payVO);
+
+    /**
+     * 会员选择用会员卡支付的时候，店员会选择这个服务。
+     * 将enRollPay的返回值传过来
+     * 给vipId的会员卡扣钱。
+     * 若余额不足店员应该提示顾客，以其他方式支付
+     * @param vipId
+     * @param money
+     * @return NOT_ENOUGH_MONEY,SUCCESS,FAILURE
+     */
+    public ResultMessage vipPay(int vipId,double money);
 
     /**
      * 登记住户的入店信息：

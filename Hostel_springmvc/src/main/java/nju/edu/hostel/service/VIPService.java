@@ -29,6 +29,9 @@ public interface VIPService {
      * 包括  用户预订扣钱，取消预订加钱，结账扣钱
      * 设置为public是为了 比如客栈结账的时候，会员选择【会员卡支付】，
      * 客栈要负责在会员的卡扣钱
+     * 次扣钱数不会加到会员的`moneyPaid`属性中
+     * 因为，预订的钱不算moneyPaid，
+     *      住店的钱在客栈使用`enrollPay`的时候已经加到会员的`moneyPaid`里了
      * @return NOT_ENOUGH_MONEY,SUCCESS,FAILURE
      */
     public ResultMessage payMoney(int vipId,double offset);

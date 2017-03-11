@@ -253,7 +253,6 @@ public class VIPServiceBean implements VIPService{
             return ResultMessage.NOT_ENOUGH_MONEY;
         }else {
             vip.setMoneyLeft(moneyLeft-money);
-            vip.setMoneyPaid(vip.getMoneyPaid()+money);
             return vipDao.update(vip);
         }
 

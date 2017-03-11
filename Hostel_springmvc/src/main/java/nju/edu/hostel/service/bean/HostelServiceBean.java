@@ -3,6 +3,7 @@ package nju.edu.hostel.service.bean;
 import nju.edu.hostel.dao.*;
 import nju.edu.hostel.model.*;
 import nju.edu.hostel.service.HostelService;
+import nju.edu.hostel.service.VIPService;
 import nju.edu.hostel.util.Constants;
 import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.vo.LiveInVO;
@@ -54,10 +55,10 @@ public class HostelServiceBean implements HostelService {
     }
 
     @Override
-    public ResultMessage enrollPay(PayVO payVO) {
+    public double enrollPay(PayVO payVO) {
         PayBill payBill=new PayBill();
         Room room=roomDao.get(payVO.getRoomId());
-
+        double moneyToPay=payVO.getMoney();
         payBill.setRoom(room);
         payBill.setHostel(room.getHostel());
         payBill.setUserRealName(payVO.getUserRealName());
@@ -69,7 +70,7 @@ public class HostelServiceBean implements HostelService {
             //看会员级别~要打折的！
             int level=vip.getLevel();
             double discount=VIP_LEVEL_TO_DISCOUNT(level);
-            double moneyToPay=payVO.getMoney()*discount;
+            moneyToPay*=discount;
             payBill.setMoney(moneyToPay);
             /*
              *消费要积分的！还要升级！
@@ -85,13 +86,16 @@ public class HostelServiceBean implements HostelService {
         }
         try {
             payBillDao.add(payBill);
+            return moneyToPay;
         }catch (Exception e){
             e.printStackTrace();
-            return ResultMessage.FAILURE;
+            return -1;
         }
-         return ResultMessage.SUCCESS;
     }
-
+    @Override
+    public ResultMessage vipPay(int vipId,double money){
+        return vipService.payMoney(vipId,money);
+    }
     @Override
     public ResultMessage liveIn(LiveInVO liveInVO){
         LiveBill liveBill=new LiveBill();
@@ -214,4 +218,6 @@ public class HostelServiceBean implements HostelService {
     LiveBillDao liveBillDao;
     @Autowired
     PayBillDao payBillDao;
+    @Autowired
+    VIPService vipService;
 }
