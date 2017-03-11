@@ -210,7 +210,7 @@ public class VIPServiceBean implements VIPService{
 
     @Override
     public List<Hostel> getAllPermittedHostels() {
-        return hostelDao.getByRestrictEqual("permitted",true);
+        return hostelService.getAllPermittedHostels();
     }
     /**
      * 会员状态由【暂停】恢复到【正常】

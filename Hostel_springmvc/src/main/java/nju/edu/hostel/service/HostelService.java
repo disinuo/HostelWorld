@@ -14,6 +14,16 @@ import java.util.List;
  */
 public interface HostelService {
     /**
+     * 初始化
+     * 包括 若本登录的客栈未通过审批的话，
+     * 如果该客栈有提交过申请，提示客栈申请的状态(拒绝、等待中)
+     * 通过申请就不提示了！
+     * 只是提示~！！
+     * 具体比如如果总经理同意申请，是在总经理service那边改变的客栈permitted属性
+     * @return :.REMIND_REQUEST,REQUEST_DENIED,REQUEST_UNCHECK,SUCCESS;
+     */
+    public ResultMessage init(int hostelId);
+    /**
      * 删除客栈
      * @param hostelId
      * @return
@@ -37,6 +47,8 @@ public interface HostelService {
 
     /**
      * 修改客栈的基本信息
+     * 改完并没有保存，而是向总经理提交申请
+     * 总经理同意店信息才会更新
      * @param hostel
      * @return
      */
@@ -159,5 +171,9 @@ public interface HostelService {
      */
     public Room getRoomById(int roomId);
 
-
+    /**
+     * 返回所有通过总经理审批的客栈
+     * @return
+     */
+    public List<Hostel> getAllPermittedHostels();
 }

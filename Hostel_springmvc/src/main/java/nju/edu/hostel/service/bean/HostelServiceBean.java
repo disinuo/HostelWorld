@@ -4,7 +4,6 @@ import nju.edu.hostel.dao.*;
 import nju.edu.hostel.model.*;
 import nju.edu.hostel.service.HostelService;
 import nju.edu.hostel.service.VIPService;
-import nju.edu.hostel.util.Constants;
 import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.vo.LiveInVO;
 import nju.edu.hostel.vo.LiveOutVO;
@@ -27,16 +26,35 @@ import java.util.List;
 public class HostelServiceBean implements HostelService {
 
     @Override
+    public ResultMessage init(int hostelId){
+        //TODO init 提示开店申请状态。修改店信息申请的状态就不提示啦
+        Hostel hostel=getById(hostelId);
+        if(!hostel.getPermitted()){//店还没通过审核
+            List<RequestOpen> requests=requestDao.getOpenRequestByRestrictEqual("hostelId",hostelId);
+            if(requests==null||requests.size()==0){//客栈没提交过申请，提醒
+                return ResultMessage.REMIND_REQUEST;
+            }else {
+                for(RequestOpen req:requests){//有一个拒绝的，就返回拒绝
+                    if(req.getState().equals(ResultMessage.REQUEST_DENIED)){
+                        return ResultMessage.REQUEST_DENIED;
+                    }
+                }//否则返回 等待中
+                return ResultMessage.REQUEST_UNCHECK;
+            }
+        }
+        return ResultMessage.SUCCESS;
+    }
+    @Override
     public ResultMessage delete(int hostelId) {
          return null; //TODO delete
     }
 
     @Override
     public ResultMessage requestManager(int hostelId) {
-        Request request=new Request();
-        request.setHostel(getById(hostelId));
+        RequestOpen requestOpen =new RequestOpen();
+        requestOpen.setHostel(getById(hostelId));
         try {
-            requestDao.add(request);
+            requestDao.addOpenRequest(requestOpen);
             return ResultMessage.SUCCESS;
         } catch (Exception e) {
             e.printStackTrace();
@@ -51,7 +69,17 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public ResultMessage update(Hostel hostel) {
-         return hostelDao.update(hostel);
+        RequestModify requestModify=new RequestModify();
+        requestModify.setHostelOriginal(getById(hostel.getId()));
+        requestModify.setHostelNew(hostel);
+        try {
+            requestDao.addModifyRequest(requestModify);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResultMessage.FAILURE;
+        }
+        return ResultMessage.SUCCESS;
+//        return hostelDao.update(hostel);
     }
 
     @Override
@@ -204,6 +232,10 @@ public class HostelServiceBean implements HostelService {
     @Override
     public Room getRoomById(int roomId){
         return roomDao.get(roomId);
+    }
+    @Override
+    public List<Hostel> getAllPermittedHostels() {
+        return hostelDao.getByRestrictEqual("permitted",true);
     }
 //   ----------------------------------------
     @Autowired
