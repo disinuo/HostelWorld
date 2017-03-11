@@ -4,6 +4,7 @@ import nju.edu.hostel.model.*;
 import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.vo.LiveInVO;
 import nju.edu.hostel.vo.LiveOutVO;
+import nju.edu.hostel.vo.PayVO;
 import nju.edu.hostel.vo.RoomVO;
 
 import java.util.List;
@@ -46,10 +47,10 @@ public interface HostelService {
      包括会员的消费、非会员的消费
      非会员的线下消费也当做是交到总经理账户中了。
      所以总经理还是根据记录在系统里的账单进行【结算】
-     * @param payBill
+     * @param payVO
      * @return
      */
-    public ResultMessage enrollPay(PayBill payBill);
+    public ResultMessage enrollPay(PayVO payVO);
 
     /**
      * 登记住户的入店信息：

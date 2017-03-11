@@ -26,18 +26,58 @@ public class Constants {
      * 积分与消费金额的转换比例
      * 即 1积分可兑换？钱
      */
-    public static double RATE_SCORE_TO_MONEY=0.01;
+    public static final double RATE_SCORE_TO_MONEY=0.01;
     /**
      * 消费金额与积分的转换比例
      * 即 1元钱可兑换?积分
      */
-    public static double RATE_MONEY_TO_SCORE=10;
+    public static final double RATE_MONEY_TO_SCORE=10;
     /**
      * 会员从激活开始，经过?天后 余额不足`MONEY_LEAST`会自动暂停
      */
-    public static int DAY_OF_NORMAL_TO_PAUSE=365;
+    public static final int DAY_OF_NORMAL_TO_PAUSE=365;
     /**
      * 会员从暂停开始，经过?天后 余额不足`MONEY_LEAST`会自动暂停
      */
-    public static int DAY_OF_PAUSE_TO_STOP=365;
+    public static final int DAY_OF_PAUSE_TO_STOP=365;
+
+    /**
+     *会员等级与消费折扣的转换
+     */
+    public static final double VIP_LEVEL_TO_DISCOUNT(int level){
+        if(level<=2){
+            return 0.95;
+        }else if(level<=4){
+            return 0.85;
+        }else if(level<=7){
+            return 0.7;
+        }else {
+            return 0.5;
+        }
+    }
+
+    /**
+     *会员累计消费金额与等级的转换
+     */
+    public static final int VIP_MONEY_TO_LEVEL(double money){
+        if(money<=100){
+            return 0;
+        }else if(money<=300){
+            return 1;
+        }else if(money<=500){
+            return 2;
+        }else if(money<=800){
+            return 3;
+        }else if(money<=1000){
+            return 4;
+        }else if(money<=1500){
+            return 5;
+        }else if(money<=1800){
+            return 6;
+        }else if(money<=5000){
+            return 7;
+        }else{
+            return 8;
+        }
+    }
 }

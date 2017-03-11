@@ -3,16 +3,20 @@ package nju.edu.hostel.service.bean;
 import nju.edu.hostel.dao.*;
 import nju.edu.hostel.model.*;
 import nju.edu.hostel.service.HostelService;
+import nju.edu.hostel.util.Constants;
 import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.vo.LiveInVO;
 import nju.edu.hostel.vo.LiveOutVO;
+import nju.edu.hostel.vo.PayVO;
 import nju.edu.hostel.vo.RoomVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import static nju.edu.hostel.util.Constants.*;
 import java.util.Date;
 import java.util.List;
+
+//import static nju.edu.hostel.util.Constants.RATE_MONEY_TO_SCORE;
 
 /**
  * Created by disinuo on 17/3/3.
@@ -20,19 +24,10 @@ import java.util.List;
 @Transactional
 @Service
 public class HostelServiceBean implements HostelService {
-    @Autowired
-    HostelDao hostelDao;
-    @Autowired
-    RoomDao roomDao;
-    @Autowired
-    RequestDao requestDao;
-    @Autowired
-    VIPDao vipDao;
-    @Autowired
-    LiveBillDao liveBillDao;
+
     @Override
     public ResultMessage delete(int hostelId) {
-         return null; //TODO 
+         return null; //TODO delete
     }
 
     @Override
@@ -59,9 +54,42 @@ public class HostelServiceBean implements HostelService {
     }
 
     @Override
-    public ResultMessage enrollPay(PayBill payBill) {
-//        TODO 如果顾客是会员 消费要积分的！还要升级！还可能优惠！
-         return null;
+    public ResultMessage enrollPay(PayVO payVO) {
+        PayBill payBill=new PayBill();
+        Room room=roomDao.get(payVO.getRoomId());
+
+        payBill.setRoom(room);
+        payBill.setHostel(room.getHostel());
+        payBill.setUserRealName(payVO.getUserRealName());
+        payBill.setIdCard(payVO.getIdCard());
+        payBill.setCreateDate(new Date().getTime());
+        if(payVO.getVipId()!=0){//顾客是会员
+            Vip vip=vipDao.get(payVO.getVipId());
+            payBill.setVip(vip);
+            //看会员级别~要打折的！
+            int level=vip.getLevel();
+            double discount=VIP_LEVEL_TO_DISCOUNT(level);
+            double moneyToPay=payVO.getMoney()*discount;
+            payBill.setMoney(moneyToPay);
+            /*
+             *消费要积分的！还要升级！
+             */
+            //会员算上这笔消费后的累计消费
+            double vipPaidAll=vip.getMoneyPaid()+moneyToPay;
+            vip.setMoneyPaid(vipPaidAll);
+            vip.setScore(vip.getScore()+moneyToPay*RATE_MONEY_TO_SCORE);
+            vip.setLevel(VIP_MONEY_TO_LEVEL(vipPaidAll));
+            vipDao.update(vip);
+        }else {//顾客不是会员，直接生成账单
+            payBill.setMoney(payVO.getMoney());
+        }
+        try {
+            payBillDao.add(payBill);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResultMessage.FAILURE;
+        }
+         return ResultMessage.SUCCESS;
     }
 
     @Override
@@ -173,4 +201,17 @@ public class HostelServiceBean implements HostelService {
     public Room getRoomById(int roomId){
         return roomDao.get(roomId);
     }
+//   ----------------------------------------
+    @Autowired
+    HostelDao hostelDao;
+    @Autowired
+    RoomDao roomDao;
+    @Autowired
+    RequestDao requestDao;
+    @Autowired
+    VIPDao vipDao;
+    @Autowired
+    LiveBillDao liveBillDao;
+    @Autowired
+    PayBillDao payBillDao;
 }
