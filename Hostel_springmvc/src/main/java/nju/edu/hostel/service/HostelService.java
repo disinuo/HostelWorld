@@ -21,7 +21,8 @@ public interface HostelService {
      * 通过申请就不提示了！
      * 只是提示~！！
      * 具体比如如果总经理同意申请，是在总经理service那边改变的客栈permitted属性
-     * @return :.REMIND_REQUEST,REQUEST_DENIED,REQUEST_UNCHECKED,SUCCESS;
+     *
+     * @return : REMIND_REQUEST,REQUEST_DENIED,REQUEST_UNCHECKED,SUCCESS;
      */
     public ResultMessage init(int hostelId);
     /**
@@ -34,7 +35,7 @@ public interface HostelService {
     /**
      * 客栈向总经理发出开店申请（注意讨论该客栈是否已经通过审批）
      * @param hostelId
-     * @return
+     * @return SUCCESS,FAILURE
      */
     public ResultMessage requestManager(int hostelId);
 
@@ -42,7 +43,7 @@ public interface HostelService {
      * 根据客栈ID获得客栈数据：
      店名、地理位置、盈利总金额、营业时间
      * @param hostelId
-     * @return
+     * @return SUCCESS,FAILURE
      */
     public Hostel getById(int hostelId);
 
@@ -51,7 +52,7 @@ public interface HostelService {
      * 改完并没有保存，而是向总经理提交申请
      * 总经理同意店信息才会更新
      * @param hostel
-     * @return
+     * @return SUCCESS,FAILURE
      */
     public ResultMessage update(Hostel hostel);
 
@@ -61,7 +62,7 @@ public interface HostelService {
      非会员的线下消费也当做是交到总经理账户中了。
      所以总经理还是根据各个客栈的`未结算金额`进行【结算】
      * @param payVO
-     * @return 实际顾客应支付的值
+     * @return 实际顾客应支付的值or-1
      */
     public double enrollPay(PayVO payVO);
 
@@ -81,7 +82,7 @@ public interface HostelService {
      * 店员要调用这个服务！
      * 收到的钱会加到总经理的账户
      * @param money
-     * @return
+     * @return SUCCESS,FAILURE
      */
     public ResultMessage unVipPay(double money);
 
@@ -89,7 +90,7 @@ public interface HostelService {
      * 登记住户的入店信息：
      住户真实名字，住户身份证号，入住日期，入住房间
      * @param liveInVO
-     * @return
+     * @return SUCCESS,FAILURE
      */
     public ResultMessage liveIn(LiveInVO liveInVO);
 
@@ -98,7 +99,7 @@ public interface HostelService {
      * 住户真实名字，住户身份证号，离店日期，入住房间
      * 【前置】该住户已住店，且未登记离店
      * @param liveOutVO
-     * @return
+     * @return SUCCESS,FAILURE
      */
     public ResultMessage depart(LiveOutVO liveOutVO);
 
@@ -106,7 +107,7 @@ public interface HostelService {
      * 客栈发布房间计划,只能发布自己客栈的房间计划
      * @param hostelId
      * @param roomVOs
-     * @return
+     * @return SUCCESS,FAILURE
      */
     public ResultMessage addRoom(int hostelId, List<RoomVO> roomVOs);
 
@@ -114,7 +115,7 @@ public interface HostelService {
      * 客栈发布房间计划,只能发布自己客栈的房间计划
      * @param hostelId
      * @param roomVO
-     * @return
+     * @return SUCCESS,FAILURE
      */
     public ResultMessage addRoom(int hostelId, RoomVO roomVO);
 
@@ -122,7 +123,7 @@ public interface HostelService {
      * 客栈更新房间计划（包括将该房间置为不可用，就是下架~），只能更新自己客栈的房间计划
      * @param hostelId
      * @param room
-     * @return
+     * @return SUCCESS,FAILURE
      */
     public ResultMessage updateRoom(int hostelId, Room room);
 

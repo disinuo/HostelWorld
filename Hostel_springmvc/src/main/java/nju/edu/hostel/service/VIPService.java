@@ -32,6 +32,7 @@ public interface VIPService {
      * 此扣钱数不会加到会员的`moneyPaid`属性中
      * 因为，预订的钱不算moneyPaid，
      *      住店的钱在客栈使用`enrollPay`的时候已经加到会员的`moneyPaid`里了
+     *
      * @return NOT_ENOUGH_MONEY,SUCCESS,FAILURE
      */
     public ResultMessage payMoney(int vipId,double offset);
@@ -44,7 +45,7 @@ public interface VIPService {
      * @param vipId
      * @param bankPassword
      * @return WRONG_PASSWORD,NOT_ENOUGH_MONEY(银行卡余额不足)
-     *         VIP_STATE_STOP(停卡，不能充值)
+     *         VIP_STATE_STOP(停卡，不能充值),FAILURE,SUCCESS
      */
     public ResultMessage topUp(double money, int vipId, String bankPassword);
 
@@ -52,7 +53,7 @@ public interface VIPService {
      * 用户发出停卡请求
      * 能查记录，但不能预订、结账，且不可恢复
      * @param vipId
-     * @return
+     * @return FAILURE,SUCCESS
      */
     public ResultMessage stop(int vipId);
 
@@ -67,7 +68,8 @@ public interface VIPService {
     /**
      *修改会员的基本信息
      * @param vip
-     * @return
+     * @return FAILURE,SUCCESS
+     * //TODO 可能要细化接口
      */
     public ResultMessage update(Vip vip);
 
@@ -75,7 +77,8 @@ public interface VIPService {
      * 会员预订房间（可能会余额不足），
      考虑会员级别不同，预订费变化
      * @param bookVO
-     * @return
+     * @return VIP_STATE_STOP,VIP_STATE_PAUSED,VIP_STATE_UNACTIVATED
+     *         NOT_ENOUGH_MONEY,FAILURE,SUCCESS
      */
     public ResultMessage book(BookVO bookVO);
 
@@ -125,7 +128,7 @@ public interface VIPService {
      要注意用户只能填小于自己积分总值的积分数
      * @param vipId
      * @param score
-     * @return
+     * @return NOT_ENOUGH_SCORE,FAILURE,SUCCESS
      */
     public ResultMessage scoreToMoney(int vipId, double score);
 

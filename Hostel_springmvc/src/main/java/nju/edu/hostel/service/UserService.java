@@ -66,7 +66,7 @@ public interface UserService {
     /**
      * 通过用户种类获取用户列表，种类有会员、旅馆分店、总经理
      * @param type
-     * @return SUCCESS,FAILURE
+     * @return
      */
     public List<User> getByType(String type);
 

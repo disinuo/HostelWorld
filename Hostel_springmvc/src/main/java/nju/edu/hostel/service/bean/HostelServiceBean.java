@@ -69,6 +69,8 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public ResultMessage update(Hostel hostel) {
+        //TODO 这里有问题，Request表只能存当前存在的hostel。。
+        // 是否考虑新建一个存储hostel临时信息的表
         RequestModify requestModify=new RequestModify();
         requestModify.setHostelOriginal(getById(hostel.getId()));
         requestModify.setHostelNew(hostel);

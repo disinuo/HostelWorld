@@ -25,13 +25,13 @@ public interface ManagerService {
     /**
      * 总经理审批收到的开店申请
      * @param requestOpen
-     * @return
+     * @return FAILURE,SUCCESS
      */
     public ResultMessage updateOpenRequest(RequestOpen requestOpen);
     /**
      * 总经理审批收到的店信息更改申请
      * @param requestModify
-     * @return
+     * @return FAILURE,SUCCESS
      */
     public ResultMessage updateModifyRequest(RequestModify requestModify);
 
@@ -41,7 +41,7 @@ public interface ManagerService {
      系统自动将各客栈没结算过的账单金额加和，从总经理银行账户扣除，并加到各客栈银行账户中
      * @param managerId
      * @param bankPassword
-     * @return
+     * @return WRONG_PASSWORD,FAILURE,SUCCESS
      * //TODO 可考虑添加按客栈结算，就是总经理可以只给某个客栈结算~
      */
     public ResultMessage count(int managerId, String bankPassword);
