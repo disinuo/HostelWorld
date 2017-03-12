@@ -86,4 +86,11 @@ public interface UserService {
      * @return NOT_EXIST,SUCCESS,WRONG_PASSWORD
      */
     public ResultMessage checkUser(String userName,String password);
+
+    /**
+     * 只检查用户是否存在
+     * @param userName
+     * @return NOT_EXIST,SUCCESS
+     */
+    public ResultMessage checkUser(String userName);
 }

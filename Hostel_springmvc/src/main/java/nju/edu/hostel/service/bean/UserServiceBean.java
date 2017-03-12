@@ -137,4 +137,11 @@ public class UserServiceBean implements UserService {
             return ResultMessage.WRONG_PASSWORD;
         }
     }
+    @Override
+    public ResultMessage checkUser(String userName){
+        List<User> users=userDao.getByRestrictEqual("userName",userName);
+        if(users==null||users.size()==0){
+            return ResultMessage.NOT_EXIST;
+        }else return ResultMessage.SUCCESS;
+    }
 }

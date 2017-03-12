@@ -9,12 +9,15 @@ import nju.edu.hostel.util.DisPatcher;
 import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.vo.output.OnLineUserVO;
 import nju.edu.hostel.vo.input.UserVO;
+import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import static nju.edu.hostel.util.Constants.ROLE_VIP;
@@ -44,24 +47,43 @@ public class LoginController {
     public ModelAndView showLoginPage( ModelMap model) {
         return new ModelAndView("login","user",new UserVO());
     }
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ModelAndView handleLoginRequest(@ModelAttribute("user") UserVO userVO,ModelMap model){
+    public ModelAndView handleLoginRequest(HttpSession session,UserVO userVO){
         String name=userVO.getUserName();
         String password=userVO.getPassword();
-        System.out.println(name);
-        System.out.println(password);
         ResultMessage msg=userService.checkUser(name,password);
         if(msg!=ResultMessage.SUCCESS){
-            model.addAttribute("message",msg.toShow());
             return new ModelAndView("/login");
         }else {//验证通过
             User user=userService.login(name,password);
             OnLineUserVO onLineUserVO=new OnLineUserVO(user.getId(),user.getUserName(),user.getType());
-            model.addAttribute("user",onLineUserVO);
+            session.setAttribute("user",onLineUserVO);
             if(user.getType().equals(ROLE_VIP)){
                 vipService.init(user.getId());
             }
             return DisPatcher.roleToHomePage(onLineUserVO.getType());
         }
+    }
+    @RequestMapping(value = "/checkUser" ,produces = "text/html;charset=UTF-8")//,method = RequestMethod.POST)
+    @ResponseBody
+    public String checkUser(HttpServletResponse response, String name){
+        System.out.println("in /checkUser post");
+        ResultMessage msg=userService.checkUser(name);
+        System.out.println(msg);
+        return msg.toShow();
+    }
+    @RequestMapping(value = "/checkPassword",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String checkPassword(UserVO userVO){
+        System.out.println("in /checkPassword post");
+
+        String name=userVO.getUserName();
+        String password=userVO.getPassword();
+        System.out.println(name);
+        System.out.println(password);
+        ResultMessage msg=userService.checkUser(name,password);
+        System.out.println(msg);
+        return msg.toShow();
     }
 }

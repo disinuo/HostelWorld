@@ -9,14 +9,23 @@
 <html>
 <head>
     <%@include file="../common/head.jsp" %>
+    <link type="text/css" rel="stylesheet" href="../css/hostelList.css"/>
 </head>
+
+
 <body>
 <%@include file="../common/header.jsp" %>
 <%@include file="component/navigation.jsp" %>
-
-Hello 亲爱的VIP
 <jsp:include page="component/selfPanel.jsp" flush="true"/>
 
-<jsp:include page="../common/hostelList.jsp" flush="true"/>
+<h1>所有客栈</h1>
+<div class="table-responsive">
+    <table id="table" class="table table-striped">
+    </table>
+</div>
+
+
+<%@include file="../common/tail.jsp" %>
+<script type="text/javascript" src="../../js/hostelListPage.js"></script>
 </body>
 </html>
