@@ -8,47 +8,22 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<%@include file="../common/head.jsp" %>
-
+<head>
+    <%@include file="../common/head.jsp" %>
+</head>
 <body>
 <%@include file="../common/header.jsp" %>
 <%@include file="component/navigation.jsp" %>
 
-Hello 亲爱的VIP<br>
-这是住房记录
 <jsp:include page="component/selfPanel.jsp" flush="true"/>
-<c:if test="${empty liveBills}">
-    没有住房记录
-</c:if>
-<!-- 如果住房列表非空 -->
-<c:if test="${!empty liveBills}">
-    <table>
-        <thead>
-        <tr>
-            <td>类型</td>
-            <td>客栈名</td>
-            <td>房间类型</td>
-            <td>入住日期</td>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach items="${liveBills}" var="liveBill">
-            <tr>
-                <td><c:if test="${liveBill.type}">
-                    入店
-                </c:if>
-                    <c:if test="!${liveBill.type}">
-                        离店
-                    </c:if>
-                </td>
-                <td>${liveBill.hostel.name}</td>
-                <td>${liveBill.room.name}</td>
-                <td>${liveBill.dateStr}</td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
 
-</c:if>
+<h3>住店记录</h3>
+<div class="table-responsive">
+    <table id="table" class="table table-striped">
+    </table>
+</div>
+
+<%@include file="../common/tail.jsp" %>
+<script type="text/javascript" src="../../js/liveListPage.js"></script>
 </body>
 </html>

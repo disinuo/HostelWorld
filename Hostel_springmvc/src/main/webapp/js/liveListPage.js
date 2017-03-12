@@ -3,17 +3,16 @@
  */
 
 $(document).ready(function () {
-    getBookList();
-
+    getLiveList();
 })
 
-function getBookList() {
+function getLiveList() {
     $('#table').bootstrapTable({
-        url: '/data/vip/getBookList',
+        url: '/data/vip/getLiveList',
         columns: [{
-            field: 'id',
-            title: '订单号',
-            align: 'center',
+            field: 'date',
+            title: '时间',
+            align: 'center'
         },{
             field: 'roomImg',
             title: '',
@@ -32,33 +31,19 @@ function getBookList() {
             field: 'roomPrice',
             title: '价格',
             align: 'center'
-        },{
-            field: 'liveInDate',
-            title: '入住时间',
-            align: 'center'
-        },{
-            field: 'createDate',
-            title: '下单时间',
-            align: 'center'
+        },{//TODO 类型要变成以表格底色不同的形式展现
+            field: 'type',
+            title: '',
+            align: 'center',
+            formatter:typeFormatter
         }],
     });
 }
-/*
- private int id;
- private String liveInDate;
- private String createDate;
- private int hostelId;
- private int vipId;
- private int roomId;
- private boolean valid;
 
- private String hostelName;
- private String hostelAddress;
- private String roomImg;
- private String roomName;
- private double roomPrice;
- */
-
+function typeFormatter(value,row,index) {
+    if(value==true) return '住店';
+    else return '离店';
+}
 function operateFormatter(value, row, index) {
     return [
         '<a href="/hostel/rooms?hostelId=',

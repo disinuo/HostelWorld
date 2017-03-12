@@ -7,14 +7,26 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<%@include file="../common/head.jsp" %>
-
+<head>
+    <%@include file="../common/head.jsp" %>
+</head>
 <body>
 <%@include file="../common/header.jsp" %>
 <%@include file="component/navigation.jsp" %>
-
 <jsp:include page="component/selfPanel.jsp" flush="true"/>
-<jsp:include page="component/hostelHeader.jsp" />
-<jsp:include page="../common/roomList.jsp" flush="true"/>
+
+<h1 id="name"></h1>
+<span >
+    地址:<span id="address"></span>
+    电话:<span id="phone"></span>
+</span>
+<div class="table-responsive">
+    <table id="table" class="table table-striped">
+    </table>
+</div>
+
+<%@include file="../common/tail.jsp" %>
+<script type="text/javascript" src="../../js/hostelDetailPage.js"></script>
+
 </body>
 </html>

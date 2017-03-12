@@ -6,19 +6,24 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Header</title>
-</head>
-<body>
-<div>
-    <ul>
-        <li><a href="/vip/hostels">所有房间</a></li>
-        <li><a href="/vip/bookList">我的预订</a></li>
-        <li><a href="/vip/payList">我的消费</a></li>
-        <li><a href="/vip/liveList">住房记录</a></li>
-    </ul>
-</div>
-</body>
-</html>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">HostelWorld</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/vip/hostels">所有客栈</a></li>
+                <li><a href="/vip/bookList">我的预订</a></li>
+                <li><a href="/vip/payList">我的消费</a></li>
+                <li><a href="/vip/liveList">住房记录</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

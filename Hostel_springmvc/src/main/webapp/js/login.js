@@ -7,8 +7,6 @@ $("#userName").blur(function(event) {
     $.ajax({
         type:"POST",
         url:"/checkUser",
-        dataType: "html",
-        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
         data:{name:$('#userName').val()},
         success:function(msg){
             $('#nameMsg').html(msg);

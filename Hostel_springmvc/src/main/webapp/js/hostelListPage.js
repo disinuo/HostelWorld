@@ -21,7 +21,7 @@ function getHostelList() {
             title: '客栈名',
             align: 'center',
             formatter: operateFormatter,
-            events: operateEvents
+            // events: operateEvents
         }, {
             field: 'address',
             title: '地址',
@@ -55,13 +55,4 @@ function operateFormatter(value, row, index) {
     //     '<i class="glyphicon glyphicon-remove"></i>',
     //     '</a>'
     // ].join('');
-}
-function imgFormatter(value,row,index) {
-    return [
-        '<img ',
-        'src="',
-        value,
-        '" alt="图片" class="image"',
-        '/>'
-    ].join('');
 }

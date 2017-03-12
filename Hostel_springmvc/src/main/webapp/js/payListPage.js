@@ -1,19 +1,18 @@
 /**
- * Created by disinuo on 17/3/12.
+ * Created by disinuo on 17/3/13.
  */
 
 $(document).ready(function () {
-    getBookList();
-
+    getPayList();
 })
 
-function getBookList() {
+function getPayList() {
     $('#table').bootstrapTable({
-        url: '/data/vip/getBookList',
+        url: '/data/vip/getPayList',
         columns: [{
-            field: 'id',
-            title: '订单号',
-            align: 'center',
+            field: 'createDate',
+            title: '时间',
+            align: 'center'
         },{
             field: 'roomImg',
             title: '',
@@ -30,34 +29,15 @@ function getBookList() {
             align: 'center'
         },{
             field: 'roomPrice',
-            title: '价格',
+            title: '房间价格',
             align: 'center'
         },{
-            field: 'liveInDate',
-            title: '入住时间',
-            align: 'center'
-        },{
-            field: 'createDate',
-            title: '下单时间',
-            align: 'center'
+            field: 'money',
+            title: '实付价格',
+            align: 'center',
         }],
     });
 }
-/*
- private int id;
- private String liveInDate;
- private String createDate;
- private int hostelId;
- private int vipId;
- private int roomId;
- private boolean valid;
-
- private String hostelName;
- private String hostelAddress;
- private String roomImg;
- private String roomName;
- private double roomPrice;
- */
 
 function operateFormatter(value, row, index) {
     return [

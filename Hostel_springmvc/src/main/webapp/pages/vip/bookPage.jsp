@@ -17,15 +17,19 @@
 <%@include file="../common/header.jsp" %>
 <%@include file="component/navigation.jsp" %>
 <jsp:include page="component/selfPanel.jsp" flush="true"/>
+<h1 id="hostelName"></h1>
 <div>
-    <li>${room.name}</li>
-    <li>${room.img}</li>
-    <li>${room.price}元</li>
+    <img id="image" class="image-little">
+    <div id="roomName"></div>
+    <div id="roomPrice"></div>
 </div>
     <form:form commandName="bookBill" method="post" action="/vip/book" >
         <label >入住日期</label>
         <form:input path="liveInDate"/>
         <input type="submit" value="确认预订"/>
     </form:form>
+
+<%@include file="../common/tail.jsp" %>
+<script type="text/javascript" src="../../js/bookPage.js"></script>
 </body>
 </html>
