@@ -22,7 +22,7 @@ import java.util.List;
 @Controller
 @SessionAttributes(types = {VipVO.class,OnLineUserVO.class})
 @RequestMapping("/vip")
-public class VipShowController {
+public class VipViewController {
     @Autowired
     VIPService vipService;
     @Autowired
@@ -32,41 +32,38 @@ public class VipShowController {
 
 
     @RequestMapping(value = "/bookList")
-    public ModelAndView showBookList(@ModelAttribute("vip") VipVO vipVO,
-                                     ModelMap model){
-        System.out.println("/bookList: VIPShowController---showBookList ");
+    public ModelAndView showBookList(){
         return new ModelAndView("vip/bookListPage");
     }
     @RequestMapping(value = "/hostels")
-    public ModelAndView showRooms(@ModelAttribute("user") OnLineUserVO user,
+    public ModelAndView showHostels(@ModelAttribute("user") OnLineUserVO user,
                                   ModelMap model){
         int id=user.getId();
         Vip vip=vipService.getById(id);
         VipVO vipVO=new VipVO(vip);
-        List<Hostel>  hostels=vipService.getAllPermittedHostels();
-        model.addAttribute("hostels",hostels);
         model.addAttribute("vip",vipVO);
         return new ModelAndView("vip/hostelListPage");
     }
-
     @RequestMapping(value = "/payList")
-    public ModelAndView showPayList(@ModelAttribute("vip") VipVO vipVO,
-                                    ModelMap model){
-        int id=vipVO.getId();
-        List<PayBill> payBills=vipService.getAllPayBills(id);
-        model.addAttribute("payBills",payBills);
+    public ModelAndView showPayList(){
+//        int id=vipVO.getId();
+//        List<PayBill> payBills=vipService.getAllPayBills(id);
+//        model.addAttribute("payBills",payBills);
         return new ModelAndView("vip/payListPage");
     }
     @RequestMapping(value = "/liveList")
-    public ModelAndView showLiveList(@ModelAttribute("vip") VipVO vipVO,
-                                     ModelMap model){
-        List<LiveBill> liveBills=vipService.getAllLiveBills(vipVO.getId());
-        model.addAttribute("liveBills",liveBills);
+    public ModelAndView showLiveList(){
+//        List<LiveBill> liveBills=vipService.getAllLiveBills(vipVO.getId());
+//        model.addAttribute("liveBills",liveBills);
         return new ModelAndView("vip/liveListPage");
+    }
+    @RequestMapping(value = "/book" ,method = RequestMethod.GET)
+    public ModelAndView showBookPage(){
+        return new ModelAndView("vip/bookPage");
     }
 
     @RequestMapping(value = "/topUp",method = RequestMethod.GET)
-    public ModelAndView getTopUpPage(@ModelAttribute("vip") VipVO vipVO,
+    public ModelAndView showTopUpPage(@ModelAttribute("vip") VipVO vipVO,
                                      ModelMap model){
 //TODO
 //        Test_Table test=new Test_Table();
@@ -99,28 +96,5 @@ public class VipShowController {
         return model;
     }
 
-    @RequestMapping(value = "/book" ,method = RequestMethod.GET)
-    public ModelAndView showBookPage(@RequestParam("roomId") int roomId,
-                                     ModelMap model){
-        Room room=hostelService.getRoomById(roomId);
-        model.addAttribute("room",room);
-        model.addAttribute("bookBill",new BookBill());
-        return new ModelAndView("vip/bookPage",model);
-    }
 
-    @RequestMapping(value = "/book" ,method = RequestMethod.POST)
-    public ModelAndView book(
-//            @ModelAttribute("bookBill")BookBill bookBill,
-//                             @ModelAttribute("room")Room room,
-                             @ModelAttribute("vip")VipVO vipVO,
-                                     ModelMap model){
-
-//        bookBill.setHostel(room.getHostel());
-//        bookBill.setCreateDate(new Date());
-//        bookBill.setRoom(room);
-//        bookBill.setVip(vipService.get(vipVO.getId()));
-//        ResultMessage resMssg=vipService.book(bookBill);
-//        model.addAttribute("message",resMssg);
-        return new ModelAndView("redirect:/vip/bookList",model);
-    }
 }

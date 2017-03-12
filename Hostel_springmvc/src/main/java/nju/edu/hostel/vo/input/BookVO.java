@@ -53,4 +53,5 @@ public class BookVO {
         this.roomId = roomId;
         this.liveOutDate=liveOutDate;
     }
+    public BookVO(){}
 }

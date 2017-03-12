@@ -47,4 +47,5 @@ public class LiveInVO {
         this.vipId = vipId;
         this.roomId = roomId;
     }
+    public LiveInVO(){}
 }

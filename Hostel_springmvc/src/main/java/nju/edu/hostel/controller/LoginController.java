@@ -16,6 +16,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -26,7 +27,7 @@ import static nju.edu.hostel.util.Constants.ROLE_VIP;
  * Created by disinuo on 17/3/4.
  */
 @Controller
-@SessionAttributes(types = {OnLineUserVO.class})
+@RequestMapping(value = "",produces = "text/html;charset=UTF-8")
 public class LoginController {
     @Autowired
     UserService userService;
@@ -49,7 +50,7 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ModelAndView handleLoginRequest(HttpSession session,UserVO userVO){
+    public ModelAndView handleLoginRequest(HttpSession session,HttpServletResponse response,UserVO userVO){
         String name=userVO.getUserName();
         String password=userVO.getPassword();
         ResultMessage msg=userService.checkUser(name,password);
@@ -59,13 +60,15 @@ public class LoginController {
             User user=userService.login(name,password);
             OnLineUserVO onLineUserVO=new OnLineUserVO(user.getId(),user.getUserName(),user.getType());
             session.setAttribute("user",onLineUserVO);
+//            Cookie cookie=new Cookie("userId",user.getId()+"");
+//            response.addCookie(cookie);
             if(user.getType().equals(ROLE_VIP)){
                 vipService.init(user.getId());
             }
             return DisPatcher.roleToHomePage(onLineUserVO.getType());
         }
     }
-    @RequestMapping(value = "/checkUser" ,produces = "text/html;charset=UTF-8")//,method = RequestMethod.POST)
+    @RequestMapping(value = "/checkUser" )//,method = RequestMethod.POST)
     @ResponseBody
     public String checkUser(HttpServletResponse response, String name){
         System.out.println("in /checkUser post");
@@ -73,7 +76,7 @@ public class LoginController {
         System.out.println(msg);
         return msg.toShow();
     }
-    @RequestMapping(value = "/checkPassword",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
+    @RequestMapping(value = "/checkPassword",method = RequestMethod.POST)
     @ResponseBody
     public String checkPassword(UserVO userVO){
         System.out.println("in /checkPassword post");

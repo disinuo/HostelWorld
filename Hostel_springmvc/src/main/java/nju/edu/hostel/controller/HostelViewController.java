@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -17,15 +18,11 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("hostel")
-public class HostelController {
-    @Autowired
-    HostelService hostelService;
+public class HostelViewController {
+
     @RequestMapping(value = "/rooms")
-    public ModelAndView showRooms(@RequestParam("hostelId")int hostelId, ModelMap model){
-        List<Room> rooms=hostelService.getAllRooms(hostelId);
-        Hostel hostel=hostelService.getById(hostelId);
-        model.addAttribute("rooms",rooms);
-        model.addAttribute("hostel",hostel);
-        return new ModelAndView("vip/hostelDetailPage",model);
+    public ModelAndView showRooms(){
+
+        return new ModelAndView("vip/hostelDetailPage");
     }
 }
