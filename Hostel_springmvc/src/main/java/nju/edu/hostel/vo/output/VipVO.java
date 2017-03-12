@@ -1,12 +1,9 @@
 package nju.edu.hostel.vo.output;
 
-import nju.edu.hostel.model.BookBill;
 import nju.edu.hostel.model.LiveBill;
-import nju.edu.hostel.model.PayBill;
 import nju.edu.hostel.model.Vip;
 import nju.edu.hostel.util.VIPState;
-
-import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by disinuo on 17/3/4.
@@ -45,6 +42,10 @@ public class VipVO {
         this.state = VIPState.strToVipState(vipEntity.getState());
     }
 
+    public static List<VipVO> entityToVO(List<LiveBill> bills){
+        //TOOD
+        return null;
+    }
     public int getId() {
         return id;
     }
