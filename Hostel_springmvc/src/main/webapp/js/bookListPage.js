@@ -9,7 +9,6 @@
 //
 // });
 $(document).ready(function () {
-    console.log("进来了？？");
     getBookList();
 
 })
@@ -20,7 +19,6 @@ function getBookList() {
         url:'/data/vip/getBookList',
         success:function (data) {
             console.log('success!');
-w
             for(var i=0;i<data.length;i++){
                 var bookBill=data[i];
                 console.log(bookBill.id+' '+bookBill.liveInDate+' '+

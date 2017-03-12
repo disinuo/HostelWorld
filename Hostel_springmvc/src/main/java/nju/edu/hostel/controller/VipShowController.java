@@ -1,23 +1,19 @@
 package nju.edu.hostel.controller;
 
-import nju.edu.hostel.dao.Impl.TestTableDaoImpl;
 import nju.edu.hostel.dao.UserDao;
-import nju.edu.hostel.dao.VIPDao;
 import nju.edu.hostel.model.*;
 import nju.edu.hostel.service.HostelService;
 import nju.edu.hostel.service.VIPService;
-import nju.edu.hostel.util.DisPatcher;
 import nju.edu.hostel.util.ResultMessage;
-import nju.edu.hostel.vo.OnLineUserVO;
-import nju.edu.hostel.vo.TopUpVO;
-import nju.edu.hostel.vo.VipVO;
+import nju.edu.hostel.vo.output.OnLineUserVO;
+import nju.edu.hostel.vo.input.TopUpVO;
+import nju.edu.hostel.vo.output.VipVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,52 +22,31 @@ import java.util.List;
 @Controller
 @SessionAttributes(types = {VipVO.class,OnLineUserVO.class})
 @RequestMapping("/vip")
-public class VipController {
+public class VipShowController {
     @Autowired
     VIPService vipService;
     @Autowired
     HostelService hostelService;
     @Autowired
-    TestTableDaoImpl testTableDao;//TODO
-    @Autowired
     UserDao userDao;
-    ModelAndView resOfCheckLoggedIn;
-
-    private ModelAndView checkLoggedIn(OnLineUserVO user){
-        if(resOfCheckLoggedIn==null){
-            resOfCheckLoggedIn=DisPatcher.checkLoggedIn(user);
-        }
-        return resOfCheckLoggedIn;
-    }
 
 
     @RequestMapping(value = "/bookList")
     public ModelAndView showBookList(@ModelAttribute("vip") VipVO vipVO,
                                      ModelMap model){
-        System.out.println("/bookList: VIPController---showBookList ");
-//        ModelAndView mo= checkLoggedIn(user);
-//        if(mo==null){
-            int id=vipVO.getId();
-            List<BookBill> bookBills=vipService.getAllBookBills(id);
-            model.addAttribute("bookBills",bookBills);
-            return new ModelAndView("vip/bookListPage");
-//        }else return mo;
-
+        System.out.println("/bookList: VIPShowController---showBookList ");
+        return new ModelAndView("vip/bookListPage");
     }
     @RequestMapping(value = "/hostels")
-    public ModelAndView showRooms(@ModelAttribute OnLineUserVO user,
+    public ModelAndView showRooms(@ModelAttribute("user") OnLineUserVO user,
                                   ModelMap model){
-        ModelAndView mo= checkLoggedIn(user);
-        if(mo==null){
-            int id=user.getId();
-            Vip vip=vipService.getById(id);
-            VipVO vipVO=new VipVO(vip);
-            List<Hostel>  hostels=vipService.getAllPermittedHostels();
-            model.addAttribute("hostels",hostels);
-            model.addAttribute("vip",vipVO);
-            return new ModelAndView("vip/hostelListPage");
-        }else return mo;
-
+        int id=user.getId();
+        Vip vip=vipService.getById(id);
+        VipVO vipVO=new VipVO(vip);
+        List<Hostel>  hostels=vipService.getAllPermittedHostels();
+        model.addAttribute("hostels",hostels);
+        model.addAttribute("vip",vipVO);
+        return new ModelAndView("vip/hostelListPage");
     }
 
     @RequestMapping(value = "/payList")
