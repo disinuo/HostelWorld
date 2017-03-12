@@ -13,6 +13,7 @@ import javax.persistence.*;
 public class BookBill {
     private int id;
     private long liveInDate;
+    private long liveOutDate;
     private long createDate;
     private Hostel hostel;
     private Vip vip;
@@ -39,6 +40,14 @@ public class BookBill {
         this.valid = valid;
     }
 
+    @Basic
+    @Column(name = "liveOutDate", nullable = false)
+    public long getLiveOutDate() {
+        return liveOutDate;
+    }
+    public void setLiveOutDate(long liveOutDate) {
+        this.liveOutDate = liveOutDate;
+    }
 
     @Basic
     @Column(name = "liveInDate", nullable = false)

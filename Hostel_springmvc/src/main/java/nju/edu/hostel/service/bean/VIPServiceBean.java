@@ -142,6 +142,7 @@ public class VIPServiceBean implements VIPService{
                 Room room=hostelService.getRoomById(bookVO.getRoomId());
                 bookBill.setVip(vip);
                 bookBill.setRoom(room);
+                bookBill.setLiveInDate(DateHandler.strToLong(bookVO.getLiveOutDate()));
                 bookBill.setHostel(room.getHostel());
                 bookBill.setCreateDate(new Date().getTime());
                 bookBill.setLiveInDate(DateHandler.strToLong(bookVO.getLiveInDate()));

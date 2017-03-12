@@ -10,6 +10,7 @@ import java.util.List;
  * Created by disinuo on 17/3/2.
  */
 public interface VIPService {
+    //TODO 应该可以一次多定几个房间，可以选数量
 
     /**
      * 给LoginController提供的接口

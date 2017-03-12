@@ -11,8 +11,17 @@ import java.util.Date;
  */
 public class BookVO {
     private String liveInDate;
+    private String liveOutDate;
     private int vipId;
     private int roomId;
+
+    public String getLiveOutDate() {
+        return liveOutDate;
+    }
+
+    public void setLiveOutDate(String liveOutDate) {
+        this.liveOutDate = liveOutDate;
+    }
 
     public String getLiveInDate() {
         return liveInDate;
@@ -38,9 +47,10 @@ public class BookVO {
         this.roomId = roomId;
     }
 
-    public BookVO(String liveInDate, int vipId, int roomId) {
+    public BookVO(String liveInDate,String liveOutDate, int vipId, int roomId) {
         this.liveInDate = liveInDate;
         this.vipId = vipId;
         this.roomId = roomId;
+        this.liveOutDate=liveOutDate;
     }
 }
