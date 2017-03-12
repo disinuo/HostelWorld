@@ -1,4 +1,4 @@
-package nju.edu.hostel.vo;
+package nju.edu.hostel.vo.input;
 
 import nju.edu.hostel.model.Hostel;
 import nju.edu.hostel.model.Room;

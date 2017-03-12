@@ -2,7 +2,7 @@ package nju.edu.hostel.service;
 
 import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.model.*;
-import nju.edu.hostel.vo.BookVO;
+import nju.edu.hostel.vo.input.BookVO;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package nju.edu.hostel.util;
 
-import nju.edu.hostel.vo.OnLineUserVO;
+import nju.edu.hostel.vo.output.OnLineUserVO;
 import org.springframework.web.servlet.ModelAndView;
 
 import static nju.edu.hostel.util.Constants.ROLE_HOSTEL;
@@ -18,7 +18,7 @@ public class DisPatcher {
                 return new ModelAndView("redirect:/vip/hostels");
             case ROLE_HOSTEL:return new ModelAndView("hostel/index");
             case ROLE_MANAGER:return new ModelAndView("manager/index");
-            default: return new ModelAndView("notExist");
+            default: return new ModelAndView("404");
         }
     }
 

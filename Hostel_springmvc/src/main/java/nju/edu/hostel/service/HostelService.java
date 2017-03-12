@@ -2,10 +2,10 @@ package nju.edu.hostel.service;
 
 import nju.edu.hostel.model.*;
 import nju.edu.hostel.util.ResultMessage;
-import nju.edu.hostel.vo.LiveInVO;
-import nju.edu.hostel.vo.LiveOutVO;
-import nju.edu.hostel.vo.PayVO;
-import nju.edu.hostel.vo.RoomVO;
+import nju.edu.hostel.vo.input.LiveInVO;
+import nju.edu.hostel.vo.input.LiveOutVO;
+import nju.edu.hostel.vo.input.PayVO;
+import nju.edu.hostel.vo.input.RoomVO;
 
 import java.util.List;
 

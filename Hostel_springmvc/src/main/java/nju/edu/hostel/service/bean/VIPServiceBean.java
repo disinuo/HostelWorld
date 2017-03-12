@@ -12,7 +12,7 @@ import nju.edu.hostel.util.DateHandler;
 import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.model.*;
 import nju.edu.hostel.util.VIPState;
-import nju.edu.hostel.vo.BookVO;
+import nju.edu.hostel.vo.input.BookVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,4 +1,4 @@
-package nju.edu.hostel.vo;
+package nju.edu.hostel.vo.input;
 
 /**
  * Created by disinuo on 17/3/11.

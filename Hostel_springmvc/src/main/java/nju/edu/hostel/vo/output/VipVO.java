@@ -1,4 +1,4 @@
-package nju.edu.hostel.vo;
+package nju.edu.hostel.vo.output;
 
 import nju.edu.hostel.model.BookBill;
 import nju.edu.hostel.model.LiveBill;

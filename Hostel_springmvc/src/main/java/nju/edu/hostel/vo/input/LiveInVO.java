@@ -1,22 +1,13 @@
-package nju.edu.hostel.vo;
+package nju.edu.hostel.vo.input;
 
 /**
  * Created by disinuo on 17/3/11.
  */
-public class PayVO {
+public class LiveInVO {
     private String userRealName;
     private String idCard;
-    private double money;
     private int vipId=0;
     private int roomId;
-
-    public PayVO(String userRealName, String idCard, double money, int vipId, int roomId) {
-        this.userRealName = userRealName;
-        this.idCard = idCard;
-        this.money = money;
-        this.vipId = vipId;
-        this.roomId = roomId;
-    }
 
     public String getUserRealName() {
         return userRealName;
@@ -34,14 +25,6 @@ public class PayVO {
         this.idCard = idCard;
     }
 
-    public double getMoney() {
-        return money;
-    }
-
-    public void setMoney(double money) {
-        this.money = money;
-    }
-
     public int getVipId() {
         return vipId;
     }
@@ -55,6 +38,13 @@ public class PayVO {
     }
 
     public void setRoomId(int roomId) {
+        this.roomId = roomId;
+    }
+
+    public LiveInVO(String userRealName, String idCard, int vipId, int roomId) {
+        this.userRealName = userRealName;
+        this.idCard = idCard;
+        this.vipId = vipId;
         this.roomId = roomId;
     }
 }
