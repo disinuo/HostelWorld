@@ -16,20 +16,31 @@
 <%@include file="../common/header.jsp" %>
 <%@include file="component/navigation.jsp" %>
 
-Hello 亲爱的VIP
 <jsp:include page="component/selfPanel.jsp" flush="true"/>
 <div>
-    <h3>您的余额为：</h3>
-    <p>${vip.moneyLeft}</p>
+    <h3>尊敬的<em id="name"></em></h3>
+    <h5>您的会员卡余额为：</h5>
+    <div id="moneyLeft"></div>
 </div>
-<form:form commandName="topUp" action="/vip/topUp" method="post">
-    <form:label path="money">金额</form:label>
-    <form:input path="money"></form:input>
-    <form:label path="bankPassword">密码</form:label>
-    <form:password path="bankPassword" required=""></form:password>
+<form  action="/vip/topUp" method="post">
+    <label>请选择金额</label>
+    <select id="money_select">
+        <option>50</option>
+        <option>100</option>
+        <option>200</option>
+        <option>300</option>
+        <option>500</option>
+        <option>1000</option>
+    </select>
+    <input type="hidden" id="money" name="money" value="50" />
+    <label >密码</label>
+    <input type="password" name="bankPassword" required="true"/>
+
     <input type="submit" value="充值"/>
-</form:form>
+</form>
 <div>${message}</div>
 <%@include file="../common/tail.jsp" %>
+<script type="text/javascript" src="../../js/topUpPage.js"></script>
+
 </body>
 </html>

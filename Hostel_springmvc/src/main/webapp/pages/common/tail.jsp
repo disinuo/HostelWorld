@@ -20,4 +20,7 @@
 <!-- Latest compiled and minified Locales -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
 
+<script type="text/javascript" src="../js/lib/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../js/lib/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 
+<script src='../js/common.js' type="text/javascript"></script>

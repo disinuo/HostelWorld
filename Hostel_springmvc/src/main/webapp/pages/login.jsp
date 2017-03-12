@@ -10,20 +10,32 @@
 <body>
 <%@include file="common/header.jsp" %>
 <form action="/login" method="POST">
+    <%--<div>--%>
+        <%--<label for="userName">用户名</label>--%>
+        <%--<input required='true' id='userName' name='userName' value= "${userName}"/>--%>
+    <%--</div>--%>
     <div>
-        <label for="userName">用户名</label>
-        <input required='true' id='userName' name='userName' value= "${userName}"/>
-        <span id="nameMsg" class="resultMessage"></span>
+        <span class="input-group col-lg-3">
+            <span class="input-group-addon glyphicon glyphicon-user"></span>
+            <input required='true' id='userName' name='userName' type="text" class="form-control" placeholder="用户名" aria-describedby="basic-addon1">
+        </span>
+        <span id="nameMsg" class="help-inline"></span>
+
     </div>
+
     <div>
-        <label for="password">密码</label>
-        <input type="password" required='true' id='password' name="password" value= "${password}"/>
-        <span id="passwordMsg" class="resultMessage"></span>
+        <span class="input-group col-lg-3">
+            <span class="input-group-addon glyphicon glyphicon-lock"></span>
+            <input required='true' id='password' name='password' type="password" class="form-control" placeholder="密码" aria-describedby="basic-addon1">
+        </span>
+        <span id="passwordMsg" class="help-inline"></span>
+
     </div>
-    <input id="btnLogin" type="submit" value="登录"/>
+
+    <input id="btnLogin"  class="btn btn-primary" type="submit" value="登录"/>
 </form>
 
-<li><a href="/register" >去注册</a></li>
+<a class="btn btn-default" href="/register" >去注册</a>
 
 <%--<!-- 新 Bootstrap 核心 CSS 文件 -->--%>
 <%--<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">--%>

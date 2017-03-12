@@ -41,7 +41,7 @@ function getRoomList(){
             field:'',
             title:'',
             formatter:operateFormatter,
-            // events:operateEvents
+            events:operateEvents
         }]
     });
 }

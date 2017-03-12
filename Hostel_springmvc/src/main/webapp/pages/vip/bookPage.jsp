@@ -23,11 +23,31 @@
     <div id="roomName"></div>
     <div id="roomPrice"></div>
 </div>
-    <form:form commandName="bookBill" method="post" action="/vip/book" >
-        <label >入住日期</label>
-        <form:input path="liveInDate"/>
-        <input type="submit" value="确认预订"/>
-    </form:form>
+    <form method="post" action="/vip/book" >
+        <div class="form-group">
+            <label class="col-md-2 control-label">入住日期</label>
+            <div class="input-group date form_date col-md-5 myDatePicker" data-date="" data-date-format="" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                <input required='true' name="liveInDate" class="form-control" size="16" type="text" readonly>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">离店日期</label>
+            <div class="input-group date form_date col-md-5 myDatePicker" data-date="" data-date-format="" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                <input required='true' name="liveOutDate" class="form-control" size="16" type="text" readonly>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+            </div>
+            <input type="hidden" id="roomId" name="roomId" value="" /><br/>
+        </div>
+
+        <input type="submit" class="btn btn-primary" value="确认预订"/>
+    </form>
+
+
+
 
 <%@include file="../common/tail.jsp" %>
 <script type="text/javascript" src="../../js/bookPage.js"></script>

@@ -8,11 +8,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Hostel|NotExist</title>
+    <%@include file="./common/head.jsp" %>
 </head>
 <body>
 <%@include file="common/header.jsp" %>
 服务器出了点故障>_<
 </body>
 <%--<jsp:include page="included.html" flush="true" />--%>
+<%@include file="./common/tail.jsp" %>
 </html>

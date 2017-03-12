@@ -9,7 +9,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<%@include file="./common/head.jsp" %>
+<head>
+    <%@include file="./common/head.jsp" %>
+</head>
 <body>
 <%@include file="common/header.jsp" %>
 <form:form method="post" commandName="user" action="/register" role="form">
@@ -25,5 +27,6 @@
 </form:form>
 <li><a href="/login" >去登录</a></li>
 <div id="message">${message}</div>
+<%@include file="./common/tail.jsp" %>
 </body>
 </html>

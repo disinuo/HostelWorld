@@ -16,11 +16,14 @@ function init() {
            $('#image').attr("src",data.img);
             $('#roomName').html(data.name);
             $('#roomPrice').html(data.price);
-
+            $('#roomId').val(roomId);
         }
     })
 }
-
+function get() {
+    var v = $('.form-control').val();
+    alert(v);
+}
 var roomId=null;
 
 /**
