@@ -31,13 +31,13 @@ public class PayBillDaoImpl implements PayBillDao {
     @Override
     public List<PayBill> getByRestrictEqual(String column, Object value) {
 
-        return baseDao.getByRestrictEqual(PayBill.class,column,value);
+        return baseDao.getByRestrictEqualDESC(PayBill.class,column,value,"id");
     }
 
     @Override
     public List<PayBill> getByRestrictEqual(Map<String, Object> map) {
 
-        return baseDao.getByRestrictEqual(PayBill.class,map);
+        return baseDao.getByRestrictEqualDESC(PayBill.class,map,"id");
 
     }
 

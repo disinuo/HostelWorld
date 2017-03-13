@@ -31,13 +31,13 @@ public class LiveBillDaoImpl implements LiveBillDao {
     @Override
     public List<LiveBill> getByRestrictEqual(String column, Object value) {
 
-        return baseDao.getByRestrictEqual(LiveBill.class,column,value);
+        return baseDao.getByRestrictEqualDESC(LiveBill.class,column,value,"id");
     }
 
     @Override
     public List<LiveBill> getByRestrictEqual(Map<String, Object> map) {
 
-        return baseDao.getByRestrictEqual(LiveBill.class,map);
+        return baseDao.getByRestrictEqualDESC(LiveBill.class,map,"id");
 
     }
 

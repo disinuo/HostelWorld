@@ -30,12 +30,12 @@ public class BookBillDaoImpl implements BookBillDao {
 
     @Override
     public List<BookBill> getByRestrictEqual(String column, Object value) {
-        return baseDao.getByRestrictEqual(BookBill.class,column,value);
+        return baseDao.getByRestrictEqualDESC(BookBill.class,column,value,"id");
     }
 
     @Override
     public List<BookBill> getByRestrictEqual(Map<String, Object> map) {
-        return baseDao.getByRestrictEqual(BookBill.class,map);
+        return baseDao.getByRestrictEqualDESC(BookBill.class,map,"id");
     }
 
     @Override

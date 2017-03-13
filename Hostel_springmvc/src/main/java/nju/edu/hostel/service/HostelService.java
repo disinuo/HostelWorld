@@ -176,6 +176,14 @@ public interface HostelService {
     public List<Room> getAllRooms(int hostelId);
 
     /**
+     * 给会员用的接口~
+     * 只获得现在在市场上的房间
+     * @param hostelId
+     * @return
+     */
+    public List<Room> getAllValidRooms(int hostelId);
+
+    /**
      * 按照房间的id得到房间
      * @param roomId
      * @return

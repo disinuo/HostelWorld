@@ -16,7 +16,6 @@
 <%@include file="../common/header.jsp" %>
 <%@include file="component/navigation.jsp" %>
 
-<jsp:include page="component/selfPanel.jsp" flush="true"/>
 <div>
     <h3>尊敬的<em id="name"></em></h3>
     <h5>您的会员卡余额为：</h5>
@@ -41,6 +40,7 @@
 <div>${message}</div>
 <%@include file="../common/tail.jsp" %>
 <script type="text/javascript" src="../../js/topUpPage.js"></script>
+<jsp:include page="component/selfPanel.jsp" flush="true"/>
 
 </body>
 </html>

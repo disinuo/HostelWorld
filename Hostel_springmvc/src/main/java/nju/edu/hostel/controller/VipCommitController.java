@@ -50,7 +50,8 @@ public class VipCommitController {
     @RequestMapping(value = "/stopCard",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String stop(@ModelAttribute("vip") VipVO vipVO){
-        return vipService.stop(vipVO.getId()).toShow();
+        ResultMessage msg=vipService.stop(vipVO.getId());
+        return msg.toShow();
     }
 
     @RequestMapping(value = "/convert",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")

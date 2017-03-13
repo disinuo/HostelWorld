@@ -4,8 +4,8 @@
 $(document).ready(function () {
     var args=requestParamFormatter();
     hostelId=args['hostelId'];
-    
     initHostel();
+    initVIPState();
     getRoomList();
 });
 
@@ -20,9 +20,17 @@ function initHostel(){
         }
     })
 }
+function initVIPState() {
+    $.ajax({
+        url:'/data/vip/getInfo',
+        success:function (vip) {
+            vipState=vip.state;
+        }
+    })
+}
 function getRoomList(){
     $('#table').bootstrapTable({
-        url:'/data/hostel/getRooms?hostelId='+hostelId,
+        url:'/data/hostel/getValidRooms?hostelId='+hostelId,
 
         columns:[{
             field: 'img',
@@ -45,8 +53,13 @@ function getRoomList(){
         }]
     });
 }
-var hostelId;
 function operateFormatter(value, row, index) {
+    if(vipState=='STOP'||vipState=='PAUSED'){
+        return [
+            '<a type="button" class="btn btn-default disabled" ',
+            'href="#">预订</a>'
+        ].join('');
+    }
     return [
         '<a type="button" class="book btn btn-primary" ',
         'href="/vip/book?roomId=',
@@ -64,6 +77,8 @@ function operateFormatter(value, row, index) {
 }
 var operateEvents = {
     'click .book': function (event, value, row, index) {
-        alert('预订房间, row: ' + JSON.stringify(row));
+        // alert('预订房间, row: ' + JSON.stringify(row));
     }
 }
+var hostelId=null;
+var vipState=null;

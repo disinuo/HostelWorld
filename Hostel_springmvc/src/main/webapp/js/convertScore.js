@@ -13,6 +13,14 @@ function init() {
             $('#moneyLeft').html(moneyLeft);
         }
     });
+    $.ajax({
+        url:'/constants/RATE_SCORE_TO_MONEY',
+        success:function (data) {
+            var rate=data;
+            var rule='钱数 = 积分数 * '+rate;
+            $('#scoreToMoneyRule').html(rule);
+        }
+    })
 }
 $('#converseBtn').click(function () {
     var scoreToConvert=$('#score').val();

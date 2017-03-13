@@ -1,9 +1,6 @@
 package nju.edu.hostel.service.bean;
 
-import nju.edu.hostel.dao.BookBillDao;
-import nju.edu.hostel.dao.HostelDao;
-import nju.edu.hostel.dao.UserDao;
-import nju.edu.hostel.dao.VIPDao;
+import nju.edu.hostel.dao.*;
 import nju.edu.hostel.model.Vip;
 import nju.edu.hostel.service.HostelService;
 import nju.edu.hostel.service.UserService;
@@ -142,7 +139,7 @@ public class VIPServiceBean implements VIPService{
                 Room room=hostelService.getRoomById(bookVO.getRoomId());
                 bookBill.setVip(vip);
                 bookBill.setRoom(room);
-                bookBill.setLiveInDate(DateHandler.strToLong(bookVO.getLiveOutDate()));
+                bookBill.setLiveOutDate(DateHandler.strToLong(bookVO.getLiveOutDate()));
                 bookBill.setHostel(room.getHostel());
                 bookBill.setCreateDate(new Date().getTime());
                 bookBill.setLiveInDate(DateHandler.strToLong(bookVO.getLiveInDate()));
@@ -177,22 +174,18 @@ public class VIPServiceBean implements VIPService{
 
     @Override
     public List<BookBill> getAllBookBills(int vipId) {
-        Vip vip=getById(vipId);
-        return vip.getBookBills();
+        return bookBillDao.getByRestrictEqual("vip.id",vipId);
     }
 
     @Override
     public List<PayBill> getAllPayBills(int vipId) {
-
-        Vip vip=getById(vipId);
-        return vip.getPayBills();
+        return payBillDao.getByRestrictEqual("vip.id",vipId);
 
     }
 
     @Override
     public List<LiveBill> getAllLiveBills(int vipId) {
-        Vip vip=getById(vipId);
-        return vip.getLiveBills();
+        return liveBillDao.getByRestrictEqual("vip.id",vipId);
     }
 
     @Override
@@ -266,6 +259,10 @@ public class VIPServiceBean implements VIPService{
     UserDao userDao;
     @Autowired
     BookBillDao bookBillDao;
+    @Autowired
+    PayBillDao payBillDao;
+    @Autowired
+    LiveBillDao liveBillDao;
     @Autowired
     UserService userService;
     @Autowired

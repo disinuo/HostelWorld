@@ -108,5 +108,9 @@ public class BookBill {
         return DateHandler.longToStr(this.liveInDate);
     }
     @Transient
+    public String getLiveOutDateStr(){
+        return DateHandler.longToStr(this.liveOutDate);
+    }
+    @Transient
     public int getVipId(){return this.vip.getId();}
 }

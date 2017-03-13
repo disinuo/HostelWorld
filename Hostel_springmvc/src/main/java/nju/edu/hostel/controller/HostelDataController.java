@@ -24,6 +24,10 @@ public class HostelDataController {
     public List<RoomVO> getRooms(@RequestParam("hostelId")int hostelId){
         return RoomVO.entityToVO(hostelService.getAllRooms(hostelId));
     }
+    @RequestMapping(value = "/getValidRooms")
+    public List<RoomVO> getValidRooms(@RequestParam("hostelId")int hostelId){
+        return RoomVO.entityToVO(hostelService.getAllValidRooms(hostelId));
+    }
     @RequestMapping(value = "/getHostel")
     public HostelVO getHostel(@RequestParam("hostelId")int hostelId){
         return new HostelVO(hostelService.getById(hostelId));

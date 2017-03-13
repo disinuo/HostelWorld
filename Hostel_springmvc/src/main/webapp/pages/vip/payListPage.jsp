@@ -14,7 +14,6 @@
 <body>
 <%@include file="../common/header.jsp" %>
 <%@include file="component/navigation.jsp" %>
-<jsp:include page="component/selfPanel.jsp" flush="true"/>
 <h3>消费记录</h3>
 <div class="table-responsive">
     <table id="table" class="table table-striped">
@@ -23,5 +22,7 @@
 
 <%@include file="../common/tail.jsp" %>
 <script type="text/javascript" src="../../js/payListPage.js"></script>
+<jsp:include page="component/selfPanel.jsp" flush="true"/>
+
 </body>
 </html>

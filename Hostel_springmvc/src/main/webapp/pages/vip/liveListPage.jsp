@@ -15,7 +15,6 @@
 <%@include file="../common/header.jsp" %>
 <%@include file="component/navigation.jsp" %>
 
-<jsp:include page="component/selfPanel.jsp" flush="true"/>
 
 <h3>住店记录</h3>
 <div class="table-responsive">
@@ -25,5 +24,6 @@
 
 <%@include file="../common/tail.jsp" %>
 <script type="text/javascript" src="../../js/liveListPage.js"></script>
+<jsp:include page="component/selfPanel.jsp" flush="true"/>
 </body>
 </html>

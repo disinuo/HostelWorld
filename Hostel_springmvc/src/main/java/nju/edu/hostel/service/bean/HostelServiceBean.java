@@ -244,6 +244,14 @@ public class HostelServiceBean implements HostelService {
     public List<Room> getAllRooms(int hostelId){
         return getById(hostelId).getRooms();
     }
+
+    @Override
+    public List<Room> getAllValidRooms(int hostelId){
+        Map map=new HashMap<String,Object>();
+        map.put("hostel.id",hostelId);
+        map.put("valid",true);
+        return roomDao.getByRestrictEqual(map);
+    }
     @Override
     public Room getRoomById(int roomId){
         return roomDao.get(roomId);
@@ -255,7 +263,7 @@ public class HostelServiceBean implements HostelService {
     @Override
     public List<PayBill> getAllUncountedPayBills(int hostelId){
         Map map = new HashMap<String,Object>();
-        map.put("hostelId",hostelId);
+        map.put("hostel.id",hostelId);
         map.put("counted",false);
         return payBillDao.getByRestrictEqual(map);
     }

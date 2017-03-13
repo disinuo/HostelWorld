@@ -6,29 +6,87 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="nju.edu.hostel.vo.output.OnLineUserVO"%>
-<%@ page import="nju.edu.hostel.vo.output.VipVO" %>
-<%@ page import="nju.edu.hostel.util.VIPState" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<html>
-<head>
-    <link type="text/css" rel="stylesheet" href="../../css/vip_selfPanel.css"/>
-    <title>selfInfo</title>
-</head>
-<body>
 <div class="vip-self-container">
     <jsp:include page="info.jsp" flush="true"/>
     <button><a href="/vip/topUp">充值</a></button>
     <button><a href="/vip/convert">积分换钱</a></button>
-    <% VIPState stopState=VIPState.STOP; %>
+    <button id="selfPanel_stopCardBtn">停卡</button>
+    <div id="selfPanel_stopCard_msg"></div>
 
-    <c:if test="${!(vip.state eq stopSate)}">
-            <button>停卡</button>
-    </c:if>
-
+    <%--<a class="close" data-dismiss="alert" href="#">&times;</a>--%>
 </div>
+<!--
+User Profile Sidebar by @keenthemes
+A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
+Licensed under MIT
+-->
 
+<%--<div class="container">--%>
+    <%--<div class="row profile">--%>
+        <%--<div class="col-md-3">--%>
+            <%--<div class="profile-sidebar">--%>
+                <%--<!-- SIDEBAR USERPIC -->--%>
+                <%--<div class="profile-userpic">--%>
+                    <%--<img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">--%>
+                <%--</div>--%>
+                <%--<!-- END SIDEBAR USERPIC -->--%>
+                <%--<!-- SIDEBAR USER TITLE -->--%>
+                <%--<div class="profile-usertitle">--%>
+                    <%--<div class="profile-usertitle-name">--%>
+                        <%--Marcus Doe--%>
+                    <%--</div>--%>
+                    <%--<div class="profile-usertitle-job">--%>
+                        <%--Developer--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+                <%--<!-- END SIDEBAR USER TITLE -->--%>
+                <%--<!-- SIDEBAR BUTTONS -->--%>
+                <%--<div class="profile-userbuttons">--%>
+                    <%--<button type="button" class="btn btn-success btn-sm">Follow</button>--%>
+                    <%--<button type="button" class="btn btn-danger btn-sm">Message</button>--%>
+                <%--</div>--%>
+                <%--<!-- END SIDEBAR BUTTONS -->--%>
+                <%--<!-- SIDEBAR MENU -->--%>
+                <%--<div class="profile-usermenu">--%>
+                    <%--<ul class="nav">--%>
+                        <%--<li class="active">--%>
+                            <%--<a href="#">--%>
+                                <%--<i class="glyphicon glyphicon-home"></i>--%>
+                                <%--Overview </a>--%>
+                        <%--</li>--%>
+                        <%--<li>--%>
+                            <%--<a href="#">--%>
+                                <%--<i class="glyphicon glyphicon-user"></i>--%>
+                                <%--Account Settings </a>--%>
+                        <%--</li>--%>
+                        <%--<li>--%>
+                            <%--<a href="#" target="_blank">--%>
+                                <%--<i class="glyphicon glyphicon-ok"></i>--%>
+                                <%--Tasks </a>--%>
+                        <%--</li>--%>
+                        <%--<li>--%>
+                            <%--<a href="#">--%>
+                                <%--<i class="glyphicon glyphicon-flag"></i>--%>
+                                <%--Help </a>--%>
+                        <%--</li>--%>
+                    <%--</ul>--%>
+                <%--</div>--%>
+                <%--<!-- END MENU -->--%>
+            <%--</div>--%>
+        <%--</div>--%>
+        <%--<div class="col-md-9">--%>
+            <%--<div class="profile-content">--%>
+                <%--Some user related content goes here...--%>
+            <%--</div>--%>
+        <%--</div>--%>
+    <%--</div>--%>
+<%--</div>--%>
+<%--<center>--%>
+    <%--<strong>Powered by <a href="http://j.mp/metronictheme" target="_blank">KeenThemes</a></strong>--%>
+<%--</center>--%>
+<%--<br>--%>
+<%--<br>--%>
 
 </body>
 </html>

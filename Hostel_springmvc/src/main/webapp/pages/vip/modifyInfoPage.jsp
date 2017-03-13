@@ -20,6 +20,7 @@
 
 <%@include file="../common/tail.jsp" %>
 <script type="text/javascript" src="../../js/modifyInfoPage.js"></script>
+<jsp:include page="component/selfPanel.jsp" flush="true"/>
 
 </body>
 </html>

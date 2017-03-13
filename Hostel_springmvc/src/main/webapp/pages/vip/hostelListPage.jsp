@@ -16,13 +16,14 @@
 <body>
 <%@include file="../common/header.jsp" %>
 <%@include file="component/navigation.jsp" %>
-<jsp:include page="component/selfPanel.jsp" flush="true"/>
-
-<h1>所有客栈</h1>
-<div class="table-responsive">
-    <table id="table" class="table table-striped">
-    </table>
+<div class="big-container">
+    <jsp:include page="component/selfPanel.jsp" flush="true"/>
+    <%--<div class="table-responsive">--%>
+        <table id="table" class="col-lg-9 table table-striped">
+        </table>
+    <%--</div>--%>
 </div>
+
 
 
 <%@include file="../common/tail.jsp" %>

@@ -31,12 +31,12 @@ public class RoomDaoImpl implements RoomDao {
     @Override
     public List<Room> getByRestrictEqual(String column, Object value) {
 
-        return baseDao.getByRestrictEqual(Room.class,column,value);
+        return baseDao.getByRestrictEqualASC(Room.class,column,value,"id");
     }
 
     @Override
     public List<Room> getByRestrictEqual(Map<String, Object> map) {
-        return baseDao.getByRestrictEqual(Room.class,map);
+        return baseDao.getByRestrictEqualASC(Room.class,map,"id");
 
     }
 

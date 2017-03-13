@@ -15,7 +15,6 @@
 <%@include file="../common/header.jsp" %>
 <%@include file="component/navigation.jsp" %>
 
-<jsp:include page="component/selfPanel.jsp" flush="true"/>
 
 <h3>预订记录</h3>
 <div id="msg"></div>
@@ -25,5 +24,6 @@
 </div>
 <%@include file="../common/tail.jsp" %>
 <script type="text/javascript" src="../../js/bookListPage.js"></script>
+<jsp:include page="component/selfPanel.jsp" flush="true"/>
 </body>
 </html>
