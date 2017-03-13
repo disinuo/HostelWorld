@@ -6,6 +6,7 @@ import nju.edu.hostel.vo.input.LiveInVO;
 import nju.edu.hostel.vo.input.LiveOutVO;
 import nju.edu.hostel.vo.input.PayVO;
 import nju.edu.hostel.vo.input.RoomVO;
+import nju.edu.hostel.vo.output.HostelVO;
 
 import java.util.List;
 
@@ -51,10 +52,10 @@ public interface HostelService {
      * 修改客栈的基本信息
      * 改完并没有保存，而是向总经理提交申请
      * 总经理同意店信息才会更新
-     * @param hostel
+     * @param hostelVO
      * @return SUCCESS,FAILURE
      */
-    public ResultMessage update(Hostel hostel);
+    public ResultMessage update(HostelVO hostelVO);
 
     /**
      * 登记住户的结账
@@ -122,10 +123,10 @@ public interface HostelService {
     /**
      * 客栈更新房间计划（包括将该房间置为不可用，就是下架~），只能更新自己客栈的房间计划
      * @param hostelId
-     * @param room
+     * @param roomVO
      * @return SUCCESS,FAILURE
      */
-    public ResultMessage updateRoom(int hostelId, Room room);
+    public ResultMessage updateRoom(int hostelId, RoomVO roomVO);
 
     /**
      * 获取本店预订数据，包括预订和取消预订

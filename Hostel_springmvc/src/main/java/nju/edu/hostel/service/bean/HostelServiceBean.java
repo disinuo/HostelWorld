@@ -10,6 +10,7 @@ import nju.edu.hostel.vo.input.LiveInVO;
 import nju.edu.hostel.vo.input.LiveOutVO;
 import nju.edu.hostel.vo.input.PayVO;
 import nju.edu.hostel.vo.input.RoomVO;
+import nju.edu.hostel.vo.output.HostelVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -68,18 +69,18 @@ public class HostelServiceBean implements HostelService {
     }
 
     @Override
-    public ResultMessage update(Hostel hostel) {
+    public ResultMessage update(HostelVO hostelVO) {
         //TODO 这里有问题，Request表只能存当前存在的hostel。。
-        // 是否考虑新建一个存储hostel临时信息的表
-        RequestModify requestModify=new RequestModify();
-        requestModify.setHostelOriginal(getById(hostel.getId()));
-        requestModify.setHostelNew(hostel);
-        try {
-            requestDao.addModifyRequest(requestModify);
-        }catch (Exception e){
-            e.printStackTrace();
-            return ResultMessage.FAILURE;
-        }
+//        // 是否考虑新建一个存储hostel临时信息的表
+//        RequestModify requestModify=new RequestModify();
+//        requestModify.setHostelOriginal(getById(hostel.getId()));
+//        requestModify.setHostelNew(hostel);
+//        try {
+//            requestDao.addModifyRequest(requestModify);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//            return ResultMessage.FAILURE;
+//        }
         return ResultMessage.SUCCESS;
 //        return hostelDao.update(hostel);
     }
@@ -211,8 +212,10 @@ public class HostelServiceBean implements HostelService {
 
     }
     @Override
-    public ResultMessage updateRoom(int hostelId, Room room) {
-        return roomDao.update(room);
+    public ResultMessage updateRoom(int hostelId, RoomVO roomVO) {
+//        TODO updateRoom!!!!
+        return null;
+//        return roomDao.update(room);
     }
     @Override
     public List<BookBill> getAllBookBills(int hostelId) {

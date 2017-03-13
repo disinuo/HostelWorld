@@ -13,6 +13,7 @@
 <body>
 <%@include file="../common/header.jsp" %>
 <%@include file="component/navigation.jsp" %>
+
 <jsp:include page="component/selfPanel.jsp" flush="true"/>
 
 <h1 id="name"></h1>
@@ -26,7 +27,7 @@
 </div>
 
 <%@include file="../common/tail.jsp" %>
-<script type="text/javascript" src="../../js/hostelDetailPage.js"></script>
+<script type="text/javascript" src="../../js/vip/hostelDetailPage.js"></script>
 
 </body>
 </html>

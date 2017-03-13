@@ -5,24 +5,21 @@ import nju.edu.hostel.service.HostelService;
 import nju.edu.hostel.service.ManagerService;
 import nju.edu.hostel.service.UserService;
 import nju.edu.hostel.service.VIPService;
-import nju.edu.hostel.util.DisPatcher;
 import nju.edu.hostel.util.ResultMessage;
+import nju.edu.hostel.vo.output.HostelVO;
 import nju.edu.hostel.vo.output.OnLineUserVO;
 import nju.edu.hostel.vo.input.UserVO;
-import org.apache.http.HttpResponse;
+import nju.edu.hostel.vo.output.VipVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import static nju.edu.hostel.util.Constants.ROLE_VIP;
-
+import static nju.edu.hostel.util.Constants.*;
 /**
  * Created by disinuo on 17/3/4.
  */
@@ -65,7 +62,7 @@ public class LoginController {
             if(user.getType().equals(ROLE_VIP)){
                 vipService.init(user.getId());
             }
-            return DisPatcher.roleToHomePage(onLineUserVO.getType());
+            return roleToHomePage(session,onLineUserVO);
         }
     }
     @RequestMapping(value = "/checkUser" )//,method = RequestMethod.POST)
@@ -88,5 +85,27 @@ public class LoginController {
         ResultMessage msg=userService.checkUser(name,password);
         System.out.println(msg);
         return msg.toShow();
+    }
+
+
+    public  ModelAndView roleToHomePage(HttpSession session,OnLineUserVO user){
+        int id=user.getId();
+        switch (user.getType()){
+            case ROLE_VIP:
+                vipService.init(id);//TODO 这个方法没测试过
+                Vip vip=vipService.getById(id);
+                VipVO vipVO=new VipVO(vip);
+                session.setAttribute("vip",vipVO);
+                return new ModelAndView("redirect:/vip/hostels");
+            case ROLE_HOSTEL:
+                ResultMessage initMsg=hostelService.init(id);
+                Hostel hostel=hostelService.getById(id);
+                HostelVO hostelVO=new HostelVO(hostel);
+                session.setAttribute("hostel",hostelVO);
+                return new ModelAndView("redirect:/hostel/rooms");
+            case ROLE_MANAGER:
+                return new ModelAndView("manager/index");
+            default: return new ModelAndView("404");
+        }
     }
 }

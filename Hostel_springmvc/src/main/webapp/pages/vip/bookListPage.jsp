@@ -22,8 +22,11 @@
     <table id="table" class="table table-striped">
     </table>
 </div>
-<%@include file="../common/tail.jsp" %>
-<script type="text/javascript" src="../../js/bookListPage.js"></script>
 <jsp:include page="component/selfPanel.jsp" flush="true"/>
+
+
+
+<%@include file="../common/tail.jsp" %>
+<script type="text/javascript" src="../../js/vip/bookListPage.js"></script>
 </body>
 </html>

@@ -24,4 +24,5 @@
 <script type="text/javascript" src="../js/lib/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 
 <script src='../js/common.js' type="text/javascript"></script>
-<script type="text/javascript"  src="../../../js/selfPanel.js"></script>
+<script type="text/javascript"  src="../js/vip/selfPanel.js"></script>
+

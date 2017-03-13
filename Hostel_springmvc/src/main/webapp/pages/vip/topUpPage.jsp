@@ -38,9 +38,13 @@
     <input type="submit" value="充值"/>
 </form>
 <div>${message}</div>
-<%@include file="../common/tail.jsp" %>
-<script type="text/javascript" src="../../js/topUpPage.js"></script>
+
 <jsp:include page="component/selfPanel.jsp" flush="true"/>
+
+
+
+<%@include file="../common/tail.jsp" %>
+<script type="text/javascript" src="../../js/vip/topUpPage.js"></script>
 
 </body>
 </html>

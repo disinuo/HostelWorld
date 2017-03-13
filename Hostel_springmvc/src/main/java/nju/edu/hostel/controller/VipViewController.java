@@ -33,12 +33,12 @@ public class VipViewController {
     @RequestMapping(value = "/hostels")
     public ModelAndView showHostels(@ModelAttribute("user") OnLineUserVO user,
                                     ModelMap model){
-        int id=user.getId();
-        vipService.init(id);//TODO 这个方法没测试过
-        Vip vip=vipService.getById(id);
-        VipVO vipVO=new VipVO(vip);
-        model.addAttribute("vip",vipVO);
         return new ModelAndView("vip/hostelListPage");
+    }
+
+    @RequestMapping(value = "/rooms")
+    public ModelAndView showValidRooms(){
+        return new ModelAndView("vip/hostelDetailPage");
     }
 
     @RequestMapping(value = "/bookList")

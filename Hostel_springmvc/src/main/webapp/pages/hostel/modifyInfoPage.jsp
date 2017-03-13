@@ -8,9 +8,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Hostel|Hostel</title>
+    <%@include file="../common/head.jsp" %>
 </head>
 <body>
+<%@include file="../common/header.jsp" %>
 客栈管理员你好
+改信息界面
+
+
+
+<%@include file="../common/tail.jsp" %>
+
+
 </body>
 </html>

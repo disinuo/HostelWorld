@@ -46,10 +46,12 @@
     </form>
 
 
+<jsp:include page="component/selfPanel.jsp" flush="true"/>
+
+
 
 
 <%@include file="../common/tail.jsp" %>
-<script type="text/javascript" src="../../js/bookPage.js"></script>
-<jsp:include page="component/selfPanel.jsp" flush="true"/>
+<script type="text/javascript" src="../../js/vip/bookPage.js"></script>
 </body>
 </html>

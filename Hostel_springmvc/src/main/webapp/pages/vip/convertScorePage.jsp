@@ -25,9 +25,12 @@
     <button id="converseBtn" class="btn btn-primary">兑换</button>
 </div>
 <div id="message"></div>
-<%@include file="../common/tail.jsp" %>
-<script type="text/javascript" src="../../js/convertScore.js"></script>
 <jsp:include page="component/selfPanel.jsp" flush="true"/>
+
+
+
+<%@include file="../common/tail.jsp" %>
+<script type="text/javascript" src="../../js/vip/convertScore.js"></script>
 
 </body>
 </html>

@@ -21,9 +21,12 @@
     <table id="table" class="table table-striped">
     </table>
 </div>
+<jsp:include page="component/selfPanel.jsp" flush="true"/>
+
+
+
 
 <%@include file="../common/tail.jsp" %>
-<script type="text/javascript" src="../../js/liveListPage.js"></script>
-<jsp:include page="component/selfPanel.jsp" flush="true"/>
+<script type="text/javascript" src="../../js/vip/liveListPage.js"></script>
 </body>
 </html>

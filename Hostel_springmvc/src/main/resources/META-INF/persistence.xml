@@ -11,6 +11,7 @@
         <class>nju.edu.hostel.model.LiveBill</class>
         <class>nju.edu.hostel.model.BookBill</class>
         <class>nju.edu.hostel.model.PayBill</class>
+        <class>nju.edu.hostel.model.Hostel_tmp</class>
 
         <properties>
             <!-- 使用MySQL方言 -->

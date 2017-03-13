@@ -1,7 +1,15 @@
-package nju.edu.hostel.util;
+package nju.edu.hostel.controller;
 
+import nju.edu.hostel.model.Vip;
+import nju.edu.hostel.service.HostelService;
+import nju.edu.hostel.service.ManagerService;
+import nju.edu.hostel.service.VIPService;
 import nju.edu.hostel.vo.output.OnLineUserVO;
+import nju.edu.hostel.vo.output.VipVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpSession;
 
 import static nju.edu.hostel.util.Constants.ROLE_HOSTEL;
 import static nju.edu.hostel.util.Constants.ROLE_MANAGER;
@@ -12,15 +20,7 @@ import static nju.edu.hostel.util.Constants.ROLE_VIP;
  */
 
 public class DisPatcher {
-    public static ModelAndView roleToHomePage(String role){
-        switch (role){
-            case ROLE_VIP:
-                return new ModelAndView("redirect:/vip/hostels");
-            case ROLE_HOSTEL:return new ModelAndView("hostel/index");
-            case ROLE_MANAGER:return new ModelAndView("manager/index");
-            default: return new ModelAndView("404");
-        }
-    }
+
 
     /**
      * 未登录则返回登录界面的ModelAndView

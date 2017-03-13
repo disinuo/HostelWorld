@@ -27,6 +27,6 @@
 
 
 <%@include file="../common/tail.jsp" %>
-<script type="text/javascript" src="../../js/hostelListPage.js"></script>
+<script type="text/javascript" src="../../js/vip/hostelListPage.js"></script>
 </body>
 </html>

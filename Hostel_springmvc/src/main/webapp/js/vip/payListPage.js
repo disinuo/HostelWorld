@@ -1,16 +1,16 @@
 /**
- * Created by disinuo on 17/3/12.
+ * Created by disinuo on 17/3/13.
  */
 
 $(document).ready(function () {
-    getLiveList();
-});
+    getPayList();
+})
 
-function getLiveList() {
+function getPayList() {
     $('#table').bootstrapTable({
-        url: '/data/vip/getLiveList',
+        url: '/data/vip/getPayList',
         columns: [{
-            field: 'date',
+            field: 'createDate',
             title: '时间',
             align: 'center'
         },{
@@ -29,24 +29,19 @@ function getLiveList() {
             align: 'center'
         },{
             field: 'roomPrice',
-            title: '价格',
+            title: '房间价格',
             align: 'center'
-        },{//TODO 类型要变成以表格底色不同的形式展现
-            field: 'type',
-            title: '',
+        },{
+            field: 'money',
+            title: '实付价格',
             align: 'center',
-            formatter:typeFormatter
         }],
     });
 }
 
-function typeFormatter(value,row,index) {
-    if(value==true) return '住店';
-    else return '离店';
-}
 function operateFormatter(value, row, index) {
     return [
-        '<a href="/hostel/rooms?hostelId=',
+        '<a href="/vip/rooms?hostelId=',
         row.hostelId,
         '">',
         value,

@@ -57,7 +57,7 @@ function getBookList() {
 }
 function operateFormatter(value, row, index) {
     return [
-        '<a href="/hostel/rooms?hostelId=',
+        '<a href="/vip/rooms?hostelId=',
         row.hostelId,
         '">',
         value,
