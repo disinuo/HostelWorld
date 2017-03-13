@@ -1,5 +1,6 @@
 package nju.edu.hostel.model;
 
+import nju.edu.hostel.util.NumberFormatter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -32,7 +33,7 @@ public class Room {
     @Basic
     @Column(name = "price", nullable = false, precision = 0)
     public double getPrice() {
-        return price;
+        return  NumberFormatter.saveOneDecimal(price);
     }
 
     public void setPrice(double price) {

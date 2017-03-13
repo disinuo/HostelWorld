@@ -93,6 +93,15 @@ public interface VIPService {
     public ResultMessage unbook(int vipId, int bookId);
 
     /**
+     * 会员将指定的积分数换成会员卡余额
+     要注意用户只能填小于自己积分总值的积分数
+     * @param vipId
+     * @param score
+     * @return NOT_ENOUGH_SCORE,FAILURE,SUCCESS
+     */
+    public ResultMessage scoreToMoney(int vipId, double score);
+
+    /**
      * 获取本人预订数据，包括预订和取消预订
      比如 2016-12-02 预订 标间 入住时间2016-12-10  2晚 358元+图片
      2016-12-02 取消预订 标间 入住时间2016-12-10   2晚 358元+图片
@@ -124,14 +133,6 @@ public interface VIPService {
      */
     public List<LiveBill> getAllLiveBills(int vipId);
 
-    /**
-     * 会员将指定的积分数换成会员卡余额
-     要注意用户只能填小于自己积分总值的积分数
-     * @param vipId
-     * @param score
-     * @return NOT_ENOUGH_SCORE,FAILURE,SUCCESS
-     */
-    public ResultMessage scoreToMoney(int vipId, double score);
 
     /**
      * 返回所有通过总经理审批的客栈

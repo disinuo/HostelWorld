@@ -1,6 +1,8 @@
 package nju.edu.hostel.model;
 
 
+import nju.edu.hostel.util.NumberFormatter;
+
 import javax.persistence.*;
 
 /**
@@ -81,7 +83,7 @@ public class User {
     @Basic
     @Column(name = "bankMoney", nullable = false, length = 255)
     public double getBankMoney() {
-        return bankMoney;
+        return  NumberFormatter.saveOneDecimal(bankMoney);
     }
 
     public void setBankMoney(double bankMoney) {

@@ -1,5 +1,6 @@
 package nju.edu.hostel.model;
 
+import nju.edu.hostel.util.NumberFormatter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -56,7 +57,7 @@ public class Hostel {
     @Basic
     @Column(name = "moneyUncounted", nullable = false)
     public double getMoneyUncounted() {
-        return moneyUncounted;
+        return NumberFormatter.saveOneDecimal(moneyUncounted);
     }
     public void setMoneyUncounted(double moneyUncounted) {
         this.moneyUncounted = moneyUncounted;

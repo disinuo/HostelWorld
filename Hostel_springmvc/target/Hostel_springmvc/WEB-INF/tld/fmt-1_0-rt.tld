@@ -24,7 +24,7 @@
     <tag-class>org.apache.taglibs.standard.tag.rt.fmt.RequestEncodingTag</tag-class>
     <body-content>empty</body-content>
     <description>
-        Sets the request character encoding
+        Sets the requestOpen character encoding
     </description>
     <attribute>
         <name>value</name>

@@ -30,20 +30,22 @@ public class VipViewController {
     @Autowired
     UserDao userDao;
 
-
-    @RequestMapping(value = "/bookList")
-    public ModelAndView showBookList(){
-        return new ModelAndView("vip/bookListPage");
-    }
     @RequestMapping(value = "/hostels")
     public ModelAndView showHostels(@ModelAttribute("user") OnLineUserVO user,
-                                  ModelMap model){
+                                    ModelMap model){
         int id=user.getId();
+        vipService.init(id);//TODO 这个方法没测试过
         Vip vip=vipService.getById(id);
         VipVO vipVO=new VipVO(vip);
         model.addAttribute("vip",vipVO);
         return new ModelAndView("vip/hostelListPage");
     }
+
+    @RequestMapping(value = "/bookList")
+    public ModelAndView showBookList(){
+        return new ModelAndView("vip/bookListPage");
+    }
+
     @RequestMapping(value = "/payList")
     public ModelAndView showPayList(){
 //        int id=vipVO.getId();
@@ -63,38 +65,16 @@ public class VipViewController {
     }
 
     @RequestMapping(value = "/topUp",method = RequestMethod.GET)
-    public ModelAndView showTopUpPage(@ModelAttribute("vip") VipVO vipVO,
-                                     ModelMap model){
-//TODO
-//        Test_Table test=new Test_Table();
-//        test.setName("testaaa");
-//        test.setBankMoney(0);
-//        test.setId(666);
-//        int id=testTableDao.addAndGetId(test);
-//        User user=new User();
-//        user.setUserName("GOYaaa");
-//        user.setId(666);
-//        user.setBankId("1111111111110000666");
-//        userDao.add(user);
-//        System.out.println("VipController--topUp---try test.add  ID= "+id);
-        model.addAttribute("topUp",new TopUpVO());
-        return new ModelAndView("vip/topUpPage",model);
+    public ModelAndView showTopUpPage(){
+        return new ModelAndView("vip/topUpPage");
     }
-
-
-    @RequestMapping(value = "/topUp",method = RequestMethod.POST)
-    @ResponseBody
-    public ModelMap topUp(@ModelAttribute("vip") VipVO vipVO,
-                           @ModelAttribute("topUp")TopUpVO topUpVO,
-                                     ModelMap model){
-        ResultMessage resMssg=vipService.topUp(topUpVO.getMoney(),vipVO.getId(),topUpVO.getBankPassword());
-        if(resMssg==ResultMessage.SUCCESS){
-            model.addAttribute("message","充值成功");
-        }else {
-            model.addAttribute("message","充值失败");
-        }
-        return model;
+    @RequestMapping(value = "/update",method = RequestMethod.GET)
+    public ModelAndView showModifyInfoPage(){
+        return new ModelAndView("vip/modifyInfoPage");
     }
-
+    @RequestMapping(value = "/convert",method = RequestMethod.GET)
+    public ModelAndView showConvertScoreToMoneyPage(){
+        return new ModelAndView("vip/convertScorePage");
+    }
 
 }

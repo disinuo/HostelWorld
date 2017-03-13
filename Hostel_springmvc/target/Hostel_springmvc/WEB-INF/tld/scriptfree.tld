@@ -41,7 +41,7 @@
     </init-param>
     <init-param>
       <description>
-        Controls whether or not expressions used to supply request-time
+        Controls whether or not expressions used to supply requestOpen-time
         attribute values are considered valid.
       </description>
       <param-name>allowRTExpressions</param-name>

@@ -7,6 +7,7 @@
         <class>nju.edu.hostel.model.Room</class>
         <class>nju.edu.hostel.model.User</class>
         <class>nju.edu.hostel.model.Vip</class>
+        <class>nju.edu.hostel.model.RequestOpen</class>
         <class>nju.edu.hostel.model.LiveBill</class>
         <class>nju.edu.hostel.model.BookBill</class>
         <class>nju.edu.hostel.model.PayBill</class>

@@ -46,4 +46,10 @@ public class VipDataController {
         return PayBillVO.entityToVO(vipService.getAllPayBills(id));
     }
 
+    @RequestMapping(value = "/getInfo")
+    public VipVO getVipInfo(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return new VipVO(vipService.getById(id));
+    }
 }

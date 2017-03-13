@@ -1,5 +1,6 @@
 package nju.edu.hostel.model;
 
+import nju.edu.hostel.util.NumberFormatter;
 import nju.edu.hostel.util.VIPState;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -89,7 +90,7 @@ public class Vip {
     @Basic
     @Column(name = "moneyLeft", nullable = false, precision = 0)
     public double getMoneyLeft() {
-        return moneyLeft;
+        return  NumberFormatter.saveOneDecimal(moneyLeft);
     }
 
     public void setMoneyLeft(double moneyLeft) {
@@ -99,7 +100,7 @@ public class Vip {
     @Basic
     @Column(name = "moneyPaid", nullable = false, precision = 0)
     public double getMoneyPaid() {
-        return moneyPaid;
+        return  NumberFormatter.saveOneDecimal(moneyPaid);
     }
 
     public void setMoneyPaid(double moneyPaid) {
@@ -119,7 +120,7 @@ public class Vip {
     @Basic
     @Column(name = "score", nullable = false, precision = 0)
     public double getScore() {
-        return score;
+        return  NumberFormatter.saveOneDecimal(score);
     }
 
     public void setScore(double score) {

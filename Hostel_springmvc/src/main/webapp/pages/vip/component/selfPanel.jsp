@@ -20,6 +20,7 @@
 <div class="vip-self-container">
     <jsp:include page="info.jsp" flush="true"/>
     <button><a href="/vip/topUp">充值</a></button>
+    <button><a href="/vip/convert">积分换钱</a></button>
     <% VIPState stopState=VIPState.STOP; %>
 
     <c:if test="${!(vip.state eq stopSate)}">

@@ -3,3 +3,7 @@
     width: 300px;
     background-color:mediumslateblue;
 }
+.image-little{
+    max-width: 150px;
+    max-height: 150px;
+}
