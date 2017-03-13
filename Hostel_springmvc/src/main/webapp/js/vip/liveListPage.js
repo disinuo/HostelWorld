@@ -41,8 +41,8 @@ function getLiveList() {
 }
 
 function typeFormatter(value,row,index) {
-    if(value==true) return '住店';
-    else return '离店';
+    if(value==true) return '<span class="label label-success">住店</span>';
+    else return '<span class="label label-warning">离店</span>';
 }
 function operateFormatter(value, row, index) {
     return [

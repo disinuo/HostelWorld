@@ -5,7 +5,7 @@ import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.vo.input.LiveInVO;
 import nju.edu.hostel.vo.input.LiveOutVO;
 import nju.edu.hostel.vo.input.PayVO;
-import nju.edu.hostel.vo.input.RoomVO;
+import nju.edu.hostel.vo.input.RoomVO_input;
 import nju.edu.hostel.vo.output.HostelVO;
 
 import java.util.List;
@@ -110,7 +110,7 @@ public interface HostelService {
      * @param roomVOs
      * @return SUCCESS,FAILURE
      */
-    public ResultMessage addRoom(int hostelId, List<RoomVO> roomVOs);
+    public ResultMessage addRoom(int hostelId, List<RoomVO_input> roomVOs);
 
     /**
      * 客栈发布房间计划,只能发布自己客栈的房间计划
@@ -118,7 +118,7 @@ public interface HostelService {
      * @param roomVO
      * @return SUCCESS,FAILURE
      */
-    public ResultMessage addRoom(int hostelId, RoomVO roomVO);
+    public ResultMessage addRoom(int hostelId, RoomVO_input roomVO);
 
     /**
      * 客栈更新房间计划（包括将该房间置为不可用，就是下架~），只能更新自己客栈的房间计划
@@ -126,7 +126,7 @@ public interface HostelService {
      * @param roomVO
      * @return SUCCESS,FAILURE
      */
-    public ResultMessage updateRoom(int hostelId, RoomVO roomVO);
+    public ResultMessage updateRoom(int hostelId, RoomVO_input roomVO);
 
     /**
      * 获取本店预订数据，包括预订和取消预订

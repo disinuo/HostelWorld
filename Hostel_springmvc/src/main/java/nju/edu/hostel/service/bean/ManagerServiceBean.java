@@ -7,6 +7,8 @@ import nju.edu.hostel.service.UserService;
 import nju.edu.hostel.util.RequestState;
 import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.model.*;
+import nju.edu.hostel.vo.output.RequestModifyVO;
+import nju.edu.hostel.vo.output.RequestOpenVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,12 +31,24 @@ public class ManagerServiceBean implements ManagerService {
     public List<RequestModify> getModifyRequests(){
         return requestDao.getModifyRequestByRestrictEqual("state", RequestState.UNCHECKED.toString());
     }
+
+    /**
+     *
+     private int id;
+     private String hostel_img;
+     private String hostel_phone;
+     private String hostel_address;
+     private String hostel_name;
+     private RequestState state;
+     */
     @Override
-    public ResultMessage updateOpenRequest(RequestOpen request){
-        RequestState requestState=RequestState.strToRequestState(request.getState());
-        if(requestState==RequestState.DENIED){//拒绝申请
+    public ResultMessage updateOpenRequest(int requestId,String requestState){
+        RequestState state=RequestState.strToRequestState(requestState);
+        RequestOpen request=requestDao.getOpenRequest(requestId);
+
+        if(state==RequestState.DENIED){//拒绝申请
             return requestDao.updateOpenRequest(request);
-        }else if(requestState==RequestState.APPROVED){//同意申请
+        }else if(state==RequestState.APPROVED){//同意申请
             Hostel hostel=request.getHostel();
             hostel.setPermitted(true);
             ResultMessage msg1=hostelDao.update(hostel);
@@ -49,11 +63,12 @@ public class ManagerServiceBean implements ManagerService {
         }
     }
     @Override
-    public ResultMessage updateModifyRequest(RequestModify request){
-        RequestState requestState=RequestState.strToRequestState(request.getState());
-        if(requestState==RequestState.DENIED){//拒绝修改请求
+    public ResultMessage updateModifyRequest(int requestId,String requestState){
+        RequestState state=RequestState.strToRequestState(requestState);
+        RequestModify request=requestDao.getModifyRequest(requestId);
+        if(state==RequestState.DENIED){//拒绝修改请求
             return requestDao.updateModifyRequest(request);
-        }else if(requestState==RequestState.APPROVED){//同意修改请求
+        }else if(state==RequestState.APPROVED){//同意修改请求
             ResultMessage msg1=hostelDao.update(request.getHostelNew());
             ResultMessage msg2=requestDao.updateModifyRequest(request);
             if(msg1==ResultMessage.SUCCESS&&msg2==ResultMessage.SUCCESS){

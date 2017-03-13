@@ -69,6 +69,7 @@ public class HostelDataController {
         int id=user.getId();
         return BookBillVO.entityToVO(hostelService.getAllBookBills(id));
     }
+
     @RequestMapping(value = "/getPayBills")
     public List<PayBillVO> getAllPayBills(HttpSession session){
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
@@ -81,10 +82,30 @@ public class HostelDataController {
         int id=user.getId();
         return LiveBillVO.entityToVO(hostelService.getAllLiveBills(id));
     }
+
+
+
+    @RequestMapping(value = "/others/getBookBills")
+    public List<BookBillVO> getAllBookBillsByOthers(@RequestParam("hostelId")int hostelId){
+        return BookBillVO.entityToVO(hostelService.getAllBookBills(hostelId));
+    }
+    @RequestMapping(value = "/others/getPayBills")
+    public List<PayBillVO> getAllPayBillsByOthers(@RequestParam("hostelId")int hostelId){
+        return PayBillVO.entityToVO(hostelService.getAllPayBills(hostelId));
+    }
+
+    @RequestMapping(value = "/others/getLiveBills")
+    public List<LiveBillVO> getAllLiveBillsByOthers(@RequestParam("hostelId")int hostelId){
+        return LiveBillVO.entityToVO(hostelService.getAllLiveBills(hostelId));
+    }
+
+
     @RequestMapping(value = "/getIncome",produces = "text/html;charset=UTF-8")
-    public double getIncome(HttpSession session){
+    public String getIncome(HttpSession session){
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
         int id=user.getId();
-        return hostelService.getIncome(id);
+        double ans=hostelService.getIncome(id);
+        System.out.print("In CONTROLLER ! getIncome= "+ans);
+        return ans+"";
     }
 }

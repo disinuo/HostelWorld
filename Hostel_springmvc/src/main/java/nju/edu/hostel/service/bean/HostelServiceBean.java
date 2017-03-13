@@ -9,7 +9,7 @@ import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.vo.input.LiveInVO;
 import nju.edu.hostel.vo.input.LiveOutVO;
 import nju.edu.hostel.vo.input.PayVO;
-import nju.edu.hostel.vo.input.RoomVO;
+import nju.edu.hostel.vo.input.RoomVO_input;
 import nju.edu.hostel.vo.output.HostelVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -142,6 +142,7 @@ public class HostelServiceBean implements HostelService {
     }
     @Override
     public ResultMessage liveIn(LiveInVO liveInVO){
+        System.out.println("in service liveIn ");
         LiveBill liveBill=new LiveBill();
         if(liveInVO.getVipId()!=0){
             Vip vip=vipDao.get(liveInVO.getVipId());
@@ -185,9 +186,9 @@ public class HostelServiceBean implements HostelService {
     }
 
     @Override
-    public ResultMessage addRoom(int hostelId,List<RoomVO> roomVOs){
+    public ResultMessage addRoom(int hostelId,List<RoomVO_input> roomVOs){
         ResultMessage msg;
-        for(RoomVO roomVO:roomVOs){
+        for(RoomVO_input roomVO:roomVOs){
            msg=addRoom(hostelId,roomVO);
            if(msg==ResultMessage.FAILURE){
                return ResultMessage.FAILURE;
@@ -196,7 +197,7 @@ public class HostelServiceBean implements HostelService {
         return ResultMessage.SUCCESS;
     }
     @Override
-    public ResultMessage addRoom(int hostelId,RoomVO roomVO){
+    public ResultMessage addRoom(int hostelId,RoomVO_input roomVO){
         Room room=new Room();
         room.setHostel(hostelDao.get(hostelId));
         room.setName(roomVO.getName());
@@ -212,20 +213,19 @@ public class HostelServiceBean implements HostelService {
 
     }
     @Override
-    public ResultMessage updateRoom(int hostelId, RoomVO roomVO) {
+    public ResultMessage updateRoom(int hostelId, RoomVO_input roomVO) {
 //        TODO updateRoom!!!!
         return null;
 //        return roomDao.update(room);
     }
     @Override
     public List<BookBill> getAllBookBills(int hostelId) {
-        return getById(hostelId).getBookBills();
+        return bookBillDao.getByRestrictEqual("hostel.id",hostelId);
     }
 
     @Override
     public List<PayBill> getAllPayBills(int hostelId) {
-
-        return getById(hostelId).getPayBills();
+        return payBillDao.getByRestrictEqual("hostel.id",hostelId);
     }
 
     @Override
@@ -240,7 +240,7 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public List<LiveBill> getAllLiveBills(int hostelId) {
-        return getById(hostelId).getLiveBills();
+        return liveBillDao.getByRestrictEqual("hostel.id",hostelId);
     }
 
     @Override
@@ -285,6 +285,8 @@ public class HostelServiceBean implements HostelService {
     LiveBillDao liveBillDao;
     @Autowired
     PayBillDao payBillDao;
+    @Autowired
+    BookBillDao bookBillDao;
     @Autowired
     VIPService vipService;
 }

@@ -54,4 +54,18 @@ public class HostelViewController {
     public ModelAndView showModifyRoomPage(){
         return new ModelAndView("hostel/modifyRoomPage");
     }
+
+    @RequestMapping(value="/bookBills")
+    public ModelAndView showAnalyseHostelsPage(){
+        return new ModelAndView("hostel/bookBillsPage");
+    }
+    @RequestMapping(value="/payBills")
+    public ModelAndView showAnalyseVipsPage(){
+        return new ModelAndView("hostel/payBillsPage");
+    }
+    @RequestMapping(value="/liveBills")
+    public ModelAndView showAnalyseCompanyPage(){
+        return new ModelAndView("hostel/liveBillsPage");
+    }
+
 }

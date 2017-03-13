@@ -1,15 +1,13 @@
 package nju.edu.hostel.controller;
 
-import nju.edu.hostel.model.Hostel;
 import nju.edu.hostel.service.HostelService;
 import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.vo.input.LiveInVO;
 import nju.edu.hostel.vo.input.LiveOutVO;
 import nju.edu.hostel.vo.input.PayVO;
-import nju.edu.hostel.vo.input.RoomVO;
+import nju.edu.hostel.vo.input.RoomVO_input;
 import nju.edu.hostel.vo.output.HostelVO;
 import nju.edu.hostel.vo.output.OnLineUserVO;
-import nju.edu.hostel.vo.output.PayBillVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,6 +56,7 @@ public class HostelCommitController {
     }
     @RequestMapping(value = "/liveIn",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
     public String liveIn(LiveInVO liveInVO){
+        System.out.print("in hostelCommitController liveIn:"+liveInVO.getUserRealName());
         ResultMessage msg=hostelService.liveIn(liveInVO);
         return msg.toShow();
     }
@@ -67,19 +66,19 @@ public class HostelCommitController {
         return msg.toShow();
     }
     @RequestMapping(value = "/addRoom",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
-    public String addRoom(RoomVO roomVO,HttpSession session){
+    public String addRoom(RoomVO_input roomVO, HttpSession session){
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
         ResultMessage msg=hostelService.addRoom(user.getId(),roomVO);
         return msg.toShow();
     }
     @RequestMapping(value = "/addRooms",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
-    public String addRooms(List<RoomVO> rooms, HttpSession session){
+    public String addRooms(List<RoomVO_input> rooms, HttpSession session){
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
         ResultMessage msg=hostelService.addRoom(user.getId(),rooms);
         return msg.toShow();
     }
     @RequestMapping(value = "/modifyRoom",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
-    public String modifyRoom(RoomVO roomVO,HttpSession session){
+    public String modifyRoom(RoomVO_input roomVO, HttpSession session){
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
         ResultMessage msg=hostelService.updateRoom(user.getId(),roomVO);
         return msg.toShow();

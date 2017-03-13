@@ -12,6 +12,8 @@
 </head>
 <body>
 <%@include file="../common/header.jsp" %>
+<%@include file="component/navigation.jsp" %>
+
 客栈管理员你好
 支付界面
 就只输入vipid（可选）和金额

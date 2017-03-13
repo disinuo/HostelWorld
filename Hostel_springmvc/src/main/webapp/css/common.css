@@ -13,3 +13,11 @@
     display: -webkit-flex;
     flex-wrap: wrap;
 }
+.main-container{
+    max-width: 70%;
+    padding: 20px;
+}
+.sideBar{
+    margin: 10px;
+    padding: 10px;
+}

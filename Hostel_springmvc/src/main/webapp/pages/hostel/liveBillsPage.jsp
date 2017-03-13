@@ -15,12 +15,19 @@
 <%@include file="component/navigation.jsp" %>
 
 客栈管理员你好
+所有住店、离店的记录界面
 
-修改房间界面
+<div class="big-container">
+    <jsp:include page="component/sideBar.jsp" flush="true"/>
+    <%--<div class="table-responsive">--%>
+    <table id="table" class="col-lg-9 table table-striped">
+    </table>
+    <%--</div>--%>
+</div>
 
 
 <%@include file="../common/tail.jsp" %>
-
+<script type="text/javascript" src="../../js/hostel/liveBillsPage.js"></script>
 
 </body>
 </html>

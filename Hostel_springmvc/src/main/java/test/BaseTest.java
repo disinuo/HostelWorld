@@ -15,10 +15,10 @@ public class BaseTest {
     public static void main(String[]args){
 //        System.out.println(Long.MAX_VALUE);
 //        Date d=new Date(1489121762376L);
-        System.out.println(NumberFormatter.saveOneDecimal(4.575748));
-        System.out.println(NumberFormatter.saveOneDecimal(4.334));
-        System.out.println(NumberFormatter.saveOneDecimal(4.854));
-//        System.out.println(DateHandler.strToLong("2017-03-10"));
+//        System.out.println(NumberFormatter.saveOneDecimal(4.575748));
+//        System.out.println(NumberFormatter.saveOneDecimal(4.334));
+//        System.out.println(NumberFormatter.saveOneDecimal(4.854));
+        System.out.println(DateHandler.strToLong("2017-02-22"));
 //        System.out.println(DateHandler.strToLong("2017-03-11"));
 //        System.out.println(DateHandler.strToLong("2017-03-10")-DateHandler.strToLong("2017-03-11"));
 //        System.out.println(DateHandler.dayToMilliSecond(1));

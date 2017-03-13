@@ -12,6 +12,8 @@
 </head>
 <body>
 <%@include file="../common/header.jsp" %>
+<%@include file="component/navigation.jsp" %>
+
 客栈管理员你好
 
 新增房间界面

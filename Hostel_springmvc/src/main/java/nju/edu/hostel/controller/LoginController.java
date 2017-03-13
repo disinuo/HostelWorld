@@ -104,7 +104,7 @@ public class LoginController {
                 session.setAttribute("hostel",hostelVO);
                 return new ModelAndView("redirect:/hostel/rooms");
             case ROLE_MANAGER:
-                return new ModelAndView("manager/index");
+                return new ModelAndView("redirect:/manager/analyse/company");
             default: return new ModelAndView("404");
         }
     }

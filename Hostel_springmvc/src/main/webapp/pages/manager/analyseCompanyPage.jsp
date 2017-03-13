@@ -12,12 +12,8 @@
 </head>
 <body>
 <%@include file="../common/header.jsp" %>
-<%@include file="component/navigation.jsp" %>
-
-客栈管理员你好
-
-修改房间界面
-
+总经理你好！
+这是查看整个公司的统计数据界面
 
 <%@include file="../common/tail.jsp" %>
 
