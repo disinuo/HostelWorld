@@ -3,6 +3,8 @@ package nju.edu.hostel.vo.output;
 import nju.edu.hostel.model.LiveBill;
 import nju.edu.hostel.model.Vip;
 import nju.edu.hostel.util.VIPState;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,9 +44,12 @@ public class VipVO {
         this.state = VIPState.strToVipState(vipEntity.getState());
     }
 
-    public static List<VipVO> entityToVO(List<LiveBill> bills){
-        //TOOD
-        return null;
+    public static List<VipVO> entityToVO(List<Vip> vips){
+        List<VipVO> ans=new ArrayList<VipVO>();
+        for (Vip vip:vips){
+            ans.add(new VipVO(vip));
+        }
+        return ans;
     }
     public int getId() {
         return id;

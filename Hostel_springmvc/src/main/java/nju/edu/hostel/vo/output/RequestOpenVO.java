@@ -18,7 +18,6 @@ public class RequestOpenVO {
     private String hostel_phone;
     private String hostel_address;
     private String hostel_name;
-
     private RequestState state;
 
     public RequestOpenVO(RequestOpen request){
@@ -27,6 +26,7 @@ public class RequestOpenVO {
         this.hostel_phone=request.getHostel().getPhone();
         this.hostel_address=request.getHostel().getAddress();
         this.hostel_name=request.getHostel().getName();
+        this.state=RequestState.strToRequestState(request.getState());
     }
 
     public static List<RequestOpenVO> entityToVO(List<RequestOpen> requests){

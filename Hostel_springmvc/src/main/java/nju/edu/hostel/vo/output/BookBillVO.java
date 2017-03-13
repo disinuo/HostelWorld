@@ -15,6 +15,7 @@ public class BookBillVO {
     private String createDate;
     private int hostelId;
     private int vipId;
+    private String vipName;
     private int roomId;
     private boolean valid;
 
@@ -45,6 +46,7 @@ public class BookBillVO {
         this.roomName=bookBillEntity.getRoom().getName();
         this.roomPrice=bookBillEntity.getRoom().getPrice();
         this.valid=bookBillEntity.isValid();
+        this.vipName=bookBillEntity.getVip().getRealName();
     }
     public int getId() {
         return id;
@@ -97,4 +99,9 @@ public class BookBillVO {
     public double getRoomPrice() {
         return roomPrice;
     }
+
+    public String getVipName() {
+        return vipName;
+    }
+
 }

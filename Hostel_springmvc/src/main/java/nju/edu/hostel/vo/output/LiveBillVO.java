@@ -18,7 +18,7 @@ public class LiveBillVO {
     private String idCard;
     private String date;
     private int hostelId;
-    private int vipId;
+    private String vipId;
     private int roomId;
     private String hostelName;
     private String hostelAddress;
@@ -35,7 +35,7 @@ public class LiveBillVO {
         this.hostelId=liveBillEntity.getHostel().getId();
         this.hostelAddress=liveBillEntity.getHostel().getAddress();
         this.hostelName=liveBillEntity.getHostel().getName();
-        this.vipId=liveBillEntity.getVip().getId();
+        this.vipId=(liveBillEntity.getVip()!=null)?(liveBillEntity.getVip().getId()+""):"-";
         this.roomId=liveBillEntity.getRoom().getId();
         this.roomImg=liveBillEntity.getRoom().getImg();
         this.roomName=liveBillEntity.getRoom().getName();
@@ -72,7 +72,7 @@ public class LiveBillVO {
         return hostelId;
     }
 
-    public int getVipId() {
+    public String getVipId() {
         return vipId;
     }
 

@@ -17,7 +17,7 @@ public class PayBillVO {
     private String userRealName;
     private String idCard;
     private int hostelId;
-    private int vipId;
+    private String vipId;
     private int roomId;
     private String hostelName;
     private String hostelAddress;
@@ -35,7 +35,7 @@ public class PayBillVO {
         this.hostelId=payBillEntity.getHostel().getId();
         this.hostelAddress=payBillEntity.getHostel().getAddress();
         this.hostelName=payBillEntity.getHostel().getName();
-        this.vipId=payBillEntity.getVip().getId();
+        this.vipId=(payBillEntity.getVip()!=null)?(payBillEntity.getVip().getId()+""):"-";
         this.roomId=payBillEntity.getRoom().getId();
         this.roomImg=payBillEntity.getRoom().getImg();
         this.roomName=payBillEntity.getRoom().getName();
@@ -76,7 +76,7 @@ public class PayBillVO {
         return hostelId;
     }
 
-    public int getVipId() {
+    public String getVipId() {
         return vipId;
     }
 

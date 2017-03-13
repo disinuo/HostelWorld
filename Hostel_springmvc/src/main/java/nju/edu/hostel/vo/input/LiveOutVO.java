@@ -47,4 +47,5 @@ public class LiveOutVO {
         this.vipId = vipId;
         this.roomId = roomId;
     }
+    public LiveOutVO(){}
 }
