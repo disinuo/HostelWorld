@@ -24,13 +24,13 @@ public class VipCommitController {
     @Autowired
     VIPService vipService;
 
-    @RequestMapping(value = "/book" ,method = RequestMethod.POST)
-    public ModelAndView book(@ModelAttribute("bookBill")BookVO bookVO,
+    @RequestMapping(value = "/book" ,method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
+    public String book(@ModelAttribute("bookBill")BookVO bookVO,
                              HttpSession session){
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
         bookVO.setVipId(user.getId());
         ResultMessage msg=vipService.book(bookVO);
-        return new ModelAndView("redirect:/vip/bookList");
+        return msg.toShow();
     }
     @RequestMapping(value = "/unbook",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
     @ResponseBody

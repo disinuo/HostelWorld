@@ -4,6 +4,7 @@ import nju.edu.hostel.dao.*;
 import nju.edu.hostel.model.*;
 import nju.edu.hostel.service.HostelService;
 import nju.edu.hostel.service.VIPService;
+import nju.edu.hostel.util.NumberFormatter;
 import nju.edu.hostel.util.RequestState;
 import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.vo.input.LiveInVO;
@@ -124,7 +125,7 @@ public class HostelServiceBean implements HostelService {
             Hostel hostel=room.getHostel();
             hostel.setMoneyUncounted(hostel.getMoneyUncounted()+moneyToPay);
             hostelDao.update(hostel);
-            return moneyToPay;
+            return NumberFormatter.saveOneDecimal(moneyToPay);
         }catch (Exception e){
             e.printStackTrace();
             return -1;

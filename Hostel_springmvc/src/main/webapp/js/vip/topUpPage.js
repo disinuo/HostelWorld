@@ -24,6 +24,7 @@ $('#topUPForm').submit(function (e) {
         data: data,
         success: function (data) {
             alert(data);
+            location.reload();
 
         },
         error:function (data) {

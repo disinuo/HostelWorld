@@ -127,7 +127,6 @@ var operateEvents = {
     },
     'click .yes_modify': function (event, value, row, index) {
         var data={id:row.id,state:'APPROVED'};
-        alert(JSON.stringify(data));
         $.ajax({
             type:'POST',
             url:'/boss/updateModifyRequest',

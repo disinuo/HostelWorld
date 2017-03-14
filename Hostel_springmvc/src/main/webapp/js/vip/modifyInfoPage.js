@@ -3,7 +3,6 @@ $('#modifyInfoForm').submit(function (e) {
         name:$('#name').val(),
         idCard:$('#idCard').val()
     };
-    alert(JSON.stringify(data));
     $.ajax({
         type:'POST',
         url:'/vip/modify',
