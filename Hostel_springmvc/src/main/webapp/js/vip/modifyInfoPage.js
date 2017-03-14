@@ -9,7 +9,6 @@ $('#modifyInfoForm').submit(function (e) {
         url:'/vip/modify',
         data:data,
         success:function (data) {
-            alert(data);
             location.reload();
         }
     })

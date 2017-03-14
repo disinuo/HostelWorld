@@ -14,7 +14,10 @@ import javax.persistence.*;
 public class RequestModify {
     private int id;
     private Hostel hostelOriginal;
-    private Hostel hostelNew;
+    private String newPhone;
+    private String newName;
+    private String newAddress;
+    private String newImg;
     private String state= RequestState.UNCHECKED.toString();
 
     @Id
@@ -26,6 +29,44 @@ public class RequestModify {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Basic
+    @Column(name = "newPhone", nullable = false)
+    public String getNewPhone() {
+        return newPhone;
+    }
+    public void setNewPhone(String newPhone) {
+        this.newPhone = newPhone;
+    }
+
+    @Basic
+    @Column(name = "newName", nullable = false)
+    public String getNewName() {
+        return newName;
+    }
+    public void setNewName(String newName) {
+        this.newName = newName;
+    }
+
+    @Basic
+    @Column(name = "newAddress", nullable = false)
+    public String getNewAddress() {
+        return newAddress;
+    }
+    public void setNewAddress(String newAddress) {
+        this.newAddress = newAddress;
+    }
+
+    @Basic
+    @Column(name = "newImg", nullable = true)
+    public String getNewImg() {
+        return newImg;
+    }
+
+    public void setNewImg(String newImg) {
+        this.newImg = newImg;
+    }
+
     @ManyToOne
     @JoinColumn(name = "hostelOriginal", referencedColumnName = "id", nullable = false)
     public Hostel getHostelOriginal() {
@@ -35,14 +76,6 @@ public class RequestModify {
         this.hostelOriginal = hostelOriginal;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "hostelNew", referencedColumnName = "id", nullable = false)
-    public Hostel getHostelNew() {
-        return hostelNew;
-    }
-    public void setHostelNew(Hostel hostelNew) {
-        this.hostelNew = hostelNew;
-    }
     @Basic
     @Column(name = "state", nullable = false)
     public String getState() {

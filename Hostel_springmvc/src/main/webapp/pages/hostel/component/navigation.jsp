@@ -25,6 +25,7 @@
                 <li><a href="/hostel/bookBills">预订记录</a></li>
                 <li><a href="/hostel/payBills">财政收入</a></li>
                 <li><a href="/hostel/liveBills">住房记录</a></li>
+                <li><a class="btn btn-primary" href="/logout">登出</a></li>
             </ul>
         </div>
     </div>

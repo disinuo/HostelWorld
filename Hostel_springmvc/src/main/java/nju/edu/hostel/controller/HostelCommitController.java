@@ -37,8 +37,9 @@ public class HostelCommitController {
     }
 
     @RequestMapping(value = "/modifyInfo",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
-    public String handlModifyRequest(HostelVO hostelVO){
-        ResultMessage msg=hostelService.update(hostelVO);
+    public String handlModifyRequest(HttpSession session,String name,String address,String phone){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        ResultMessage msg=hostelService.update(user.getId(),name,address,phone);
         return msg.toShow();
     }
 

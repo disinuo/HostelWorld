@@ -17,30 +17,27 @@
 客栈管理员你好
 改信息界面
 
-
-
 <div class="big-container">
-    <%--//TODO--%>
-    <h2>开发中。。！</h2>
-    <%--<jsp:include page="component/sideBar.jsp" flush="true"/>--%>
-    <%--<div class="main-container">--%>
-        <%--<form id="modifyRoomForm">--%>
+    <div class="col-lg-3 col-md-3 ">
+        <jsp:include page="component/sideBar.jsp" flush="true"/>
+    </div>
+    <div class="col-lg-9 clo-md-9">
+        <form id="modifyHostelInfoForm">
+            <div class="input-group input-group-sm">
+                <span class="input-group-addon">店名</span>
+                <input id="name" name="name" type="text" class="form-control" placeholder="" aria-describedby="sizing-addon3" required>
+            </div>
+            <div class="input-group input-group-sm">
+                <span class="input-group-addon">地址</span>
+                <input id="address" name="address" type="text" class="form-control" placeholder="尽量详细！~" aria-describedby="sizing-addon3" required>
+            </div>
+            <div class="input-group input-group-sm">
+                <span class="input-group-addon">电话</span>
+                <input id="phone" name="phone" type="number" class="form-control" placeholder="" aria-describedby="sizing-addon3" required>
+            </div>
 
-            <%--<div class="input-group input-group-sm">--%>
-                <%--<span class="input-group-addon">房型</span>--%>
-                <%--<input id="name" name="name" type="text" class="form-control" aria-describedby="sizing-addon3"required>--%>
-            <%--</div>--%>
-
-            <%--<div class="input-group input-group-sm">--%>
-                <%--<span class="input-group-addon">房价</span>--%>
-                <%--<input id="price" name="price" type="text" class="form-control" placeholder="" aria-describedby="sizing-addon3" required>--%>
-            <%--</div>--%>
-            <%--<div class="input-group input-group-sm">--%>
-                <%--<span class="input-group-addon">展示图</span>--%>
-                <%--<input id="img" type="file" name="file" >--%>
-            <%--</div>--%>
-            <%--<input id="btnLogin"  class="btn btn-primary" type="submit" value="保存"/>--%>
-        <%--</form>--%>
+            <input id="btnLogin"  class="btn btn-primary" type="submit" value="提交改动申请"/>
+        </form>
         <div id="msg" class="alert alert-success" role="alert"></div>
     </div>
 </div>

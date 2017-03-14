@@ -20,9 +20,13 @@ public class ManagerViewController {
         ModelAndView model=checkRole(session);         
         return model==null?( new ModelAndView("boss/countPage")):model;
     }
-    @RequestMapping(value = "/checkRequest")
-    public ModelAndView showRequestsPage(HttpSession session){
-        ModelAndView model=checkRole(session);         return model==null?( new ModelAndView("boss/requestsPage")):model;
+    @RequestMapping(value = "/checkRequestOpen")
+    public ModelAndView showRequestsOpenPage(HttpSession session){
+        ModelAndView model=checkRole(session);         return model==null?( new ModelAndView("boss/requestsOpenPage")):model;
+    }
+    @RequestMapping(value = "/checkRequestModify")
+    public ModelAndView showRequestsModifyPage(HttpSession session){
+        ModelAndView model=checkRole(session);         return model==null?( new ModelAndView("boss/requestsModifyPage")):model;
     }
     @RequestMapping(value="/analyse/hostel")
     public ModelAndView showAnalyseHostelsPage(HttpSession session){

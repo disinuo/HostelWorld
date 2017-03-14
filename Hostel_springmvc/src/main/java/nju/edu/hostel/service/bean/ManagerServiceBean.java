@@ -45,7 +45,7 @@ public class ManagerServiceBean implements ManagerService {
     public ResultMessage updateOpenRequest(int requestId,String requestState){
         RequestState state=RequestState.strToRequestState(requestState);
         RequestOpen request=requestDao.getOpenRequest(requestId);
-        request.setState(state.toString());
+        request.setState(requestState);
         if(state==RequestState.DENIED){//拒绝申请
             return requestDao.updateOpenRequest(request);
         }else if(state==RequestState.APPROVED){//同意申请
@@ -64,12 +64,18 @@ public class ManagerServiceBean implements ManagerService {
     }
     @Override
     public ResultMessage updateModifyRequest(int requestId,String requestState){
+        System.out.print("in service ---modifyRequest id="+requestId+"  "+requestState);
         RequestState state=RequestState.strToRequestState(requestState);
         RequestModify request=requestDao.getModifyRequest(requestId);
+        request.setState(requestState);
         if(state==RequestState.DENIED){//拒绝修改请求
             return requestDao.updateModifyRequest(request);
         }else if(state==RequestState.APPROVED){//同意修改请求
-            ResultMessage msg1=hostelDao.update(request.getHostelNew());
+            Hostel hostel=request.getHostelOriginal();
+            hostel.setAddress(request.getNewAddress());
+            hostel.setPhone(request.getNewPhone());
+            hostel.setName(request.getNewName());
+            ResultMessage msg1=hostelDao.update(hostel);
             ResultMessage msg2=requestDao.updateModifyRequest(request);
             if(msg1==ResultMessage.SUCCESS&&msg2==ResultMessage.SUCCESS){
                 return ResultMessage.SUCCESS;

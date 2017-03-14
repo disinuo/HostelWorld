@@ -69,18 +69,21 @@ public class HostelServiceBean implements HostelService {
     }
 
     @Override
-    public ResultMessage update(HostelVO hostelVO) {
-        //TODO 这里有问题，Request表只能存当前存在的hostel。。
-//        // 是否考虑新建一个存储hostel临时信息的表
-//        RequestModify requestModify=new RequestModify();
-//        requestModify.setHostelOriginal(getById(hostel.getId()));
-//        requestModify.setHostelNew(hostel);
-//        try {
-//            requestDao.addModifyRequest(requestModify);
-//        }catch (Exception e){
-//            e.printStackTrace();
-//            return ResultMessage.FAILURE;
-//        }
+    public ResultMessage update(int id,String name,String address,String phone) {
+        System.out.println("in service updateHostelInfo  ");
+        System.out.print(id+" "+name+" "+address+" "+phone);
+        //TODO 待测试
+        RequestModify requestModify=new RequestModify();
+        requestModify.setNewAddress(address);
+        requestModify.setNewName(name);
+        requestModify.setNewPhone(phone);
+        requestModify.setHostelOriginal(hostelDao.get(id));
+        try {
+            requestDao.addModifyRequest(requestModify);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResultMessage.FAILURE;
+        }
         return ResultMessage.SUCCESS;
 //        return hostelDao.update(hostel);
     }

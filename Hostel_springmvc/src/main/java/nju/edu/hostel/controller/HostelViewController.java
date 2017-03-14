@@ -30,7 +30,7 @@ public class HostelViewController {
         ModelAndView model=checkRole(session);
         return model==null?(new ModelAndView("hostel/roomListPage")):model;
     }
-    @RequestMapping(value = "/modifyInfo")
+    @RequestMapping(value = "/modifyInfo",method = RequestMethod.GET)
     public ModelAndView showUpdatePage(HttpSession session){
         ModelAndView model=checkRole(session);
         return model==null?(new ModelAndView("hostel/modifyInfoPage")):model;

@@ -23,10 +23,11 @@ public class ManagerCommitController {
 
     @RequestMapping(value = "/updateOpenRequest",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
     public String updateOpenRequest(int id,String state){
+        System.out.print("in manager commit controller-----id= "+id+" state="+state);
         ResultMessage msg=managerService.updateOpenRequest(id,state);
         return msg.toShow();
     }
-    @RequestMapping(value = "/updateModifyRequest",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
+    @RequestMapping(value = "/updateModifyRequest")//,method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
     public String updateModifyRequest(int id,String state){
         ResultMessage msg=managerService.updateModifyRequest(id,state);
         return msg.toShow();

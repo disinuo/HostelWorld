@@ -14,8 +14,6 @@
 <%@include file="../common/header.jsp" %>
 <%@include file="component/navigation.jsp" %>
 
-客栈管理员你好
-新建【离店单】界面
 
 <div class="big-container">
     <div class="col-lg-3 col-md-3 ">

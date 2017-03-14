@@ -24,7 +24,8 @@
                 <li><a href="/boss/analyse/hostel">客栈情况</a></li>
                 <li><a href="/boss/analyse/vip">会员情况</a></li>
                 <li><a href="/boss/count">结算</a></li>
-                <li><a href="/boss/checkRequest">查看申请</a></li>
+                <li><a href="/boss/checkRequestOpen">查看申请</a></li>
+                <li><a class="btn btn-primary" href="/logout">登出</a></li>
             </ul>
         </div>
     </div>

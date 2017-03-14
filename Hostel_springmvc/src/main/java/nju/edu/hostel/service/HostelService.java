@@ -52,10 +52,10 @@ public interface HostelService {
      * 修改客栈的基本信息
      * 改完并没有保存，而是向总经理提交申请
      * 总经理同意店信息才会更新
-     * @param hostelVO
+     * @param
      * @return SUCCESS,FAILURE
      */
-    public ResultMessage update(HostelVO hostelVO);
+    public ResultMessage update(int id,String name,String address,String phone);
 
     /**
      * 登记住户的结账

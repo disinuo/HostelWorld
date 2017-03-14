@@ -32,10 +32,10 @@ public class RequestModifyVO {
         this.address_original=requestModify.getHostelOriginal().getAddress();
         this.name_original=requestModify.getHostelOriginal().getName();
 
-        this.img_new=requestModify.getHostelNew().getImg();
-        this.phone_new=requestModify.getHostelNew().getPhone();
-        this.address_new=requestModify.getHostelNew().getAddress();
-        this.name_new=requestModify.getHostelNew().getName();
+        this.img_new=requestModify.getNewImg();
+        this.phone_new=requestModify.getNewPhone();
+        this.address_new=requestModify.getNewAddress();
+        this.name_new=requestModify.getNewName();
         this.state=RequestState.strToRequestState(requestModify.getState());
     }
 

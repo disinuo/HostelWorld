@@ -3,6 +3,7 @@ body{
     /*background-repeat:space;*/
     background-size:100%;
 }
+a:link{color:#383838}
 .choice-container{
     margin-bottom: -20px!important;
 }
