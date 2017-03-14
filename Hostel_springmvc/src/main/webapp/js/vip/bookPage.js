@@ -7,7 +7,6 @@ $(document).ready(function () {
    init();
 });
 $('#form').submit(function (e) {
-    alert($('#liveInDate').val());
     var url = "/vip/book"; // the script where you handle the form input.
     var data={
         liveInDate:$('#liveInDate').val(),
@@ -21,8 +20,8 @@ $('#form').submit(function (e) {
         // data: $("#idForm").serialize(),
         data: data, // serializes the form's elements.
         success: function(data) {
-            $('#msg').html(data);
-            $('#msg').show();
+            $('#msg-book').html(data);
+            $('#msg-book').show();
             setTimeout(function () {
                 location.replace('/vip/bookList');
             },1000)

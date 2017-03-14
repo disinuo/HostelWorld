@@ -58,7 +58,7 @@
         </div>
 
     </div>
-    <div id="msg" class="msg alert alert-success " role="alert"></div>
+    <div id="msg-book" class="msg alert alert-success " role="alert"></div>
 </div>
 
 

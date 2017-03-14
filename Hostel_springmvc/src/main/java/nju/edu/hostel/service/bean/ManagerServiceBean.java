@@ -45,7 +45,7 @@ public class ManagerServiceBean implements ManagerService {
     public ResultMessage updateOpenRequest(int requestId,String requestState){
         RequestState state=RequestState.strToRequestState(requestState);
         RequestOpen request=requestDao.getOpenRequest(requestId);
-
+        request.setState(state.toString());
         if(state==RequestState.DENIED){//拒绝申请
             return requestDao.updateOpenRequest(request);
         }else if(state==RequestState.APPROVED){//同意申请

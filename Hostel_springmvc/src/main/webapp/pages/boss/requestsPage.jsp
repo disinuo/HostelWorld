@@ -14,10 +14,18 @@
 <%@include file="../common/header.jsp" %>
 <%@include file="component/navigation.jsp" %>
 
-总经理你好！
-这是客栈发来的请求的界面
+
+<div class="big-container ">
+    <div class="col-lg-9 col-md-9">
+        <table id="requestTable" class="col-lg-9 table table-striped">
+        </table>
+    </div>
+
+</div>
+
 
 <%@include file="../common/tail.jsp" %>
+<script type="text/javascript" src="../../js/manager/requestPage.js"></script>
 
 
 </body>

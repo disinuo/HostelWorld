@@ -13,7 +13,7 @@ import java.util.List;
 
 public class RequestOpenVO {
     private int id;
-
+    private int hostel_id;
     private String hostel_img;
     private String hostel_phone;
     private String hostel_address;
@@ -22,6 +22,7 @@ public class RequestOpenVO {
 
     public RequestOpenVO(RequestOpen request){
         this.id=request.getId();
+        this.hostel_id=request.getHostel().getId();
         this.hostel_img=request.getHostel().getImg();
         this.hostel_phone=request.getHostel().getPhone();
         this.hostel_address=request.getHostel().getAddress();
