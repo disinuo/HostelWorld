@@ -111,6 +111,8 @@ public interface VIPService {
      */
     public List<BookBill> getAllBookBills(int vipId);
 
+    public List<BookBill> getValidBookBills(int vipId);
+
     /**
      * 获取本人消费数据
      比如

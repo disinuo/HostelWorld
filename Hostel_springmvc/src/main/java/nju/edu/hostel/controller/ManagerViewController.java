@@ -33,7 +33,11 @@ public class ManagerViewController {
     }
     @RequestMapping(value="/analyse/hostel/liveBills")
     public ModelAndView showAnalyseHostelsLiveBillsPage(){
-        return new ModelAndView("boss/hostelLiveBillsPage");
+        return new ModelAndView("boss/hostelDetailPage");
+    }
+    @RequestMapping(value="/analyse/vip/detail")
+    public ModelAndView showAnalyseVipsDetailPage(){
+        return new ModelAndView("boss/vipDetailPage");
     }
 
 

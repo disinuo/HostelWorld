@@ -15,7 +15,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static nju.edu.hostel.util.Constants.*;
 
@@ -176,7 +178,13 @@ public class VIPServiceBean implements VIPService{
     public List<BookBill> getAllBookBills(int vipId) {
         return bookBillDao.getByRestrictEqual("vip.id",vipId);
     }
-
+    @Override
+    public List<BookBill> getValidBookBills(int vipId){
+        Map map=new HashMap<String,Object>();
+        map.put("vip.id",vipId);
+        map.put("valid",true);
+        return bookBillDao.getByRestrictEqual(map);
+    }
     @Override
     public List<PayBill> getAllPayBills(int vipId) {
         return payBillDao.getByRestrictEqual("vip.id",vipId);

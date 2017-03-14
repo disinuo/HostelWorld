@@ -23,6 +23,8 @@ public class ManagerDataController {
     ManagerService managerService;
     @Autowired
     HostelService hostelService;
+    @Autowired
+    VIPService vipService;
 
     @RequestMapping(value = "/getOpenRequests")
     public List<RequestOpenVO> getOpenRequests(){
@@ -44,8 +46,18 @@ public class ManagerDataController {
     public List<LiveBillVO> getHostelLveList(int hostelId){
         return LiveBillVO.entityToVO(hostelService.getAllLiveBills(hostelId));
     }
-    @RequestMapping(value="hostel/getLiveInNum")
+    @RequestMapping(value="/hostel/getLiveInNum")
     public int getHostelLiveNumber(int hostelId){
         return hostelService.getLiveInNum(hostelId);
     }
+
+    @RequestMapping(value = "/vip/getPayList")
+    public List<PayBillVO> getPayList(int vipId){
+        return PayBillVO.entityToVO(vipService.getAllPayBills(vipId));
+    }
+    @RequestMapping(value = "/vip/getBookList")
+    public List<BookBillVO> getBookList(int vipId){
+        return BookBillVO.entityToVO(vipService.getValidBookBills(vipId));
+    }
+
 }

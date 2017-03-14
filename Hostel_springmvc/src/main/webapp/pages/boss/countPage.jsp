@@ -13,17 +13,29 @@
 <body>
 <%@include file="../common/header.jsp" %>
 <%@include file="component/navigation.jsp" %>
-<div id="information">
 
 
-
+<div class="big-container ">
+    <div class="col-lg-9 col-md-9">
+        <table id="moneyTable" class="col-lg-9 table table-striped">
+        </table>
+    </div>
+    <div class="col-lg-3 col-md-3 main-container">
+        <h2>总计：<b id="total"></b>元</h2>
+        <form id="countForm">
+            <br><br><br><br><br><br><br><br><br>
+            请输入密码：
+            <input type="password" id="bankPassword" required="true"/>
+            <input type="submit" class="btn btn-primary" value="全部结算">
+        </form>
+    </div>
 </div>
 
-<form id="countForm">
-    <input type="submit" value="结算">
-</form>
+
+
 
 <%@include file="../common/tail.jsp" %>
+<script type="text/javascript" src="../../js/manager/countPage.js"></script>
 
 
 </body>

@@ -6,11 +6,6 @@ $(document).ready(function () {
 });
 
 function getHostelList() {
-    $.ajax({
-        url:'/data/boss/getHostelList',
-        success:function (data) {
-        }
-    });
     $('#mytable').bootstrapTable({
         url: '/data/boss/getHostelList',
         columns: [{
