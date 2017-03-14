@@ -37,15 +37,18 @@ public class UserServiceBean implements UserService {
             try {
                 userId=vipDao.add(vip);
             }catch (Exception e){
+                e.printStackTrace();
                 return ResultMessage.FAILURE;
             }
         }
         else if(c==Hostel.class){
             Hostel hostel=new Hostel();
             hostel.setName(userName);
+            System.out.print("service---在注册客栈！"+hostel.getName());
             try {
                 userId=hostelDao.add(hostel);
             }catch (Exception e){
+                e.printStackTrace();
                 return ResultMessage.FAILURE;
             }
         }
@@ -59,6 +62,7 @@ public class UserServiceBean implements UserService {
             userDao.add(user);
 
         }catch (Exception e){
+            e.printStackTrace();
             return ResultMessage.FAILURE;
         }
         return ResultMessage.SUCCESS;

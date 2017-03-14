@@ -14,7 +14,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
+
+import static nju.edu.hostel.util.Constants.ROLE_VIP;
 
 /**
  * Created by disinuo on 17/3/5.
@@ -31,50 +34,52 @@ public class VipViewController {
     UserDao userDao;
 
     @RequestMapping(value = "/hostels")
-    public ModelAndView showHostels(@ModelAttribute("user") OnLineUserVO user,
-                                    ModelMap model){
-        return new ModelAndView("vip/hostelListPage");
+    public ModelAndView showHostels(HttpSession session){
+         ModelAndView model=checkRole(session);         return model==null?( new ModelAndView("vip/hostelListPage")):model;
     }
 
     @RequestMapping(value = "/rooms")
-    public ModelAndView showValidRooms(){
-        return new ModelAndView("vip/hostelDetailPage");
+    public ModelAndView showValidRooms(HttpSession session){
+         ModelAndView model=checkRole(session);         return model==null?( new ModelAndView("vip/hostelDetailPage")):model;
     }
 
     @RequestMapping(value = "/bookList")
-    public ModelAndView showBookList(){
-        return new ModelAndView("vip/bookListPage");
+    public ModelAndView showBookList(HttpSession session){
+         ModelAndView model=checkRole(session);         return model==null?( new ModelAndView("vip/bookListPage")):model;
     }
 
     @RequestMapping(value = "/payList")
-    public ModelAndView showPayList(){
-//        int id=vipVO.getId();
-//        List<PayBill> payBills=vipService.getAllPayBills(id);
-//        model.addAttribute("payBills",payBills);
-        return new ModelAndView("vip/payListPage");
+    public ModelAndView showPayList(HttpSession session){
+         ModelAndView model=checkRole(session);         return model==null?( new ModelAndView("vip/payListPage")):model;
     }
     @RequestMapping(value = "/liveList")
-    public ModelAndView showLiveList(){
-//        List<LiveBill> liveBills=vipService.getAllLiveBills(vipVO.getId());
-//        model.addAttribute("liveBills",liveBills);
-        return new ModelAndView("vip/liveListPage");
+    public ModelAndView showLiveList(HttpSession session){
+         ModelAndView model=checkRole(session);         return model==null?( new ModelAndView("vip/liveListPage")):model;
     }
     @RequestMapping(value = "/book" ,method = RequestMethod.GET)
-    public ModelAndView showBookPage(){
-        return new ModelAndView("vip/bookPage");
+    public ModelAndView showBookPage(HttpSession session){
+         ModelAndView model=checkRole(session);         return model==null?( new ModelAndView("vip/bookPage")):model;
     }
 
     @RequestMapping(value = "/topUp",method = RequestMethod.GET)
-    public ModelAndView showTopUpPage(){
-        return new ModelAndView("vip/topUpPage");
+    public ModelAndView showTopUpPage(HttpSession session){
+         ModelAndView model=checkRole(session);         return model==null?( new ModelAndView("vip/topUpPage")):model;
     }
     @RequestMapping(value = "/modify",method = RequestMethod.GET)
-    public ModelAndView showModifyInfoPage(){
-        return new ModelAndView("vip/modifyInfoPage");
+    public ModelAndView showModifyInfoPage(HttpSession session){
+         ModelAndView model=checkRole(session);         return model==null?( new ModelAndView("vip/modifyInfoPage")):model;
     }
     @RequestMapping(value = "/convert",method = RequestMethod.GET)
-    public ModelAndView showConvertScoreToMoneyPage(){
-        return new ModelAndView("vip/convertScorePage");
+    public ModelAndView showConvertScoreToMoneyPage(HttpSession session){
+         ModelAndView model=checkRole(session);         return model==null?( new ModelAndView("vip/convertScorePage")):model;
     }
 
+    public ModelAndView checkRole(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO) session.getAttribute("user");
+        if(user==null||!user.getType().equals(ROLE_VIP)){
+            return new ModelAndView("redirect:/login");
+        }else{
+            return null;
+        }
+    }
 }
