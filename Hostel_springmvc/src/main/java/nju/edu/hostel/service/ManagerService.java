@@ -2,10 +2,13 @@ package nju.edu.hostel.service;
 import nju.edu.hostel.model.*;
 
 import nju.edu.hostel.util.ResultMessage;
+import nju.edu.hostel.vo.output.IncomeVO;
+import nju.edu.hostel.vo.output.LiveInNumVO;
 import nju.edu.hostel.vo.output.RequestModifyVO;
 import nju.edu.hostel.vo.output.RequestOpenVO;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by disinuo on 17/3/2.
@@ -63,4 +66,16 @@ public interface ManagerService {
      * 包含了每个会员的住店、预订、消费的所有记录
      */
     public List<Vip> getAllVips();
+
+    /**
+     * 获取所有客栈的收入金额
+     * @return
+     */
+    public List<IncomeVO> getHostelIncomes();
+
+    /**
+     * 获取所有客栈的住店人数
+     * @return
+     */
+    public List<LiveInNumVO> getLiveInNums();
 }

@@ -16,14 +16,14 @@
 
 
 <div class="big-container ">
-    <div class="col-lg-6 col-md-6 ">
+    <div class="col-lg-12 col-md-12 ">
         <table id="mytable" class="table table-striped">
         </table>
     </div>
-    <div id="tableContainer" class="col-lg-6 clo-md-6">
-        <table id="liveInTable" class="table table-striped">
-        </table>
-    </div>
+    <%--<div id="tableContainer" class="col-lg-6 clo-md-6">--%>
+        <%--<table id="liveInTable" class="table table-striped">--%>
+        <%--</table>--%>
+    <%--</div>--%>
 </div>
 
 <%@include file="../common/tail.jsp" %>

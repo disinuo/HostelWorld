@@ -249,7 +249,7 @@ public class HostelServiceBean implements HostelService {
         for(PayBill payBill:payBills){
             total+=payBill.getMoney();
         }
-        return total;
+        return NumberFormatter.saveOneDecimal(total);
     }
 
     @Override

@@ -150,7 +150,7 @@ public class UserController {
                 session.setAttribute("hostel",hostelVO);
                 return new ModelAndView("redirect:/hostel/rooms");
             case ROLE_MANAGER:
-                return new ModelAndView("redirect:/boss/analyse/hostel");
+                return new ModelAndView("redirect:/boss/analyse/company");
             default: return new ModelAndView("404");
         }
     }

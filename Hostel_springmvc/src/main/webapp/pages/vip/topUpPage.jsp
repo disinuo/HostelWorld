@@ -41,7 +41,7 @@
             </select>
             <label >密码</label>
             <input type="password" id="bankPassword" required="true"/>
-            <input type="submit" value="充值"/>
+            <input class="btn btn-primary" type="submit" value="充值"/>
         </form>
     </div>
     <div id="msg" class="msg alert alert-success " role="alert"></div>

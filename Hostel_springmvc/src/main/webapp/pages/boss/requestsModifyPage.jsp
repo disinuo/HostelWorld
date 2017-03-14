@@ -16,10 +16,10 @@
 
 
 <div class="big-container ">
-    <div class="col-lg-3 col-md-3">
+    <div class="col-lg-2 col-md-2">
         <%@include file="component/sideBar.jsp" %>
     </div>
-    <div class="col-lg-9 col-md-9">
+    <div class="col-lg-10 col-md-10">
         <h3>店信息修改申请</h3>
         <table id="requestModifyTable" class="col-lg-9 table table-striped">
         </table>

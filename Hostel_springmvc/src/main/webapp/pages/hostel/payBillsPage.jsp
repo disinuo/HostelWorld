@@ -22,7 +22,7 @@
     </div>
     <div class="col-lg-9 clo-md-9">
 
-        <h2>总收入：<span id="income" class="label label-success"></span>
+        <h2>总收入：<span id="value" class="label label-success"></span>
         </h2>
         <table id="table" class="col-lg-9 table table-striped">
         </table>

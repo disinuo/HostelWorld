@@ -15,10 +15,11 @@
 <%@include file="component/navigation.jsp" %>
 
 <div class="big-container ">
-    <div class="col-lg-9 col-md-9">
-        <table id="table" class="col-lg-9 table table-striped">
+    <div class="col-lg-12 col-md-12">
+        <table id="table" class=" table table-striped">
         </table>
     </div>
+
 </div>
 
 

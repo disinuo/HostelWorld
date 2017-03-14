@@ -105,7 +105,7 @@ public class HostelDataController {
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
         int id=user.getId();
         double ans=hostelService.getIncome(id);
-        System.out.print("In CONTROLLER ! getIncome= "+ans);
+        System.out.print("In CONTROLLER ! getValue= "+ans);
         return ans+"";
     }
 }

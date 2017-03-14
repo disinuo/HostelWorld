@@ -10,7 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by disinuo on 17/3/13.
@@ -60,4 +63,14 @@ public class ManagerDataController {
         return BookBillVO.entityToVO(vipService.getValidBookBills(vipId));
     }
 
+    @RequestMapping(value = "/getHostelsIncome")
+    public List<IncomeVO> getIncomes(){
+        List<IncomeVO> ans=managerService.getHostelIncomes();
+        System.out.print("in manager data controller : "+ans.size());
+        return ans;
+    }
+    @RequestMapping(value = "/getHostelsLiveInNum")
+    public List<LiveInNumVO> getLiveIns(){
+        return managerService.getLiveInNums();
+    }
 }

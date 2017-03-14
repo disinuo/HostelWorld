@@ -7,13 +7,16 @@ import nju.edu.hostel.service.UserService;
 import nju.edu.hostel.util.RequestState;
 import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.model.*;
-import nju.edu.hostel.vo.output.RequestModifyVO;
-import nju.edu.hostel.vo.output.RequestOpenVO;
+import nju.edu.hostel.vo.output.IncomeVO;
+import nju.edu.hostel.vo.output.LiveInNumVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -126,6 +129,32 @@ public class ManagerServiceBean implements ManagerService {
             return ResultMessage.SUCCESS;
         }
 
+    }
+    @Override
+    public List<IncomeVO> getHostelIncomes(){
+        List<IncomeVO> ans=new ArrayList<IncomeVO>();
+        List<Hostel> hostels=getAllPermittedHostels();
+        for(Hostel hostel:hostels){
+            double income=hostelService.getIncome(hostel.getId());
+            IncomeVO incomeVO=new IncomeVO();
+            incomeVO.setValue(income);
+            incomeVO.setName(hostel.getName());
+            incomeVO.setHostelId(hostel.getId());
+            ans.add(incomeVO);
+        }
+        return ans;
+    }
+    @Override
+    public List<LiveInNumVO> getLiveInNums(){
+        List<LiveInNumVO> ans=new ArrayList<LiveInNumVO>();
+        List<Hostel> hostels=getAllPermittedHostels();
+        for(Hostel hostel:hostels){
+           LiveInNumVO vo=new LiveInNumVO();
+           vo.setName(hostel.getName());
+           vo.setY(hostelService.getLiveInNum(hostel.getId()));
+           ans.add(vo);
+        }
+        return ans;
     }
 
 
