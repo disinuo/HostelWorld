@@ -24,13 +24,15 @@ function init() {
 }
 $('#modifyRoomForm').submit(function (e) {
     e.preventDefault(); // avoid to execute the actual submit of the form.
+    var data={name:$('#name').val(),
+                price:$('#price').val(),
+                img:$('#img').val(),
+                roomId:id
+            };
     $.ajax({
         type:'POST',
         url:'/hostel/modifyRoom',
-        data:{name:$('#name').val(),
-            price:$('#price').val(),
-            img:$('#img').val()
-        },
+        data:data,
         success:function (data) {
             $('#msg').html(data);
         }

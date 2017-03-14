@@ -218,10 +218,13 @@ public class HostelServiceBean implements HostelService {
 
     }
     @Override
-    public ResultMessage updateRoom(int hostelId, RoomVO_input roomVO) {
+    public ResultMessage updateRoom(int roomId, RoomVO_input roomVO) {
 //        TODO updateRoom!!!!
-        return ResultMessage.SUCCESS;
-//        return roomDao.update(room);
+        Room room=roomDao.get(roomId);
+        room.setName(roomVO.getName());
+        room.setImg(roomVO.getImg());
+        room.setPrice(roomVO.getPrice());
+        return roomDao.update(room);
     }
     @Override
     public ResultMessage invalidateRoom(int roomId){

@@ -81,9 +81,9 @@ public class HostelCommitController {
         return msg.toShow();
     }
     @RequestMapping(value = "/modifyRoom",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
-    public String modifyRoom(RoomVO_input roomVO, HttpSession session){
+    public String modifyRoom(RoomVO_input roomVO, int roomId,HttpSession session){
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
-        ResultMessage msg=hostelService.updateRoom(user.getId(),roomVO);
+        ResultMessage msg=hostelService.updateRoom(roomId,roomVO);
         return msg.toShow();
     }
     @RequestMapping(value = "/invalidateRoom",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")

@@ -122,11 +122,11 @@ public interface HostelService {
 
     /**
      * 客栈更新房间计划（包括将该房间置为不可用，就是下架~），只能更新自己客栈的房间计划
-     * @param hostelId
+     * @param roomId
      * @param roomVO
      * @return SUCCESS,FAILURE
      */
-    public ResultMessage updateRoom(int hostelId, RoomVO_input roomVO);
+    public ResultMessage updateRoom(int roomId, RoomVO_input roomVO);
 
     /**
      * 下市一个房间
