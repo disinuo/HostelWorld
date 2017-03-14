@@ -53,9 +53,11 @@ body,div{
     display: none;
 }
 .self-info-container{
-    padding: 20px 40px 0 40px;
+    padding: 20px 20px 0 40px;
     height:100%;
-    background-color:#f9c44f;
+    background-color:#2b4252;
+    color: #fff;
+    opacity: 0.9;
 }
 /*.vip-self-panel{*/
     /*margin-left: -30px;*/

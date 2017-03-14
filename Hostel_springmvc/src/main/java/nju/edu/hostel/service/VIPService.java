@@ -68,11 +68,11 @@ public interface VIPService {
 
     /**
      *修改会员的基本信息
-     * @param vip
+     * @param id,name,idCard
      * @return FAILURE,SUCCESS
      * //TODO 可能要细化接口
      */
-    public ResultMessage update(Vip vip);
+    public ResultMessage update(int id,String name,String idCard);
 
     /**
      * 会员预订房间（可能会余额不足），

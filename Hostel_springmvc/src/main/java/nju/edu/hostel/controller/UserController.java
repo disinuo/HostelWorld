@@ -40,10 +40,8 @@ public class UserController {
     ManagerService managerService;
     @RequestMapping(value = "/logout")
     public ModelAndView logout(HttpSession session){
-        //TODO 现在是假的注销！
-        session.removeAttribute("vip");
         session.removeAttribute("user");
-        return new ModelAndView("login","command",new UserVO());
+        return new ModelAndView("redirect:/login");
     }
     @RequestMapping(value = "/login",method=RequestMethod.GET)
     public ModelAndView showLoginPage( ModelMap model) {
@@ -51,7 +49,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ModelAndView handleLoginRequest(HttpSession session,HttpServletResponse response,UserVO userVO){
+    public ModelAndView handleLoginRequest(HttpSession session,UserVO userVO){
         String name=userVO.getUserName();
         String password=userVO.getPassword();
         ResultMessage msg=userService.checkUser(name,password);
@@ -143,10 +141,7 @@ public class UserController {
         int id=user.getId();
         switch (user.getType()){
             case ROLE_VIP:
-                vipService.init(id);//TODO 这个方法没测试过
-                Vip vip=vipService.getById(id);
-                VipVO vipVO=new VipVO(vip);
-                session.setAttribute("vip",vipVO);
+                vipService.init(id);
                 return new ModelAndView("redirect:/vip/hostels");
             case ROLE_HOSTEL:
                 ResultMessage initMsg=hostelService.init(id);

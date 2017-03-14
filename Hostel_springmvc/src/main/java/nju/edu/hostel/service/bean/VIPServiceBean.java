@@ -117,7 +117,10 @@ public class VIPServiceBean implements VIPService{
     }
 
     @Override
-    public ResultMessage update(Vip vip) {
+    public ResultMessage update(int id,String name,String idCard){
+        Vip vip=vipDao.get(id);
+        vip.setRealName(name);
+        vip.setIdCard(idCard);
         return vipDao.update(vip);
     }
 

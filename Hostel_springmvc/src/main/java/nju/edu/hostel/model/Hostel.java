@@ -17,7 +17,7 @@ public class Hostel {
     private boolean permitted=false;
     private String img;
     private String phone="66668888";
-    private String address;
+    private String address="默认地址";
     private String name;
     private double moneyUncounted;
     private List<BookBill> bookBills;

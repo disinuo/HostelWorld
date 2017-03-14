@@ -23,6 +23,7 @@
                 <li><a href="/vip/bookList">我的预订</a></li>
                 <li><a href="/vip/payList">我的消费</a></li>
                 <li><a href="/vip/liveList">住房记录</a></li>
+                <li><a class="btn btn-primary" href="/logout">登出</a></li>
             </ul>
         </div>
     </div>

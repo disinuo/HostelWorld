@@ -14,6 +14,9 @@
         <i class="glyphicon glyphicon-user"></i>名字：<span id="vip_info_name"></span>
     </div>
     <div class="vip-self-li">
+        <i class="glyphicon glyphicon-user"></i>身份证：<span id="vip_info_idCard"></span>
+    </div>
+    <div class="vip-self-li">
         <i class="glyphicon glyphicon-yen"></i>余额：<span id="vip_info_moneyLeft"></span>元
     </div>
     <div class="vip-self-li">
