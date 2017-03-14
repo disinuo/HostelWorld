@@ -27,7 +27,7 @@ public class ManagerCommitController {
         ResultMessage msg=managerService.updateOpenRequest(id,state);
         return msg.toShow();
     }
-    @RequestMapping(value = "/updateModifyRequest")//,method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
+    @RequestMapping(value = "/updateModifyRequest",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
     public String updateModifyRequest(int id,String state){
         ResultMessage msg=managerService.updateModifyRequest(id,state);
         return msg.toShow();

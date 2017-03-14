@@ -79,6 +79,7 @@ public class HostelServiceBean implements HostelService {
         requestModify.setNewPhone(phone);
         requestModify.setHostelOriginal(hostelDao.get(id));
         try {
+
             requestDao.addModifyRequest(requestModify);
         }catch (Exception e){
             e.printStackTrace();
