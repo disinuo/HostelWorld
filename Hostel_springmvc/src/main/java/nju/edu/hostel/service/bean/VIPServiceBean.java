@@ -29,7 +29,6 @@ import static nju.edu.hostel.util.Constants.*;
 public class VIPServiceBean implements VIPService{
     @Override
     public void init(int vipId){
-        //TODO 写完了 但是没测试
         Vip vip=getById(vipId);
         VIPState vipState=VIPState.strToVipState(vip.getState());
         if(vipState==VIPState.UNACTIVATED||vipState==VIPState.STOP){

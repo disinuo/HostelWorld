@@ -47,7 +47,7 @@ public class UserController {
     }
     @RequestMapping(value = "/login",method=RequestMethod.GET)
     public ModelAndView showLoginPage( ModelMap model) {
-        return new ModelAndView("login","user",new UserVO());
+        return new ModelAndView("login");
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -101,18 +101,29 @@ public class UserController {
 
     @RequestMapping(value="/register",method = RequestMethod.GET)
     public ModelAndView showRegisterPage(ModelMap model){
-        return new ModelAndView("register","user",new UserVO());
+        return new ModelAndView("register");
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ModelAndView handleRegisterRequest (@ModelAttribute("user") UserVO userVO, RedirectAttributes attr, ModelMap model){
-        ResultMessage rmsg=userService.register(userVO.getUserName(),userVO.getPassword());
+    @RequestMapping(value = "/registerVIP", method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String handleRegisterVIPRequest (@ModelAttribute("user") UserVO userVO, RedirectAttributes attr, ModelMap model){
+        System.out.println("Registering vip! "+userVO.getUserName());
+        ResultMessage rmsg=userService.registerVIP(userVO.getUserName(),userVO.getPassword());
+        System.out.println(" "+rmsg);
         if(rmsg==ResultMessage.FAILURE) {
-            System.out.println("注册失败");
-            return new ModelAndView("404");
+            return "注册失败";
         }else {
-            model.addAttribute("message",rmsg.toShow());
-            return new ModelAndView("register");
+            return rmsg.toShow();
+        }
+    }
+    @RequestMapping(value = "/registerHostel", method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String handleRegisterHostelRequest (@ModelAttribute("user") UserVO userVO, RedirectAttributes attr, ModelMap model){
+        ResultMessage rmsg=userService.registerHostel(userVO.getUserName(),userVO.getPassword());
+        if(rmsg==ResultMessage.FAILURE) {
+           return "注册失败";
+        }else {
+            return rmsg.toShow();
         }
     }
 

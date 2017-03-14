@@ -3,6 +3,7 @@
  */
 $(document).ready(function () {
     initInfo();
+
 })
 
 $('#selfPanel_stopCardBtn').click(function () {
@@ -33,10 +34,20 @@ function initInfo() {
             $('#vip_info_score').html(data.score);
             $('#vip_info_moneyPaid').html(data.moneyPaid);
             $('#vip_info_state').html(data.stateStr);
+            if(data.state=="STOP"){
+                $('#selfPanel_stopCardBtn').hide();
+                $('#topupBtn').attr('disabled','disabled');
+                $('#toConvertScoreBtn').attr('disabled','disabled');
+            }
         }
     })
 }
-
+$('#topupBtn').click(function () {
+    location.replace('/vip/topUp');
+});
+$('#toConvertScoreBtn').click(function () {
+    location.replace('/vip/convert');
+})
 /*
  private int id;
  private String realName;

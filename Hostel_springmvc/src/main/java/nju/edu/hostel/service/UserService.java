@@ -24,7 +24,9 @@ public interface UserService {
      * @param password
      * @return DUPLICATE_NAME,FAILURE,SUCCESS
      */
-    public ResultMessage register(String userName, String password);
+    public ResultMessage registerVIP(String userName, String password);
+
+    public ResultMessage registerHostel(String userName,String password);
 
     /**
      * 系统删除用户，包括会员、旅馆分店

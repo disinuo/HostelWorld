@@ -38,7 +38,9 @@ public class VipCommitController {
     @RequestMapping(value = "/topUp",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String topUp(@ModelAttribute("vip") VipVO vipVO, TopUpVO topUpVO){
+        System.out.println("在充值！ money="+topUpVO.getMoney()+" 密码是 "+topUpVO.getBankPassword());
         ResultMessage resMssg=vipService.topUp(topUpVO.getMoney(),vipVO.getId(),topUpVO.getBankPassword());
+        System.out.println(resMssg);
         return resMssg.toShow();
     }
     @RequestMapping(value = "/stopCard",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")

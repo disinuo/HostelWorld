@@ -12,24 +12,25 @@ function init() {
 
     });
 }
-$('#form').submit(function () {
+$('#topUPForm').submit(function (e) {
     var data = {
         money: $("#money_select").val(),
         bankPassword: $('#bankPassword').val()
     };
+
     $.ajax({
         type:'POST',
         url: "/vip/topUp",
         data: data,
         success: function (data) {
             alert(data);
-            $('#msg').html(data);
-            $('#msg').show();
-            // setTimeout(function () {
-            //     location.reload();
-            // },1000)
+
+        },
+        error:function (data) {
+            console.log(JSON.stringify(data));
+
         }
     });
-    // e.preventDefault(); // avoid to execute the actual submit of the form.
+    e.preventDefault(); // avoid to execute the actual submit of the form.
 
 });

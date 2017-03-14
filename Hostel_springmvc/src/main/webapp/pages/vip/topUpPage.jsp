@@ -26,7 +26,7 @@
             <h5>您的会员卡余额为：</h5>
             <div id="moneyLeft"></div>
         </div>
-        <form  id="form">
+        <form  id="topUPForm">
             <label>请选择金额</label>
             <select id="money_select">
                 <option>50</option>

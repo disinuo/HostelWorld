@@ -64,8 +64,12 @@ public class UserServiceBean implements UserService {
         return ResultMessage.SUCCESS;
     }
     @Override
-    public ResultMessage register(String userName, String password){
+    public ResultMessage registerVIP(String userName, String password){
         return register(Vip.class,userName,password);
+    }
+    @Override
+    public ResultMessage registerHostel(String userName,String password){
+        return register(Hostel.class,userName,password);
     }
     @Override
     public ResultMessage delete(int userId) {

@@ -32,9 +32,9 @@
     <%--${onlineUser.userName}--%>
 
 
-    <button class="btn btn-default"><a href="/vip/topUp">充值</a></button>
-    <button class="btn btn-default"><a href="/vip/convert">积分换钱</a></button><br><br><br>
-    <button class="btn btn-default" id="selfPanel_stopCardBtn">停卡</button>
+    <button class="btn btn-primary" id="topupBtn">充值</button>
+    <button class="btn btn-primary" id="toConvertScoreBtn">积分换钱</button><br><br><br>
+    <button class="btn btn-danger" id="selfPanel_stopCardBtn">停卡</button>
 
     <%--<a class="close" data-dismiss="alert" href="#">&times;</a>--%>
 </div>
