@@ -12,8 +12,10 @@
 </head>
 <body>
 <%@include file="../common/header.jsp" %>
+<%@include file="component/navigation.jsp" %>
+
 总经理你好！
-这是结算界面
+这是查看所有会员的统计数据界面
 
 <%@include file="../common/tail.jsp" %>
 

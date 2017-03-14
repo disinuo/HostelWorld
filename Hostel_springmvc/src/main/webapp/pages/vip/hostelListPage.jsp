@@ -17,16 +17,22 @@
 <%@include file="../common/header.jsp" %>
 <%@include file="component/navigation.jsp" %>
 <div class="big-container">
-    <jsp:include page="component/selfPanel.jsp" flush="true"/>
-    <%--<div class="table-responsive">--%>
-        <table id="table" class="col-lg-9 table table-striped">
+    <div class="col-lg-3 col-md-3 vip-self-panel">
+        <jsp:include page="component/selfPanel.jsp" flush="true"/>
+    </div>
+    <div class="col-lg-9 clo-md-8">
+        <table id="table" class="table table-striped">
         </table>
-    <%--</div>--%>
+    </div>
 </div>
 
 
 
+
+
 <%@include file="../common/tail.jsp" %>
+<%@include file="component/vipTail.jsp"%>
+
 <script type="text/javascript" src="../../js/vip/hostelListPage.js"></script>
 </body>
 </html>

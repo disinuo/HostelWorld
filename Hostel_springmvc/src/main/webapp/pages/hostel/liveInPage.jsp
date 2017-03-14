@@ -17,8 +17,10 @@
 客栈管理员你好
 新建【入住单】界面
 <div class="big-container">
+    <div class="col-lg-3 col-md-3 ">
     <jsp:include page="component/sideBar.jsp" flush="true"/>
-    <div class="main-container">
+    </div>
+    <div class="col-lg-9 clo-md-9">
         <form id="liveInForm">
             <div class="input-group input-group-sm">
                 <span class="input-group-addon">住户姓名</span>
@@ -44,6 +46,8 @@
 
 
 <%@include file="../common/tail.jsp" %>
+<%@include file="component/hostelTail.jsp"%>
+
 <script type="text/javascript" src="../../js/hostel/liveInPage.js"></script>
 
 

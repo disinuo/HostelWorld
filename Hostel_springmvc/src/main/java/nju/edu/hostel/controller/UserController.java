@@ -9,23 +9,27 @@ import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.vo.output.HostelVO;
 import nju.edu.hostel.vo.output.OnLineUserVO;
 import nju.edu.hostel.vo.input.UserVO;
+import nju.edu.hostel.vo.output.UserVO_output;
 import nju.edu.hostel.vo.output.VipVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import java.awt.*;
 
 import static nju.edu.hostel.util.Constants.*;
 /**
  * Created by disinuo on 17/3/4.
  */
 @Controller
-@RequestMapping(value = "",produces = "text/html;charset=UTF-8")
-public class LoginController {
+@RequestMapping(value = "")
+public class UserController {
     @Autowired
     UserService userService;
     @Autowired
@@ -65,7 +69,7 @@ public class LoginController {
             return roleToHomePage(session,onLineUserVO);
         }
     }
-    @RequestMapping(value = "/checkUser" )//,method = RequestMethod.POST)
+    @RequestMapping(value = "/checkUser" ,produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String checkUser(HttpServletResponse response, String name){
         System.out.println("in /checkUser post");
@@ -73,7 +77,7 @@ public class LoginController {
         System.out.println(msg);
         return msg.toShow();
     }
-    @RequestMapping(value = "/checkPassword",method = RequestMethod.POST)
+    @RequestMapping(value = "/checkPassword",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String checkPassword(UserVO userVO){
         System.out.println("in /checkPassword post");
@@ -86,6 +90,42 @@ public class LoginController {
         System.out.println(msg);
         return msg.toShow();
     }
+    @RequestMapping("")
+    public ModelAndView showMainPage(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO) session.getAttribute("user");
+        if(user==null) return new ModelAndView("redirect:/login");
+        else {
+            return roleToHomePage(session,user);
+        }
+    }
+
+    @RequestMapping(value="/register",method = RequestMethod.GET)
+    public ModelAndView showRegisterPage(ModelMap model){
+        return new ModelAndView("register","user",new UserVO());
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public ModelAndView handleRegisterRequest (@ModelAttribute("user") UserVO userVO, RedirectAttributes attr, ModelMap model){
+        ResultMessage rmsg=userService.register(userVO.getUserName(),userVO.getPassword());
+        if(rmsg==ResultMessage.FAILURE) {
+            System.out.println("注册失败");
+            return new ModelAndView("404");
+        }else {
+            model.addAttribute("message",rmsg.toShow());
+            return new ModelAndView("register");
+        }
+    }
+
+    @RequestMapping(value = "/user/getInfo")
+    @ResponseBody
+    public UserVO_output getUserInfo(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        System.out.println("in User controller!!! userMoney= "+userService.getById(id).getBankMoney());
+        return new UserVO_output(userService.getById(id));
+    }
+
+
 
 
     public  ModelAndView roleToHomePage(HttpSession session,OnLineUserVO user){
@@ -104,7 +144,7 @@ public class LoginController {
                 session.setAttribute("hostel",hostelVO);
                 return new ModelAndView("redirect:/hostel/rooms");
             case ROLE_MANAGER:
-                return new ModelAndView("redirect:/manager/analyse/company");
+                return new ModelAndView("redirect:/boss/analyse/hostel");
             default: return new ModelAndView("404");
         }
     }

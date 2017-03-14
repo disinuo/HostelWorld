@@ -47,5 +47,7 @@ function dateAdder(date,n) {
     // return uom;
 
     return new Date(date-0+n*86400000);
-
 }
+$('.msg').click(function () {
+    this.style.display='none';
+})

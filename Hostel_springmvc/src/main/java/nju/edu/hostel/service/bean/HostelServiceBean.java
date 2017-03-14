@@ -215,8 +215,14 @@ public class HostelServiceBean implements HostelService {
     @Override
     public ResultMessage updateRoom(int hostelId, RoomVO_input roomVO) {
 //        TODO updateRoom!!!!
-        return null;
+        return ResultMessage.SUCCESS;
 //        return roomDao.update(room);
+    }
+    @Override
+    public ResultMessage invalidateRoom(int roomId){
+        Room room=roomDao.get(roomId);
+        room.setValid(false);
+        return roomDao.update(room);
     }
     @Override
     public List<BookBill> getAllBookBills(int hostelId) {
@@ -242,7 +248,13 @@ public class HostelServiceBean implements HostelService {
     public List<LiveBill> getAllLiveBills(int hostelId) {
         return liveBillDao.getByRestrictEqual("hostel.id",hostelId);
     }
-
+    @Override
+    public int getLiveInNum(int hostelId){
+        Map map=new HashMap<String,Object>();
+        map.put("hostel.id",hostelId);
+        map.put("type",true);
+        return liveBillDao.getByRestrictEqual(map).size();
+    }
     @Override
     public List<Room> getAllRooms(int hostelId){
         return getById(hostelId).getRooms();

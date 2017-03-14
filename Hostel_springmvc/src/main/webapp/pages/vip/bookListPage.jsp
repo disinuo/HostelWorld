@@ -14,19 +14,21 @@
 <body>
 <%@include file="../common/header.jsp" %>
 <%@include file="component/navigation.jsp" %>
-
-
-<h3>预订记录</h3>
-<div id="msg"></div>
-<div class="table-responsive">
-    <table id="table" class="table table-striped">
-    </table>
+<div class="big-container ">
+    <div class="col-lg-3 col-md-3 col-vip-self-panel">
+        <jsp:include page="component/selfPanel.jsp" flush="true"/>
+    </div>
+    <div class="col-lg-9 col-md-9">
+        <table id="table" class="table table-striped">
+        </table>
+    </div>
+    <div id="msg" class="msg alert alert-success " role="alert"></div>
 </div>
-<jsp:include page="component/selfPanel.jsp" flush="true"/>
-
 
 
 <%@include file="../common/tail.jsp" %>
+<%@include file="component/vipTail.jsp"%>
+
 <script type="text/javascript" src="../../js/vip/bookListPage.js"></script>
 </body>
 </html>

@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class Room {
     private int id;
     private double price=299;
-    private String img;
+    private String img="/../img/hostel001.jpg";
     private boolean valid=true;
     private String name;
     private Hostel hostel;

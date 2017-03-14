@@ -20,6 +20,7 @@ public class VipVO {
     private int level;
     private double score;
     private VIPState state;
+    private String stateStr;
 
     public VipVO(int id, String realName, String idCard, String avatar, double moneyLeft, double moneyPaid, int level, double score, VIPState state) {
         this.id = id;
@@ -31,6 +32,7 @@ public class VipVO {
         this.level = level;
         this.score = score;
         this.state = state;
+        this.stateStr=state.toChineseString();
     }
     public VipVO(Vip vipEntity){
         this.id = vipEntity.getId();
@@ -121,5 +123,8 @@ public class VipVO {
 
     public void setState(VIPState state) {
         this.state = state;
+    }
+    public String getStateStr(){
+        return state.toChineseString();
     }
 }

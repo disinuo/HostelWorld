@@ -12,9 +12,9 @@
     <link type="text/css" rel="stylesheet" href="../../css/common.css"/>
 </head>
 <body>
-<div class="header">
-    我是Header！~~~~~~~~~~
-</div>
+<%--<div class="header">--%>
+    <%--我是Header！~~~~~~~~~~--%>
+<%--</div>--%>
 
 </body>
 </html>

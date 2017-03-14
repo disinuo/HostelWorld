@@ -32,6 +32,10 @@ function getRoomList() {
             align: 'center',
             formatter: stateFormatter,
 
+        },{
+            field:'',
+            formatter:operateFormatter,
+            events:eventHandler
         }],
     });
 }
@@ -40,19 +44,47 @@ function stateFormatter(value,row,index) {
     else return '<span class="label label-default">已下市</span>';
 }
 function operateFormatter(value, row, index) {
-    return [
-        '<a href="/vip/rooms?hostelId=',
-        row.id,
-        '">',
-        value,
-        '</a>'
+    if(row.valid){
+        // return [
+        //     '<a href="/hostel/modifyRoom?roomId=',
+        //     row.id,
+        //     '" class="modify">',
+        //     '<i class="glyphicon glyphicon-pencil"></i></a>        ',
+        //     '<a class="delete" href="#" >',
+        //     '<i class="glyphicon glyphicon-trash"></i></a>'
+        // ].join('');
+        return [
+            '<button type="button" class="modify btn btn-primary">',
+            '<i class="glyphicon glyphicon-pencil"></i></button>        ',
+            '<button type="button" class="delete btn btn-primary ">',
+            '<i class="glyphicon glyphicon-trash"></i></button>'
         ].join('');
-    // return [
-    //     '<a class="like" href="javascript:void(0)" title="Like">',
-    //     '<i class="glyphicon glyphicon-heart"></i>',
-    //     '</a>  ',
-    //     '<a class="remove" href="javascript:void(0)" title="Remove">',
-    //     '<i class="glyphicon glyphicon-remove"></i>',
-    //     '</a>'
-    // ].join('');
+    }else {
+        return [
+            '<button type="button" class="btn btn-default disabled">',
+            '<i class="glyphicon glyphicon-pencil"></i></button>        ',
+            '<button type="button" class="btn btn-default disabled">',
+            '<i class="glyphicon glyphicon-trash"></i></button>'
+        ].join('');
+    }
+
+}
+var eventHandler={
+    'click .delete':function (event, value, row, index){
+        var ans=confirm("确定要让这个房间下市吗");
+        if(ans){
+            $.ajax({
+                type:'POST',
+                url:'/hostel/invalidateRoom',
+                data:{roomId:row.id},
+                success:function (data) {
+                    // alert(data);
+                    location.reload();
+                }
+            });
+        }
+    },
+    'click .modify':function (event,value,row,index) {
+        location.replace('/hostel/modifyRoom?roomId='+row.id);
+    }
 }

@@ -12,8 +12,16 @@
 </head>
 <body>
 <%@include file="../common/header.jsp" %>
-总经理你好！
-这是查看所有会员的统计数据界面
+<%@include file="component/navigation.jsp" %>
+<div id="information">
+
+
+
+</div>
+
+<form id="countForm">
+    <input type="submit" value="结算">
+</form>
 
 <%@include file="../common/tail.jsp" %>
 

@@ -14,22 +14,24 @@
 <%@include file="../common/header.jsp" %>
 <%@include file="component/navigation.jsp" %>
 
-客栈管理员你好
-所有账单界面
-<div class="big-container">
-    <jsp:include page="component/sideBar.jsp" flush="true"/>
-    <%--<div class="table-responsive">--%>
-    <table id="table" class="col-lg-9 table table-striped">
-    </table>
-    <div>
-        <h4>总收入</h4>
-        <div id="income"></div>
+
+
+<div class="big-container ">
+    <div class="col-lg-3 col-md-3 ">
+        <jsp:include page="component/sideBar.jsp" flush="true"/>
     </div>
-    <%--</div>--%>
+    <div class="col-lg-9 clo-md-9">
+
+        <h2>总收入：<span id="income" class="label label-success"></span>
+        </h2>
+        <table id="table" class="col-lg-9 table table-striped">
+        </table>
+    </div>
 </div>
 
 
 <%@include file="../common/tail.jsp" %>
+<%@include file="component/hostelTail.jsp"%>
 <script type="text/javascript" src="../../js/hostel/payBillsPage.js"></script>
 
 </body>

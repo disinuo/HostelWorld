@@ -5,7 +5,7 @@ package nju.edu.hostel.vo.input;
  */
 public class RoomVO_input {
     private double price=299;
-    private String img;
+    private String img="/../img/hostel002.jpg";
     private String name;
 
     public RoomVO_input(double price, String img, String name) {

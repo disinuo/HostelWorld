@@ -11,22 +11,26 @@
 <head>
     <%@include file="../common/head.jsp" %>
 </head>
+
+
 <body>
 <%@include file="../common/header.jsp" %>
 <%@include file="component/navigation.jsp" %>
-
-
-<h3>住店记录</h3>
-<div class="table-responsive">
-    <table id="table" class="table table-striped">
-    </table>
+<div class="big-container">
+    <div class="col-lg-3 col-md-3 vip-self-panel">
+        <jsp:include page="component/selfPanel.jsp" flush="true"/>
+    </div>
+    <div class="col-lg-9 clo-md-9">
+        <table id="table" class="table table-striped">
+        </table>
+    </div>
 </div>
-<jsp:include page="component/selfPanel.jsp" flush="true"/>
-
 
 
 
 <%@include file="../common/tail.jsp" %>
+<%@include file="component/vipTail.jsp"%>
+
 <script type="text/javascript" src="../../js/vip/liveListPage.js"></script>
 </body>
 </html>

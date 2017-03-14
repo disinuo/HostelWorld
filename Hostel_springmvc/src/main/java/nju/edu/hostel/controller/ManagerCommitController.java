@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
  * Created by disinuo on 17/3/13.
  */
 @Controller
-@RequestMapping("/manager")
+@RequestMapping("/boss")
 @ResponseBody
 public class ManagerCommitController {
     @Autowired

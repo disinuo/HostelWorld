@@ -12,23 +12,23 @@
 </head>
 <body>
 <%@include file="../common/header.jsp" %>
-<%@include file="component/navigation.jsp" %>
+<jsp:include page="component/navigation.jsp" ><jsp:param name="valid" value='呵呵哈哈哈' /></jsp:include>
 
-客栈管理员你好
-房间列表界面
-<div class="big-container">
-    <jsp:include page="component/sideBar.jsp" flush="true"/>
-    <%--<div class="table-responsive">--%>
-    <table id="table" class="col-lg-9 table table-striped">
-    </table>
-    <%--</div>--%>
+
+<div class="big-container ">
+    <div class="col-lg-3 col-md-3 ">
+        <jsp:include page="component/sideBar.jsp" flush="true"/>
+    </div>
+    <div class="col-lg-9 clo-md-9">
+        <table id="table" class="col-lg-9 table table-striped">
+        </table>
+    </div>
 </div>
 
 
-
-
-
 <%@include file="../common/tail.jsp" %>
+<%@include file="component/hostelTail.jsp"%>
+
 <script type="text/javascript" src="../../js/hostel/roomListPage.js"></script>
 
 

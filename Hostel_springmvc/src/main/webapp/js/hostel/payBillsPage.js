@@ -41,7 +41,6 @@ function getTotalIncome() {
     $.ajax({
         url:'/data/hostel/getIncome',
         success:function (data) {
-            alert(data);
             $('#income').html(data+"元");
         },
     })

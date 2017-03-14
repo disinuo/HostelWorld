@@ -11,20 +11,20 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation </span>
+                <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">HostelWorld | 客栈</a>
+            <a class="navbar-brand" href="/">HostelWorld | 总经理</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li>${valid}</li>
-                <li class="active"><a href="/hostel/rooms">所有房间</a></li>
-                <li><a href="/hostel/bookBills">预订记录</a></li>
-                <li><a href="/hostel/payBills">财政收入</a></li>
-                <li><a href="/hostel/liveBills">住房记录</a></li>
+                <li class="active"><a href="/boss/analyse/company">公司情况</a></li>
+                <li><a href="/boss/analyse/hostel">客栈情况</a></li>
+                <li><a href="/boss/analyse/vip">会员情况</a></li>
+                <li><a href="/boss/count">结算</a></li>
+                <li><a href="/boss/checkRequest">查看申请</a></li>
             </ul>
         </div>
     </div>

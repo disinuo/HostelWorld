@@ -13,15 +13,26 @@
 <body>
 <%@include file="../common/header.jsp" %>
 <%@include file="component/navigation.jsp" %>
-<h3>修改个人信息界面</h3>
-<jsp:include page="component/selfPanel.jsp" flush="true"/>
 
 
-
-
+<div class="big-container ">
+    <div class="col-lg-3 col-md-3 col-vip-self-panel">
+        <jsp:include page="component/selfPanel.jsp" flush="true"/>
+    </div>
+    <div class="col-lg-9 clo-md-9">
+        <h3>修改个人信息界面</h3>
+        <h5>开发中。。。</h5>
+        <%--<form id="convertScoreForm">--%>
+            <%--<input id="score" type="number" placeholder="积分换钱啦！~~" required>--%>
+            <%--<input type="submit" class="btn btn-primary" value="兑换"/>--%>
+        <%--</form>--%>
+    </div>
+</div>
+<div id="message" class="msg alert alert-success " role="alert"></div>
 
 
 <%@include file="../common/tail.jsp" %>
+<%@include file="component/vipTail.jsp"%>
 <script type="text/javascript" src="../../js/vip/modifyInfoPage.js"></script>
 
 </body>

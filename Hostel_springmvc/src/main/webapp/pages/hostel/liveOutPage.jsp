@@ -18,9 +18,11 @@
 新建【离店单】界面
 
 <div class="big-container">
+    <div class="col-lg-3 col-md-3 ">
     <jsp:include page="component/sideBar.jsp" flush="true"/>
-    <div class="main-container">
-        <form id="liveOutForm">
+    </div>
+    <div class="col-lg-9 clo-md-9">
+         <form id="liveOutForm">
             <div class="input-group input-group-sm">
                 <span class="input-group-addon">住户姓名</span>
                 <input id="userRealName" name="userRealName" type="text" class="form-control" placeholder="真实的名字~" aria-describedby="sizing-addon3" required>
@@ -45,6 +47,8 @@
 
 
 <%@include file="../common/tail.jsp" %>
+<%@include file="component/hostelTail.jsp"%>
+
 <script type="text/javascript" src="../../js/hostel/liveOutPage.js"></script>
 
 

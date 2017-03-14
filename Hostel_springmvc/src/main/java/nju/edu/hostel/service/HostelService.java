@@ -129,6 +129,12 @@ public interface HostelService {
     public ResultMessage updateRoom(int hostelId, RoomVO_input roomVO);
 
     /**
+     * 下市一个房间
+     * @param roomId
+     * @return
+     */
+    public ResultMessage invalidateRoom(int roomId);
+    /**
      * 获取本店预订数据，包括预订和取消预订
      比如
      vip01 2016-12-02 预订 标间 入住时间2016-12-10
@@ -168,6 +174,8 @@ public interface HostelService {
      * @return
      */
     public List<LiveBill> getAllLiveBills(int hostelId);
+
+    public int getLiveInNum(int hostelId);
 
     /**
      * 得到该客栈的所有房间

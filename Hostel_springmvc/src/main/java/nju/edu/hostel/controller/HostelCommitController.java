@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
@@ -31,6 +32,7 @@ public class HostelCommitController {
     public String handleOpenRequest(HttpSession session){
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
         ResultMessage msg=hostelService.requestManager(user.getId());
+        System.out.print("in /requestManager "+msg);
         return msg.toShow();
     }
 
@@ -81,6 +83,12 @@ public class HostelCommitController {
     public String modifyRoom(RoomVO_input roomVO, HttpSession session){
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
         ResultMessage msg=hostelService.updateRoom(user.getId(),roomVO);
+        return msg.toShow();
+    }
+    @RequestMapping(value = "/invalidateRoom",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
+    public String invalidateRoom(@RequestParam("roomId") int roomId, HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        ResultMessage msg=hostelService.invalidateRoom(roomId);
         return msg.toShow();
     }
 

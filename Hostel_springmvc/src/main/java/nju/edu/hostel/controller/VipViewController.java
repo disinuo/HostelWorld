@@ -68,7 +68,7 @@ public class VipViewController {
     public ModelAndView showTopUpPage(){
         return new ModelAndView("vip/topUpPage");
     }
-    @RequestMapping(value = "/update",method = RequestMethod.GET)
+    @RequestMapping(value = "/modify",method = RequestMethod.GET)
     public ModelAndView showModifyInfoPage(){
         return new ModelAndView("vip/modifyInfoPage");
     }

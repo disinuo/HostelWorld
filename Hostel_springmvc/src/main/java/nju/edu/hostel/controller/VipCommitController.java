@@ -36,16 +36,10 @@ public class VipCommitController {
          return vipService.unbook(vipVO.getId(),bookListId).toShow();
     }
     @RequestMapping(value = "/topUp",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
-    public ModelAndView topUp(@ModelAttribute("vip") VipVO vipVO,
-                              ModelMap model,
-                          TopUpVO topUpVO){
+    @ResponseBody
+    public String topUp(@ModelAttribute("vip") VipVO vipVO, TopUpVO topUpVO){
         ResultMessage resMssg=vipService.topUp(topUpVO.getMoney(),vipVO.getId(),topUpVO.getBankPassword());
-        if(resMssg==ResultMessage.SUCCESS){
-           model.addAttribute("message","充值成功");
-        }else {
-            model.addAttribute("message",resMssg.toShow());
-        }
-        return new ModelAndView("vip/topUpPage");
+        return resMssg.toShow();
     }
     @RequestMapping(value = "/stopCard",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
     @ResponseBody

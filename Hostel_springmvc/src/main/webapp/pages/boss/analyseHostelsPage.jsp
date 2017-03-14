@@ -14,22 +14,20 @@
 <%@include file="../common/header.jsp" %>
 <%@include file="component/navigation.jsp" %>
 
-客栈管理员你好
-所有住店、离店的记录界面
+
 <div class="big-container ">
-    <div class="col-lg-3 col-md-3 ">
-        <jsp:include page="component/sideBar.jsp" flush="true"/>
+    <div class="col-lg-6 col-md-6 ">
+        <table id="mytable" class="table table-striped">
+        </table>
     </div>
-    <div class="col-lg-9 clo-md-9">
-        <table id="table" class="col-lg-9 table table-striped">
+    <div id="tableContainer" class="col-lg-6 clo-md-6">
+        <table id="liveInTable" class="table table-striped">
         </table>
     </div>
 </div>
 
 <%@include file="../common/tail.jsp" %>
-<%@include file="component/hostelTail.jsp"%>
 
-<script type="text/javascript" src="../../js/hostel/liveBillsPage.js"></script>
-
+<script type="text/javascript" src="../../js/manager/analyseHostelsPage.js"></script>
 </body>
 </html>

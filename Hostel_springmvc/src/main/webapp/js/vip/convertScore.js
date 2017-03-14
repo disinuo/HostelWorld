@@ -22,15 +22,18 @@ function init() {
         }
     })
 }
-$('#converseBtn').click(function () {
+$('#convertScoreForm').submit(function () {
     var scoreToConvert=$('#score').val();
     $.ajax({
         type:'POST',
         url:'/vip/convert',
         data:{score:scoreToConvert},
         success:function (msg) {
+            alert(msg);
             $('#message').html(msg);
-            location.reload();
+            setTimeout(function(){
+                location.reload();
+            },1000);
         }
 
 

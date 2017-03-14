@@ -18,8 +18,10 @@
 新建账单界面
 
 <div class="big-container">
-    <jsp:include page="component/sideBar.jsp" flush="true"/>
-    <div class="main-container">
+    <div class="col-lg-3 col-md-3 ">
+        <jsp:include page="component/sideBar.jsp" flush="true"/>
+    </div>
+    <div class="col-lg-9 clo-md-9">
         <form id="enrollPayForm">
             <div class="input-group input-group-sm">
                 <span class="input-group-addon">住户姓名</span>
@@ -37,6 +39,10 @@
                 <span class="input-group-addon">房间编号</span>
                 <input id="roomId" name="roomId" type="text" class="form-control" placeholder="" aria-describedby="sizing-addon3" required>
             </div>
+            <div class="input-group input-group-sm">
+                <span class="input-group-addon">金额</span>
+                <input id="money" name="money" type="text" class="form-control" placeholder="" aria-describedby="sizing-addon3" required>
+            </div>
             <input id="btnLogin"  class="btn btn-primary" type="submit" value="保存"/>
         </form>
         <div id="msg" class="alert alert-success" role="alert"></div>
@@ -45,11 +51,9 @@
 
 
 <%@include file="../common/tail.jsp" %>
+<%@include file="component/hostelTail.jsp"%>
+
 <script type="text/javascript" src="../../js/hostel/enrollPayPage.js"></script>
-
-
-
-<%@include file="../common/tail.jsp" %>
 
 
 </body>
