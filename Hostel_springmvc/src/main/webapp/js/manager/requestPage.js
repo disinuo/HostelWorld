@@ -55,7 +55,6 @@ function getRequestModifyList(){
             field: 'phone_original',
             title: '原电话',
             align: 'center',
-            formatter:imgFormatter
         },{
             field: 'img_original',
             title: '客栈概览',
