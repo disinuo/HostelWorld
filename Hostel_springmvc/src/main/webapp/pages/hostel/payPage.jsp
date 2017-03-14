@@ -32,7 +32,7 @@
 
             <div class="input-group input-group-sm">
                 <span class="input-group-addon">金额</span>
-                <input id="money" name="money" type="text" class="form-control" placeholder="" aria-describedby="sizing-addon3" required>
+                <input id="money" name="money" type="number" class="form-control" placeholder="" aria-describedby="sizing-addon3" required>
             </div>
             <input id="btnLogin"  class="btn btn-primary" type="submit" value="保存"/>
         </form>

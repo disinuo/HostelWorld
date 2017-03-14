@@ -29,19 +29,19 @@
             </div>
             <div class="input-group input-group-sm">
                 <span class="input-group-addon">住户身份证号</span>
-                <input id="idCard" name="idCard" type="text" class="form-control" placeholder="18位哦" aria-describedby="sizing-addon3" required>
+                <input id="idCard" name="idCard" type="number" class="form-control" placeholder="18位哦" aria-describedby="sizing-addon3" required>
             </div>
             <div class="input-group input-group-sm">
                 <span class="input-group-addon">会员编号</span>
-                <input id="vipId" name="vipId" type="text" class="form-control" placeholder="不是会员的话不用填" aria-describedby="sizing-addon3">
+                <input id="vipId" name="vipId" type="number" class="form-control" placeholder="不是会员的话不用填" aria-describedby="sizing-addon3">
             </div>
             <div class="input-group input-group-sm">
                 <span class="input-group-addon">房间编号</span>
-                <input id="roomId" name="roomId" type="text" class="form-control" placeholder="" aria-describedby="sizing-addon3" required>
+                <input id="roomId" name="roomId" type="number" class="form-control" placeholder="" aria-describedby="sizing-addon3" required>
             </div>
             <div class="input-group input-group-sm">
                 <span class="input-group-addon">金额</span>
-                <input id="money" name="money" type="text" class="form-control" placeholder="" aria-describedby="sizing-addon3" required>
+                <input id="money" name="money" type="number" class="form-control" placeholder="" aria-describedby="sizing-addon3" required>
             </div>
             <input id="btnLogin"  class="btn btn-primary" type="submit" value="保存"/>
         </form>

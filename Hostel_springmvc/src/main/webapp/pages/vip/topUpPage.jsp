@@ -29,12 +29,15 @@
         <form  id="topUPForm">
             <label>请选择金额</label>
             <select id="money_select">
+                <option>300</option>
                 <option>50</option>
                 <option>100</option>
                 <option>200</option>
-                <option>300</option>
                 <option>500</option>
                 <option>1000</option>
+                <option>2000</option>
+                <option>3000</option>
+                <option>5000</option>
             </select>
             <label >密码</label>
             <input type="password" id="bankPassword" required="true"/>

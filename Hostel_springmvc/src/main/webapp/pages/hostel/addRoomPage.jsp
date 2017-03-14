@@ -32,7 +32,7 @@
 
             <div class="input-group input-group-sm">
                 <span class="input-group-addon">房价</span>
-                <input id="price" name="price" type="text" class="form-control" placeholder="" aria-describedby="sizing-addon3" required>
+                <input id="price" name="price" type="number" class="form-control" placeholder="" aria-describedby="sizing-addon3" required>
             </div>
             <div class="input-group input-group-sm">
                 <span class="input-group-addon">展示图</span>
