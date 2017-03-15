@@ -14,6 +14,7 @@ $(document).ready(function () {
     $.ajax({
         url:'/data/hostel/getInfo',
         success:function (data) {
+            $('#hostel_info_id').html(data.id);
             $('#hostel_info_name').html(data.name);
             $('#hostel_info_address').html(data.address);
             $('#hostel_info_phone').html(data.phone);

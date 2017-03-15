@@ -16,7 +16,7 @@
 </head>
 <body>
 <%@include file="common/header.jsp" %>
-<div class="title">Hostel World</div>
+<div class="title" ><a href="/">Hostel World</a></div>
 
 <div  class="middle">
     <form id="registerForm" >

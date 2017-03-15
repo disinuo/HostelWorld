@@ -37,7 +37,28 @@
 //         },
 //     });
 // });
+$('loginForm').submit(function (e) {
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+    var data={
+        userName:$('#userName').val(),
+        password:$('#password').val()
+    };
+    $.ajax({
+        type:'POST',
+        url:'/checkUser',
+        data:$('#userName').val(),
+        success:function (data) {
+            if(data=='SUCCESS'){
+                $.ajax({})
+            }else {
+                alert(data);
+            }
+        }
 
+    })
+
+
+})
 $('#registerForm').submit(function (e) {
     var role=$('input:radio:checked').val();
     var data={

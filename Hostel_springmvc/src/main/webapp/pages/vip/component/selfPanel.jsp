@@ -11,13 +11,16 @@
     <img class="vip-avatar" src="/../img/head.jpg" alt="头像">
     <a href="/vip/modify"><i class="glyphicon glyphicon-pencil"></i></a>
     <div class="vip-self-li">
+        <i class="glyphicon glyphicon-asterisk"></i>编号：<span id="vip_info_id"></span>
+    </div>
+    <div class="vip-self-li">
         <i class="glyphicon glyphicon-user"></i>名字：<span id="vip_info_name"></span>
     </div>
     <div class="vip-self-li">
-        <i class="glyphicon glyphicon-user"></i>身份证：<span id="vip_info_idCard"></span>
+        <i class="glyphicon glyphicon-credit-card"></i> 身份证：<span id="vip_info_idCard"></span>
     </div>
     <div class="vip-self-li">
-        <i class="glyphicon glyphicon-yen"></i>余额：<span id="vip_info_moneyLeft"></span>元
+        <i class="glyphicon glyphicon-yen"></i>余额：<span class="label label-warning" id="vip_info_moneyLeft"></span>元
     </div>
     <div class="vip-self-li">
         <i class="glyphicon glyphicon-pawn"></i>等级：<span id="vip_info_level"></span>

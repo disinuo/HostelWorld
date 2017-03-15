@@ -32,10 +32,10 @@
         </span>
             <span id="passwordMsg" class="help-inline"></span>
         </div>
-    <div class="btn-container ">
-        <input id="btnLogin"  class="btn-large btn btn-primary" type="submit" value="登录"/>
-        <a class="btn btn-default" href="/register" >去注册</a>
-    </div>
+        <div class="btn-container ">
+            <input id="btnLogin"  class="btn-large btn btn-primary" type="submit" value="登录"/>
+            <a class="btn btn-default" href="/register" >去注册</a>
+        </div>
 
     </form>
 

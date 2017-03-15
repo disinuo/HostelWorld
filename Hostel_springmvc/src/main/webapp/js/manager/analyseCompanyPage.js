@@ -50,7 +50,7 @@ $.ajax({
                 type: 'pie'
             },
             title: {
-                text: '总收入为'+total.toFixed(1)
+                text: '总收入为'+total.toFixed(1)+'元'
             },
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -106,7 +106,7 @@ $.ajax({
                 type: 'pie'
             },
             title: {
-                text: '总入住人数为'+total
+                text: '总入住人数为'+total+'人'
             },
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'

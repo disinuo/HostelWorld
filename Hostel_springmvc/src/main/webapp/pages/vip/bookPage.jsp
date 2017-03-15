@@ -11,6 +11,8 @@
 <html>
 <head>
     <%@include file="../common/head.jsp" %>
+    <link type="text/css" rel="stylesheet" href="../../css/bookPage.css"/>
+
 </head>
 
 <body>
@@ -63,7 +65,8 @@
 
 
 <%@include file="../common/tail.jsp" %>
+<%@include file="component/vipTail.jsp"%>
+
 <script type="text/javascript" src="../../js/vip/bookPage.js"></script>
-<link type="text/css" rel="stylesheet" href="../../css/bookPage.css"/>
 </body>
 </html>
