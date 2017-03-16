@@ -20,15 +20,10 @@ $('#form').submit(function (e) {
         // data: $("#idForm").serialize(),
         data: data, // serializes the form's elements.
         success: function(data) {
-            $('#msg-book').html(data);
-            $('#msg-book').show();
-            setTimeout(function () {
-                location.replace('/vip/bookList');
-            },1000)
+            alert(data);
+            location.replace('/vip/bookList');
         },
-        error:function (data) {
-            alert('ERROR!!!: '+JSON.stringify(data));
-        }
+
     });
 
     e.preventDefault(); // avoid to execute the actual submit of the form.

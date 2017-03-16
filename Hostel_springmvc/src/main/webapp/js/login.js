@@ -63,27 +63,32 @@ $('#registerForm').submit(function (e) {
     var role=$('input:radio:checked').val();
     var data={
         userName:$('#userName').val(),
-        password:$('#password').val()
+        password:$('#password').val(),
         };
-    if(role=='vip'){
-        $.ajax({
-            type:'POST',
-            url:'/registerVIP',
-            data:data,
-            success:function (data) {
-                alert(data);
-            }
-        });
-    }else{
-        $.ajax({
-            type:'POST',
-            url:'/registerHostel',
-            data:data,
-            success:function (data) {
-                alert(data);
-            }
-        });
+    if($('#password').val()!=$('#repassword').val()){
+        alert('两次密码不一样');
+    }else {
+        if(role=='vip'){
+            $.ajax({
+                type:'POST',
+                url:'/registerVIP',
+                data:data,
+                success:function (data) {
+                    alert(data);
+                }
+            });
+        }else{
+            $.ajax({
+                type:'POST',
+                url:'/registerHostel',
+                data:data,
+                success:function (data) {
+                    alert(data);
+                }
+            });
+        }
     }
+
     // alert(role=='on');
     // alert($('#hostel').val());
     e.preventDefault(); // avoid to execute the actual submit of the form.

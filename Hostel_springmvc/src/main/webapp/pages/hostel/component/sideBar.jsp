@@ -39,7 +39,7 @@
         <a type="button" class="btn btn-primary" href="/hostel/liveIn">住店</a>
         <a type="button" class="btn btn-primary" href="/hostel/depart">离店</a><br><br>
         <a type="button" class="btn btn-primary" href="/hostel/enrollPay">记账</a>
-        <a type="button" class="btn btn-primary" href="/hostel/pay">结算</a><br><br>
+        <a type="button" class="btn btn-primary" href="/hostel/pay">付款</a><br><br>
         <a type="button" class="btn btn-warning" href="/hostel/addRoom">发布房间计划</a>
     </div>
 </div>

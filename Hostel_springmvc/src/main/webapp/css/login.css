@@ -27,6 +27,21 @@ a:link{color:#383838}
     opacity: 0.4;
     border-radius: 10px;
 }
+.middle-register{
+    position: absolute;
+    top:0;
+    bottom: 50px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 350px;
+    width: 500px;
+    background-color: #2b4252;
+    text-align: center;
+    padding: 10px 80px 50px 80px;
+    opacity: 0.4;
+    border-radius: 10px;
+}
 .label{
     position: relative;
     left: -100px;

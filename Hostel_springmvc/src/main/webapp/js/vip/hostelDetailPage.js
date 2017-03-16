@@ -54,7 +54,7 @@ function getRoomList(){
     });
 }
 function operateFormatter(value, row, index) {
-    if(vipState=='STOP'||vipState=='PAUSED'){
+    if(vipState=='STOP'||vipState=='PAUSED'||vipState=='UNACTIVATED'){
         return [
             '<a type="button" class="btn btn-default disabled" ',
             'href="#">预订</a>'

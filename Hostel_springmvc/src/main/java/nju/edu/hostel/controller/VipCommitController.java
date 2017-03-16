@@ -25,11 +25,14 @@ public class VipCommitController {
     VIPService vipService;
 
     @RequestMapping(value = "/book" ,method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
+    @ResponseBody
     public String book(@ModelAttribute("bookBill")BookVO bookVO,
                              HttpSession session){
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
         bookVO.setVipId(user.getId());
+        System.out.print("controller 预订"+bookVO.getLiveInDate());
         ResultMessage msg=vipService.book(bookVO);
+        System.out.print(msg.toShow());
         return msg.toShow();
     }
     @RequestMapping(value = "/unbook",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
