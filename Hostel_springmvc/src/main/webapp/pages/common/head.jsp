@@ -16,5 +16,10 @@
 
    <link rel="stylesheet" href="/css/lib/bootstrap-datetimepicker.min.css" />
    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
+   <link rel="stylesheet" href="/css/lib/flatpickr.min.css"/>
    <link rel="stylesheet" href="/css/common.css">
+<%--<link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">--%>
+<%--<script src="https://unpkg.com/flatpickr"></script>--%>
+
+
    <title>HostelWorld</title>

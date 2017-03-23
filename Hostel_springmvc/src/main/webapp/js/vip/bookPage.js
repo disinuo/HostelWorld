@@ -1,11 +1,13 @@
 /**
  * Created by disinuo on 17/3/13.
  */
+
 $(document).ready(function () {
    var args=requestParamFormatter();
    roomId=args['roomId'];
    init();
 });
+$(".selector").flatpickr();
 $('#form').submit(function (e) {
     var url = "/vip/book"; // the script where you handle the form input.
     var data={
