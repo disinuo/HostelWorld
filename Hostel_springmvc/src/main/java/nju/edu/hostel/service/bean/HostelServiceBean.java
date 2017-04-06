@@ -131,7 +131,7 @@ public class HostelServiceBean implements HostelService {
             }
         }
         double discount=1;
-        if(highestLevel>0) {//顾客里有会员
+        if(highestLevel>=0) {//顾客里有会员
             discount=VIP_LEVEL_TO_DISCOUNT(highestLevel);
             money_after_Discounted=NumberFormatter.saveOneDecimal(money_after_Discounted*discount);
 
@@ -240,7 +240,6 @@ public class HostelServiceBean implements HostelService {
     public ResultMessage liveIn(LiveInVO liveInVO){
         int roomId=liveInVO.getRoomId();
         int bookBillId=liveInVO.getBookBillId();
-        System.err.println("roomId= "+roomId+", bookId= "+bookBillId);
         List<GuestInputVO> guests=GuestInputVO.mapToVO(liveInVO.getGuests());
 //
         LiveBill liveBill=new LiveBill();
@@ -254,12 +253,12 @@ public class HostelServiceBean implements HostelService {
             if(vip!=null){
                 detail.setVip(vip);
             }
-            room.setVacantNum(room.getVacantNum()-1);
-            roomDao.update(room);
             detail.setIdCard(guest.getIdCard());
             detail.setUserRealName(guest.getUserRealName());
             liveDetails.add(detail);
         }
+        room.setVacantNum(room.getVacantNum()-1);
+        roomDao.update(room);
         liveBill.setLiveDetails(liveDetails);
         liveBill.setDate(new Date().getTime());
         liveBill.setHostel(hostel);
@@ -503,13 +502,8 @@ public class HostelServiceBean implements HostelService {
             double ans=0;
             if(notCanceled.containsKey(key)){
                 ans= DO_DIVIDE(notCanceled.get(key),all.get(key));
-                System.out.println("未取消的/总数= "+notCanceled.get(key)+"/"+all.get(key)+" = "+ans);
-
             }
-            System.err.print("ValidBookRateByDate_Helper dateType= "+dateType+"  map= ");
-
             map.put(key,NumberFormatter.saveTwoDecimal(ans));
-            System.err.println(map);
 
         }
         return DataVO.mapToVO(map);
@@ -647,12 +641,8 @@ public class HostelServiceBean implements HostelService {
             String key=dayOfWeekIndex+""+hourIndex;
             double num=map.get(key);
             map.put(key,num+bill.getNumOfPeople());
-            System.err.println("billId="+bill.getId()+","+DateHandler.longToStr_withTime(bill.getDate())+
-                    ", 周"+dayOfWeekIndex+", hourIndex="+hourIndex);
 
         }
-//        System.err.println(map.size());
-//        System.err.print(map);
         List<Object[]> vos=new ArrayList<>(map.size());
         for(String key:map.keySet()){
             int x=Integer.parseInt(key.substring(0,1));
