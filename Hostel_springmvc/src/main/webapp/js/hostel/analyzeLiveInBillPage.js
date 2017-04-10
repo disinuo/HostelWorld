@@ -268,34 +268,32 @@ function initDateChart(data_liveInNum,data_liveInVipRate) {
         yAxis: [
             {
                 type: 'value',
-                name: NAME_LIVEIN_NUM,
-                min: 0,
-                max: 1,
-                position: 'left',
-                axisLine: {
-                    lineStyle: {
-                        color: colors[0]
-                    }
-                }
-                // axisLabel: {
-                //     formatter: '{value}'
-                // }
-            },
-            {
-                type: 'value',
                 name: NAME_LIVEIN_VIP_RATE,
                 min: 0,
-                // max: 600,
+                max: 1,
                 position: 'right',
                 axisLine: {
                     lineStyle: {
                         color: colors[1]
+                    }
+                }
+
+            },
+            {
+                type: 'value',
+                name: NAME_LIVEIN_NUM,
+                min: 0,
+                position: 'left',
+                axisLine: {
+                    lineStyle: {
+                        color: colors[0]
                     }
                 },
                 axisLabel: {
                     formatter: '{value} 笔'
                 }
             }
+
         ],
         series: [
             {
@@ -454,7 +452,7 @@ function initDayChart(data_liveInNum) {
     var data = data_liveInNum.z;
     var data_larger=[];
     data.forEach(function (item) {
-        var value=item[2]*3;
+        var value=item[2];
         data_larger.push([item[0],item[1],value]);
     });
     option = {
@@ -502,7 +500,7 @@ function initDayChart(data_liveInNum) {
             type: 'scatter',
             coordinateSystem: 'polar',
             symbolSize: function (val) {
-                return val[2] * 2;
+                return val[2] * 6;
             },
             data: data_larger,//TODO 为了效果暂时放大
             animationDelay: function (idx) {

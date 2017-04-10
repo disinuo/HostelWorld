@@ -788,7 +788,11 @@ public class HostelServiceBean implements HostelService {
         Map<String,Double> map_all=getMoneyByDate_Helper(bills_all,dateType);
         Map<String,Double> map_vip=getMoneyByDate_Helper(bills_vip,dateType);
         for(String key:map_all.keySet()){
-            res.add(new Object[]{key,map_vip.get(key),map_all.get(key)});
+            res.add(new Object[]{
+                    key,
+                    NumberFormatter.saveOneDecimal(map_vip.get(key)),
+                    NumberFormatter.saveOneDecimal(map_all.get(key))
+            });
         }
         return res;
 

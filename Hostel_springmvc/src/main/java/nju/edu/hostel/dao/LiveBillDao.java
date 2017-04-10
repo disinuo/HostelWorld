@@ -27,6 +27,8 @@ public interface LiveBillDao {
 
     public List<LiveDetail> getAllGuestInfoByHostel(int hostelId);
 
+    public List<LiveDetail> getAllGuestInfo();
+
     /**
      * 返回此酒店所有【会员入住】的记录
      * @param hostelId

@@ -20,11 +20,11 @@ public class PayBillDaoImpl implements PayBillDao {
     @Autowired
     BaseDao baseDao;
 
-    private String baseHql_vip="SELECT paybill FROM PayBill as paybill,LiveBill as livebill,LiveDetail as detail" +
+    private String baseHql_vip="SELECT DISTINCT paybill FROM PayBill as paybill,LiveBill as livebill,LiveDetail as detail" +
             " WHERE paybill.liveBill.id = livebill.id "+
             " AND livebill.id=detail.liveBill.id ";
     private String baseHql_hostel="SELECT paybill FROM PayBill as paybill WHERE ";
-    private String hqlTail =" ORDER BY paybill.id DESC";
+    private String hqlTail =" ORDER BY paybill.createDate DESC";
     private String hostelColumnName=" paybill.hostel.id ";
     private String vipColumnName="  detail.vip.id ";
     private String restrict_uncounted=" paybill.counted = false ";

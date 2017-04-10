@@ -24,7 +24,6 @@
             <select id="roomId">
 
             </select>
-            <div id="roomInfo" class="pmd-chip"></div>
 
             <h3>顾客信息   <div id="addBtn" class="btn btn-primary btn-toolbar">+</div></h3>
 

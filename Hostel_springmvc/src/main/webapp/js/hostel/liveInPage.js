@@ -78,28 +78,7 @@ $(function() {
             }
         });
     });
-    $('#roomId').blur(function () {
-        var roomId= $('#roomId').val();
-        $.ajax({
-            type:'GET',
-            url:'/data/hostel/getRoom',
-            data:{roomId:roomId},
-            success:function (data) {
-                console.log(data);
-                var info=[data.name,
-                '￥'+data.price,
-                data.descrip].join('<br>');
-                $('#roomInfo').html(info);
-            },
-            error:function (data) {
-                alert('ERROR');
-                console.log(data);
-            }
-        });
 
-
-
-    });
     $('#addBtn').click(function () {
         var panel=$(' .guest:first-child').clone();
         $('#guests').append(panel);

@@ -70,6 +70,12 @@ public interface ManagerService {
      */
     public JSONObject getVipNumByLevel();
 
+    /**
+     * 每个月 会员住店人数、非会员住店人数
+     * @return
+     */
+    public JSONObject getGuestNumByMonth();
+
 //====== End Of vip ================================================================
 
 //====== Hostel ================================================================

@@ -47,6 +47,7 @@ public class HostelDataController {
     }
 //------------自己用的，hostel的id都从session中获得------------------
 
+
     @RequestMapping(value = "/getRooms")
     public List<RoomVO> getRooms(HttpSession session){
         int id= ControllerHelper.getUserIdFromSession(session);

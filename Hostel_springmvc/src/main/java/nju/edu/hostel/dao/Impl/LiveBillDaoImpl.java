@@ -28,8 +28,9 @@ public class LiveBillDaoImpl implements LiveBillDao {
             "SELECT DISTINCT bill FROM LiveBill as bill,LiveDetail as detail"+
             " WHERE detail.liveBill.id=bill.id AND ";
     private String baseHql=
-            "SELECT DISTINCT bill FROM LiveBill as bill WHERE ";
-    private String hqlTail=" ORDER BY bill.id DESC";
+            "SELECT bill FROM LiveBill as bill WHERE ";
+    private String hqlTail=" ORDER BY bill.date DESC";
+    private String hqlTail_ASC=" ORDER BY bill.date ASC";
     private static final String RESTRICT_NOT_OUT = " bill.inHostel=true ";
     private static final String RESTRICT_NOT_PAID = " bill.paid=false ";
     public static final String ENTITY_TYPE_VIP=" detail.vip.id ";
@@ -56,6 +57,10 @@ public class LiveBillDaoImpl implements LiveBillDao {
     public List<LiveDetail> getAllGuestInfoByHostel(int hostelId){
         String hql=baseHql_returnDetail+ENTITY_TYPE_HOSTEL+"="+hostelId;
         return baseDao.getByHql(LiveDetail.class,hql);
+    }
+    @Override
+    public List<LiveDetail> getAllGuestInfo(){
+        return baseDao.getAll(LiveDetail.class);
     }
     @Override
     public List<LiveBill> getAllVipLiveInByHostel(int hostelId){
@@ -103,7 +108,7 @@ public class LiveBillDaoImpl implements LiveBillDao {
 
     @Override
     public List<LiveBill> getNotOutByHostelId(int hostelId) {
-        String hql=baseHql+ENTITY_TYPE_HOSTEL+"="+hostelId+" AND "+RESTRICT_NOT_OUT+hqlTail;
+        String hql=baseHql+ENTITY_TYPE_HOSTEL+"="+hostelId+" AND "+RESTRICT_NOT_OUT+hqlTail_ASC;
         System.err.println("HQL= "+hql);
         return baseDao.getByHql(LiveBill.class,hql);
 
@@ -111,7 +116,7 @@ public class LiveBillDaoImpl implements LiveBillDao {
 
     @Override
     public List<LiveBill> getNotPaidByHostelId(int hostelId) {
-        String hql=baseHql+ENTITY_TYPE_HOSTEL+"="+hostelId+" AND "+RESTRICT_NOT_PAID+hqlTail;
+        String hql=baseHql+ENTITY_TYPE_HOSTEL+"="+hostelId+" AND "+RESTRICT_NOT_PAID+hqlTail_ASC;
         System.err.println("HQL= "+hql);
         return baseDao.getByHql(LiveBill.class,hql);
     }

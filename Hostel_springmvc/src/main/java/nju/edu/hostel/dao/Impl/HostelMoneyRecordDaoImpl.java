@@ -31,7 +31,7 @@ public class HostelMoneyRecordDaoImpl implements HostelMoneyRecordDao {
     @Override
     public List<HostelMoneyRecord> getByHostel(int hostelId) {
         String hql="SELECT record FROM HostelMoneyRecord as record WHERE record.hostelId="+hostelId
-                +" ORDER BY record.id DESC" ;
+                +" ORDER BY record.date DESC" ;
         return baseDao.getByHql(HostelMoneyRecord.class,hql);
     }
 

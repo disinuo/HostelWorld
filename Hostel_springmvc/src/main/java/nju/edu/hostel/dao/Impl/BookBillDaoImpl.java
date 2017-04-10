@@ -20,7 +20,7 @@ public class BookBillDaoImpl implements BookBillDao {
     @Autowired
     BaseDao baseDao;
     private String baseHql="SELECT bill FROM BookBill as bill WHERE ";
-    private String hqlTail=" ORDER BY bill.id DESC";
+    private String hqlTail=" ORDER BY bill.createDate DESC";
 
     @Override
     public BookBill get(int id) {

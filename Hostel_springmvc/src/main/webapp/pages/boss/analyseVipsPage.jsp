@@ -20,6 +20,7 @@
         <ul class="nav nav-pills nav-stacked">
             <li id="vipLevel"><a href="#">会员等级</a></li>
             <li id="vipMap"><a href="#">城市分布</a></li>
+            <li id="guest"><a href="#">住户分布</a></li>
 
         </ul>
     </div>
