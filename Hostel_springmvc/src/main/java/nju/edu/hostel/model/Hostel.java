@@ -98,26 +98,31 @@ public class Hostel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Hostel that = (Hostel) o;
+        Hostel hostel = (Hostel) o;
 
-        if (id != that.id) return false;
-        if (permitted != that.permitted) return false;
-        if (phone != null ? !phone.equals(that.phone) : that.phone != null) return false;
-        if (address != null ? !address.equals(that.address) : that.address != null) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-
-        return true;
+        if (id != hostel.id) return false;
+        if (permitted != hostel.permitted) return false;
+        if (Double.compare(hostel.moneyUncounted, moneyUncounted) != 0) return false;
+        if (img != null ? !img.equals(hostel.img) : hostel.img != null) return false;
+        if (!phone.equals(hostel.phone)) return false;
+        if (!address.equals(hostel.address)) return false;
+        return name.equals(hostel.name);
     }
 
-//    @Override
-//    public int hashCode() {
-//        int result = id;
-//        result = 31 * result + (int) permitted;
-//        result = 31 * result + (phone != null ? phone.hashCode() : 0);
-//        result = 31 * result + (address != null ? address.hashCode() : 0);
-//        result = 31 * result + (name != null ? name.hashCode() : 0);
-//        return result;
-//    }
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = id;
+        result = 31 * result + (permitted ? 1 : 0);
+        result = 31 * result + (img != null ? img.hashCode() : 0);
+        result = 31 * result + phone.hashCode();
+        result = 31 * result + address.hashCode();
+        result = 31 * result + name.hashCode();
+        temp = Double.doubleToLongBits(moneyUncounted);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
 
     @OneToMany(mappedBy = "hostel")
     public List<BookBill> getBookBills() {
