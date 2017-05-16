@@ -89,19 +89,21 @@ public class HostelServiceBean implements HostelService {
     }
 
     @Override
-    public double enrollPay(PayVO payVO) {
+    public double enrollPay(int liveBillId) {
+        System.out.println("In service---- id="+liveBillId+",money=");
         PayBill payBill=new PayBill();
-        LiveBill liveBill=liveInBillDao.get(payVO.getLiveBillId());
+        LiveBill liveBill= liveBillDao.get(liveBillId);
         Room room=liveBill.getRoom();
-        double moneyToPay=payVO.getMoney();
+        double moneyToPay=liveBill.getRoom().getPrice();
         payBill.setCreateDate(new Date().getTime());
+        payBill.setLiveBill(liveBill);
+
         if(liveBill.getVip()!=null){//顾客是会员
             Vip vip=liveBill.getVip();
             //看会员级别~要打折的！
             int level=vip.getLevel();
             double discount=VIP_LEVEL_TO_DISCOUNT(level);
             moneyToPay*=discount;
-            payBill.setMoney(moneyToPay);
             /*
              *消费要积分的！还要升级！
              */
@@ -111,10 +113,13 @@ public class HostelServiceBean implements HostelService {
             vip.setScore(vip.getScore()+moneyToPay*RATE_MONEY_TO_SCORE);
             vip.setLevel(VIP_MONEY_TO_LEVEL(vipPaidAll));
             vipDao.update(vip);
-        }else {//顾客不是会员，直接生成账单
-            payBill.setMoney(moneyToPay);
         }
+        //顾客不是会员，直接生成账单
+        payBill.setMoney(moneyToPay);
+
         try {
+            liveBill.setPaid(true);
+            liveBillDao.update(liveBill);
             payBillDao.add(payBill);
             Hostel hostel=room.getHostel();
             hostel.setMoneyUncounted(hostel.getMoneyUncounted()+moneyToPay);
@@ -155,7 +160,7 @@ public class HostelServiceBean implements HostelService {
         liveBill.setUserRealName(liveInVO.getUserRealName());
         liveBill.setDate(new Date().getTime());
         try {
-            liveInBillDao.add(liveBill);
+            liveBillDao.add(liveBill);
             roomDao.update(room);
             return ResultMessage.SUCCESS;
         } catch (Exception e) {
@@ -167,13 +172,13 @@ public class HostelServiceBean implements HostelService {
     @Override
     public ResultMessage checkOut(int liveBillId){
         //TODO 要更新 已占用的房间数据，更新人均消费等，再想想
-        LiveBill liveBill=liveInBillDao.get(liveBillId);
+        LiveBill liveBill= liveBillDao.get(liveBillId);
         Room room=liveBill.getRoom();
         liveBill.setCheckOutDate((new Date()).getTime());
         liveBill.setInHostel(false);
         room.setOccupiedNum(room.getOccupiedNum()-1);
         try {
-            liveInBillDao.update(liveBill);
+            liveBillDao.update(liveBill);
             roomDao.update(room);
             return ResultMessage.SUCCESS;
         } catch (Exception e) {
@@ -247,7 +252,7 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public List<LiveBill> getAllLiveBills(int hostelId) {
-        List<LiveBill> ans=liveInBillDao.getByHostelId(hostelId);
+        List<LiveBill> ans= liveBillDao.getByHostelId(hostelId);
         return ans;
     }
     @Override
@@ -298,11 +303,12 @@ public class HostelServiceBean implements HostelService {
     @Autowired
     VIPDao vipDao;
     @Autowired
-    LiveBillDao liveInBillDao;
+    LiveBillDao liveBillDao;
     @Autowired
     PayBillDao payBillDao;
     @Autowired
     BookBillDao bookBillDao;
     @Autowired
     VIPService vipService;
+
 }

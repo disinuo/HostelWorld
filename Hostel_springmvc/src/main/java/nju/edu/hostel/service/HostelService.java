@@ -60,10 +60,10 @@ public interface HostelService {
      包括会员的消费、非会员的消费
      非会员的线下消费也当做是交到总经理账户中了。
      所以总经理还是根据各个客栈的`未结算金额`进行【结算】
-     * @param payVO
+     * @param liveBillId
      * @return 实际顾客应支付的值or-1
      */
-    public double enrollPay(PayVO payVO);
+    public double enrollPay(int liveBillId);
 
     /**
      * 会员选择用会员卡支付的时候，店员会选择这个服务。

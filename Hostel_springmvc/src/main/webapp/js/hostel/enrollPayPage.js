@@ -5,13 +5,9 @@
 $("#enrollPayForm").submit(function(e) {
     var url = "/hostel/enrollPay"; // the script where you handle the form input.
     var data={
-        userRealName:$('#userRealName').val(),
-        idCard:$('#idCard').val(),
-        vipId:$('#vipId').val(),
-        roomId:$('#roomId').val(),
-        money:$('#money').val()
+        liveBillId:$('#liveBillId').val(),
     };
-    if($('#vipId').val()=="")data.vipId=0;
+    alert(JSON.stringify(data));
     $.ajax({
         type: "POST",
         url: url,

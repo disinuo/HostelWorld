@@ -42,8 +42,8 @@ public class HostelCommitController {
     }
 
     @RequestMapping(value = "/enrollPay",method = RequestMethod.POST)
-    public double enrollPay(PayVO payVO){
-        return hostelService.enrollPay(payVO);
+    public double enrollPay(int liveBillId){
+        return hostelService.enrollPay(liveBillId);
     }
     @RequestMapping(value = "/pay",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
     public String pay(int vipId,double money){
