@@ -5,7 +5,6 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by disinuo on 17/3/3.
@@ -19,9 +18,13 @@ public class Hostel {
     private String phone="66668888";
     private String address="默认地址";
     private String name;
-    private double moneyUncounted;
+    private double moneyUncounted;//本酒店未结算总额
+    private double avgExpense;//本酒店的人均消费
+    private String province;
+    private String city;
+    private String descrip;//酒店描述
     private List<BookBill> bookBills;
-    private List<LiveBill> liveBills;
+    private List<LiveInBill> liveBills;
     private List<PayBill> payBills;
     private List<Room> rooms;
 
@@ -64,6 +67,15 @@ public class Hostel {
     }
 
     @Basic
+    @Column(name = "avgExpense", nullable = false)
+    public double getAvgExpense() {
+        return avgExpense;
+    }
+    public void setAvgExpense(double avgExpense) {
+        this.avgExpense = avgExpense;
+    }
+
+    @Basic
     @Column(name = "phone", nullable = false, length = 255)
     public String getPhone() {
         return phone;
@@ -92,6 +104,36 @@ public class Hostel {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Basic
+    @Column(name = "province", nullable = false, length = 255)
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+    @Basic
+    @Column(name = "city", nullable = false, length = 255)
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    @Basic
+    @Column(name = "descrip", nullable = true, length = -1)
+    public String getDescrip() {
+        return descrip;
+    }
+
+    public void setDescrip(String descrip) {
+        this.descrip = descrip;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -134,11 +176,11 @@ public class Hostel {
     }
 
     @OneToMany(mappedBy = "hostel")
-    public List<LiveBill> getLiveBills() {
+    public List<LiveInBill> getLiveBills() {
         return liveBills;
     }
 
-    public void setLiveBills(List<LiveBill> liveBills) {
+    public void setLiveBills(List<LiveInBill> liveBills) {
         this.liveBills = liveBills;
     }
 

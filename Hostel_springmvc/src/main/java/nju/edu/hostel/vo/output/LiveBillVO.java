@@ -1,6 +1,6 @@
 package nju.edu.hostel.vo.output;
 
-import nju.edu.hostel.model.LiveBill;
+import nju.edu.hostel.model.LiveInBill;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ public class LiveBillVO {
     private String roomName;
     private double roomPrice;
 
-    public LiveBillVO(LiveBill liveBillEntity){
+    public LiveBillVO(LiveInBill liveBillEntity){
         this.id=liveBillEntity.getId();
         this.type=liveBillEntity.getType();
         this.userRealName=liveBillEntity.getUserRealName();
@@ -41,9 +41,9 @@ public class LiveBillVO {
         this.roomName=liveBillEntity.getRoom().getName();
         this.roomPrice=liveBillEntity.getRoom().getPrice();
     }
-    public static List<LiveBillVO> entityToVO(List<LiveBill> bills){
+    public static List<LiveBillVO> entityToVO(List<LiveInBill> bills){
         List<LiveBillVO> res=new ArrayList<LiveBillVO>();
-        for(LiveBill bill:bills){
+        for(LiveInBill bill:bills){
             res.add(new LiveBillVO((bill)));
         }
         return res;

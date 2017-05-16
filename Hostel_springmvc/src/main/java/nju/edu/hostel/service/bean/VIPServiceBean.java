@@ -194,7 +194,7 @@ public class VIPServiceBean implements VIPService{
     }
 
     @Override
-    public List<LiveBill> getAllLiveBills(int vipId) {
+    public List<LiveInBill> getAllLiveBills(int vipId) {
         return liveBillDao.getByRestrictEqual("vip.id",vipId);
     }
 

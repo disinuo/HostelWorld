@@ -1,10 +1,8 @@
 package nju.edu.hostel.controller;
 
-import nju.edu.hostel.model.LiveBill;
 import nju.edu.hostel.service.HostelService;
 import nju.edu.hostel.vo.output.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

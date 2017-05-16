@@ -11,7 +11,6 @@ import nju.edu.hostel.vo.input.LiveInVO;
 import nju.edu.hostel.vo.input.LiveOutVO;
 import nju.edu.hostel.vo.input.PayVO;
 import nju.edu.hostel.vo.input.RoomVO_input;
-import nju.edu.hostel.vo.output.HostelVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -148,7 +147,7 @@ public class HostelServiceBean implements HostelService {
     @Override
     public ResultMessage liveIn(LiveInVO liveInVO){
         System.out.println("in service liveIn ");
-        LiveBill liveBill=new LiveBill();
+        LiveInBill liveBill=new LiveInBill();
         if(liveInVO.getVipId()!=0){
             Vip vip=vipDao.get(liveInVO.getVipId());
             liveBill.setVip(vip);
@@ -171,7 +170,7 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public ResultMessage depart(LiveOutVO liveOutVO){
-        LiveBill liveBill=new LiveBill();
+        LiveInBill liveBill=new LiveInBill();
         Vip vip=vipDao.get(liveOutVO.getVipId());
         Room room=roomDao.get(liveOutVO.getRoomId());
         liveBill.setType(false);
@@ -253,7 +252,7 @@ public class HostelServiceBean implements HostelService {
     }
 
     @Override
-    public List<LiveBill> getAllLiveBills(int hostelId) {
+    public List<LiveInBill> getAllLiveBills(int hostelId) {
         return liveBillDao.getByRestrictEqual("hostel.id",hostelId);
     }
     @Override

@@ -18,6 +18,21 @@ public class Room {
     private String name;
     private Hostel hostel;
 
+    //the max num of people the room can hold
+    private int capacity;
+
+    //此类型房间总数
+    private int totalNum;
+    //此类型房间已入住数
+    private int occupiedNum;
+    //生效起始时间
+    private long startDate;
+    //生效结束时间
+    private long endDate;
+
+    private String descrip;
+
+
     @Id
     @GenericGenerator(name="dsn" , strategy="increment")
     @GeneratedValue(generator="dsn")
@@ -29,6 +44,17 @@ public class Room {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Basic
+    @Column(name = "descrip", nullable = true, length = -1)
+    public String getDescrip() {
+        return descrip;
+    }
+
+    public void setDescrip(String descrip) {
+        this.descrip = descrip;
+    }
+
 
     @Basic
     @Column(name = "price", nullable = false, precision = 0)
@@ -70,6 +96,70 @@ public class Room {
         this.name = name;
     }
 
+
+    @Basic
+    @Column(name = "capacity", nullable = false)
+    public int getCapacity() {
+        return capacity;
+    }
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    @Basic
+    @Column(name = "totalNum", nullable = false)
+    public int getTotalNum() {
+        return totalNum;
+    }
+
+    public void setTotalNum(int totalNum) {
+        this.totalNum = totalNum;
+    }
+
+    @Basic
+    @Column(name = "occupiedNum", nullable = false)
+    public int getOccupiedNum() {
+        return occupiedNum;
+    }
+
+    public void setOccupiedNum(int occupiedNum) {
+        this.occupiedNum = occupiedNum;
+    }
+
+    @Basic
+    @Column(name = "startDate", nullable = false)
+    public long getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(long startDate) {
+        this.startDate = startDate;
+    }
+
+    @Basic
+    @Column(name = "endDate", nullable = false)
+    public long getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(long endDate) {
+        this.endDate = endDate;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "hostelId", referencedColumnName = "id", nullable = false)
+    public Hostel getHostel() {
+        return hostel;
+    }
+
+    public void setHostel(Hostel hostel) {
+        this.hostel = hostel;
+    }
+
+
+
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -86,13 +176,4 @@ public class Room {
         return true;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "hostelId", referencedColumnName = "id", nullable = false)
-    public Hostel getHostel() {
-        return hostel;
-    }
-
-    public void setHostel(Hostel hostel) {
-        this.hostel = hostel;
-    }
 }

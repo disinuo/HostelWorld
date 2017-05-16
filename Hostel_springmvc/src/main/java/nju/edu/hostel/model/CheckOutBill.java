@@ -9,17 +9,16 @@ import javax.persistence.*;
  * Created by disinuo on 17/3/3.
  */
 @Entity
-@Table(name = "livebill", schema = "hostel", catalog = "")
-public class LiveBill {
+@Table(name = "checkoutbill", schema = "hostel", catalog = "")
+public class CheckOutBill {
     private int id;
-    //true代表入店，false代表离店
-    private boolean type;
     private String userRealName;
     private String idCard;
     private long date;
     private Hostel hostel;
     private Vip vip;
     private Room room;
+    private LiveInBill liveInBill;
 
     @Id
     @GenericGenerator(name="dsn" , strategy="increment")
@@ -33,15 +32,6 @@ public class LiveBill {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "type", nullable = false)
-    public boolean getType() {
-        return type;
-    }
-
-    public void setType(boolean type) {
-        this.type = type;
-    }
 
     @Basic
     @Column(name = "userRealName", nullable = false)
@@ -73,14 +63,14 @@ public class LiveBill {
         this.date = date;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "hostelId", referencedColumnName = "id", nullable = false)
-    public Hostel getHostel() {
-        return hostel;
+    @OneToOne
+    @JoinColumn(name = "liveinbillId", referencedColumnName = "id")
+    public LiveInBill getLiveInBill() {
+        return liveInBill;
     }
 
-    public void setHostel(Hostel hostel) {
-        this.hostel = hostel;
+    public void setLiveInBill(LiveInBill liveInBill) {
+        this.liveInBill = liveInBill;
     }
 
     @ManyToOne
@@ -101,10 +91,16 @@ public class LiveBill {
 
     public void setRoom(Room room) {
         this.room = room;
+        this.hostel=room.getHostel();
     }
 
     @Transient
     public String getDateStr(){
         return DateHandler.longToStr(this.date);
     }
+    @Transient
+    public Hostel getHostel() {
+        return hostel;
+    }
+
 }

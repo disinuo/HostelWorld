@@ -3,10 +3,8 @@ package nju.edu.hostel.controller;
 import nju.edu.hostel.service.HostelService;
 import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.vo.input.LiveInVO;
-import nju.edu.hostel.vo.input.LiveOutVO;
 import nju.edu.hostel.vo.input.PayVO;
 import nju.edu.hostel.vo.input.RoomVO_input;
-import nju.edu.hostel.vo.output.HostelVO;
 import nju.edu.hostel.vo.output.OnLineUserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -63,9 +61,9 @@ public class HostelCommitController {
         ResultMessage msg=hostelService.liveIn(liveInVO);
         return msg.toShow();
     }
-    @RequestMapping(value = "/depart",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
-    public String depart(LiveOutVO liveOutVO){
-        ResultMessage msg=hostelService.depart(liveOutVO);
+    @RequestMapping(value = "/checkOut",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
+    public String checkOut(int liveInId){
+        ResultMessage msg=hostelService.checkOut(liveInId);
         return msg.toShow();
     }
     @RequestMapping(value = "/addRoom",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")

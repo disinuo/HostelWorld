@@ -5,7 +5,6 @@ import nju.edu.hostel.util.VIPState;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,8 +24,11 @@ public class Vip {
     private String state= VIPState.UNACTIVATED.toString();
     private long activateDate;
     private long pauseDate;
+    private String email;
+    private String province;
+    private String city;
     private List<BookBill> bookBills;
-    private List<LiveBill> liveBills;
+    private List<LiveInBill> liveBills;
     private List<PayBill> payBills;
 
     @Id
@@ -137,6 +139,34 @@ public class Vip {
         this.state = state;
     }
 
+    @Basic
+    @Column(name = "email", nullable = true, length = 255)
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    @Basic
+    @Column(name = "province", nullable = false, length = 255)
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+    @Basic
+    @Column(name = "city", nullable = false, length = 255)
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
     @OneToMany(mappedBy = "vip")
     public List<BookBill> getBookBills() {
         return bookBills;
@@ -147,11 +177,11 @@ public class Vip {
     }
 
     @OneToMany(mappedBy = "vip")
-    public List<LiveBill> getLiveBills() {
+    public List<LiveInBill> getLiveBills() {
         return liveBills;
     }
 
-    public void setLiveBills(List<LiveBill> liveBillsById) {
+    public void setLiveBills(List<LiveInBill> liveBillsById) {
         this.liveBills = liveBillsById;
     }
 

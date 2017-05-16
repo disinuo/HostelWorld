@@ -133,7 +133,7 @@ public interface VIPService {
      * @param vipId
      * @return
      */
-    public List<LiveBill> getAllLiveBills(int vipId);
+    public List<LiveInBill> getAllLiveBills(int vipId);
 
 
     /**

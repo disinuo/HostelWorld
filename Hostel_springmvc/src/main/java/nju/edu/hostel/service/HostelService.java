@@ -6,7 +6,6 @@ import nju.edu.hostel.vo.input.LiveInVO;
 import nju.edu.hostel.vo.input.LiveOutVO;
 import nju.edu.hostel.vo.input.PayVO;
 import nju.edu.hostel.vo.input.RoomVO_input;
-import nju.edu.hostel.vo.output.HostelVO;
 
 import java.util.List;
 
@@ -173,7 +172,7 @@ public interface HostelService {
      * @param hostelId
      * @return
      */
-    public List<LiveBill> getAllLiveBills(int hostelId);
+    public List<LiveInBill> getAllLiveBills(int hostelId);
 
     public int getLiveInNum(int hostelId);
 

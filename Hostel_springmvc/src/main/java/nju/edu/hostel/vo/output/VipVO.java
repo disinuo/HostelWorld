@@ -1,6 +1,5 @@
 package nju.edu.hostel.vo.output;
 
-import nju.edu.hostel.model.LiveBill;
 import nju.edu.hostel.model.Vip;
 import nju.edu.hostel.util.VIPState;
 

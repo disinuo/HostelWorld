@@ -1,21 +1,14 @@
 package nju.edu.hostel.controller;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
-import nju.edu.hostel.model.Hostel;
-import nju.edu.hostel.model.Room;
 import nju.edu.hostel.service.HostelService;
 import nju.edu.hostel.vo.output.OnLineUserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 import static nju.edu.hostel.util.Constants.ROLE_HOSTEL;
 
@@ -53,11 +46,11 @@ public class HostelViewController {
 
         return model==null?( new ModelAndView("hostel/liveInPage")):model;
     }
-    @RequestMapping(value = "/depart",method = RequestMethod.GET)
+    @RequestMapping(value = "/checkOut",method = RequestMethod.GET)
     public ModelAndView showDepartPage(HttpSession session){
         ModelAndView model=checkRole(session);
 
-        return model==null?( new ModelAndView("hostel/liveOutPage")):model;
+        return model==null?( new ModelAndView("hostel/checkOutPage")):model;
     }
     @RequestMapping(value = "/addRoom",method = RequestMethod.GET)
     public ModelAndView showAddRoomPage(HttpSession session){
