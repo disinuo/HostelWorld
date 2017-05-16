@@ -8,7 +8,6 @@ import nju.edu.hostel.util.NumberFormatter;
 import nju.edu.hostel.util.RequestState;
 import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.vo.input.LiveInVO;
-import nju.edu.hostel.vo.input.LiveOutVO;
 import nju.edu.hostel.vo.input.PayVO;
 import nju.edu.hostel.vo.input.RoomVO_input;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,16 +91,12 @@ public class HostelServiceBean implements HostelService {
     @Override
     public double enrollPay(PayVO payVO) {
         PayBill payBill=new PayBill();
-        Room room=roomDao.get(payVO.getRoomId());
+        LiveBill liveBill=liveInBillDao.get(payVO.getLiveBillId());
+        Room room=liveBill.getRoom();
         double moneyToPay=payVO.getMoney();
-        payBill.setRoom(room);
-        payBill.setHostel(room.getHostel());
-        payBill.setUserRealName(payVO.getUserRealName());
-        payBill.setIdCard(payVO.getIdCard());
         payBill.setCreateDate(new Date().getTime());
-        if(payVO.getVipId()!=0){//顾客是会员
-            Vip vip=vipDao.get(payVO.getVipId());
-            payBill.setVip(vip);
+        if(liveBill.getVip()!=null){//顾客是会员
+            Vip vip=liveBill.getVip();
             //看会员级别~要打折的！
             int level=vip.getLevel();
             double discount=VIP_LEVEL_TO_DISCOUNT(level);
@@ -146,21 +141,22 @@ public class HostelServiceBean implements HostelService {
     }
     @Override
     public ResultMessage liveIn(LiveInVO liveInVO){
+        //TODO
         System.out.println("in service liveIn ");
-        LiveInBill liveBill=new LiveInBill();
+        LiveBill liveBill=new LiveBill();
         if(liveInVO.getVipId()!=0){
             Vip vip=vipDao.get(liveInVO.getVipId());
             liveBill.setVip(vip);
         }
         Room room=roomDao.get(liveInVO.getRoomId());
-        liveBill.setType(true);
+        room.setOccupiedNum(room.getOccupiedNum()+1);
         liveBill.setRoom(room);
-        liveBill.setHostel(room.getHostel());
         liveBill.setIdCard(liveInVO.getIdCard());
         liveBill.setUserRealName(liveInVO.getUserRealName());
         liveBill.setDate(new Date().getTime());
         try {
-            liveBillDao.add(liveBill);
+            liveInBillDao.add(liveBill);
+            roomDao.update(room);
             return ResultMessage.SUCCESS;
         } catch (Exception e) {
 //            e.printStackTrace();
@@ -169,19 +165,16 @@ public class HostelServiceBean implements HostelService {
     }
 
     @Override
-    public ResultMessage depart(LiveOutVO liveOutVO){
-        LiveInBill liveBill=new LiveInBill();
-        Vip vip=vipDao.get(liveOutVO.getVipId());
-        Room room=roomDao.get(liveOutVO.getRoomId());
-        liveBill.setType(false);
-        liveBill.setRoom(room);
-        liveBill.setHostel(room.getHostel());
-        liveBill.setVip(vip);
-        liveBill.setIdCard(liveOutVO.getIdCard());
-        liveBill.setUserRealName(liveOutVO.getUserRealName());
-        liveBill.setDate(new Date().getTime());
+    public ResultMessage checkOut(int liveBillId){
+        //TODO 要更新 已占用的房间数据，更新人均消费等，再想想
+        LiveBill liveBill=liveInBillDao.get(liveBillId);
+        Room room=liveBill.getRoom();
+        liveBill.setCheckOutDate((new Date()).getTime());
+        liveBill.setInHostel(false);
+        room.setOccupiedNum(room.getOccupiedNum()-1);
         try {
-            liveBillDao.add(liveBill);
+            liveInBillDao.update(liveBill);
+            roomDao.update(room);
             return ResultMessage.SUCCESS;
         } catch (Exception e) {
 //            e.printStackTrace();
@@ -252,15 +245,22 @@ public class HostelServiceBean implements HostelService {
     }
 
     @Override
-    public List<LiveInBill> getAllLiveBills(int hostelId) {
-        return liveBillDao.getByRestrictEqual("hostel.id",hostelId);
+    public List<LiveBill> getAllLiveBills(int hostelId) {
+        //TODO
+        System.out.print("In Hostel service! getAllLiveBills");
+        Hostel hostel=hostelDao.load(hostelId);
+        List<LiveBill> ans=liveInBillDao.getByHostelId(hostelId);
+        System.out.print("In Hostel service! getAllLiveBills,size="+ans.size());
+        return ans;
+    }
+    @Override
+    public List<LiveBill> getNotOutLiveBills(int hostelId){
+        //TODO 所有未离店的住店数据
+        return null;
     }
     @Override
     public int getLiveInNum(int hostelId){
-        Map map=new HashMap<String,Object>();
-        map.put("hostel.id",hostelId);
-        map.put("type",true);
-        return liveBillDao.getByRestrictEqual(map).size();
+       return getAllLiveBills(hostelId).size();
     }
     @Override
     public List<Room> getAllRooms(int hostelId){
@@ -301,7 +301,7 @@ public class HostelServiceBean implements HostelService {
     @Autowired
     VIPDao vipDao;
     @Autowired
-    LiveBillDao liveBillDao;
+    LiveBillDao liveInBillDao;
     @Autowired
     PayBillDao payBillDao;
     @Autowired

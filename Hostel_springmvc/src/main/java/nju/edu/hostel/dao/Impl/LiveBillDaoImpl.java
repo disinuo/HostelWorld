@@ -40,6 +40,12 @@ public class LiveBillDaoImpl implements LiveBillDao {
         return baseDao.getByRestrictEqualDESC(LiveBill.class,map,"id");
 
     }
+    @Override
+    public List<LiveBill> getByHostelId(int hostelId){
+        String hql="SELECT bill FROM LiveBill as bill" +
+                " WHERE bill.room.hostel.id = "+hostelId;
+        return baseDao.getByHql(LiveBill.class,hql);
+    }
 
     @Override
     public int add(LiveBill liveBill) throws Exception {

@@ -31,6 +31,7 @@ public interface BaseDao {
 	 */
 	public <T> List<T> getAllDESC(Class<T> c,String base);
 	public <T> List<T> getAllASC(Class<T> c,String base);
+	public <T> List<T> getByHql(Class<T> c,String hql);
 
 	public <T> List<T> getByRestrictEqual(Class<T> c, String column, Object value);
 	public <T> List<T> getByRestrictEqualDESC(Class<T> c, String column, Object value,String base);

@@ -2,15 +2,11 @@
  * Created by disinuo on 17/3/13.
  */
 // this is the id of the form
-$("#liveOutForm").submit(function(e) {
-    var url = "/hostel/depart"; // the script where you handle the form input.
+$("#checkOutForm").submit(function(e) {
+    var url = "/hostel/checkOut"; // the script where you handle the form input.
     var data={
-        userRealName:$('#userRealName').val(),
-        idCard:$('#idCard').val(),
-        vipId:$('#vipId').val(),
-        roomId:$('#roomId').val()
+        liveInId:$('#liveInId').val(),
     };
-    if($('#vipId').val()=="")data.vipId=0;
     $.ajax({
         type: "POST",
         url: url,

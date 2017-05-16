@@ -29,7 +29,11 @@ public class BaseDaoImpl implements BaseDao {
 
 		return session==null?getNewSession():session;
 	}
-//TODO 可能要新加【返回排序结果】的接口
+	public <T> List<T> getByHql(Class<T> c,String hql){
+		Session session = getCurrentSession();
+		return session.createQuery(hql).list();
+	}
+	//TODO 可能要新加【返回排序结果】的接口
 	@Override
 	public int save(Object entity) throws Exception {
 		Session session=getNewSession();
@@ -150,7 +154,13 @@ public class BaseDaoImpl implements BaseDao {
 		Criteria criteria=session.createCriteria(c);
 		criteria.add(Restrictions.eq(column,value));
 		criteria.addOrder(Order.desc(base));
-		return criteria.list();
+		System.out.println("In baseDao!");
+		System.out.println("column="+column+",value="+value);
+
+		List<T> ans=criteria.list();
+		System.out.println(" size= "+ans.size());
+
+		return ans;
 
 	}
 

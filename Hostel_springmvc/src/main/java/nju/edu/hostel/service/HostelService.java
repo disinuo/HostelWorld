@@ -3,7 +3,6 @@ package nju.edu.hostel.service;
 import nju.edu.hostel.model.*;
 import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.vo.input.LiveInVO;
-import nju.edu.hostel.vo.input.LiveOutVO;
 import nju.edu.hostel.vo.input.PayVO;
 import nju.edu.hostel.vo.input.RoomVO_input;
 
@@ -95,13 +94,12 @@ public interface HostelService {
     public ResultMessage liveIn(LiveInVO liveInVO);
 
     /**
-     * 登记住户的离店信息:
-     * 住户真实名字，住户身份证号，离店日期，入住房间
+     * 办理住户离店
      * 【前置】该住户已住店，且未登记离店
-     * @param liveOutVO
+     * @param liveBillId
      * @return SUCCESS,FAILURE
      */
-    public ResultMessage depart(LiveOutVO liveOutVO);
+    public ResultMessage checkOut(int liveBillId);
 
     /**
      * 客栈发布房间计划,只能发布自己客栈的房间计划
@@ -165,14 +163,22 @@ public interface HostelService {
     public double getIncome(int hostelId);
 
     /**
-     * 获取本店住店数据，包含入店、离店信息
+     * 获取本店住店数据
      比如
      2016-12-10 vip01入店 豪华总统套房
+     * @param hostelId
+     * @return
+     */
+    public List<LiveBill> getAllLiveBills(int hostelId);
+    /**
+     * 获取本店未离店的住店数据
+     比如
      2016-12-10 vip01离店 豪华总统套房
      * @param hostelId
      * @return
      */
-    public List<LiveInBill> getAllLiveBills(int hostelId);
+    public List<LiveBill> getNotOutLiveBills(int hostelId);
+
 
     public int getLiveInNum(int hostelId);
 

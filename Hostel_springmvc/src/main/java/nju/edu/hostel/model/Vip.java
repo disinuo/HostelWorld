@@ -14,26 +14,24 @@ import java.util.List;
 @Table(name = "vip", schema = "hostel", catalog = "")
 public class Vip {
     private int id;
-    private String realName="匿名";
-    private String idCard="111111197001011111";
+    private String realName = "匿名";
+    private String idCard = "111111197001011111";
     private String avatar;
-    private double moneyLeft=0;
-    private double moneyPaid=0;
-    private int level=0;
-    private double score=0;
-    private String state= VIPState.UNACTIVATED.toString();
+    private double moneyLeft = 0;
+    private double moneyPaid = 0;
+    private int level = 0;
+    private double score = 0;
+    private String state = VIPState.UNACTIVATED.toString();
     private long activateDate;
     private long pauseDate;
     private String email;
-    private String province;
-    private String city;
-    private List<BookBill> bookBills;
-    private List<LiveInBill> liveBills;
-    private List<PayBill> payBills;
+    private String province = "北京";
+    private String city = "北京";
+
 
     @Id
-    @GenericGenerator(name="dsn" , strategy="increment")
-    @GeneratedValue(generator="dsn")
+    @GenericGenerator(name = "dsn", strategy = "increment")
+    @GeneratedValue(generator = "dsn")
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;
@@ -48,6 +46,7 @@ public class Vip {
     public String getRealName() {
         return realName;
     }
+
     public void setRealName(String realName) {
         this.realName = realName;
     }
@@ -57,14 +56,17 @@ public class Vip {
     public long getActivateDate() {
         return activateDate;
     }
+
     public void setActivateDate(long activateDate) {
         this.activateDate = activateDate;
     }
+
     @Basic
     @Column(name = "pauseDate", nullable = false)
     public long getPauseDate() {
         return pauseDate;
     }
+
     public void setPauseDate(long pauseDate) {
         this.pauseDate = pauseDate;
     }
@@ -92,7 +94,7 @@ public class Vip {
     @Basic
     @Column(name = "moneyLeft", nullable = false, precision = 0)
     public double getMoneyLeft() {
-        return  NumberFormatter.saveOneDecimal(moneyLeft);
+        return NumberFormatter.saveOneDecimal(moneyLeft);
     }
 
     public void setMoneyLeft(double moneyLeft) {
@@ -102,7 +104,7 @@ public class Vip {
     @Basic
     @Column(name = "moneyPaid", nullable = false, precision = 0)
     public double getMoneyPaid() {
-        return  NumberFormatter.saveOneDecimal(moneyPaid);
+        return NumberFormatter.saveOneDecimal(moneyPaid);
     }
 
     public void setMoneyPaid(double moneyPaid) {
@@ -122,7 +124,7 @@ public class Vip {
     @Basic
     @Column(name = "score", nullable = false, precision = 0)
     public double getScore() {
-        return  NumberFormatter.saveOneDecimal(score);
+        return NumberFormatter.saveOneDecimal(score);
     }
 
     public void setScore(double score) {
@@ -148,6 +150,7 @@ public class Vip {
     public void setEmail(String email) {
         this.email = email;
     }
+
     @Basic
     @Column(name = "province", nullable = false, length = 255)
     public String getProvince() {
@@ -157,6 +160,7 @@ public class Vip {
     public void setProvince(String province) {
         this.province = province;
     }
+
     @Basic
     @Column(name = "city", nullable = false, length = 255)
     public String getCity() {
@@ -167,30 +171,4 @@ public class Vip {
         this.city = city;
     }
 
-    @OneToMany(mappedBy = "vip")
-    public List<BookBill> getBookBills() {
-        return bookBills;
-    }
-
-    public void setBookBills(List<BookBill> bookBills) {
-        this.bookBills = bookBills;
-    }
-
-    @OneToMany(mappedBy = "vip")
-    public List<LiveInBill> getLiveBills() {
-        return liveBills;
-    }
-
-    public void setLiveBills(List<LiveInBill> liveBillsById) {
-        this.liveBills = liveBillsById;
-    }
-
-    @OneToMany(mappedBy = "vip")
-    public List<PayBill> getPayBills() {
-        return payBills;
-    }
-
-    public void setPayBills(List<PayBill> payBills) {
-        this.payBills = payBills;
-    }
 }

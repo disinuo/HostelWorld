@@ -14,9 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 /**
@@ -150,8 +148,8 @@ public class ManagerServiceBean implements ManagerService {
         List<Hostel> hostels=getAllPermittedHostels();
         for(Hostel hostel:hostels){
            LiveInNumVO vo=new LiveInNumVO();
-           vo.setName(hostel.getName());
-           vo.setY(hostelService.getLiveInNum(hostel.getId()));
+           vo.setHostelName(hostel.getName());
+           vo.setNum(hostelService.getLiveInNum(hostel.getId()));
            ans.add(vo);
         }
         return ans;

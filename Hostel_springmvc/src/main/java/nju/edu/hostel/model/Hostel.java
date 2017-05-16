@@ -19,13 +19,10 @@ public class Hostel {
     private String address="默认地址";
     private String name;
     private double moneyUncounted;//本酒店未结算总额
-    private double avgExpense;//本酒店的人均消费
-    private String province;
-    private String city;
+    private double avgExpense=0;//本酒店的人均消费
+    private String province="北京";
+    private String city="北京";
     private String descrip;//酒店描述
-    private List<BookBill> bookBills;
-    private List<LiveInBill> liveBills;
-    private List<PayBill> payBills;
     private List<Room> rooms;
 
     @Id
@@ -141,14 +138,8 @@ public class Hostel {
         if (o == null || getClass() != o.getClass()) return false;
 
         Hostel hostel = (Hostel) o;
-
-        if (id != hostel.id) return false;
-        if (permitted != hostel.permitted) return false;
-        if (Double.compare(hostel.moneyUncounted, moneyUncounted) != 0) return false;
-        if (img != null ? !img.equals(hostel.img) : hostel.img != null) return false;
-        if (!phone.equals(hostel.phone)) return false;
-        if (!address.equals(hostel.address)) return false;
-        return name.equals(hostel.name);
+        if (id == hostel.id) return true;
+        return false;
     }
 
     @Override
@@ -164,33 +155,6 @@ public class Hostel {
         temp = Double.doubleToLongBits(moneyUncounted);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
-    }
-
-    @OneToMany(mappedBy = "hostel")
-    public List<BookBill> getBookBills() {
-        return bookBills;
-    }
-
-    public void setBookBills(List<BookBill> bookBills) {
-        this.bookBills = bookBills;
-    }
-
-    @OneToMany(mappedBy = "hostel")
-    public List<LiveInBill> getLiveBills() {
-        return liveBills;
-    }
-
-    public void setLiveBills(List<LiveInBill> liveBills) {
-        this.liveBills = liveBills;
-    }
-
-    @OneToMany(mappedBy = "hostel")
-    public List<PayBill> getPayBills() {
-        return payBills;
-    }
-
-    public void setPayBills(List<PayBill> payBills) {
-        this.payBills = payBills;
     }
 
     @OneToMany(mappedBy = "hostel")

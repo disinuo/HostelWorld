@@ -13,14 +13,12 @@ import javax.persistence.*;
 @Table(name = "paybill", schema = "hostel", catalog = "")
 public class PayBill {
     private int id;
-    private boolean counted=false;
-    private String userRealName;
-    private String idCard;
+    private Vip vip;
+    private boolean counted=false;//未被网站总经理结算
     private double money;
     private long createDate;
+    private LiveBill liveBill;
     private Hostel hostel;
-    private Vip vip;
-    private Room room;
 
     @Id
     @GenericGenerator(name="dsn" , strategy="increment")
@@ -44,25 +42,6 @@ public class PayBill {
         this.counted = counted;
     }
 
-    @Basic
-    @Column(name = "userRealName", nullable = false, length = 255)
-    public String getUserRealName() {
-        return userRealName;
-    }
-
-    public void setUserRealName(String userRealName) {
-        this.userRealName = userRealName;
-    }
-
-    @Basic
-    @Column(name = "idCard", nullable = false, length = 255)
-    public String getIdCard() {
-        return idCard;
-    }
-
-    public void setIdCard(String idCard) {
-        this.idCard = idCard;
-    }
 
     @Basic
     @Column(name = "money", nullable = false, precision = 0)
@@ -79,43 +58,45 @@ public class PayBill {
     public long getCreateDate() {
         return createDate;
     }
-
     public void setCreateDate(long createDate) {
         this.createDate = createDate;
     }
 
 
     @ManyToOne
-    @JoinColumn(name = "hostelId", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "livebillId", referencedColumnName = "id", nullable = false)
+    public LiveBill getLiveBill() {
+        return liveBill;
+    }
+
+    public void setLiveBill(LiveBill liveBill) {
+        this.liveBill = liveBill;
+        this.vip=liveBill.getVip();
+        this.hostel=liveBill.getHostel();
+    }
+
+    @Transient
     public Hostel getHostel() {
         return hostel;
     }
-
-    public void setHostel(Hostel hostel) {
-        this.hostel = hostel;
+    @Transient
+    public String getUserRealName() {
+        return liveBill.getUserRealName();
     }
 
-    @ManyToOne
-    @JoinColumn(name = "vipId", referencedColumnName = "id")
+    @Transient
+    public String getIdCard() {
+        return liveBill.getIdCard();
+    }
+
+    @Transient
     public Vip getVip() {
         return vip;
     }
 
-    public void setVip(Vip vip) {
-        this.vip = vip;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "roomId", referencedColumnName = "id", nullable = false)
-    public Room getRoom() {
-        return room;
-    }
-
-    public void setRoom(Room room) {
-        this.room = room;
-    }
     @Transient
     public String getCreateDateStr(){
         return DateHandler.longToStr(this.createDate);
     }
+
 }

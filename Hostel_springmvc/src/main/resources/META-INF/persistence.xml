@@ -8,11 +8,9 @@
         <class>nju.edu.hostel.model.User</class>
         <class>nju.edu.hostel.model.Vip</class>
         <class>nju.edu.hostel.model.RequestOpen</class>
-        <class>nju.edu.hostel.model.LiveInBill</class>
+        <class>nju.edu.hostel.model.LiveBill</class>
         <class>nju.edu.hostel.model.BookBill</class>
         <class>nju.edu.hostel.model.PayBill</class>
-        <class>nju.edu.hostel.model.CheckoutbillEntity</class>
-        <class>nju.edu.hostel.model.LiveInbillEntity</class>
 
         <properties>
             <!-- 使用MySQL方言 -->

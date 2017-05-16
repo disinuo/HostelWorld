@@ -70,14 +70,9 @@ public class BookBill {
     }
 
 
-    @ManyToOne
-    @JoinColumn(name = "hostelId", referencedColumnName = "id", nullable = false)
+    @Transient
     public Hostel getHostel() {
         return hostel;
-    }
-
-    public void setHostel(Hostel hostel) {
-        this.hostel = hostel;
     }
 
     @ManyToOne
@@ -98,6 +93,8 @@ public class BookBill {
 
     public void setRoom(Room room) {
         this.room = room;
+        this.hostel=room.getHostel();
+
     }
     @Transient
     public String getCreateDateStr(){

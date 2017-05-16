@@ -24,7 +24,7 @@ public class Room {
     //此类型房间总数
     private int totalNum;
     //此类型房间已入住数
-    private int occupiedNum;
+    private int occupiedNum=0;
     //生效起始时间
     private long startDate;
     //生效结束时间

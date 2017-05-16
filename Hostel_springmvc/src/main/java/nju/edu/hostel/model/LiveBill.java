@@ -9,16 +9,19 @@ import javax.persistence.*;
  * Created by disinuo on 17/3/3.
  */
 @Entity
-@Table(name = "checkoutbill", schema = "hostel", catalog = "")
-public class CheckOutBill {
+@Table(name = "livebill", schema = "hostel", catalog = "")
+public class LiveBill {
     private int id;
+    private boolean inHostel=true;//初始是true，代表还没离店。false代表已离店
+    private boolean paid=false;//false表示未支付。
     private String userRealName;
     private String idCard;
     private long date;
+    private long checkOutDate;
     private Hostel hostel;
     private Vip vip;
     private Room room;
-    private LiveInBill liveInBill;
+    private BookBill bookBill;
 
     @Id
     @GenericGenerator(name="dsn" , strategy="increment")
@@ -32,6 +35,23 @@ public class CheckOutBill {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "inhostel", nullable = false)
+    public boolean getInHostel() {
+        return inHostel;
+    }
+    public void setInHostel(boolean inHostel) {
+        this.inHostel=inHostel;
+    }
+
+    @Basic
+    @Column(name = "paid", nullable = false)
+    public boolean isPaid() {
+        return paid;
+    }
+    public void setPaid(boolean paid) {
+        this.paid = paid;
+    }
 
     @Basic
     @Column(name = "userRealName", nullable = false)
@@ -63,14 +83,14 @@ public class CheckOutBill {
         this.date = date;
     }
 
-    @OneToOne
-    @JoinColumn(name = "liveinbillId", referencedColumnName = "id")
-    public LiveInBill getLiveInBill() {
-        return liveInBill;
+    @Basic
+    @Column(name = "checkOutDate", nullable = true)
+    public long getCheckOutDate() {
+        return checkOutDate;
     }
 
-    public void setLiveInBill(LiveInBill liveInBill) {
-        this.liveInBill = liveInBill;
+    public void setCheckOutDate(long checkOutDate) {
+        this.checkOutDate = checkOutDate;
     }
 
     @ManyToOne
@@ -93,10 +113,24 @@ public class CheckOutBill {
         this.room = room;
         this.hostel=room.getHostel();
     }
+    @OneToOne
+    @JoinColumn(name = "bookbillId", referencedColumnName = "id", nullable = true)
+
+    public BookBill getBookBill() {
+        return bookBill;
+    }
+
+    public void setBookBill(BookBill bookBill) {
+        this.bookBill = bookBill;
+    }
 
     @Transient
     public String getDateStr(){
         return DateHandler.longToStr(this.date);
+    }
+    @Transient
+    public String getCheckOutDateStr(){
+        return DateHandler.longToStr(this.checkOutDate);
     }
     @Transient
     public Hostel getHostel() {

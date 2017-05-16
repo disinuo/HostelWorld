@@ -144,7 +144,6 @@ public class VIPServiceBean implements VIPService{
                 bookBill.setVip(vip);
                 bookBill.setRoom(room);
                 bookBill.setLiveOutDate(DateHandler.strToLong(bookVO.getLiveOutDate()));
-                bookBill.setHostel(room.getHostel());
                 bookBill.setCreateDate(new Date().getTime());
                 bookBill.setLiveInDate(DateHandler.strToLong(bookVO.getLiveInDate()));
                 try {
@@ -194,9 +193,10 @@ public class VIPServiceBean implements VIPService{
     }
 
     @Override
-    public List<LiveInBill> getAllLiveBills(int vipId) {
+    public List<LiveBill> getAllLiveBills(int vipId) {
         return liveBillDao.getByRestrictEqual("vip.id",vipId);
     }
+
 
     @Override
     public ResultMessage scoreToMoney(int vipId, double score) {
