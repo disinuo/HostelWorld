@@ -28,7 +28,7 @@
 
             <div class="input-group input-group-sm">
                 <span class="input-group-addon">房型</span>
-                <input id="name" name="name" type="text" class="form-control" aria-describedby="sizing-addon3"required>
+                <input id="hostelName" name="hostelName" type="text" class="form-control" aria-describedby="sizing-addon3"required>
             </div>
 
             <div class="input-group input-group-sm">

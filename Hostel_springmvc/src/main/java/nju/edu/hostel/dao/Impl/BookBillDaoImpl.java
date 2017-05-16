@@ -32,11 +32,26 @@ public class BookBillDaoImpl implements BookBillDao {
     public List<BookBill> getByRestrictEqual(String column, Object value) {
         return baseDao.getByRestrictEqualDESC(BookBill.class,column,value,"id");
     }
-
     @Override
     public List<BookBill> getByRestrictEqual(Map<String, Object> map) {
+
         return baseDao.getByRestrictEqualDESC(BookBill.class,map,"id");
+
     }
+
+    @Override
+    public List<BookBill> getByHostelId(int hostelId){
+        String hql="SELECT bill FROM BookBill as bill" +
+                " WHERE bill.room.hostel.id = "+hostelId;
+        return baseDao.getByHql(BookBill.class,hql);
+    }
+    @Override
+    public List<BookBill> getByVipId(int vipId){
+        String hql="SELECT bill FROM BookBill as bill" +
+                " WHERE bill.vip.id = "+vipId;
+        return baseDao.getByHql(BookBill.class,hql);
+    }
+
 
     @Override
     public int add(BookBill bookBill) throws Exception {

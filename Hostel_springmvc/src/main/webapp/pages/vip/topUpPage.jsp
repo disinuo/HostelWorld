@@ -22,7 +22,7 @@
     </div>
     <div class="col-lg-9 clo-md-9">
         <div>
-            <h3>尊敬的<em id="name"></em></h3>
+            <h3>尊敬的<em id="hostelName"></em></h3>
             <h5>您的会员卡余额为：</h5>
             <div id="moneyLeft"></div>
         </div>

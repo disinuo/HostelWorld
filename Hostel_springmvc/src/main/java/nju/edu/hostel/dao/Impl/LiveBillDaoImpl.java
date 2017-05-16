@@ -46,7 +46,12 @@ public class LiveBillDaoImpl implements LiveBillDao {
                 " WHERE bill.room.hostel.id = "+hostelId;
         return baseDao.getByHql(LiveBill.class,hql);
     }
-
+    @Override
+    public List<LiveBill> getByVipId(int vipId){
+        String hql="SELECT bill FROM LiveBill as bill" +
+                " WHERE bill.vip.id = "+vipId;
+        return baseDao.getByHql(LiveBill.class,hql);
+    }
     @Override
     public int add(LiveBill liveBill) throws Exception {
         return baseDao.save(liveBill);

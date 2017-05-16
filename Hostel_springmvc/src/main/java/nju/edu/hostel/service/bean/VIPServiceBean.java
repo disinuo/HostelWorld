@@ -66,7 +66,6 @@ public class VIPServiceBean implements VIPService{
                 }
             }
         }
-
     }
 
     @Override
@@ -188,13 +187,12 @@ public class VIPServiceBean implements VIPService{
     }
     @Override
     public List<PayBill> getAllPayBills(int vipId) {
-        return payBillDao.getByRestrictEqual("vip.id",vipId);
-
+        return payBillDao.getByVipId(vipId);
     }
 
     @Override
     public List<LiveBill> getAllLiveBills(int vipId) {
-        return liveBillDao.getByRestrictEqual("vip.id",vipId);
+        return liveBillDao.getByVipId(vipId);
     }
 
 
@@ -259,7 +257,6 @@ public class VIPServiceBean implements VIPService{
             vip.setMoneyLeft(moneyLeft-money);
             return vipDao.update(vip);
         }
-
     }
     @Autowired
     VIPDao vipDao;

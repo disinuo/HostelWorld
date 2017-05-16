@@ -19,5 +19,6 @@ public interface LiveBillDao {
     public ResultMessage update(LiveBill liveBill);
 
     public List<LiveBill> getByHostelId(int hostelId);
+    public List<LiveBill> getByVipId(int hostelId);
 
 }

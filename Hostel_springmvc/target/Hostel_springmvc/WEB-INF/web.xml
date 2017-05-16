@@ -23,8 +23,8 @@
 
   <display-name>SpringMVCDemo Web Application</display-name>
   <!--<context-param>-->
-    <!--<param-name>contextConfigLocation</param-name>-->
-    <!--<param-value>WEB-INF/applicationContext.xml</param-value>-->
+  <!--<param-name>contextConfigLocation</param-name>-->
+  <!--<param-value>WEB-INF/applicationContext.xml</param-value>-->
   <!--</context-param>-->
   <servlet>
     <servlet-name>mvc-dispatcher</servlet-name>
@@ -39,7 +39,7 @@
 
 
 
-<!--jsp标准标签库配置-->
+  <!--jsp标准标签库配置-->
   <jsp-config>
     <taglib>
       <taglib-uri>http://java.sun.com/jstl/fmt</taglib-uri>

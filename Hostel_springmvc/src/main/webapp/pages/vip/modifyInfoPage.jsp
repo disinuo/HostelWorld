@@ -24,7 +24,7 @@
         <form id="modifyInfoForm">
             <div class="input">
                 <label>姓名</label>
-                <input id="name" type="text" placeholder="输入真名哦~" required>
+                <input id="hostelName" type="text" placeholder="输入真名哦~" required>
             </div>
             <div class="input">
                 <label>身份证号</label>

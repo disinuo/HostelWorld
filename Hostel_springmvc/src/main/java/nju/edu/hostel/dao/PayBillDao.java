@@ -17,6 +17,7 @@ public interface PayBillDao {
 
     public int add(PayBill payBill)throws Exception;
     public ResultMessage update(PayBill payBill);
-
+    public List<PayBill> getByHostelId(int hostelId);
+    public List<PayBill> getByVipId(int hostelId);
 
 }

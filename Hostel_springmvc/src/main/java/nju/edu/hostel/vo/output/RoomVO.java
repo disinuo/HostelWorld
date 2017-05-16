@@ -20,6 +20,20 @@ public class RoomVO {
     private String hostelName;
     private String hostelAddress;
 
+    //the max num of people the room can hold
+    private int capacity;
+
+    //此类型房间总数
+    private int totalNum;
+    //此类型房间已入住数
+    private int occupiedNum=0;
+    //生效起始时间
+    private long startDate;
+    //生效结束时间
+    private long endDate;
+
+    private String descrip;
+
 
     public RoomVO(Room roomEntity){
         this.id=roomEntity.getId();
@@ -31,6 +45,13 @@ public class RoomVO {
         this.hostelPhone=roomEntity.getHostel().getPhone();
         this.hostelName=roomEntity.getHostel().getName();
         this.hostelAddress=roomEntity.getHostel().getAddress();
+        this.capacity=roomEntity.getCapacity();
+        this.totalNum=roomEntity.getTotalNum();
+        this.occupiedNum=roomEntity.getOccupiedNum();
+        this.startDate=roomEntity.getStartDate();
+        this.endDate=roomEntity.getEndDate();
+        this.descrip=roomEntity.getDescrip();
+
     }
 
     public static List<RoomVO> entityToVO(List<Room> rooms){
@@ -75,5 +96,29 @@ public class RoomVO {
 
     public String getHostelAddress() {
         return hostelAddress;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public int getTotalNum() {
+        return totalNum;
+    }
+
+    public int getOccupiedNum() {
+        return occupiedNum;
+    }
+
+    public long getStartDate() {
+        return startDate;
+    }
+
+    public long getEndDate() {
+        return endDate;
+    }
+
+    public String getDescrip() {
+        return descrip;
     }
 }

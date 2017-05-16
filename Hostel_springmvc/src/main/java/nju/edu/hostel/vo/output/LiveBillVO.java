@@ -1,6 +1,6 @@
 package nju.edu.hostel.vo.output;
 
-import nju.edu.hostel.model.LiveInBill;
+import nju.edu.hostel.model.LiveBill;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +12,14 @@ import java.util.List;
 
 public class LiveBillVO {
     private int id;
-    //true代表入店，false代表离店
-    private boolean type;
+    private boolean inHostel;//初始是true，代表还没离店。false代表已离店
+    private boolean paid;//false表示未支付。
     private String userRealName;
     private String idCard;
     private String date;
+    private String checkOutDate;
+    private int bookBillId;
+
     private int hostelId;
     private String vipId;
     private int roomId;
@@ -26,9 +29,13 @@ public class LiveBillVO {
     private String roomName;
     private double roomPrice;
 
-    public LiveBillVO(LiveInBill liveBillEntity){
+    public LiveBillVO(LiveBill liveBillEntity){
         this.id=liveBillEntity.getId();
-        this.type=liveBillEntity.getType();
+        this.checkOutDate=liveBillEntity.getCheckOutDateStr();
+        this.bookBillId=(liveBillEntity.getBookBill()!=null)?liveBillEntity.getBookBill().getId():0;
+        this.inHostel=liveBillEntity.getInHostel();
+        this.paid=liveBillEntity.isPaid();
+
         this.userRealName=liveBillEntity.getUserRealName();
         this.idCard=liveBillEntity.getIdCard();
         this.date= liveBillEntity.getDateStr();
@@ -41,9 +48,9 @@ public class LiveBillVO {
         this.roomName=liveBillEntity.getRoom().getName();
         this.roomPrice=liveBillEntity.getRoom().getPrice();
     }
-    public static List<LiveBillVO> entityToVO(List<LiveInBill> bills){
+    public static List<LiveBillVO> entityToVO(List<LiveBill> bills){
         List<LiveBillVO> res=new ArrayList<LiveBillVO>();
-        for(LiveInBill bill:bills){
+        for(LiveBill bill:bills){
             res.add(new LiveBillVO((bill)));
         }
         return res;
@@ -52,8 +59,20 @@ public class LiveBillVO {
         return id;
     }
 
-    public boolean isType() {
-        return type;
+    public boolean isInHostel() {
+        return inHostel;
+    }
+
+    public boolean isPaid() {
+        return paid;
+    }
+
+    public String getCheckOutDate() {
+        return checkOutDate;
+    }
+
+    public int getBookBillId() {
+        return bookBillId;
     }
 
     public String getUserRealName() {

@@ -76,6 +76,8 @@ public class HostelDataController {
     }
     @RequestMapping(value = "/getLiveBills")
     public List<LiveBillVO> getAllLiveBills(HttpSession session) {
+        System.out.print("In Hostel controller! getAllLiveBills");
+
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
         int id=user.getId();
         return LiveBillVO.entityToVO(hostelService.getAllLiveBills(id));

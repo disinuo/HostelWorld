@@ -18,7 +18,6 @@ public class LiveBill {
     private String idCard;
     private long date;
     private long checkOutDate;
-    private Hostel hostel;
     private Vip vip;
     private Room room;
     private BookBill bookBill;
@@ -111,7 +110,6 @@ public class LiveBill {
 
     public void setRoom(Room room) {
         this.room = room;
-        this.hostel=room.getHostel();
     }
     @OneToOne
     @JoinColumn(name = "bookbillId", referencedColumnName = "id", nullable = true)
@@ -134,7 +132,7 @@ public class LiveBill {
     }
     @Transient
     public Hostel getHostel() {
-        return hostel;
+        return room.getHostel();
     }
 
 }

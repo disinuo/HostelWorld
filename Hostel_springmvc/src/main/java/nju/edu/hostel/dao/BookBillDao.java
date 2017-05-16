@@ -17,4 +17,7 @@ public interface BookBillDao {
 
     public int add(BookBill bookBill)throws Exception;
     public ResultMessage update(BookBill bookBill);
-}
+    public List<BookBill> getByHostelId(int hostelId);
+    public List<BookBill> getByVipId(int vipId);
+
+    }

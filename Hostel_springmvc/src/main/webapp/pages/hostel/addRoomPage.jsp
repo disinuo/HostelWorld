@@ -14,9 +14,6 @@
 <%@include file="../common/header.jsp" %>
 <%@include file="component/navigation.jsp" %>
 
-客栈管理员你好
-
-新增房间界面
 
 <div class="big-container">
     <div class="col-lg-3 col-md-3 ">
@@ -27,7 +24,24 @@
 
             <div class="input-group input-group-sm">
                 <span class="input-group-addon">房型</span>
-                <input id="name" name="name" type="text" class="form-control" aria-describedby="sizing-addon3"required>
+                <input id="hostelName" name="hostelName" type="text" class="form-control" aria-describedby="sizing-addon3"required>
+            </div>
+
+            <div class="input-group input-group-sm">
+                <span class="input-group-addon">房间数量</span>
+                <input id="totalNum" name="totalNum" type="number" class="form-control" placeholder="" aria-describedby="sizing-addon3" required>
+            </div>
+            <div class="input-group input-group-sm">
+                <span class="input-group-addon">房间容纳最大人数</span>
+                <input id="capacity" name="capacity" type="number" class="form-control" placeholder="" aria-describedby="sizing-addon3" required>
+            </div>
+            <div class="input-group input-group-sm">
+                <span class="input-group-addon">房间上市日期</span>
+                <input id="startDate" name="startDate" type="number" class="form-control" placeholder="" aria-describedby="sizing-addon3" required>
+            </div>
+            <div class="input-group input-group-sm">
+                <span class="input-group-addon">房间下市日期</span>
+                <input id="endDate" name="endDate" type="number" class="form-control" placeholder="" aria-describedby="sizing-addon3" required>
             </div>
 
             <div class="input-group input-group-sm">

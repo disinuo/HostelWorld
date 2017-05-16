@@ -226,12 +226,13 @@ public class HostelServiceBean implements HostelService {
     }
     @Override
     public List<BookBill> getAllBookBills(int hostelId) {
-        return bookBillDao.getByRestrictEqual("hostel.id",hostelId);
+
+        return bookBillDao.getByHostelId(hostelId);
     }
 
     @Override
     public List<PayBill> getAllPayBills(int hostelId) {
-        return payBillDao.getByRestrictEqual("hostel.id",hostelId);
+        return payBillDao.getByHostelId(hostelId);//getByRestrictEqual("hostel.id",hostelId);
     }
 
     @Override
@@ -246,11 +247,7 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public List<LiveBill> getAllLiveBills(int hostelId) {
-        //TODO
-        System.out.print("In Hostel service! getAllLiveBills");
-        Hostel hostel=hostelDao.load(hostelId);
         List<LiveBill> ans=liveInBillDao.getByHostelId(hostelId);
-        System.out.print("In Hostel service! getAllLiveBills,size="+ans.size());
         return ans;
     }
     @Override

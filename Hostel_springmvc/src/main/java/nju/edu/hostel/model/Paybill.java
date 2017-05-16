@@ -13,12 +13,10 @@ import javax.persistence.*;
 @Table(name = "paybill", schema = "hostel", catalog = "")
 public class PayBill {
     private int id;
-    private Vip vip;
     private boolean counted=false;//未被网站总经理结算
     private double money;
     private long createDate;
     private LiveBill liveBill;
-    private Hostel hostel;
 
     @Id
     @GenericGenerator(name="dsn" , strategy="increment")
@@ -71,13 +69,11 @@ public class PayBill {
 
     public void setLiveBill(LiveBill liveBill) {
         this.liveBill = liveBill;
-        this.vip=liveBill.getVip();
-        this.hostel=liveBill.getHostel();
     }
 
     @Transient
     public Hostel getHostel() {
-        return hostel;
+        return liveBill.getHostel();
     }
     @Transient
     public String getUserRealName() {
@@ -91,7 +87,7 @@ public class PayBill {
 
     @Transient
     public Vip getVip() {
-        return vip;
+        return liveBill.getVip();
     }
 
     @Transient

@@ -16,6 +16,10 @@ public class HostelVO {
     private String address;
     private String name;
     private double moneyUncounted;
+    private double avgExpense;
+    private String province;
+    private String city;
+    private String descrip;
 
     public HostelVO(Hostel hostelEntity){
         this.id=hostelEntity.getId();
@@ -25,6 +29,10 @@ public class HostelVO {
         this.address=hostelEntity.getAddress();
         this.name=hostelEntity.getName();
         this.moneyUncounted=hostelEntity.getMoneyUncounted();
+        this.avgExpense=hostelEntity.getAvgExpense();
+        this.province=hostelEntity.getProvince();
+        this.city=hostelEntity.getCity();
+        this.descrip=hostelEntity.getDescrip();
     }
     public static List<HostelVO> entityToVO(List<Hostel> hostels){
         List<HostelVO> res=new ArrayList<HostelVO>();
@@ -60,5 +68,21 @@ public class HostelVO {
 
     public double getMoneyUncounted() {
         return moneyUncounted;
+    }
+
+    public double getAvgExpense() {
+        return avgExpense;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getDescrip() {
+        return descrip;
     }
 }

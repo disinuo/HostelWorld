@@ -36,10 +36,10 @@ public class PayBillVO {
         this.hostelAddress=payBillEntity.getHostel().getAddress();
         this.hostelName=payBillEntity.getHostel().getName();
         this.vipId=(payBillEntity.getVip()!=null)?(payBillEntity.getVip().getId()+""):"-";
-        this.roomId=payBillEntity.getRoom().getId();
-        this.roomImg=payBillEntity.getRoom().getImg();
-        this.roomName=payBillEntity.getRoom().getName();
-        this.roomPrice=payBillEntity.getRoom().getPrice();
+        this.roomId=payBillEntity.getLiveBill().getRoom().getId();
+        this.roomImg=payBillEntity.getLiveBill().getRoom().getImg();
+        this.roomName=payBillEntity.getLiveBill().getRoom().getName();
+        this.roomPrice=payBillEntity.getLiveBill().getRoom().getPrice();
     }
     public static List<PayBillVO> entityToVO(List<PayBill> bills){
         List<PayBillVO> res=new ArrayList<PayBillVO>();

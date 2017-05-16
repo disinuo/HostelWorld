@@ -38,7 +38,11 @@ public class BookBillVO {
         this.liveOutDate= bookBillEntity.getLiveOutDateStr();
         this.createDate=bookBillEntity.getCreateDateStr();
         this.hostelId=bookBillEntity.getHostel().getId();
-        this.hostelAddress=bookBillEntity.getHostel().getAddress();
+        this.hostelAddress
+                =
+                bookBillEntity.getHostel().getProvince()+" - "+
+                bookBillEntity.getHostel().getCity()+" - "+
+                bookBillEntity.getHostel().getAddress();
         this.hostelName=bookBillEntity.getHostel().getName();
         this.vipId=bookBillEntity.getVipId();
         this.roomId=bookBillEntity.getRoom().getId();

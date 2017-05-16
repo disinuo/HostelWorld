@@ -29,6 +29,18 @@ public class PayBillDaoImpl implements PayBillDao {
     }
 
     @Override
+    public List<PayBill> getByHostelId(int hostelId){
+        String hql="SELECT bill FROM PayBill as bill" +
+                " WHERE bill.liveBill.room.hostel.id = "+hostelId;
+        return baseDao.getByHql(PayBill.class,hql);
+    }
+    @Override
+    public List<PayBill> getByVipId(int vipId){
+        String hql="SELECT bill FROM PayBill as bill" +
+                " WHERE bill.liveBill.vip.id = "+vipId;
+        return baseDao.getByHql(PayBill.class,hql);
+    }
+    @Override
     public List<PayBill> getByRestrictEqual(String column, Object value) {
 
         return baseDao.getByRestrictEqualDESC(PayBill.class,column,value,"id");

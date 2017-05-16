@@ -21,6 +21,10 @@ public class VipVO {
     private VIPState state;
     private String stateStr;
 
+    private String email;
+    private String province;
+    private String city;
+
     public VipVO(int id, String realName, String idCard, String avatar, double moneyLeft, double moneyPaid, int level, double score, VIPState state) {
         this.id = id;
         this.realName = realName;
@@ -125,5 +129,18 @@ public class VipVO {
     }
     public String getStateStr(){
         return state.toChineseString();
+    }
+
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public String getCity() {
+        return city;
     }
 }
