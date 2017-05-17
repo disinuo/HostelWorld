@@ -356,6 +356,11 @@ public class HostelServiceBean implements HostelService {
         map.put("counted",false);
         return payBillDao.getByRestrictEqual(map);
     }
+
+    @Override
+    public BookBill getBookBillById(int billId){
+        return bookBillDao.get(billId);
+    }
 //   ----------------------------------------
     @Autowired
     HostelDao hostelDao;

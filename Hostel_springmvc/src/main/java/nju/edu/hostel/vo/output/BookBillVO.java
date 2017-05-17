@@ -16,6 +16,7 @@ public class BookBillVO {
     private int hostelId;
     private int vipId;
     private String vipName;
+    private String idCard;
     private int roomId;
     private int state;
 
@@ -45,6 +46,7 @@ public class BookBillVO {
                 bookBillEntity.getHostel().getAddress();
         this.hostelName=bookBillEntity.getHostel().getName();
         this.vipId=bookBillEntity.getVipId();
+        this.idCard=bookBillEntity.getVip().getIdCard();
         this.roomId=bookBillEntity.getRoom().getId();
         this.roomImg=bookBillEntity.getRoom().getImg();
         this.roomName=bookBillEntity.getRoom().getName();
@@ -106,4 +108,7 @@ public class BookBillVO {
         return vipName;
     }
 
+    public String getIdCard() {
+        return idCard;
+    }
 }

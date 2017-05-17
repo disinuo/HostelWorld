@@ -220,4 +220,11 @@ public interface HostelService {
      * @return
      */
     public List<PayBill> getAllUncountedPayBills(int hostelId);
+
+    /**
+     * 通过订单id返回订单
+     * @param billId
+     * @return
+     */
+    public BookBill getBookBillById(int billId);
 }

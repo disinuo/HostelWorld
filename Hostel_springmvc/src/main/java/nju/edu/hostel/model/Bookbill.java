@@ -15,7 +15,6 @@ public class BookBill {
     private long liveInDate;
     private long liveOutDate;
     private long createDate;
-    private Hostel hostel;
     private Vip vip;
     private Room room;
     /*
@@ -79,7 +78,7 @@ public class BookBill {
 
     @Transient
     public Hostel getHostel() {
-        return hostel;
+        return room.getHostel();
     }
 
     @ManyToOne
@@ -100,8 +99,6 @@ public class BookBill {
 
     public void setRoom(Room room) {
         this.room = room;
-        this.hostel=room.getHostel();
-
     }
     @Transient
     public String getCreateDateStr(){
