@@ -26,4 +26,5 @@
 <%--<script src="https://unpkg.com/flatpickr"></script>--%>
 
 <script src='/js/common.js' type="text/javascript"></script>
+<script src='/js/regx.js' type="text/javascript"></script>
 

@@ -28,22 +28,6 @@ function requestParamFormatter() {
     }
     return args;
 }
-$(function() {
-    $('.myDatePicker').flatpickr();
-    // datetimepicker({
-    //     language: 'zh-CN',
-    //     format:'yyyy-mm-dd',
-    //     startDate:new Date(),
-    //     endDate:dateAdder(new Date(),60),
-    //     weekStart: 1,
-    //     todayBtn:  1,
-    //     autoclose: 1,
-    //     todayHighlight: 1,
-    //     startView: 2,
-    //     forceParse: 0,
-    //     showMeridian: 1
-    // });
-});
 
 function dateAdder(date,n) {
     // var uom = new Date(new Date()-0+n*86400000);

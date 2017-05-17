@@ -25,6 +25,7 @@ public class Vip {
     private long activateDate;
     private long pauseDate;
     private String email;
+    private String phone;
     private String province = "北京";
     private String city = "北京";
 
@@ -171,4 +172,14 @@ public class Vip {
         this.city = city;
     }
 
+
+    @Basic
+    @Column(name = "phone", nullable = true, length = 255)
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 }

@@ -27,3 +27,22 @@ $("#liveInForm").submit(function(e) {
 
     e.preventDefault(); // avoid to execute the actual submit of the form.
 });
+$(function() {
+    $('#bookBillId').blur(function () {
+        var billId=$('#bookBillId').val();
+        $.ajax({
+            type:'GET',
+            url:'/data/hostel/getBookBillById',
+            data:{billId:billId},
+            success:function (data) {
+                console.log(data);
+                $('#userRealName').val(data.vipName);
+                $('#idCard').val(data.idCard);
+                $('#vipId').val(data.vipId);
+                $('#roomId').val(data.roomId);
+            }
+        });
+    });
+
+});
+

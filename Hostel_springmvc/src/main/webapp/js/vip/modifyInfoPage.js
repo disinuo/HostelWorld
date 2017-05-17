@@ -1,8 +1,6 @@
 $('#modifyInfoForm').submit(function (e) {
     var idcard=$('#idCard').val();
-    var pattern=/\d{18,18}/g;
-
-    var result=pattern.test(idcard);
+    var result=checkIDCard(idcard);
     if(result==false){
         alert('身份证格式错误');
     }else {

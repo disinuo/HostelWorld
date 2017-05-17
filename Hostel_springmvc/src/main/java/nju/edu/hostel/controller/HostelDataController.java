@@ -67,6 +67,11 @@ public class HostelDataController {
         int id=user.getId();
         return BookBillVO.entityToVO(hostelService.getAllBookBills(id));
     }
+    @RequestMapping(value = "/getBookBillById")
+    public BookBillVO getAllBookBills(int billId){
+        System.out.println("controller: billId= "+billId);
+        return new BookBillVO(hostelService.getBookBillById(billId));
+    }
 
     @RequestMapping(value = "/getPayBills")
     public List<PayBillVO> getAllPayBills(HttpSession session){

@@ -21,6 +21,7 @@ public class VipVO {
     private VIPState state;
 
     private String email;
+    private String phone;
     private String province;
     private String city;
 
@@ -37,6 +38,7 @@ public class VipVO {
         this.state = VIPState.strToVipState(vipEntity.getState());
         this.province=vipEntity.getProvince();
         this.city=vipEntity.getCity();
+        this.phone=vipEntity.getPhone();
     }
 
     public static List<VipVO> entityToVO(List<Vip> vips){
@@ -132,5 +134,8 @@ public class VipVO {
 
     public String getCity() {
         return city;
+    }
+    public String getPhone() {
+        return phone;
     }
 }

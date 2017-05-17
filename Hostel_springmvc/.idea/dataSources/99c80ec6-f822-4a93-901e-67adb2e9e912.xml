@@ -645,7 +645,11 @@
       <DataType>varchar(255)|0</DataType>
       <DefaultExpression>&apos;北京&apos;</DefaultExpression>
     </column>
-    <key id="144" parent="19" name="PRIMARY">
+    <column id="144" parent="19" name="phone">
+      <Position>15</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <key id="145" parent="19" name="PRIMARY">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
