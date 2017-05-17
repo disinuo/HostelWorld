@@ -6,7 +6,12 @@ $('#addRoomForm').submit(function (e) {
     var data={
         name:$('#name').val(),
         price:$('#price').val(),
-        img:$('#img').val()
+        img:$('#img').val(),
+        capacity:$('#capacity').val(),
+        totalNum:$('#totalNum').val(),
+        startDate:$('#startDate').val(),
+        endDate:$('#endDate').val(),
+        descrip:$('#descrip').val()
     };
     data.img='/../img/hostel002.jpg';
     $.ajax({
@@ -22,4 +27,7 @@ $('#addRoomForm').submit(function (e) {
     });
     e.preventDefault(); // avoid to execute the actual submit of the form.
 })
-
+$(document).ready(function () {
+    $("#startDate").flatpickr();
+    $("#endDate").flatpickr();
+});

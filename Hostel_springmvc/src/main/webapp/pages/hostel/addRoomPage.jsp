@@ -9,6 +9,7 @@
 <html>
 <head>
     <%@include file="../common/head.jsp" %>
+
 </head>
 <body>
 <%@include file="../common/header.jsp" %>
@@ -24,33 +25,41 @@
 
             <div class="input-group input-group-sm">
                 <span class="input-group-addon">房型</span>
-                <input id="hostelName" name="hostelName" type="text" class="form-control" aria-describedby="sizing-addon3"required>
+                <input id="name" name="name" type="text" class="form-control" aria-describedby="sizing-addon3"required>
+            </div>
+            <div class="input-group input-group-sm">
+                <span class="input-group-addon">房价</span>
+                <input id="price" name="price" type="number" class="form-control" placeholder="" aria-describedby="sizing-addon3" required>
             </div>
 
             <div class="input-group input-group-sm">
-                <span class="input-group-addon">房间数量</span>
+                <span class="input-group-addon">房间数</span>
                 <input id="totalNum" name="totalNum" type="number" class="form-control" placeholder="" aria-describedby="sizing-addon3" required>
             </div>
             <div class="input-group input-group-sm">
                 <span class="input-group-addon">房间容纳最大人数</span>
                 <input id="capacity" name="capacity" type="number" class="form-control" placeholder="" aria-describedby="sizing-addon3" required>
             </div>
+
+
             <div class="input-group input-group-sm">
                 <span class="input-group-addon">房间上市日期</span>
-                <input id="startDate" name="startDate" type="number" class="form-control" placeholder="" aria-describedby="sizing-addon3" required>
+                <input id="startDate"/>
             </div>
             <div class="input-group input-group-sm">
                 <span class="input-group-addon">房间下市日期</span>
-                <input id="endDate" name="endDate" type="number" class="form-control" placeholder="" aria-describedby="sizing-addon3" required>
+                <input id="endDate"/>
             </div>
 
-            <div class="input-group input-group-sm">
-                <span class="input-group-addon">房价</span>
-                <input id="price" name="price" type="number" class="form-control" placeholder="" aria-describedby="sizing-addon3" required>
-            </div>
+
             <div class="input-group input-group-sm">
                 <span class="input-group-addon">展示图</span>
                 <input id="img" type="file" name="file" >
+            </div>
+
+            <div class="input-group input-group-sm">
+                <span class="input-group-addon">描述</span>
+                <textarea id="descrip" name="descrip" ></textarea>
             </div>
             <input id="btnLogin"  class="btn btn-primary" type="submit" value="发布"/>
         </form>

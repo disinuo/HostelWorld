@@ -221,7 +221,7 @@ public class HostelServiceBean implements HostelService {
         room.setPrice(roomVO.getPrice());
         room.setImg(roomVO.getImg());
         room.setCapacity(roomVO.getCapacity());
-        room.setVacantNum(roomVO.getCapacity());
+        room.setVacantNum(roomVO.getTotalNum());
         room.setDescrip(roomVO.getDescrip());
         room.setTotalNum(roomVO.getTotalNum());
         room.setStartDate(DateHandler.strToLong(roomVO.getStartDate()));

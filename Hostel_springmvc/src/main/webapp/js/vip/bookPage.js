@@ -7,7 +7,6 @@ $(document).ready(function () {
    roomId=args['roomId'];
    init();
 });
-$(".selector").flatpickr();
 $('#form').submit(function (e) {
     var url = "/vip/book"; // the script where you handle the form input.
     var data={
@@ -32,6 +31,8 @@ $('#form').submit(function (e) {
 
 });
 function init() {
+    $("#liveInDate").flatpickr();
+    $("#liveOutDate").flatpickr();
     $.ajax({
         url:'/data/hostel/getRoom',
         data:{roomId:roomId},
