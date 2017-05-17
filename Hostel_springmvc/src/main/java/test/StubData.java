@@ -15,16 +15,16 @@ import java.util.List;
 public class StubData {
     public static List<Room> getRooms(){
         List<Room> rooms=new ArrayList<>();
-        for(int i=0;i<10;i++){
-            Room room=new Room();
-            room.setName("房间"+i);
-            room.setId(i+100);
-            room.setImg("../jpg");
-            room.setPrice(100+i*5);
-            room.setValid(true);
-            room.setHostel(getHostels().get(i));
-            rooms.add(room);
-        }
+//        for(int i=0;i<10;i++){
+//            Room room=new Room();
+//            room.setName("房间"+i);
+//            room.setId(i+100);
+//            room.setImg("../jpg");
+//            room.setPrice(100+i*5);
+//            room.setValid(true);
+//            room.setHostel(getHostels().get(i));
+//            rooms.add(room);
+//        }
         return rooms;
     }
     public static List<Hostel> getHostels(){

@@ -56,5 +56,11 @@ public class DateHandler {
     public static void main(String[] args){
         System.out.println(DateHandler.longToStr(1484841600000L));
         System.out.println(DateHandler.longToStr(1495956603995L));
+        System.out.println(DateHandler.strToLong("2017-5-10"));
+        System.out.println(DateHandler.strToLong("2017-5-15"));
+        System.out.println(DateHandler.strToLong("2017-7-15"));
+        System.out.println(DateHandler.strToLong("2017-8-15"));
+        System.out.println(DateHandler.strToLong("2017-10-15"));
+        System.out.println(DateHandler.strToLong("2018-10-15"));
     }
 }

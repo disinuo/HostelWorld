@@ -12,7 +12,7 @@ public class RoomVO {
     private int id;
     private double price;
     private String img;
-    private boolean valid;
+    private int state;
     private String name;
 
     private int hostelId;
@@ -41,7 +41,7 @@ public class RoomVO {
         this.id=roomEntity.getId();
         this.price=roomEntity.getPrice();
         this.img=roomEntity.getImg();
-        this.valid=roomEntity.getValid();
+        this.state=roomEntity.getState();
         this.name=roomEntity.getName();
         this.hostelId=roomEntity.getHostel().getId();
         this.hostelPhone=roomEntity.getHostel().getPhone();
@@ -79,8 +79,8 @@ public class RoomVO {
         return img;
     }
 
-    public boolean isValid() {
-        return valid;
+    public int getState() {
+        return state;
     }
 
     public String getName() {

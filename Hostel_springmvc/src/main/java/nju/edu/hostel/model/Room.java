@@ -15,7 +15,12 @@ public class Room {
     private int id;
     private double price=299;
     private String img="/../img/hostel001.jpg";
-    private boolean valid=true;
+    /*
+    -1 已下市；
+    0 有效
+    1 未上市
+     */
+    private int state=0;
     private String name;
     private Hostel hostel;
 
@@ -80,13 +85,13 @@ public class Room {
     }
 
     @Basic
-    @Column(name = "valid", nullable = true)
-    public boolean getValid() {
-        return valid;
+    @Column(name = "state", nullable = true)
+    public int getState() {
+        return state;
     }
 
-    public void setValid(boolean valid) {
-        this.valid = valid;
+    public void setState(int state) {
+        this.state = state;
     }
 
     @Basic
@@ -190,7 +195,7 @@ public class Room {
         if (id != that.id) return false;
         if (Double.compare(that.price, price) != 0) return false;
         if (img != null ? !img.equals(that.img) : that.img != null) return false;
-        if (valid != that.valid)  return false;
+        if (state != that.state)  return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
 
         return true;

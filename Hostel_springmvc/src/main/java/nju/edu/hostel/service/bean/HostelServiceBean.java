@@ -226,6 +226,8 @@ public class HostelServiceBean implements HostelService {
         room.setTotalNum(roomVO.getTotalNum());
         room.setStartDate(DateHandler.strToLong(roomVO.getStartDate()));
         room.setEndDate(DateHandler.strToLong(roomVO.getEndDate()));
+
+        room.setState(countRoomState(room));
         try {
             roomDao.add(room);
         } catch (Exception e) {
@@ -249,12 +251,13 @@ public class HostelServiceBean implements HostelService {
         room.setStartDate(DateHandler.strToLong(roomVO.getStartDate()));
         room.setEndDate(DateHandler.strToLong(roomVO.getEndDate()));
 
+        room.setState(countRoomState(room));
         return roomDao.update(room);
     }
     @Override
     public ResultMessage invalidateRoom(int roomId){
         Room room=roomDao.get(roomId);
-        room.setValid(false);
+        room.setState(-1);
         return roomDao.update(room);
     }
     @Override
@@ -296,27 +299,47 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public List<Room> getAllRooms(int hostelId){
-        return getById(hostelId).getRooms();
+        List<Room> rooms= getById(hostelId).getRooms();
+        Iterator<Room> itr=rooms.iterator();
+        while (itr.hasNext()){
+            Room room=itr.next();
+            room.setState(countRoomState(room));
+            roomDao.update(room);
+        }
+        return rooms;
     }
 
     @Override
     public List<Room> getAllValidRooms(int hostelId){
         Map map=new HashMap<String,Object>();
         map.put("hostel.id",hostelId);
-        map.put("valid",true);
+        map.put("state",0);
         List<Room> rooms= roomDao.getByRestrictEqual(map);
+        return refreshRoomValidity(rooms);
+    }
 
-        long today=(new Date()).getTime();
+    private List<Room> refreshRoomValidity(List<Room> rooms){
         Iterator<Room> itr=rooms.iterator();
         while (itr.hasNext()){
             Room room=itr.next();
-            if(!(room.getStartDate()<=today&&today<=room.getEndDate())){
-                room.setValid(false);
+            int state=countRoomState(room);
+            if(state!=0){
+                room.setState(state);
                 roomDao.update(room);
                 itr.remove();
             }
+
         }
+        System.out.println("service refresh: rooms.size= "+rooms.size());
         return rooms;
+    }
+
+    private int countRoomState(Room room){
+        long today=new Date().getTime();
+        System.out.println("today= "+today+", start="+room.getStartDate()+",endDate="+room.getEndDate());
+        if(room.getStartDate()>today) return 1;
+        else if(room.getEndDate()<today) return -1;
+        else return 0;
     }
     @Override
     public Room getRoomById(int roomId){

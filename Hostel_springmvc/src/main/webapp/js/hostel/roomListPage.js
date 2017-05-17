@@ -56,53 +56,51 @@ function getRoomList() {
             title: '有效时段',
             align: 'center',
             formatter: periodFormatter
-
-
         },{
-            field: 'valid',
+            field: 'state',
             title: '',
             align: 'center',
             formatter: stateFormatter
 
         },{
-            field:'',
+            field:'state',
+            title: '',
+            align: 'center',
             formatter:operateFormatter,
-            events:eventHandler
-        }],
+            events: eventHandlerRoom
+        }]
     });
 }
 function stateFormatter(value,row,index) {
-    if(value==true) return '<span class="label label-success">有效</span>';
-    else return '<span class="label label-default">已下市</span>';
+    if(value==-1) return '<span class="label label-default">已下市</span>';
+    else if(value==0) return '<span class="label label-success">有效</span>';
+    else return '<span class="label label-default">未上市</span>';
 }
 function operateFormatter(value, row, index) {
-    if(row.valid){
-        // return [
-        //     '<a href="/hostel/modifyRoom?roomId=',
-        //     row.id,
-        //     '" class="modify">',
-        //     '<i class="glyphicon glyphicon-pencil"></i></a>        ',
-        //     '<a class="delete" href="#" >',
-        //     '<i class="glyphicon glyphicon-trash"></i></a>'
-        // ].join('');
-        return [
-            '<button type="button" class="modify btn btn-primary">',
-            '<i class="glyphicon glyphicon-pencil"></i></button>        ',
-            '<button type="button" class="delete btn btn-primary ">',
-            '<i class="glyphicon glyphicon-trash"></i></button>'
-        ].join('');
-    }else {
-        return [
-            '<button type="button" class="btn btn-default disabled">',
-            '<i class="glyphicon glyphicon-pencil"></i></button>        ',
-            '<button type="button" class="btn btn-default disabled">',
-            '<i class="glyphicon glyphicon-trash"></i></button>'
-        ].join('');
-    }
+     if(value==0){
+         return [
+             '<a href="/hostel/modifyRoom?roomId=',
+             row.id,
+             '" class="modify">',
+             '<i class="glyphicon glyphicon-pencil"></i></a>        ',
+             '<a class="delete" href="#" >',
+             '<i class="glyphicon glyphicon-trash"></i></a>'
+         ].join('');
+     }else {
+         return [
+             '<a href="/hostel/modifyRoom?roomId=',
+             row.id,
+             '" class="modify">',
+             '<i class="glyphicon glyphicon-pencil"></i></a>        ',
+             '<a href="#" >',
+             '<i class="glyphicon glyphicon-trash disabled"></i></a>'
+         ].join('');
+     }
 
 }
-var eventHandler={
+var eventHandlerRoom={
     'click .delete':function (event, value, row, index){
+        alert('下市！');
         var ans=confirm("确定要让这个房间下市吗");
         if(ans){
             $.ajax({
