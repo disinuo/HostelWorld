@@ -31,6 +31,7 @@
             </div>
             <div class=" roomInfo col-lg-5 col-md-5">
                 <h3 id="roomName"></h3>
+                <p id="descrip"></p>
                 <h2><span id="roomPrice" class="label label-info label-large"></span>元</h2>
             </div>
         </div>

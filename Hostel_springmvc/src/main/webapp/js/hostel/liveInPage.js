@@ -7,7 +7,8 @@ $("#liveInForm").submit(function(e) {
         userRealName:$('#userRealName').val(),
         idCard:$('#idCard').val(),
         vipId:$('#vipId').val(),
-        roomId:$('#roomId').val()
+        roomId:$('#roomId').val(),
+        bookBillId:$('#bookBillId').val()
     };
     if($('#vipId').val()=="")data.vipId=0;
     $.ajax({

@@ -19,7 +19,6 @@ function getBookList() {
             field: 'id',
             title: '订单号',
             align: 'center',
-            formatter:stateFormatter
         },{
             field: 'roomImg',
             title: '',
@@ -38,7 +37,8 @@ function getBookList() {
         },{
             field: 'roomPrice',
             title: '价格',
-            align: 'center'
+            align: 'center',
+            formatter:moneyFormatter
         },{
             field: 'liveInDate',
             title: '入住时间',
@@ -48,7 +48,7 @@ function getBookList() {
             title: '离店时间',
             align: 'center'
         }, {
-            field:'',
+            field:'state',
             title:'',
             formatter:unbookFormatter,
             events:unbookEvents
@@ -65,11 +65,16 @@ function operateFormatter(value, row, index) {
     ].join('');
 }
 function unbookFormatter(value,row,index) {
-    if(!row.valid){
+    if(value==-1){
         return '<button id="unbookBtn" type="button" class="btn btn-default disabled">已取消</button>'
     }
     // return [
-    else return '<button id="unbookBtn" type="button" class="unbook btn btn-danger">取消</button>';
+    else if(value==0){
+        return '<button id="unbookBtn" type="button" class="unbook btn btn-danger">取消</button>';
+    } else {
+        return '<button id="unbookBtn" type="button" class="btn btn-primary disabled">已入住</button>'
+
+    }
     // return [
     //     '<a type="button" class="book btn btn-danger" ',
     //     'href="#',
@@ -99,11 +104,4 @@ var unbookEvents = {
         }
         // alert('退订房间, row: ' + JSON.stringify(row));
     }
-}
-function stateFormatter(value,row,index) {
-    if(!row.valid){
-        return [value,
-            '<span class="label label-default">已取消</span>'
-        ].join('');
-    }else return value;
 }

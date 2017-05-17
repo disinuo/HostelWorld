@@ -1,5 +1,6 @@
 package nju.edu.hostel.model;
 
+import nju.edu.hostel.util.DateHandler;
 import nju.edu.hostel.util.NumberFormatter;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -23,8 +24,10 @@ public class Room {
 
     //此类型房间总数
     private int totalNum;
-    //此类型房间已入住数
-    private int occupiedNum=0;
+    //此类型房间空闲数
+    private int vacantNum=0;
+    //此类型房间预订数
+    private int bookedNum=0;
     //生效起始时间
     private long startDate;
     //生效结束时间
@@ -117,13 +120,22 @@ public class Room {
     }
 
     @Basic
-    @Column(name = "occupiedNum", nullable = false)
-    public int getOccupiedNum() {
-        return occupiedNum;
+    @Column(name = "vacantNum", nullable = false)
+    public int getVacantNum() {
+        return vacantNum;
     }
 
-    public void setOccupiedNum(int occupiedNum) {
-        this.occupiedNum = occupiedNum;
+    public void setVacantNum(int vacantNum) {
+        this.vacantNum = vacantNum;
+    }
+
+    @Basic
+    @Column(name = "bookedNum", nullable = false)
+    public int getBookedNum() {
+        return bookedNum;
+    }
+    public void setBookedNum(int bookedNum) {
+        this.bookedNum = bookedNum;
     }
 
     @Basic
@@ -157,6 +169,14 @@ public class Room {
     }
 
 
+    @Transient
+    public String getStartDateStr(){
+        return DateHandler.longToStr(this.startDate);
+    }
+    @Transient
+    public String getEndDateStr(){
+        return DateHandler.longToStr(this.endDate);
+    }
 
 
 

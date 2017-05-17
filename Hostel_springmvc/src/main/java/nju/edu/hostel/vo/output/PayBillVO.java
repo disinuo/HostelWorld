@@ -33,7 +33,10 @@ public class PayBillVO {
         this.userRealName=payBillEntity.getUserRealName();
         this.idCard=payBillEntity.getIdCard();
         this.hostelId=payBillEntity.getHostel().getId();
-        this.hostelAddress=payBillEntity.getHostel().getAddress();
+        this.hostelAddress=
+                payBillEntity.getHostel().getProvince()+" - "+
+                payBillEntity.getHostel().getCity()+" - "+
+                payBillEntity.getHostel().getAddress();
         this.hostelName=payBillEntity.getHostel().getName();
         this.vipId=(payBillEntity.getVip()!=null)?(payBillEntity.getVip().getId()+""):"-";
         this.roomId=payBillEntity.getLiveBill().getRoom().getId();

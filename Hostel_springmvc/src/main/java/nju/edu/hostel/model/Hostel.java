@@ -13,6 +13,7 @@ import java.util.List;
 @Table(name = "hostel", schema = "hostel", catalog = "")
 public class Hostel {
     private int id;
+    private int numOfPeople=0;
     private boolean permitted=false;
     private String img;
     private String phone="66668888";
@@ -61,6 +62,16 @@ public class Hostel {
     }
     public void setMoneyUncounted(double moneyUncounted) {
         this.moneyUncounted = moneyUncounted;
+    }
+
+    @Basic
+    @Column(name = "numOfPeople", nullable = false)
+
+    public int getNumOfPeople() {
+        return numOfPeople;
+    }
+    public void setNumOfPeople(int numOfPeople) {
+        this.numOfPeople = numOfPeople;
     }
 
     @Basic

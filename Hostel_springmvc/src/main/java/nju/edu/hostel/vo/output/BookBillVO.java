@@ -17,7 +17,7 @@ public class BookBillVO {
     private int vipId;
     private String vipName;
     private int roomId;
-    private boolean valid;
+    private int state;
 
     private String hostelName;
     private String hostelAddress;
@@ -49,7 +49,7 @@ public class BookBillVO {
         this.roomImg=bookBillEntity.getRoom().getImg();
         this.roomName=bookBillEntity.getRoom().getName();
         this.roomPrice=bookBillEntity.getRoom().getPrice();
-        this.valid=bookBillEntity.isValid();
+        this.state=bookBillEntity.getState();
         this.vipName=bookBillEntity.getVip().getRealName();
     }
     public int getId() {
@@ -80,9 +80,7 @@ public class BookBillVO {
         return roomId;
     }
 
-    public boolean isValid() {
-        return valid;
-    }
+    public int getState(){return state;}
 
     public String getHostelName() {
         return hostelName;

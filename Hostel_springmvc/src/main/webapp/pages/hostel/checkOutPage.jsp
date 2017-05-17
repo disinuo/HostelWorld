@@ -26,7 +26,7 @@
                 <input id="liveInId" name="liveInId" type="number" class="form-control" placeholder="住店记录id~ 这样的交互是暂时哒！" aria-describedby="sizing-addon3" required>
             </div>
 
-            <input class="btn btn-primary" type="submit" value="保存"/>
+            <input class="btn btn-primary" type="submit" value="确认"/>
         </form>
         <div id="msg" class="alert alert-success" role="alert"></div>
     </div>

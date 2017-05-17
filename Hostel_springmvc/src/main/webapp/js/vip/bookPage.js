@@ -40,6 +40,7 @@ function init() {
            $('#image').attr("src",data.img);
             $('#roomName').html(data.name);
             $('#roomPrice').html(data.price);
+            $('#descrip').html(data.descrip);
             $('#roomId').val(roomId);
         }
     })

@@ -30,11 +30,15 @@ function getPayList() {
         },{
             field: 'roomPrice',
             title: '房间价格',
-            align: 'center'
+            align: 'center',
+            formatter:moneyFormatter
+
         },{
             field: 'money',
             title: '实付价格',
             align: 'center',
+            formatter:moneyFormatter
+
         }],
     });
 }

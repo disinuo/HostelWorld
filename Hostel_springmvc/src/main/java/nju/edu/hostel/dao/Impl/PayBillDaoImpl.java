@@ -31,13 +31,13 @@ public class PayBillDaoImpl implements PayBillDao {
     @Override
     public List<PayBill> getByHostelId(int hostelId){
         String hql="SELECT bill FROM PayBill as bill" +
-                " WHERE bill.liveBill.room.hostel.id = "+hostelId;
+                " WHERE bill.liveBill.room.hostel.id = "+hostelId+" ORDER BY bill.id DESC";
         return baseDao.getByHql(PayBill.class,hql);
     }
     @Override
     public List<PayBill> getByVipId(int vipId){
         String hql="SELECT bill FROM PayBill as bill" +
-                " WHERE bill.liveBill.vip.id = "+vipId;
+                " WHERE bill.liveBill.vip.id = "+vipId+" ORDER BY bill.id DESC";
         return baseDao.getByHql(PayBill.class,hql);
     }
     @Override

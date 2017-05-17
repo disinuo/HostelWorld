@@ -10,6 +10,10 @@ function getLiveList() {
     $('#table').bootstrapTable({
         url: '/data/vip/getLiveList',
         columns: [{
+            field: 'id',
+            title: 'ID',
+            align: 'center',
+        },{
             field: 'date',
             title: '时间',
             align: 'center'
@@ -22,27 +26,42 @@ function getLiveList() {
             field: 'hostelName',
             title: '客栈名',
             align: 'center',
-            formatter: operateFormatter,
+            formatter: operateFormatter
         }, {
             field: 'roomName',
-            title: '房间类型',
+            title: '房型',
             align: 'center'
         },{
             field: 'roomPrice',
             title: '价格',
-            align: 'center'
+            align: 'center',
+            formatter:moneyFormatter
         },{//TODO 类型要变成以表格底色不同的形式展现
-            field: 'type',
+            field: 'inHostel',
             title: '',
             align: 'center',
             formatter:typeFormatter
-        }],
+        },{//
+            field: 'paid',
+            title: '',
+            align: 'center',
+            formatter:paidFormatter
+        },{
+            field: 'checkOutDate',
+            title: '离店日期',
+            align: 'center',
+            formatter:checkOutDateFormatter
+
+        }]
     });
 }
-
+function paidFormatter(value,row,index) {
+    if(value==true) return '<span class="label label-default">已支付</span>';
+    else return '<span class="label label-danger">未支付</span>';
+}
 function typeFormatter(value,row,index) {
-    if(value==true) return '<span class="label label-success">住店</span>';
-    else return '<span class="label label-warning">离店</span>';
+    if(value==true) return '<span class="label label-primary">未离店</span>';
+    else return '<span class="label label-default">已离店</span>';
 }
 function operateFormatter(value, row, index) {
     return [
@@ -52,4 +71,11 @@ function operateFormatter(value, row, index) {
         value,
         '</a>'
     ].join('');
+}
+function checkOutDateFormatter(value,row,index) {
+    if(row.inHostel==true){
+        return "";
+    }else {
+        return value;
+    }
 }

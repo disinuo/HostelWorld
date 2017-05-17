@@ -14,8 +14,6 @@
 <%@include file="../common/header.jsp" %>
 <%@include file="component/navigation.jsp" %>
 
-客栈管理员你好
-新建【入住单】界面
 <div class="big-container">
     <div class="col-lg-3 col-md-3 ">
     <jsp:include page="component/sideBar.jsp" flush="true"/>
@@ -23,9 +21,15 @@
     <div class="col-lg-9 clo-md-9">
         <form id="liveInForm">
             <div class="input-group input-group-sm">
+                <span class="input-group-addon">预订单号</span>
+                <input id="bookBillId" name="bookBillId" type="number" class="form-control" placeholder="预订单号" aria-describedby="sizing-addon3" required>
+            </div>
+            <div class="input-group input-group-sm">
                 <span class="input-group-addon">住户姓名</span>
                 <input id="userRealName" name="userRealName" type="text" class="form-control" placeholder="真实的名字~" aria-describedby="sizing-addon3" required>
             </div>
+
+
             <div class="input-group input-group-sm">
                 <span class="input-group-addon">住户身份证号</span>
                 <input id="idCard" name="idCard" type="number" class="form-control" placeholder="18位哦" aria-describedby="sizing-addon3" required>

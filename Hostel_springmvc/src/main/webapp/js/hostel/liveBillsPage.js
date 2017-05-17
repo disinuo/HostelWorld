@@ -16,8 +16,12 @@ function getLiveBillList() {
     $('#table').bootstrapTable({
         url: '/data/hostel/getLiveBills',
         columns: [{
+            field: 'id',
+            title: 'ID',
+            align: 'center',
+        },{
             field: 'date',
-            title: '时间',
+            title: '日期',
             align: 'center',
         }, {
             field: 'roomName',
@@ -27,7 +31,9 @@ function getLiveBillList() {
         }, {
             field: 'roomPrice',
             title: '房价',
-            align: 'center'
+            align: 'center',
+            formatter:moneyFormatter
+
         },{
             field: 'vipId',
             title: '会员编号',
@@ -40,15 +46,36 @@ function getLiveBillList() {
             field: 'idCard',
             title: '住户身份证',
             align: 'center',
-        },{
-            field: 'type',
+        },{//TODO 类型要变成以表格底色不同的形式展现
+            field: 'inHostel',
             title: '',
             align: 'center',
-            formatter: typeFormatter,
-        }],
+            formatter:typeFormatter
+        },{//
+            field: 'paid',
+            title: '',
+            align: 'center',
+            formatter:paidFormatter
+        },{
+            field: 'checkOutDate',
+            title: '离店日期',
+            align: 'center',
+            formatter:checkOutDateFormatter
+        }]
     });
 }
+function paidFormatter(value,row,index) {
+    if(value==true) return '<span class="label label-default">已支付</span>';
+    else return '<span class="label label-danger">未支付</span>';
+}
 function typeFormatter(value,row,index) {
-    if(value==true) return '<span class="label label-success">住店</span>';
-    else return '<span class="label label-warning">离店</span>';
+    if(value==true) return '<span class="label label-primary">未离店</span>';
+    else return '<span class="label label-default">已离店</span>';
+}
+function checkOutDateFormatter(value,row,index) {
+    if(row.inHostel==true){
+        return "";
+    }else {
+        return value;
+    }
 }

@@ -28,7 +28,7 @@ function initInfo() {
     $.ajax({
         url:'/data/vip/getInfo',
         success:function (data) {
-            $('#vip_info_idCard').html(data.idCard);
+            $('#vip_info_email').html(data.email);
             $('#vip_info_id').html(data.id);
             $('#vip_info_name').html(data.realName);
             $('#vip_info_moneyLeft').html(data.moneyLeft);

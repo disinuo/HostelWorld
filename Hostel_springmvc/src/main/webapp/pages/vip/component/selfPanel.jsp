@@ -17,7 +17,7 @@
         <i class="glyphicon glyphicon-user"></i>名字：<span id="vip_info_name"></span>
     </div>
     <div class="vip-self-li">
-        <i class="glyphicon glyphicon-credit-card"></i> 身份证：<span id="vip_info_idCard"></span>
+        <i class="glyphicon glyphicon-envelope"></i> 邮箱：<span id="vip_info_email"></span>
     </div>
     <div class="vip-self-li">
         <i class="glyphicon glyphicon-yen"></i>余额：<span class="label label-warning" id="vip_info_moneyLeft"></span>元

@@ -25,12 +25,14 @@ public class RoomVO {
 
     //此类型房间总数
     private int totalNum;
-    //此类型房间已入住数
-    private int occupiedNum=0;
+    //此类型房间空闲数
+    private int vacantNum;
+    private int bookedNum=0;
+
     //生效起始时间
-    private long startDate;
+    private String startDate;
     //生效结束时间
-    private long endDate;
+    private String endDate;
 
     private String descrip;
 
@@ -44,14 +46,17 @@ public class RoomVO {
         this.hostelId=roomEntity.getHostel().getId();
         this.hostelPhone=roomEntity.getHostel().getPhone();
         this.hostelName=roomEntity.getHostel().getName();
-        this.hostelAddress=roomEntity.getHostel().getAddress();
+        this.hostelAddress=
+            roomEntity.getHostel().getProvince()+" - "+
+            roomEntity.getHostel().getCity()+" - "+
+            roomEntity.getHostel().getAddress();
         this.capacity=roomEntity.getCapacity();
         this.totalNum=roomEntity.getTotalNum();
-        this.occupiedNum=roomEntity.getOccupiedNum();
-        this.startDate=roomEntity.getStartDate();
-        this.endDate=roomEntity.getEndDate();
+        this.vacantNum=roomEntity.getVacantNum();
+        this.startDate=roomEntity.getStartDateStr();
+        this.endDate=roomEntity.getEndDateStr();
         this.descrip=roomEntity.getDescrip();
-
+        this.bookedNum=roomEntity.getBookedNum();
     }
 
     public static List<RoomVO> entityToVO(List<Room> rooms){
@@ -106,15 +111,19 @@ public class RoomVO {
         return totalNum;
     }
 
-    public int getOccupiedNum() {
-        return occupiedNum;
+    public int getBookedNum() {
+        return bookedNum;
     }
 
-    public long getStartDate() {
+    public int getVacantNum() {
+        return vacantNum;
+    }
+
+    public String getStartDate() {
         return startDate;
     }
 
-    public long getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 

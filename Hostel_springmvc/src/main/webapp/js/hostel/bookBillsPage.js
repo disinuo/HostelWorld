@@ -16,7 +16,6 @@ function getBookBillList() {
             field: 'id',
             title: '单号',
             align: 'center',
-            formatter:stateFormatter
         },{
             field: 'createDate',
             title: '下单时间',
@@ -47,13 +46,23 @@ function getBookBillList() {
             field: 'vipName',
             title: '会员名',
             align: 'center',
+        },{
+            field: 'state',
+            title: '',
+            align: 'center',
+            formatter:stateFormatter
         }],
     });
 }
 function stateFormatter(value,row,index) {
-    if(!row.valid){
-        return [value,
-            '<span class="label label-default">已取消</span>'
-        ].join('');
-    }else return value;
+    switch (value){
+        case -1:
+            return '<span class="label label-default">已取消</span>';
+        case 0:
+            return '<span class="label label-danger">未入住</span>';
+        case 1:
+            return '<span class="label label-primary">已入住</span>';
+
+    }
+
 }

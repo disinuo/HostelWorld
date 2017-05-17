@@ -15,8 +15,10 @@ function initHostel(){
         url:'/data/hostel/getHostel?hostelId='+hostelId,
         success:function (data) {
             $('#name').html(data.name);
-            $('#address').html(data.address);
+            $('#address').html(
+                data.province+" - "+data.city+" - "+data.address);
             $('#phone').html(data.phone);
+            $('#descrip').html(data.descrip);
         }
     })
 }
@@ -42,9 +44,22 @@ function getRoomList(){
             title: '房型',
             align: 'center',
         },{
+            field: 'capacity',
+            title: '容量',
+            align: 'center',
+        },{
+            field: 'totalNum',
+            title: '房间总数',
+            align: 'center',
+        },{
+            field: 'bookedNum',
+            title: '已预订',
+            align: 'center',
+        },{
             field:'price',
             title:'房价',
-            align:'center'
+            align:'center',
+            formatter:moneyFormatter
         },{
             field:'',
             title:'',

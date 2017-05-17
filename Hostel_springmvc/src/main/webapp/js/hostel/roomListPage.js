@@ -12,6 +12,10 @@ function getRoomList() {
         // search:true,
         // searchText:'找一找心仪的客栈~',
         columns: [{
+            field: 'id',
+            title: 'ID',
+            align: 'center',
+        }, {
             field: 'img',
             title: '',
             align: 'center',
@@ -25,12 +29,40 @@ function getRoomList() {
         }, {
             field: 'price',
             title: '房价',
+            align: 'center',
+            formatter: moneyFormatter
+        },{
+            field: 'capacity',
+            title: '容量',
             align: 'center'
+
+        },{
+            field: 'totalNum',
+            title: '房间数',
+            align: 'center'
+
+        },{
+            field: 'vacantNum',
+            title: '空闲数',
+            align: 'center'
+
+        },{
+            field: 'bookedNum',
+            title: '预订数',
+            align: 'center'
+
+        },{
+            field: 'startDate',
+            title: '有效时段',
+            align: 'center',
+            formatter: periodFormatter
+
+
         },{
             field: 'valid',
             title: '',
             align: 'center',
-            formatter: stateFormatter,
+            formatter: stateFormatter
 
         },{
             field:'',
@@ -87,4 +119,8 @@ var eventHandler={
     'click .modify':function (event,value,row,index) {
         location.replace('/hostel/modifyRoom?roomId='+row.id);
     }
+}
+
+function periodFormatter(value, row, index) {
+    return value+" ~ "+row.endDate;
 }

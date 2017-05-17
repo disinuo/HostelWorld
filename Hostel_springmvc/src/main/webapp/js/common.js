@@ -10,6 +10,9 @@ function imgFormatter(value,row,index) {
         '/>'
     ].join('');
 }
+function moneyFormatter(value, row, index) {
+    return '￥'+value;
+}
 
 function requestParamFormatter() {
     var qs=(location.search.length>0?location.search.substring(1):"");

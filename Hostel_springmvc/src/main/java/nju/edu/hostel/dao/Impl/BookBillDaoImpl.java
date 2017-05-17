@@ -42,13 +42,13 @@ public class BookBillDaoImpl implements BookBillDao {
     @Override
     public List<BookBill> getByHostelId(int hostelId){
         String hql="SELECT bill FROM BookBill as bill" +
-                " WHERE bill.room.hostel.id = "+hostelId;
+                " WHERE bill.room.hostel.id = "+hostelId+" ORDER BY bill.id DESC";
         return baseDao.getByHql(BookBill.class,hql);
     }
     @Override
     public List<BookBill> getByVipId(int vipId){
         String hql="SELECT bill FROM BookBill as bill" +
-                " WHERE bill.vip.id = "+vipId;
+                " WHERE bill.vip.id = "+vipId+" ORDER BY bill.id DESC";
         return baseDao.getByHql(BookBill.class,hql);
     }
 

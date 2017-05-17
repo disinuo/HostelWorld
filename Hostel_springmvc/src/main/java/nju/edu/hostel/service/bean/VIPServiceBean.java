@@ -137,9 +137,15 @@ public class VIPServiceBean implements VIPService{
             ResultMessage msg=payMoney(vip.getId(),MONEY_BOOK);
             if(msg==ResultMessage.NOT_ENOUGH_MONEY){//会员卡余额不足，无法预订
                 return msg;
-            }else {//这次万事俱备！生成预订订单
-                BookBill bookBill=new BookBill();
+            }else {
                 Room room=hostelService.getRoomById(bookVO.getRoomId());
+                if(room.getBookedNum()>=room.getTotalNum()){
+                    //房间已经订满
+                    return ResultMessage.ROOM_FULL;
+                }
+                room.setBookedNum(room.getBookedNum()+1);
+                //这次万事俱备！生成预订订单
+                BookBill bookBill=new BookBill();
                 bookBill.setVip(vip);
                 bookBill.setRoom(room);
                 bookBill.setLiveOutDate(DateHandler.strToLong(bookVO.getLiveOutDate()));
@@ -147,14 +153,12 @@ public class VIPServiceBean implements VIPService{
                 bookBill.setLiveInDate(DateHandler.strToLong(bookVO.getLiveInDate()));
                 try {
                     bookBillDao.add(bookBill);
-                    return ResultMessage.SUCCESS;
+                    return roomDao.update(room);
                 } catch (Exception e) {
                     return ResultMessage.FAILURE;
                 }
             }
-
         }
-
     }
 
     @Override
@@ -166,10 +170,14 @@ public class VIPServiceBean implements VIPService{
         }else if(nowDate>=bookBill.getLiveInDate()){//超过了订单的入住时间
             return ResultMessage.LATE_TIME;
         }else {
+            Room room=bookBill.getRoom();
+            room.setBookedNum(room.getBookedNum()-1);
+            ResultMessage msg=roomDao.update(room);
+            if(msg==ResultMessage.FAILURE) return msg;
             //退钱
             payMoney(vipId,-MONEY_BOOK);
             //使该预订订单失效！~~~
-            bookBill.setValid(false);
+            bookBill.setState(-1);
             return bookBillDao.update(bookBill);
         }
     }
@@ -264,6 +272,8 @@ public class VIPServiceBean implements VIPService{
     HostelDao hostelDao;
     @Autowired
     UserDao userDao;
+    @Autowired
+    RoomDao roomDao;
     @Autowired
     BookBillDao bookBillDao;
     @Autowired

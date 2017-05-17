@@ -4,6 +4,7 @@ import nju.edu.hostel.dao.*;
 import nju.edu.hostel.model.*;
 import nju.edu.hostel.service.HostelService;
 import nju.edu.hostel.service.VIPService;
+import nju.edu.hostel.util.DateHandler;
 import nju.edu.hostel.util.NumberFormatter;
 import nju.edu.hostel.util.RequestState;
 import nju.edu.hostel.util.ResultMessage;
@@ -123,6 +124,13 @@ public class HostelServiceBean implements HostelService {
             payBillDao.add(payBill);
             Hostel hostel=room.getHostel();
             hostel.setMoneyUncounted(hostel.getMoneyUncounted()+moneyToPay);
+
+            double avgExpense=hostel.getAvgExpense();
+            int numOfPeople=hostel.getNumOfPeople();
+            avgExpense=(avgExpense*numOfPeople+moneyToPay)/(numOfPeople+1);
+            hostel.setAvgExpense(NumberFormatter.saveOneDecimal(avgExpense));
+            hostel.setNumOfPeople(numOfPeople+1);
+
             hostelDao.update(hostel);
             return NumberFormatter.saveOneDecimal(moneyToPay);
         }catch (Exception e){
@@ -146,7 +154,6 @@ public class HostelServiceBean implements HostelService {
     }
     @Override
     public ResultMessage liveIn(LiveInVO liveInVO){
-        //TODO
         System.out.println("in service liveIn ");
         LiveBill liveBill=new LiveBill();
         if(liveInVO.getVipId()!=0){
@@ -154,14 +161,22 @@ public class HostelServiceBean implements HostelService {
             liveBill.setVip(vip);
         }
         Room room=roomDao.get(liveInVO.getRoomId());
-        room.setOccupiedNum(room.getOccupiedNum()+1);
+        room.setVacantNum(room.getVacantNum()-1);
         liveBill.setRoom(room);
         liveBill.setIdCard(liveInVO.getIdCard());
         liveBill.setUserRealName(liveInVO.getUserRealName());
         liveBill.setDate(new Date().getTime());
         try {
+            BookBill bookBill=bookBillDao.get(liveInVO.getBookBillId());
+            if(bookBill!=null) {
+                bookBill.setState(1);
+                bookBillDao.update(bookBill);
+                liveBill.setBookBill(bookBill);
+            }
             liveBillDao.add(liveBill);
             roomDao.update(room);
+            //更新预订订单的状态
+
             return ResultMessage.SUCCESS;
         } catch (Exception e) {
 //            e.printStackTrace();
@@ -171,12 +186,12 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public ResultMessage checkOut(int liveBillId){
-        //TODO 要更新 已占用的房间数据，更新人均消费等，再想想
+        //TODO 要更新 更新人均消费等，再想想
         LiveBill liveBill= liveBillDao.get(liveBillId);
         Room room=liveBill.getRoom();
         liveBill.setCheckOutDate((new Date()).getTime());
         liveBill.setInHostel(false);
-        room.setOccupiedNum(room.getOccupiedNum()-1);
+        room.setVacantNum(room.getVacantNum()+1);
         try {
             liveBillDao.update(liveBill);
             roomDao.update(room);
@@ -205,6 +220,12 @@ public class HostelServiceBean implements HostelService {
         room.setName(roomVO.getName());
         room.setPrice(roomVO.getPrice());
         room.setImg(roomVO.getImg());
+        room.setCapacity(roomVO.getCapacity());
+        room.setVacantNum(roomVO.getCapacity());
+        room.setDescrip(roomVO.getDescrip());
+        room.setTotalNum(roomVO.getTotalNum());
+        room.setStartDate(DateHandler.strToLong(roomVO.getStartDate()));
+        room.setEndDate(DateHandler.strToLong(roomVO.getEndDate()));
         try {
             roomDao.add(room);
         } catch (Exception e) {
@@ -221,6 +242,13 @@ public class HostelServiceBean implements HostelService {
         room.setName(roomVO.getName());
         room.setImg(roomVO.getImg());
         room.setPrice(roomVO.getPrice());
+        room.setCapacity(roomVO.getCapacity());
+        room.setVacantNum(roomVO.getCapacity());
+        room.setDescrip(roomVO.getDescrip());
+        room.setTotalNum(roomVO.getTotalNum());
+        room.setStartDate(DateHandler.strToLong(roomVO.getStartDate()));
+        room.setEndDate(DateHandler.strToLong(roomVO.getEndDate()));
+
         return roomDao.update(room);
     }
     @Override
@@ -274,7 +302,19 @@ public class HostelServiceBean implements HostelService {
         Map map=new HashMap<String,Object>();
         map.put("hostel.id",hostelId);
         map.put("valid",true);
-        return roomDao.getByRestrictEqual(map);
+        List<Room> rooms= roomDao.getByRestrictEqual(map);
+
+        long today=(new Date()).getTime();
+        Iterator<Room> itr=rooms.iterator();
+        while (itr.hasNext()){
+            Room room=itr.next();
+            if(!(room.getStartDate()<=today&&today<=room.getEndDate())){
+                room.setValid(false);
+                roomDao.update(room);
+                itr.remove();
+            }
+        }
+        return rooms;
     }
     @Override
     public Room getRoomById(int roomId){

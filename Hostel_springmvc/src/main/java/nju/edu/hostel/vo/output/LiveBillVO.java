@@ -40,7 +40,12 @@ public class LiveBillVO {
         this.idCard=liveBillEntity.getIdCard();
         this.date= liveBillEntity.getDateStr();
         this.hostelId=liveBillEntity.getHostel().getId();
-        this.hostelAddress=liveBillEntity.getHostel().getAddress();
+        this.hostelAddress=
+                liveBillEntity.getHostel().getProvince()+" - "+
+                liveBillEntity.getHostel().getCity()+" - "+
+                liveBillEntity.getHostel().getAddress();
+
+
         this.hostelName=liveBillEntity.getHostel().getName();
         this.vipId=(liveBillEntity.getVip()!=null)?(liveBillEntity.getVip().getId()+""):"-";
         this.roomId=liveBillEntity.getRoom().getId();

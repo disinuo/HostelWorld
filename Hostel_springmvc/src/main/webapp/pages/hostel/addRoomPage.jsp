@@ -52,7 +52,7 @@
                 <span class="input-group-addon">展示图</span>
                 <input id="img" type="file" name="file" >
             </div>
-            <input id="btnLogin"  class="btn btn-primary" type="submit" value="保存"/>
+            <input id="btnLogin"  class="btn btn-primary" type="submit" value="发布"/>
         </form>
         <div id="msg" class="alert alert-success" role="alert"></div>
     </div>

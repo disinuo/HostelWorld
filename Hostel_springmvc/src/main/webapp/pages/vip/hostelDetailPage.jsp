@@ -19,11 +19,13 @@
         <jsp:include page="component/selfPanel.jsp" flush="true"/>
     </div>
     <div class="col-lg-9 clo-md-9">
-        <h1 id="hostelName"></h1>
+        <h1 id="name"></h1>
         <span >
             地址:<span id="address"></span>
             电话:<span id="phone"></span>
+            简介:<span id="descrip"></span>
         </span>
+
         <table id="table" class="table table-striped">
         </table>
     </div>

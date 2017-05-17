@@ -7,6 +7,8 @@ public enum ResultMessage {
     SUCCESS("操作成功"),
 
     FAILURE("操作失败"),
+
+    ROOM_FULL("房间已订满"),
     /**
      * 晚于可操作的时间
      */

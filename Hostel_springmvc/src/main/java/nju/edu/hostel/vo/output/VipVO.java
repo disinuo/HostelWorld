@@ -19,24 +19,11 @@ public class VipVO {
     private int level;
     private double score;
     private VIPState state;
-    private String stateStr;
 
     private String email;
     private String province;
     private String city;
 
-    public VipVO(int id, String realName, String idCard, String avatar, double moneyLeft, double moneyPaid, int level, double score, VIPState state) {
-        this.id = id;
-        this.realName = realName;
-        this.idCard = idCard;
-        this.avatar = avatar;
-        this.moneyLeft = moneyLeft;
-        this.moneyPaid = moneyPaid;
-        this.level = level;
-        this.score = score;
-        this.state = state;
-        this.stateStr=state.toChineseString();
-    }
     public VipVO(Vip vipEntity){
         this.id = vipEntity.getId();
         this.realName = vipEntity.getRealName();
@@ -46,7 +33,10 @@ public class VipVO {
         this.moneyPaid = vipEntity.getMoneyPaid();
         this.level = vipEntity.getLevel();
         this.score = vipEntity.getScore();
+        this.email=vipEntity.getEmail();
         this.state = VIPState.strToVipState(vipEntity.getState());
+        this.province=vipEntity.getProvince();
+        this.city=vipEntity.getCity();
     }
 
     public static List<VipVO> entityToVO(List<Vip> vips){

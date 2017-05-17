@@ -25,10 +25,18 @@ function getHostelList() {
             title: '客栈名',
             align: 'center',
             formatter:idFormatter,
+        },{
+            field: 'avgExpense',
+            title: '人均消费',
+            align: 'center',
+            formatter: moneyFormatter,
+
         }, {
             field: 'address',
             title: '地址',
-            align: 'center'
+            align: 'center',
+            formatter: addressFormatter
+
         },{
             field: 'phone',
             title: '电话',
@@ -45,4 +53,9 @@ function idFormatter(value, row, index) {
         value,
         '</a>'
     ].join('');
+}
+
+
+function addressFormatter(value, row, index) {
+    return row.province+" - "+row.city+" - "+value;
 }

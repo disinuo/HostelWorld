@@ -23,9 +23,17 @@ function getHostelList() {
             formatter: operateFormatter,
             // events: operateEvents
         }, {
+            field: 'avgExpense',
+            title: '人均消费',
+            align: 'center',
+            formatter: moneyFormatter,
+
+        }, {
             field: 'address',
             title: '地址',
-            align: 'center'
+            align: 'center',
+            formatter: addressFormatter
+
         },{
             field: 'phone',
             title: '电话',
@@ -55,4 +63,9 @@ function operateFormatter(value, row, index) {
     //     '<i class="glyphicon glyphicon-remove"></i>',
     //     '</a>'
     // ].join('');
+}
+
+
+function addressFormatter(value, row, index) {
+    return row.province+" - "+row.city+" - "+value;
 }
