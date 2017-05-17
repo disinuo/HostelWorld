@@ -35,7 +35,17 @@ function getVipList() {
             field: 'stateStr',
             title: '当前状态',
             align: 'center'
-        }],
+        },{
+            field: 'email',
+            title: '邮箱',
+            align: 'center'
+        },{
+            field: 'province',
+            title: '地址',
+            align: 'center',
+            formatter:addressFormatter
+
+}],
     });
 }
 
@@ -47,4 +57,9 @@ function idFormatter(value, row, index) {
         value,
         '</a>'
     ].join('');
+}
+
+
+function addressFormatter(value, row, index) {
+    return row.province+" - "+row.city;
 }

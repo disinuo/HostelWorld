@@ -52,6 +52,12 @@ public class BookBillDaoImpl implements BookBillDao {
         return baseDao.getByHql(BookBill.class,hql);
     }
 
+    @Override
+    public List<BookBill> getValidByVipId(int vipId){
+        String hql="SELECT bill FROM BookBill as bill" +
+                " WHERE bill.vip.id = "+vipId+" AND bill.state>-1 ORDER BY bill.id DESC";
+        return baseDao.getByHql(BookBill.class,hql);
+    }
 
     @Override
     public int add(BookBill bookBill) throws Exception {

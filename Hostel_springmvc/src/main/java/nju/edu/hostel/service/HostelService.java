@@ -180,7 +180,8 @@ public interface HostelService {
     public List<LiveBill> getNotOutLiveBills(int hostelId);
 
 
-    public int getLiveInNum(int hostelId);
+    public int getTotalLiveInNum(int hostelId);
+    public int getPresentLiveInNum(int hostelId);
 
     /**
      * 得到该客栈的所有房间

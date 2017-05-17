@@ -188,10 +188,7 @@ public class VIPServiceBean implements VIPService{
     }
     @Override
     public List<BookBill> getValidBookBills(int vipId){
-        Map map=new HashMap<String,Object>();
-        map.put("vip.id",vipId);
-        map.put("valid",true);
-        return bookBillDao.getByRestrictEqual(map);
+        return bookBillDao.getValidByVipId(vipId);
     }
     @Override
     public List<PayBill> getAllPayBills(int vipId) {

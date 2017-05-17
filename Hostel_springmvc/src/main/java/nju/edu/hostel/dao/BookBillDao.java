@@ -19,5 +19,5 @@ public interface BookBillDao {
     public ResultMessage update(BookBill bookBill);
     public List<BookBill> getByHostelId(int hostelId);
     public List<BookBill> getByVipId(int vipId);
-
+    public List<BookBill> getValidByVipId(int vipId);
     }

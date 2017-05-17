@@ -49,9 +49,13 @@ public class ManagerDataController {
     public List<LiveBillVO> getHostelLveList(int hostelId){
         return LiveBillVO.entityToVO(hostelService.getAllLiveBills(hostelId));
     }
-    @RequestMapping(value="/hostel/getLiveInNum")
-    public int getHostelLiveNumber(int hostelId){
-        return hostelService.getLiveInNum(hostelId);
+    @RequestMapping(value="/hostel/getTotalLiveInNum")
+    public int getHostelTotalLiveNumber(int hostelId){
+        return hostelService.getTotalLiveInNum(hostelId);
+    }
+    @RequestMapping(value="/hostel/getPresentLiveInNum")
+    public int getHostelPresentLiveNumber(int hostelId){
+        return hostelService.getPresentLiveInNum(hostelId);
     }
 
     @RequestMapping(value = "/vip/getPayList")

@@ -148,8 +148,8 @@ public class ManagerServiceBean implements ManagerService {
         List<Hostel> hostels=getAllPermittedHostels();
         for(Hostel hostel:hostels){
            LiveInNumVO vo=new LiveInNumVO();
-           vo.setHostelName(hostel.getName());
-           vo.setNum(hostelService.getLiveInNum(hostel.getId()));
+           vo.setName(hostel.getName());
+           vo.setY(hostelService.getTotalLiveInNum(hostel.getId()));
            ans.add(vo);
         }
         return ans;

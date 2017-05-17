@@ -285,13 +285,15 @@ public class HostelServiceBean implements HostelService {
     }
     @Override
     public List<LiveBill> getNotOutLiveBills(int hostelId){
-        //TODO 所有未离店的住店数据
-        return null;
+        return liveBillDao.getLivingByHostelId(hostelId);
     }
     @Override
-    public int getLiveInNum(int hostelId){
+    public int getTotalLiveInNum(int hostelId){
        return getAllLiveBills(hostelId).size();
     }
+    @Override
+    public int getPresentLiveInNum(int hostelId){return getNotOutLiveBills(hostelId).size();}
+
     @Override
     public List<Room> getAllRooms(int hostelId){
         return getById(hostelId).getRooms();

@@ -21,8 +21,20 @@
         </table>
     </div>
     <div class="col-lg-3 col-md-3 main-container">
-        <h3><div class="label label-warning">      住店累计人数</div></h3>
-        <div id="total" class="middle-circle"></div>
+        <div>
+            <h3><div class="label label-warning">      住店累计人数</div></h3>
+            <div id="total" class="middle-circle"></div>
+        </div>
+
+        <div>
+            <h3><div class="label label-warning">      当前住店人数</div></h3>
+            <div id="now" class="middle-circle"></div>
+        </div>
+
+    </div>
+
+    <div class="col-lg-3 col-md-3 main-container">
+
     </div>
 </div>
 

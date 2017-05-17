@@ -25,7 +25,8 @@ function getLiveBillList() {
         }, {
             field: 'roomPrice',
             title: '房价',
-            align: 'center'
+            align: 'center',
+            formatter:moneyFormatter
         },{
             field: 'vipId',
             title: '会员编号',
@@ -39,7 +40,7 @@ function getLiveBillList() {
             title: '住户身份证',
             align: 'center',
         },{
-            field: 'type',
+            field: 'inHostel',
             title: '',
             align: 'center',
             formatter: typeFormatter,
@@ -47,14 +48,20 @@ function getLiveBillList() {
     });
 }
 function typeFormatter(value,row,index) {
-    if(value==true) return '<span class="label label-success">住店</span>';
-    else return '<span class="label label-warning">离店</span>';
+    if(value==true) return '<span class="label label-success">未离店</span>';
+    else return '<span class="label label-default">已离店</span>';
 }
 function getTotal(){
     $.ajax({
-        url:'/data/boss/hostel/getLiveInNum?hostelId='+hostelId,
+        url:'/data/boss/hostel/getTotalLiveInNum?hostelId='+hostelId,
         success:function (data) {
             $('#total').html(data);
+        }
+    });
+    $.ajax({
+        url:'/data/boss/hostel/getPresentLiveInNum?hostelId='+hostelId,
+        success:function (data) {
+            $('#now').html(data);
         }
     })
 }

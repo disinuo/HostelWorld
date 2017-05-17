@@ -4,22 +4,22 @@ package nju.edu.hostel.vo.output;
  * Created by disinuo on 17/3/15.
  */
 public class LiveInNumVO {
-    private String hostelName;
-    private int num;
+    private String name;
+    private int y;
 
-    public String getHostelName() {
-        return hostelName;
+    public String getName() {
+        return name;
     }
 
-    public void setHostelName(String hostelName) {
-        this.hostelName = hostelName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getNum() {
-        return num;
+    public int getY() {
+        return y;
     }
 
-    public void setNum(int num) {
-        this.num = num;
+    public void setY(int y) {
+        this.y = y;
     }
 }
