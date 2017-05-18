@@ -39,42 +39,21 @@ $('#modifyRoomForm').submit(function (e) {
     console.log($('#img-form')[0]);
     console.log(formData);
     if(totalNum>=bookedNum){
+        var data={
+            name:$('#name').val(),
+            price:$('#price').val(),
+            roomId:id,
+            capacity:$('#capacity').val(),
+            totalNum:totalNum,
+        };
         $.ajax({
-
             type:'POST',
-            url:'/hostel/uploadImg',
-            cache: false,
-
-            data: formData,
-            processData: false,
-            contentType: false,
-
+            url:'/hostel/modifyRoom',
+            data: data,
             success:function (data) {
-                imgSrc=data;
-                var data={
-                    name:$('#name').val(),
-                    price:$('#price').val(),
-                    roomId:id,
-                    capacity:$('#capacity').val(),
-                    totalNum:totalNum,
-                    img:imgSrc
-                };
-                $.ajax({
-                    type:'POST',
-                    url:'/hostel/modifyRoom',
-                    data: data,
-                    success:function (data) {
-                        $('#msg').html(data);
-                    }
-                });
-            },
-            error:function (data) {
-                $('#msg').html('图片上传失败');
+                $('#msg').html(data);
             }
         });
-
-
-
     }else {
         $('#msg').html('设置总房间数小于已预订数量啦');
 
@@ -98,8 +77,8 @@ $(document).ready(function() {
                 console.log(msg);
 
             },
-            error: function () {
-                console.log("err in identify");
+            error: function (data) {
+                console.log(data);
             }
         });
 

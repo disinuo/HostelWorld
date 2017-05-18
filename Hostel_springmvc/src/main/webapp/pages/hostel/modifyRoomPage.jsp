@@ -47,18 +47,11 @@
                 <input id="endDate"/>
             </div>
 
-
-
             <input id="btnLogin"  class="btn btn-primary" type="submit" value="保存"/>
         </form>
 
         <div id="msg" class="alert alert-success" role="alert"></div>
 
-        <form id="add-pic-form" enctype="multipart/form-data">
-            <input type="file" name="file"/>
-            <a class="hollow button" id="add-pic-btn" data-close aria-label="Close modal">确定</a>
-            <a class="hollow button" data-close aria-label="Close modal">取消</a>
-        </form>
     </div>
 </div>
 
