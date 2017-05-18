@@ -14,21 +14,16 @@
 <%@include file="../common/header.jsp" %>
 <%@include file="component/navigation.jsp" %>
 
-客栈管理员你好
-
-修改房间界面
-
-
 <div class="big-container">
-    <div class="col-lg-3 col-md-3 ">
+    <div class="col-lg-3 col-md-3 col-xs-4 ">
         <jsp:include page="component/sideBar.jsp" flush="true"/>
     </div>
-    <div class="col-lg-9 clo-md-9">
-        <form id="modifyRoomForm">
-
+    <div class="col-lg-9 clo-md-9 col-xs-8">
+        <form id="modifyRoomForm" >
+            <h1><p id="roomId"></p></h1>
             <div class="input-group input-group-sm">
                 <span class="input-group-addon">房型</span>
-                <input id="hostelName" name="hostelName" type="text" class="form-control" aria-describedby="sizing-addon3"required>
+                <input id="name" name="name" type="text" class="form-control" aria-describedby="sizing-addon3"required>
             </div>
 
             <div class="input-group input-group-sm">
@@ -36,12 +31,34 @@
                 <input id="price" name="price" type="number" class="form-control" placeholder="" aria-describedby="sizing-addon3" required>
             </div>
             <div class="input-group input-group-sm">
-                <span class="input-group-addon">展示图</span>
-                <input id="img" type="file" name="file" >
+                <span class="input-group-addon">容量</span>
+                <input id="capacity" name="capacity" type="number" class="form-control" placeholder="" aria-describedby="sizing-addon3" required>
             </div>
+            <div class="input-group input-group-sm">
+                <span class="input-group-addon">房间数</span>
+                <input id="totalNum" name="totalNum" type="number" class="form-control" placeholder="" aria-describedby="sizing-addon3" required>
+            </div>
+            <div class="input-group input-group-sm">
+                <span class="input-group-addon">生效日期</span>
+                <input id="startDate"/>
+            </div>
+            <div class="input-group input-group-sm">
+                <span class="input-group-addon">失效日期</span>
+                <input id="endDate"/>
+            </div>
+
+
+
             <input id="btnLogin"  class="btn btn-primary" type="submit" value="保存"/>
         </form>
+
         <div id="msg" class="alert alert-success" role="alert"></div>
+
+        <form id="add-pic-form" enctype="multipart/form-data">
+            <input type="file" name="file"/>
+            <a class="hollow button" id="add-pic-btn" data-close aria-label="Close modal">确定</a>
+            <a class="hollow button" data-close aria-label="Close modal">取消</a>
+        </form>
     </div>
 </div>
 

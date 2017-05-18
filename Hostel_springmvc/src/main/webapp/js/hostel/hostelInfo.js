@@ -16,6 +16,7 @@ $(document).ready(function () {
         success:function (data) {
             $('#hostel_info_id').html(data.id);
             $('#hostel_info_name').html(data.name);
+            $('#hostel_info_city').html(data.province+" - "+data.city);
             $('#hostel_info_address').html(data.address);
             $('#hostel_info_phone').html(data.phone);
             $('#hostel_info_img').attr('src',data.img);

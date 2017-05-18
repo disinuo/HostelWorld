@@ -63,12 +63,13 @@ function getRoomList() {
             formatter: stateFormatter
 
         },{
-            field:'state',
+            field:'hostelId',
             title: '',
             align: 'center',
             formatter:operateFormatter,
-            events: eventHandlerRoom
-        }]
+            events: operateEvents
+        },
+        ]
     });
 }
 function stateFormatter(value,row,index) {
@@ -77,30 +78,31 @@ function stateFormatter(value,row,index) {
     else return '<span class="label label-default">未上市</span>';
 }
 function operateFormatter(value, row, index) {
-     if(value==0){
+     if(row.state==0){
          return [
-             '<a href="/hostel/modifyRoom?roomId=',
+             '<button class="modify btn btn-primary" ',
+             'href="/hostel/modifyRoom?roomId=',
              row.id,
-             '" class="modify">',
-             '<i class="glyphicon glyphicon-pencil"></i></a>        ',
-             '<a class="delete" href="#" >',
-             '<i class="glyphicon glyphicon-trash"></i></a>'
+             '" >',
+             '<i class="glyphicon glyphicon-pencil"></i></button>        ',
+             '<button class="delete btn btn-primary" href="#" >',
+             '<i class="glyphicon glyphicon-trash"></i></button>'
          ].join('');
      }else {
          return [
-             '<a href="/hostel/modifyRoom?roomId=',
+             '<button class="modify btn btn-primary" ',
+             'href="/hostel/modifyRoom?roomId=',
              row.id,
-             '" class="modify">',
-             '<i class="glyphicon glyphicon-pencil"></i></a>        ',
-             '<a href="#" >',
-             '<i class="glyphicon glyphicon-trash disabled"></i></a>'
+             '" >',
+             '<i class="glyphicon glyphicon-pencil"></i></button>        ',
+             '<button class="disabled delete btn btn-default" href="#" >',
+             '<i class="glyphicon glyphicon-trash"></i></button>'
          ].join('');
      }
-
 }
-var eventHandlerRoom={
+
+window.operateEvents = {
     'click .delete':function (event, value, row, index){
-        alert('下市！');
         var ans=confirm("确定要让这个房间下市吗");
         if(ans){
             $.ajax({
@@ -108,7 +110,6 @@ var eventHandlerRoom={
                 url:'/hostel/invalidateRoom',
                 data:{roomId:row.id},
                 success:function (data) {
-                    // alert(data);
                     location.reload();
                 }
             });
@@ -117,7 +118,8 @@ var eventHandlerRoom={
     'click .modify':function (event,value,row,index) {
         location.replace('/hostel/modifyRoom?roomId='+row.id);
     }
-}
+};
+
 
 function periodFormatter(value, row, index) {
     return value+" ~ "+row.endDate;

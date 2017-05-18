@@ -18,6 +18,7 @@ public class RequestModify {
     private String newName;
     private String newAddress;
     private String newImg;
+    private String newDescrip;
     private String state= RequestState.UNCHECKED.toString();
 
     @Id
@@ -55,6 +56,17 @@ public class RequestModify {
     }
     public void setNewAddress(String newAddress) {
         this.newAddress = newAddress;
+    }
+
+
+    @Basic
+    @Column(name = "newDescrip", nullable = false)
+    public String getNewDescrip() {
+        return newDescrip;
+    }
+
+    public void setNewDescrip(String newDescrip) {
+        this.newDescrip = newDescrip;
     }
 
     @Basic

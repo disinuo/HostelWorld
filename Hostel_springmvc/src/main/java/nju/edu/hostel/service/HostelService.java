@@ -53,7 +53,7 @@ public interface HostelService {
      * @param
      * @return SUCCESS,FAILURE
      */
-    public ResultMessage update(int id,String name,String address,String phone);
+    public ResultMessage update(int id,String descrip,String name,String address,String phone);
 
     /**
      * 登记住户的结账

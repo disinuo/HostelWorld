@@ -24,6 +24,10 @@
         </div>
         <div  class="vip-self-li">
             <i class="glyphicon glyphicon-map-marker"></i>
+            城市：<span id="hostel_info_city"></span>
+        </div>
+        <div  class="vip-self-li">
+            <i class="glyphicon glyphicon-map-marker"></i>
             地址：<span id="hostel_info_address"></span>
         </div>
         <div  class="vip-self-li">

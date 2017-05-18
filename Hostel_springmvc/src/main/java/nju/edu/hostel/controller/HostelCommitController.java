@@ -12,9 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
 import java.util.List;
+
+import org.apache.commons.io.FileUtils;
 
 /**
  * Created by disinuo on 17/3/13.
@@ -25,6 +32,8 @@ import java.util.List;
 public class HostelCommitController {
     @Autowired
     HostelService hostelService;
+    @Autowired
+    ServletContext context;
 
     @RequestMapping(value = "/requestManager",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
     public String handleOpenRequest(HttpSession session){
@@ -35,9 +44,9 @@ public class HostelCommitController {
     }
 
     @RequestMapping(value = "/modifyInfo",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
-    public String handlModifyRequest(HttpSession session,String name,String address,String phone){
+    public String handlModifyRequest(HttpSession session,String descrip,String name,String address,String phone){
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
-        ResultMessage msg=hostelService.update(user.getId(),name,address,phone);
+        ResultMessage msg=hostelService.update(user.getId(),descrip,name,address,phone);
         return msg.toShow();
     }
 
@@ -79,7 +88,7 @@ public class HostelCommitController {
         return msg.toShow();
     }
     @RequestMapping(value = "/modifyRoom",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
-    public String modifyRoom(RoomVO_input roomVO, int roomId,HttpSession session){
+    public String modifyRoom(RoomVO_input roomVO, int roomId, HttpSession session){
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
         ResultMessage msg=hostelService.updateRoom(roomId,roomVO);
         return msg.toShow();
@@ -92,5 +101,43 @@ public class HostelCommitController {
     }
 
 
+
+
+    @RequestMapping(value = "/uploadImg",method = RequestMethod.POST)
+    @ResponseBody
+    public String uploadImg(@RequestParam("file") MultipartFile file) {
+        String path=getImgFolderPath()+"img/";
+        System.out.println(file.getOriginalFilename());
+        if (file.isEmpty()) {
+            //TODO 反馈空文件错误
+            return "";
+        }
+        try {
+            byte[] bytes = file.getBytes();
+            String path_str=path+(new Date()).getTime()+file.getOriginalFilename();
+            FileUtils.writeByteArrayToFile(new File(path_str), bytes);
+            System.out.println(path_str);
+            return path_str;
+
+        } catch (IOException e) {
+            //TODO TOO_LARGE,...
+//            model.addAttribute("msg","something_wrong");
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+
+    private String getImgFolderPath(){
+        String path=context.getRealPath("/resources");
+        System.err.println("path= "+path);
+        String[] temps=path.split("/");
+        String imgPath="";
+        for(int i=0;i<temps.length-4;i++){
+            imgPath+=temps[i]+"/";
+        }
+        imgPath+="target/classes/static/img/";
+        return imgPath;
+    }
 
 }

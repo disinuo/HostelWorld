@@ -2,7 +2,17 @@
  * Created by disinuo on 17/3/13.
  */
 $(document).ready(function () {
-   // init();
+
+    $.ajax({
+        url:'/data/hostel/getInfo',
+        success:function (data) {
+            $('#hostelName').val(data.name);
+            $('#address').val(data.address);
+            $('#phone').val(data.phone);
+            $('#descrip').val(data.descrip);
+
+        }
+    });
 
 });
 
@@ -12,9 +22,11 @@ $('#modifyHostelInfoForm').submit(function (e) {
     $.ajax({
         type:'POST',
         url:'/hostel/modifyInfo',
-        data:{name:$('#name').val(),
+        data:{
+            name:$('#hostelName').val(),
             address:$('#address').val(),
-            phone:$('#phone').val()
+            phone:$('#phone').val(),
+            descrip:$('#descrip').val()
         },
         success:function (data) {
             $('#msg').html(data);

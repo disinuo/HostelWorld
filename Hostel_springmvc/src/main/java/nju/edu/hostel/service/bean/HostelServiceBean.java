@@ -69,7 +69,7 @@ public class HostelServiceBean implements HostelService {
     }
 
     @Override
-    public ResultMessage update(int id,String name,String address,String phone) {
+    public ResultMessage update(int id,String descrip,String name,String address,String phone) {
         System.out.println("in service updateHostelInfo  ");
         System.out.print(id+" "+name+" "+address+" "+phone);
         //TODO 待测试
@@ -78,6 +78,7 @@ public class HostelServiceBean implements HostelService {
         requestModify.setNewName(name);
         requestModify.setNewPhone(phone);
         requestModify.setHostelOriginal(hostelDao.get(id));
+        requestModify.setNewDescrip(descrip);
         try {
 
             requestDao.addModifyRequest(requestModify);
