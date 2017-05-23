@@ -21,6 +21,7 @@ public class LiveBill {
 
     private BookBill bookBill;
     private int numOfPeople;
+    private Hostel hostel;
     private List<LiveDetail> liveDetails;
 
 
@@ -84,7 +85,7 @@ public class LiveBill {
         this.numOfPeople = numOfPeople;
     }
 
-     @OneToOne
+    @OneToOne
     @JoinColumn(name = "bookbillId", referencedColumnName = "id", nullable = true)
 
     public BookBill getBookBill() {
@@ -94,6 +95,18 @@ public class LiveBill {
     public void setBookBill(BookBill bookBill) {
         this.bookBill = bookBill;
     }
+
+
+    @ManyToOne
+    @JoinColumn(name = "hostelId", referencedColumnName = "id", nullable = false)
+    public Hostel getHostel() {
+        return hostel;
+    }
+
+    public void setHostel(Hostel hostel) {
+        this.hostel = hostel;
+    }
+
 
     @Transient
     public String getDateStr(){
