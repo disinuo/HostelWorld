@@ -42,6 +42,8 @@ public class HostelViewController {
     }
     @RequestMapping(value = "/liveIn",method = RequestMethod.GET)
     public ModelAndView showLiveInPage(HttpSession session){
+
+        System.err.println("hostelController: liveIn GET");
         ModelAndView model=checkRole(session);
 
         return model==null?( new ModelAndView("hostel/liveInPage")):model;

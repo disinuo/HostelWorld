@@ -18,6 +18,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -65,8 +66,10 @@ public class HostelCommitController {
         return msg.toShow();
     }
     @RequestMapping(value = "/liveIn",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
-    public String liveIn(int bookBillId,int roomId,List<LiveInVO> liveInVOs){
-        ResultMessage msg=hostelService.liveIn(bookBillId,roomId,liveInVOs);
+    public String liveIn(int bookBillId,int roomId,Collection<LiveInVO> liveInVOs){
+        ResultMessage msg=null;//TODO hostelService.liveIn(bookBillId,roomId,liveInVOs);
+        System.err.println("hostelController: liveIn POST");
+
         return msg.toShow();
     }
     @RequestMapping(value = "/checkOut",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
