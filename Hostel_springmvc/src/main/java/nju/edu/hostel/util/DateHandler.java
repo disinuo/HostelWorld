@@ -54,7 +54,7 @@ public class DateHandler {
     private static SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd");
 
     public static void main(String[] args){
-        System.out.println(DateHandler.longToStr(1484841600000L));
+        System.out.println(DateHandler.longToStr(1494963332171L));
         System.out.println(DateHandler.longToStr(1495956603995L));
         System.out.println(DateHandler.strToLong("2017-5-10"));
         System.out.println(DateHandler.strToLong("2017-5-15"));
