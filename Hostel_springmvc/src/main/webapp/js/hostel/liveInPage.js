@@ -3,27 +3,34 @@
  */
 $("#liveInForm").submit(function(e) {
     var url = "/hostel/liveIn"; // the script where you handle the form input.
-    var data={
-        userRealName:$('#userRealName').val(),
-        idCard:$('#idCard').val(),
-        vipId:$('#vipId').val(),
-        roomId:$('#roomId').val(),
-        bookBillId:$('#bookBillId').val()
-    };
-    if($('#vipId').val()=="")data.vipId=0;
-    $.ajax({
-        type: "POST",
-        url: url,
-        // data: $("#idForm").serialize(),
-        data: data, // serializes the form's elements.
-        success: function(data) {
-            $('#msg').html(data);
-            $('#msg').style.display='block';
-        },
-        error:function (data) {
-            alert('ERROR!!!: '+JSON.stringify(data));
-        }
+   //int bookBillId,int roomId,List<LiveInVO> liveInVOs
+    var guests=[];
+    var guestDIVs=$('.guest');
+    guestDIVs.forEach(function (div) {
+        console.log(div);
     });
+    alert('AAAAA???');
+    // $('.guest ')
+    //
+    // var data={
+    //     roomId:$('#roomId').val(),
+    //     bookBillId:$('#bookBillId').val(),
+    //     liveInVOs:guests
+    // };
+    // if($('#vipId').val()=="")data.vipId=0;
+    // $.ajax({
+    //     type: "POST",
+    //     url: url,
+    //     // data: $("#idForm").serialize(),
+    //     data: data, // serializes the form's elements.
+    //     success: function(data) {
+    //         $('#msg').html(data);
+    //         $('#msg').style.display='block';
+    //     },
+    //     error:function (data) {
+    //         alert('ERROR!!!: '+JSON.stringify(data));
+    //     }
+    // });
 
     e.preventDefault(); // avoid to execute the actual submit of the form.
 });
@@ -42,6 +49,11 @@ $(function() {
                 $('#roomId').val(data.roomId);
             }
         });
+    });
+    $('#addBtn').click(function () {
+        var panel=$(' .guest:first-child').clone();
+        $('#guests').append(panel);
+
     });
 
 });
