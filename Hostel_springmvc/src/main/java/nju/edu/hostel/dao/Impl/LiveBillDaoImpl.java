@@ -3,6 +3,7 @@ package nju.edu.hostel.dao.Impl;
 import nju.edu.hostel.dao.BaseDao;
 import nju.edu.hostel.dao.LiveBillDao;
 import nju.edu.hostel.model.LiveBill;
+import nju.edu.hostel.model.LiveDetail;
 import nju.edu.hostel.util.ResultMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -60,11 +61,23 @@ public class LiveBillDaoImpl implements LiveBillDao {
     }
     @Override
     public int add(LiveBill liveBill) throws Exception {
-        return baseDao.save(liveBill);
+        int billId=baseDao.save(liveBill);
+        List<LiveDetail> details=liveBill.getLiveDetails();
+        for(LiveDetail detail:details){
+            detail.setLiveBill(liveBill);
+            baseDao.save(detail);
+        }
+        return billId;
     }
 
     @Override
     public ResultMessage update(LiveBill liveBill) {
+        ResultMessage msg;
+        List<LiveDetail> details=liveBill.getLiveDetails();
+        for(LiveDetail detail:details){
+            msg=baseDao.update(detail);
+            if(msg==ResultMessage.FAILURE) return msg;
+        }
         return baseDao.update(liveBill);
     }
 }

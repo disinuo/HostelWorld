@@ -19,7 +19,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/vip/hostels">所有客栈</a></li>
+                <li class="active"><a href="/vip/hostels" >所有客栈</a></li>
                 <li><a href="/vip/bookList">我的预订</a></li>
                 <li><a href="/vip/payList">我的消费</a></li>
                 <li><a href="/vip/liveList">住房记录</a></li>

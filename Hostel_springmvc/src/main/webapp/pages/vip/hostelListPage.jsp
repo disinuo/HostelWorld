@@ -17,10 +17,10 @@
 <%@include file="../common/header.jsp" %>
 <%@include file="component/navigation.jsp" %>
 <div class="big-container">
-    <div class="col-lg-3 col-md-3 vip-self-panel">
+    <div class="col-lg-3 col-md-3 col-xs-3 vip-self-panel">
         <jsp:include page="component/selfPanel.jsp" flush="true"/>
     </div>
-    <div class="col-lg-9 clo-md-8">
+    <div class="col-lg-9 clo-md-8 col-xs-8">
         <table id="table" class="table table-striped">
         </table>
     </div>

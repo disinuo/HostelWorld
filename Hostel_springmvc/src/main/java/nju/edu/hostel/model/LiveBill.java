@@ -4,6 +4,7 @@ import nju.edu.hostel.util.DateHandler;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by disinuo on 17/3/3.
@@ -14,13 +15,14 @@ public class LiveBill {
     private int id;
     private boolean inHostel=true;//初始是true，代表还没离店。false代表已离店
     private boolean paid=false;//false表示未支付。
-    private String userRealName;
-    private String idCard;
+
     private long date;
     private long checkOutDate;
-    private Vip vip;
-    private Room room;
+
     private BookBill bookBill;
+    private int numOfPeople;
+    private List<LiveDetail> liveDetails;
+
 
     @Id
     @GenericGenerator(name="dsn" , strategy="increment")
@@ -52,25 +54,6 @@ public class LiveBill {
         this.paid = paid;
     }
 
-    @Basic
-    @Column(name = "userRealName", nullable = false)
-    public String getUserRealName() {
-        return userRealName;
-    }
-
-    public void setUserRealName(String userRealName) {
-        this.userRealName = userRealName;
-    }
-
-    @Basic
-    @Column(name = "idCard", nullable = false, length = 255)
-    public String getIdCard() {
-        return idCard;
-    }
-
-    public void setIdCard(String idCard) {
-        this.idCard = idCard;
-    }
 
     @Basic
     @Column(name = "date", nullable = false)
@@ -91,27 +74,17 @@ public class LiveBill {
     public void setCheckOutDate(long checkOutDate) {
         this.checkOutDate = checkOutDate;
     }
-
-    @ManyToOne
-    @JoinColumn(name = "vipId", referencedColumnName = "id")
-    public Vip getVip() {
-        return vip;
+    @Basic
+    @Column(name = "numOfPeople", nullable = false)
+    public int getNumOfPeople() {
+        return numOfPeople;
     }
 
-    public void setVip(Vip vip) {
-        this.vip = vip;
+    public void setNumOfPeople(int numOfPeople) {
+        this.numOfPeople = numOfPeople;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "roomId", referencedColumnName = "id", nullable = false)
-    public Room getRoom() {
-        return room;
-    }
-
-    public void setRoom(Room room) {
-        this.room = room;
-    }
-    @OneToOne
+     @OneToOne
     @JoinColumn(name = "bookbillId", referencedColumnName = "id", nullable = true)
 
     public BookBill getBookBill() {
@@ -130,9 +103,13 @@ public class LiveBill {
     public String getCheckOutDateStr(){
         return DateHandler.longToStr(this.checkOutDate);
     }
-    @Transient
-    public Hostel getHostel() {
-        return room.getHostel();
+
+    @OneToMany(mappedBy = "liveBill")
+    public List<LiveDetail> getLiveDetails() {
+        return liveDetails;
     }
 
+    public void setLiveDetails(List<LiveDetail> liveDetails) {
+        this.liveDetails = liveDetails;
+    }
 }
