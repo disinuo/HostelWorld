@@ -15,10 +15,10 @@ function getLiveList() {
             align: 'center',
         },{
             field: 'date',
-            title: '时间',
+            title: '日期',
             align: 'center'
         },{
-            field: 'roomImg',
+            field: 'hostelImg',
             title: '',
             align: 'center',
             formatter:imgFormatter
@@ -28,14 +28,14 @@ function getLiveList() {
             align: 'center',
             formatter: operateFormatter
         }, {
-            field: 'roomName',
-            title: '房型',
-            align: 'center'
-        },{
             field: 'roomPrice',
-            title: '价格',
+            title: '房型',
             align: 'center',
-            formatter:moneyFormatter
+            formatter:roomFormatter
+        },{
+            field:'numOfPeople',
+            title:'住店人数',
+            align:'center'
         },{//TODO 类型要变成以表格底色不同的形式展现
             field: 'inHostel',
             title: '',
@@ -55,6 +55,7 @@ function getLiveList() {
         }]
     });
 }
+
 function paidFormatter(value,row,index) {
     if(value==true) return '<span class="label label-default">已支付</span>';
     else return '<span class="label label-danger">未支付</span>';

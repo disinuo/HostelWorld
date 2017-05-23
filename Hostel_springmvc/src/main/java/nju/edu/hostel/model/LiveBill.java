@@ -21,6 +21,8 @@ public class LiveBill {
 
     private BookBill bookBill;
     private int numOfPeople;
+    private Room room;
+
     private Hostel hostel;
     private List<LiveDetail> liveDetails;
 
@@ -105,6 +107,16 @@ public class LiveBill {
 
     public void setHostel(Hostel hostel) {
         this.hostel = hostel;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "roomId", referencedColumnName = "id", nullable = false)
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
 

@@ -14,44 +14,43 @@ public class LiveBillVO {
     private int id;
     private boolean inHostel;//初始是true，代表还没离店。false代表已离店
     private boolean paid;//false表示未支付。
-    private String userRealName;
-    private String idCard;
     private String date;
     private String checkOutDate;
     private int bookBillId;
-
     private int hostelId;
-    private String vipId;
-    private int roomId;
     private String hostelName;
     private String hostelAddress;
+    private String hostelImg;
+
+    private int roomId;
     private String roomImg;
     private String roomName;
     private double roomPrice;
+    private List<GuestVO> guestVOS;
+    private int numOfPeople;
 
     public LiveBillVO(LiveBill liveBillEntity){
         this.id=liveBillEntity.getId();
-        this.checkOutDate=liveBillEntity.getCheckOutDateStr();
-        this.bookBillId=(liveBillEntity.getBookBill()!=null)?liveBillEntity.getBookBill().getId():0;
         this.inHostel=liveBillEntity.getInHostel();
         this.paid=liveBillEntity.isPaid();
-
-        this.userRealName=liveBillEntity.getUserRealName();
-        this.idCard=liveBillEntity.getIdCard();
         this.date= liveBillEntity.getDateStr();
+        this.checkOutDate=liveBillEntity.getCheckOutDateStr();
+        this.bookBillId=(liveBillEntity.getBookBill()!=null)?liveBillEntity.getBookBill().getId():0;
+
         this.hostelId=liveBillEntity.getHostel().getId();
         this.hostelAddress=
                 liveBillEntity.getHostel().getProvince()+" - "+
                 liveBillEntity.getHostel().getCity()+" - "+
                 liveBillEntity.getHostel().getAddress();
-
-
         this.hostelName=liveBillEntity.getHostel().getName();
-        this.vipId=(liveBillEntity.getVip()!=null)?(liveBillEntity.getVip().getId()+""):"-";
+        this.hostelImg=liveBillEntity.getHostel().getImg();
+
         this.roomId=liveBillEntity.getRoom().getId();
         this.roomImg=liveBillEntity.getRoom().getImg();
         this.roomName=liveBillEntity.getRoom().getName();
         this.roomPrice=liveBillEntity.getRoom().getPrice();
+        this.guestVOS= GuestVO.entityToVO(liveBillEntity.getLiveDetails());
+        this.numOfPeople=liveBillEntity.getNumOfPeople();
     }
     public static List<LiveBillVO> entityToVO(List<LiveBill> bills){
         List<LiveBillVO> res=new ArrayList<LiveBillVO>();
@@ -80,12 +79,8 @@ public class LiveBillVO {
         return bookBillId;
     }
 
-    public String getUserRealName() {
-        return userRealName;
-    }
-
-    public String getIdCard() {
-        return idCard;
+    public String getHostelImg() {
+        return hostelImg;
     }
 
     public String getDate() {
@@ -96,13 +91,6 @@ public class LiveBillVO {
         return hostelId;
     }
 
-    public String getVipId() {
-        return vipId;
-    }
-
-    public int getRoomId() {
-        return roomId;
-    }
 
     public String getHostelName() {
         return hostelName;
@@ -110,6 +98,9 @@ public class LiveBillVO {
 
     public String getHostelAddress() {
         return hostelAddress;
+    }
+    public int getRoomId() {
+        return roomId;
     }
 
     public String getRoomImg() {
@@ -122,5 +113,13 @@ public class LiveBillVO {
 
     public double getRoomPrice() {
         return roomPrice;
+    }
+
+    public int getNumOfPeople() {
+        return numOfPeople;
+    }
+
+    public List<GuestVO> getGuestVOS() {
+        return guestVOS;
     }
 }

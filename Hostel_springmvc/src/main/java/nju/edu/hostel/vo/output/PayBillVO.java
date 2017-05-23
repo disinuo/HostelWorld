@@ -14,35 +14,37 @@ public class PayBillVO {
     private boolean counted;
     private double money;
     private String createDate;
-    private String userRealName;
-    private String idCard;
     private int hostelId;
-    private String vipId;
-    private int roomId;
     private String hostelName;
     private String hostelAddress;
+
+    private int roomId;
     private String roomImg;
     private String roomName;
     private double roomPrice;
+    private int numOfPeople;
+
+    private List<GuestVO> guestVOS;
+
 
     public PayBillVO(PayBill payBillEntity){
         this.id=payBillEntity.getId();
         this.counted=payBillEntity.getCounted();
         this.money=payBillEntity.getMoney();
         this.createDate= payBillEntity.getCreateDateStr();
-        this.userRealName=payBillEntity.getUserRealName();
-        this.idCard=payBillEntity.getIdCard();
         this.hostelId=payBillEntity.getHostel().getId();
         this.hostelAddress=
                 payBillEntity.getHostel().getProvince()+" - "+
                 payBillEntity.getHostel().getCity()+" - "+
                 payBillEntity.getHostel().getAddress();
         this.hostelName=payBillEntity.getHostel().getName();
-        this.vipId=(payBillEntity.getVip()!=null)?(payBillEntity.getVip().getId()+""):"-";
-        this.roomId=payBillEntity.getLiveBill().getRoom().getId();
-        this.roomImg=payBillEntity.getLiveBill().getRoom().getImg();
-        this.roomName=payBillEntity.getLiveBill().getRoom().getName();
-        this.roomPrice=payBillEntity.getLiveBill().getRoom().getPrice();
+        this.roomId=payBillEntity.getRoom().getId();
+        this.roomImg=payBillEntity.getRoom().getImg();
+        this.roomName=payBillEntity.getRoom().getName();
+        this.roomPrice=payBillEntity.getRoom().getPrice();
+
+        this.guestVOS=GuestVO.entityToVO(payBillEntity.getLiveDetails());
+        this.numOfPeople=payBillEntity.getNumOfPeople();
     }
     public static List<PayBillVO> entityToVO(List<PayBill> bills){
         List<PayBillVO> res=new ArrayList<PayBillVO>();
@@ -67,20 +69,8 @@ public class PayBillVO {
         return createDate;
     }
 
-    public String getUserRealName() {
-        return userRealName;
-    }
-
-    public String getIdCard() {
-        return idCard;
-    }
-
     public int getHostelId() {
         return hostelId;
-    }
-
-    public String getVipId() {
-        return vipId;
     }
 
     public int getRoomId() {
@@ -105,5 +95,13 @@ public class PayBillVO {
 
     public double getRoomPrice() {
         return roomPrice;
+    }
+
+    public int getNumOfPeople() {
+        return numOfPeople;
+    }
+
+    public List<GuestVO> getGuestVOS() {
+        return guestVOS;
     }
 }

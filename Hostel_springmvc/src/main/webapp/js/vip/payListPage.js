@@ -39,7 +39,11 @@ function getPayList() {
             align: 'center',
             formatter:moneyFormatter
 
-        }],
+        },{
+            field:'numOfPeople',
+            title:'住店人数',
+            align:'center'
+        }]
     });
 }
 

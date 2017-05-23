@@ -15,7 +15,6 @@ public class LiveDetail {
     private String userRealName;
     private String idCard;
     private Vip vip;
-    private Room room;
     private LiveBill liveBill;
     @Id
     @GenericGenerator(name="dsn" , strategy="increment")
@@ -60,15 +59,6 @@ public class LiveDetail {
         this.vip = vip;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "roomId", referencedColumnName = "id", nullable = false)
-    public Room getRoom() {
-        return room;
-    }
-
-    public void setRoom(Room room) {
-        this.room = room;
-    }
 
     @ManyToOne
     @JoinColumn(name = "billId", referencedColumnName = "id", nullable = false)
@@ -78,10 +68,6 @@ public class LiveDetail {
 
     public void setLiveBill(LiveBill liveBill) {
         this.liveBill = liveBill;
-    }
-    @Transient
-    public Hostel getHostel() {
-        return room.getHostel();
     }
 
 }

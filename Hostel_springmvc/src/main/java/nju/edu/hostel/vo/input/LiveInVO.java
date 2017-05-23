@@ -7,7 +7,6 @@ public class LiveInVO {
     private String userRealName;
     private String idCard;
     private int vipId=0;
-    private int roomId;
 
     public String getUserRealName() {
         return userRealName;
@@ -33,19 +32,6 @@ public class LiveInVO {
         this.vipId = vipId;
     }
 
-    public int getRoomId() {
-        return roomId;
-    }
 
-    public void setRoomId(int roomId) {
-        this.roomId = roomId;
-    }
-
-    public LiveInVO(String userRealName, String idCard, int vipId, int roomId) {
-        this.userRealName = userRealName;
-        this.idCard = idCard;
-        this.vipId = vipId;
-        this.roomId = roomId;
-    }
     public LiveInVO(){}
 }

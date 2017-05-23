@@ -2,6 +2,7 @@ package nju.edu.hostel.dao.Impl;
 
 import nju.edu.hostel.dao.BaseDao;
 import nju.edu.hostel.dao.PayBillDao;
+import nju.edu.hostel.model.LiveDetail;
 import nju.edu.hostel.model.PayBill;
 import nju.edu.hostel.util.ResultMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,14 +32,29 @@ public class PayBillDaoImpl implements PayBillDao {
     @Override
     public List<PayBill> getByHostelId(int hostelId){
         String hql="SELECT bill FROM PayBill as bill" +
-                " WHERE bill.liveBill.room.hostel.id = "+hostelId+" ORDER BY bill.id DESC";
-        return baseDao.getByHql(PayBill.class,hql);
+                " WHERE bill.hostel.id = "+hostelId+" ORDER BY bill.id DESC";
+        List<PayBill> bills=baseDao.getByHql(PayBill.class,hql);
+        System.err.println("============================");
+        System.err.println("in PayDAO  size= "+bills.size());
+        for(PayBill payBill:bills){
+            System.out.print(payBill.getId()+": ");
+            List<LiveDetail> details=payBill.getLiveDetails();
+            for(LiveDetail d:details){
+                System.out.println(d.getId()+": "+d.getUserRealName());
+            }
+
+        }
+        return bills;
     }
     @Override
     public List<PayBill> getByVipId(int vipId){
-        String hql="SELECT bill FROM PayBill as bill" +
-                " WHERE bill.liveBill.vip.id = "+vipId+" ORDER BY bill.id DESC";
-        return baseDao.getByHql(PayBill.class,hql);
+        String hql="SELECT paybill FROM PayBill as paybill,LiveBill as livebill,LiveDetail as detail" +
+                " WHERE paybill.liveBill.id = livebill.id "+
+                " AND livebill.id=detail.liveBill.id "+
+                " AND detail.vip.id = "+vipId+" ORDER BY paybill.id DESC";
+        List<PayBill> bills=baseDao.getByHql(PayBill.class,hql);
+
+        return bills;
     }
     @Override
     public List<PayBill> getByRestrictEqual(String column, Object value) {

@@ -65,9 +65,8 @@ public class HostelCommitController {
         return msg.toShow();
     }
     @RequestMapping(value = "/liveIn",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
-    public String liveIn(LiveInVO liveInVO){
-        System.out.print("in hostelCommitController liveIn:"+liveInVO.getUserRealName());
-        ResultMessage msg=hostelService.liveIn(liveInVO);
+    public String liveIn(int bookBillId,int roomId,List<LiveInVO> liveInVOs){
+        ResultMessage msg=hostelService.liveIn(bookBillId,roomId,liveInVOs);
         return msg.toShow();
     }
     @RequestMapping(value = "/checkOut",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")

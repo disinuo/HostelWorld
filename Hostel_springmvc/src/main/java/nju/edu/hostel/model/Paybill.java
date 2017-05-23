@@ -5,6 +5,7 @@ import nju.edu.hostel.util.NumberFormatter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by disinuo on 17/3/3.
@@ -17,6 +18,8 @@ public class PayBill {
     private double money;
     private long createDate;
     private LiveBill liveBill;
+    private Hostel hostel;
+
 
     @Id
     @GenericGenerator(name="dsn" , strategy="increment")
@@ -62,7 +65,7 @@ public class PayBill {
 
 
     @ManyToOne
-    @JoinColumn(name = "livebillId", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "liveBillId", referencedColumnName = "id", nullable = false)
     public LiveBill getLiveBill() {
         return liveBill;
     }
@@ -71,23 +74,19 @@ public class PayBill {
         this.liveBill = liveBill;
     }
 
-    @Transient
+    @ManyToOne
+    @JoinColumn(name = "hostelId", referencedColumnName = "id", nullable = false)
     public Hostel getHostel() {
-        return liveBill.getHostel();
+        return hostel;
     }
-    @Transient
-    public String getUserRealName() {
-        return liveBill.getUserRealName();
+
+    public void setHostel(Hostel hostel) {
+        this.hostel = hostel;
     }
 
     @Transient
-    public String getIdCard() {
-        return liveBill.getIdCard();
-    }
-
-    @Transient
-    public Vip getVip() {
-        return liveBill.getVip();
+    public Room getRoom(){
+        return liveBill.getRoom();
     }
 
     @Transient
@@ -95,4 +94,12 @@ public class PayBill {
         return DateHandler.longToStr(this.createDate);
     }
 
+    @Transient
+    public int getNumOfPeople() {
+        return liveBill.getNumOfPeople();
+    }
+    @Transient
+    public List<LiveDetail> getLiveDetails() {
+        return liveBill.getLiveDetails();
+    }
 }

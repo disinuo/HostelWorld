@@ -77,7 +77,15 @@ public class HostelDataController {
     public List<PayBillVO> getAllPayBills(HttpSession session){
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
         int id=user.getId();
-        return PayBillVO.entityToVO(hostelService.getAllPayBills(id));
+        List<PayBillVO> vos=PayBillVO.entityToVO(hostelService.getAllPayBills(id));
+        System.err.println("************  in hostelDatacontroller *********************");
+        for(PayBillVO vo:vos){
+            System.out.print(vo.getId()+": ");
+            for(GuestVO g:vo.getGuestVOS())
+                System.out.println(g.getUserRealName()+", "+g.getVipId() );
+
+        }
+        return vos;
     }
     @RequestMapping(value = "/getLiveBills")
     public List<LiveBillVO> getAllLiveBills(HttpSession session) {

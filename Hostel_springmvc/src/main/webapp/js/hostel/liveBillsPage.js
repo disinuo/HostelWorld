@@ -24,28 +24,16 @@ function getLiveBillList() {
             title: '日期',
             align: 'center',
         }, {
-            field: 'roomName',
+            field: 'roomPrice',
             title: '房型',
             align: 'center',
-            // events: operateEvents
-        }, {
-            field: 'roomPrice',
-            title: '房价',
-            align: 'center',
-            formatter:moneyFormatter
-
+            formatter:roomFormatter
         },{
             field: 'vipId',
             title: '会员编号',
             align: 'center',
-        },{
-            field: 'userRealName',
-            title: '住户真名',
-            align: 'center',
-        },{
-            field: 'idCard',
-            title: '住户身份证',
-            align: 'center',
+            formatter:guestWithIDCardFormatter
+
         },{//TODO 类型要变成以表格底色不同的形式展现
             field: 'inHostel',
             title: '',
@@ -64,6 +52,8 @@ function getLiveBillList() {
         }]
     });
 }
+
+
 function paidFormatter(value,row,index) {
     if(value==true) return '<span class="label label-default">已支付</span>';
     else return '<span class="label label-danger">未支付</span>';
