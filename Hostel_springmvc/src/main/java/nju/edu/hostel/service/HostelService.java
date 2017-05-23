@@ -88,10 +88,10 @@ public interface HostelService {
     /**
      * 登记住户的入店信息：
      住户真实名字，住户身份证号，入住日期，入住房间
-     * @param liveInVO
+     * @param bookBillId,liveInVOs
      * @return SUCCESS,FAILURE
      */
-    public ResultMessage liveIn(LiveInVO liveInVO);
+    public ResultMessage liveIn(int bookBillId,List<LiveInVO> liveInVOs);
 
     /**
      * 办理住户离店

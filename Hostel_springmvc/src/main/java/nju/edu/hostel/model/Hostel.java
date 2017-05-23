@@ -13,7 +13,8 @@ import java.util.List;
 @Table(name = "hostel", schema = "hostel", catalog = "")
 public class Hostel {
     private int id;
-    private int numOfPeople=0;
+    //TODO 不知道数据库那边没设置default值会不会跪掉，比如等于null
+    private long numOfPeople=0;
     private boolean permitted=false;
     private String img;
     private String phone="66668888";
@@ -67,10 +68,10 @@ public class Hostel {
     @Basic
     @Column(name = "numOfPeople", nullable = false)
 
-    public int getNumOfPeople() {
+    public long getNumOfPeople() {
         return numOfPeople;
     }
-    public void setNumOfPeople(int numOfPeople) {
+    public void setNumOfPeople(long numOfPeople) {
         this.numOfPeople = numOfPeople;
     }
 

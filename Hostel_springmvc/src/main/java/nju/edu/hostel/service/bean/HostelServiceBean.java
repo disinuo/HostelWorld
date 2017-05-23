@@ -93,47 +93,72 @@ public class HostelServiceBean implements HostelService {
     @Override
     public double enrollPay(int liveBillId) {
         System.out.println("In service---- id="+liveBillId+",money=");
-        PayBill payBill=new PayBill();
         LiveBill liveBill= liveBillDao.get(liveBillId);
-        Room room=liveBill.getRoom();
-        double moneyToPay=liveBill.getRoom().getPrice();
-        payBill.setCreateDate(new Date().getTime());
-        payBill.setLiveBill(liveBill);
+        List<LiveDetail> liveDetails=liveBill.getLiveDetails();
+        Hostel hostel=null;
+        double moneyUncounted=0;
+        double avgExpense=0;
+        double moneyToPaySumUp=0;
+        long numOfPeople=0;
+        double totalExpense=0;
 
-        if(liveBill.getVip()!=null){//顾客是会员
-            Vip vip=liveBill.getVip();
-            //看会员级别~要打折的！
-            int level=vip.getLevel();
-            double discount=VIP_LEVEL_TO_DISCOUNT(level);
-            moneyToPay*=discount;
+        if(liveDetails!=null&&liveDetails.size()>0){
+            hostel=liveBill.getHostel();
+            moneyUncounted=hostel.getMoneyUncounted();
+            avgExpense=hostel.getAvgExpense();
+            numOfPeople=hostel.getNumOfPeople();
+            totalExpense=avgExpense*numOfPeople;
+        }
+        for(LiveDetail liveDetail:liveDetails){
+            PayBill payBill=new PayBill();
+            Room room=liveDetail.getRoom();
+            double moneyToPay=liveDetail.getRoom().getPrice();
+            payBill.setCreateDate(new Date().getTime());
+            payBill.setLiveBill(liveBill);
+
+            if(liveDetail.getVip()!=null){//顾客是会员
+                Vip vip=liveDetail.getVip();
+                //看会员级别~要打折的！
+                int level=vip.getLevel();
+                double discount=VIP_LEVEL_TO_DISCOUNT(level);
+                moneyToPay*=discount;
             /*
              *消费要积分的！还要升级！
              */
-            //会员算上这笔消费后的累计消费
-            double vipPaidAll=vip.getMoneyPaid()+moneyToPay;
-            vip.setMoneyPaid(vipPaidAll);
-            vip.setScore(vip.getScore()+moneyToPay*RATE_MONEY_TO_SCORE);
-            vip.setLevel(VIP_MONEY_TO_LEVEL(vipPaidAll));
-            vipDao.update(vip);
+                //会员算上这笔消费后的累计消费
+                double vipPaidAll=vip.getMoneyPaid()+moneyToPay;
+                vip.setMoneyPaid(vipPaidAll);
+                vip.setScore(vip.getScore()+moneyToPay*RATE_MONEY_TO_SCORE);
+                vip.setLevel(VIP_MONEY_TO_LEVEL(vipPaidAll));
+                vipDao.update(vip);
+            }
+            //顾客不是会员，直接生成账单
+            payBill.setMoney(moneyToPay);
+
+            try {
+                payBillDao.add(payBill);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return -1;
+            }
+            moneyToPaySumUp+=moneyToPay;
         }
-        //顾客不是会员，直接生成账单
-        payBill.setMoney(moneyToPay);
+        moneyUncounted+=moneyToPaySumUp;
+        totalExpense+=moneyToPaySumUp;
 
         try {
+            //更新住店单状态为【已支付】
             liveBill.setPaid(true);
             liveBillDao.update(liveBill);
-            payBillDao.add(payBill);
-            Hostel hostel=room.getHostel();
-            hostel.setMoneyUncounted(hostel.getMoneyUncounted()+moneyToPay);
 
-            double avgExpense=hostel.getAvgExpense();
-            int numOfPeople=hostel.getNumOfPeople();
-            avgExpense=(avgExpense*numOfPeople+moneyToPay)/(numOfPeople+1);
+            hostel.setMoneyUncounted(moneyUncounted);
+            numOfPeople+=liveBill.getNumOfPeople();
+            avgExpense=totalExpense/numOfPeople;
             hostel.setAvgExpense(NumberFormatter.saveOneDecimal(avgExpense));
-            hostel.setNumOfPeople(numOfPeople+1);
+            hostel.setNumOfPeople(numOfPeople);
 
             hostelDao.update(hostel);
-            return NumberFormatter.saveOneDecimal(moneyToPay);
+            return NumberFormatter.saveOneDecimal(moneyToPaySumUp);
         }catch (Exception e){
             e.printStackTrace();
             return -1;
@@ -154,29 +179,42 @@ public class HostelServiceBean implements HostelService {
         return userDao.update(manager);
     }
     @Override
-    public ResultMessage liveIn(LiveInVO liveInVO){
-        System.out.println("in service liveIn ");
+    public ResultMessage liveIn(int bookBillId,List<LiveInVO> liveInVOs){
         LiveBill liveBill=new LiveBill();
-        if(liveInVO.getVipId()!=0){
-            Vip vip=vipDao.get(liveInVO.getVipId());
-            liveBill.setVip(vip);
+        List<LiveDetail> liveDetails=new ArrayList<LiveDetail>();
+        Hostel hostel=null;
+        for(LiveInVO liveInVO:liveInVOs){
+            LiveDetail detail=new LiveDetail();
+            if(liveInVO.getVipId()!=0){
+                Vip vip=vipDao.get(liveInVO.getVipId());
+                detail.setVip(vip);
+            }
+            Room room=roomDao.get(liveInVO.getRoomId());
+            if(hostel==null) hostel=room.getHostel();
+            room.setVacantNum(room.getVacantNum()-1);
+            roomDao.update(room);
+
+            detail.setRoom(room);
+            detail.setIdCard(liveInVO.getIdCard());
+            detail.setUserRealName(liveInVO.getUserRealName());
+            liveDetails.add(detail);
+
+
         }
-        Room room=roomDao.get(liveInVO.getRoomId());
-        room.setVacantNum(room.getVacantNum()-1);
-        liveBill.setRoom(room);
-        liveBill.setIdCard(liveInVO.getIdCard());
-        liveBill.setUserRealName(liveInVO.getUserRealName());
+        liveBill.setLiveDetails(liveDetails);
         liveBill.setDate(new Date().getTime());
+        liveBill.setHostel(hostel);
+        liveBill.setNumOfPeople(liveInVOs.size());
         try {
-            BookBill bookBill=bookBillDao.get(liveInVO.getBookBillId());
+            //更新预订订单的状态
+
+            BookBill bookBill=bookBillDao.get(bookBillId);
             if(bookBill!=null) {
                 bookBill.setState(1);
                 bookBillDao.update(bookBill);
                 liveBill.setBookBill(bookBill);
             }
             liveBillDao.add(liveBill);
-            roomDao.update(room);
-            //更新预订订单的状态
 
             return ResultMessage.SUCCESS;
         } catch (Exception e) {
@@ -189,13 +227,16 @@ public class HostelServiceBean implements HostelService {
     public ResultMessage checkOut(int liveBillId){
         //TODO 要更新 更新人均消费等，再想想
         LiveBill liveBill= liveBillDao.get(liveBillId);
-        Room room=liveBill.getRoom();
         liveBill.setCheckOutDate((new Date()).getTime());
         liveBill.setInHostel(false);
-        room.setVacantNum(room.getVacantNum()+1);
+        for(LiveDetail detail:liveBill.getLiveDetails()){
+            Room room=detail.getRoom();
+            room.setVacantNum(room.getVacantNum()+1);
+            roomDao.update(room);
+        }
+
         try {
             liveBillDao.update(liveBill);
-            roomDao.update(room);
             return ResultMessage.SUCCESS;
         } catch (Exception e) {
 //            e.printStackTrace();
