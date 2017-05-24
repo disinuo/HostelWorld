@@ -20,12 +20,10 @@
     </div>
     <div class="col-lg-9 clo-md-9">
         <form id="enrollPayForm">
+            未付款的顾客
+            <select id="liveInId">
 
-            <div class="input-group input-group-sm">
-                <span class="input-group-addon">住房记录id</span>
-                <input id="liveBillId" name="liveBillId" type="number" class="form-control" placeholder="" aria-describedby="sizing-addon3" required>
-            </div>
-
+            </select>
             <input id="btnLogin"  class="btn btn-primary" type="submit" value="保存"/>
         </form>
         <div id="msg" class="alert alert-success" role="alert"></div>

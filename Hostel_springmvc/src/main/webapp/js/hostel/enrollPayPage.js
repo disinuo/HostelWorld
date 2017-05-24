@@ -1,11 +1,32 @@
 /**
  * Created by disinuo on 17/3/13.
  */
-// this is the id of the form
+$(function () {
+    $.ajax({
+        type: "POST",
+        url: '/data/hostel/getNotPaidLiveBills',
+        success: function(data) {
+            console.log(data);
+            data.forEach(function (vo) {
+                $('#liveInId').append([
+                        ' <option value="' ,
+                        vo.id,
+                        '">',
+                        vo.id+"  "+vo.roomId+"  "+vo.roomName,
+                        '</option>'
+                    ].join('')
+                );
+            });
+        },
+        error:function (data) {
+            alert('ERROR!!!: '+JSON.stringify(data));
+        }
+    });
+});
 $("#enrollPayForm").submit(function(e) {
     var url = "/hostel/enrollPay"; // the script where you handle the form input.
     var data={
-        liveBillId:$('#liveBillId').val(),
+        liveBillId:$('#liveInId').val(),
     };
     alert(JSON.stringify(data));
     $.ajax({
