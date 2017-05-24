@@ -3,7 +3,6 @@ package nju.edu.hostel.controller;
 import nju.edu.hostel.service.HostelService;
 import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.vo.input.LiveInVO;
-import nju.edu.hostel.vo.input.PayVO;
 import nju.edu.hostel.vo.input.RoomVO_input;
 import nju.edu.hostel.vo.output.OnLineUserVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -66,9 +64,12 @@ public class HostelCommitController {
         return msg.toShow();
     }
     @RequestMapping(value = "/liveIn",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
-    public String liveIn(int bookBillId,int roomId,Collection<LiveInVO> liveInVOs){
-        ResultMessage msg=null;//TODO hostelService.liveIn(bookBillId,roomId,liveInVOs);
+    public String liveIn(LiveInVO liveInVO){
+
+
         System.err.println("hostelController: liveIn POST");
+        ResultMessage msg=hostelService.liveIn(liveInVO);
+        System.err.println(liveInVO.toString());
 
         return msg.toShow();
     }

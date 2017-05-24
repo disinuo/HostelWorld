@@ -8,9 +8,10 @@ import nju.edu.hostel.util.DateHandler;
 import nju.edu.hostel.util.NumberFormatter;
 import nju.edu.hostel.util.RequestState;
 import nju.edu.hostel.util.ResultMessage;
+import nju.edu.hostel.vo.input.GuestInputVO;
 import nju.edu.hostel.vo.input.LiveInVO;
-import nju.edu.hostel.vo.input.PayVO;
 import nju.edu.hostel.vo.input.RoomVO_input;
+import nju.edu.hostel.vo.output.GuestVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -188,30 +189,34 @@ public class HostelServiceBean implements HostelService {
         return userDao.update(manager);
     }
     @Override
-    public ResultMessage liveIn(int bookBillId, int roomId,List<LiveInVO> liveInVOs){
+    public ResultMessage liveIn(LiveInVO liveInVO){
+        int roomId=liveInVO.getRoomId();
+        int bookBillId=liveInVO.getBookBillId();
+        System.err.println("roomId= "+roomId+", bookId= "+bookBillId);
+        List<GuestInputVO> guests=GuestInputVO.mapToVO(liveInVO.getGuests());
+//
         LiveBill liveBill=new LiveBill();
         List<LiveDetail> liveDetails=new ArrayList<LiveDetail>();
         Room room=roomDao.get(roomId);
         Hostel hostel=room.getHostel();
 
-        for(LiveInVO liveInVO:liveInVOs){
+        for(GuestInputVO guest:guests){
             LiveDetail detail=new LiveDetail();
-            if(liveInVO.getVipId()!=0){
-                Vip vip=vipDao.get(liveInVO.getVipId());
+            Vip vip=vipDao.get(guest.getVipId());
+            if(vip!=null){
                 detail.setVip(vip);
             }
-            if(hostel==null) hostel=room.getHostel();
             room.setVacantNum(room.getVacantNum()-1);
             roomDao.update(room);
-            detail.setIdCard(liveInVO.getIdCard());
-            detail.setUserRealName(liveInVO.getUserRealName());
+            detail.setIdCard(guest.getIdCard());
+            detail.setUserRealName(guest.getUserRealName());
             liveDetails.add(detail);
         }
         liveBill.setLiveDetails(liveDetails);
         liveBill.setDate(new Date().getTime());
         liveBill.setHostel(hostel);
         liveBill.setRoom(room);
-        liveBill.setNumOfPeople(liveInVOs.size());
+        liveBill.setNumOfPeople(guests.size());
         try {
             //更新预订订单的状态
 
@@ -225,7 +230,7 @@ public class HostelServiceBean implements HostelService {
 
             return ResultMessage.SUCCESS;
         } catch (Exception e) {
-//            e.printStackTrace();
+            e.printStackTrace();
             return ResultMessage.FAILURE;
         }
     }
@@ -238,6 +243,9 @@ public class HostelServiceBean implements HostelService {
         liveBill.setInHostel(false);
         Room room=liveBill.getRoom();
         room.setVacantNum(room.getVacantNum()+1);
+        if(liveBill.getBookBill()!=null){//有预订
+            room.setBookedNum(room.getBookedNum()-1);
+        }
         roomDao.update(room);
         try {
             liveBillDao.update(liveBill);
@@ -288,16 +296,13 @@ public class HostelServiceBean implements HostelService {
 //        TODO updateRoom!!!!
         Room room=roomDao.get(roomId);
         room.setName(roomVO.getName());
-        room.setImg(roomVO.getImg());
+//        room.setImg(roomVO.getImg());
         room.setPrice(roomVO.getPrice());
         room.setCapacity(roomVO.getCapacity());
-        room.setVacantNum(roomVO.getCapacity());
         room.setDescrip(roomVO.getDescrip());
         room.setTotalNum(roomVO.getTotalNum());
         room.setStartDate(DateHandler.strToLong(roomVO.getStartDate()));
         room.setEndDate(DateHandler.strToLong(roomVO.getEndDate()));
-
-        room.setState(countRoomState(room));
         return roomDao.update(room);
     }
     @Override

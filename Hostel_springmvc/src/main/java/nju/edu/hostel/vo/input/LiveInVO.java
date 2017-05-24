@@ -1,37 +1,38 @@
 package nju.edu.hostel.vo.input;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+
 /**
- * Created by disinuo on 17/3/11.
+ * Created by disinuo on 17/5/23.
  */
 public class LiveInVO {
-    private String userRealName;
-    private String idCard;
-    private int vipId=0;
+    private int bookBillId;
+    private int roomId;
+    private List<Map<String,Object>> guests;
 
-    public String getUserRealName() {
-        return userRealName;
+    public int getBookBillId() {
+        return bookBillId;
     }
 
-    public void setUserRealName(String userRealName) {
-        this.userRealName = userRealName;
+    public void setBookBillId(int bookBillId) {
+        this.bookBillId = bookBillId;
     }
 
-    public String getIdCard() {
-        return idCard;
+    public int getRoomId() {
+        return roomId;
     }
 
-    public void setIdCard(String idCard) {
-        this.idCard = idCard;
+    public void setRoomId(int roomId) {
+        this.roomId = roomId;
     }
 
-    public int getVipId() {
-        return vipId;
+    public List<Map<String, Object>> getGuests() {
+        return guests;
     }
 
-    public void setVipId(int vipId) {
-        this.vipId = vipId;
+    public void setGuests(List<Map<String, Object>> guests) {
+        this.guests = guests;
     }
-
-
-    public LiveInVO(){}
 }

@@ -15,6 +15,9 @@
             <input type="submit" class="btn btn-primary" value="申请开店">
         </form>
         <div  class="vip-self-li">
+            <span id="hostel_info_descrip"></span>
+        </div>
+        <div  class="vip-self-li">
             <i class="glyphicon glyphicon-asterisk"></i>
             编号：<span id="hostel_info_id"></span>
         </div>

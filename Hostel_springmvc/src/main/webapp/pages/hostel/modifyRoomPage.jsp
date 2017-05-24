@@ -46,6 +46,10 @@
                 <span class="input-group-addon">失效日期</span>
                 <input id="endDate"/>
             </div>
+            <div class="input-group input-group-sm">
+                <span class="input-group-addon">描述</span>
+                <input id="descrip" name="descrip" type="text" class="form-control" aria-describedby="sizing-addon3" required>
+            </div>
 
             <input id="btnLogin"  class="btn btn-primary" type="submit" value="保存"/>
         </form>

@@ -2,8 +2,8 @@ package nju.edu.hostel.service;
 
 import nju.edu.hostel.model.*;
 import nju.edu.hostel.util.ResultMessage;
+import nju.edu.hostel.vo.input.GuestInputVO;
 import nju.edu.hostel.vo.input.LiveInVO;
-import nju.edu.hostel.vo.input.PayVO;
 import nju.edu.hostel.vo.input.RoomVO_input;
 
 import java.util.List;
@@ -88,10 +88,10 @@ public interface HostelService {
     /**
      * 登记住户的入店信息：
      住户真实名字，住户身份证号，入住日期，入住房间
-     * @param bookBillId,roomId,liveInVOs
+     * @param liveInVO
      * @return SUCCESS,FAILURE
      */
-    public ResultMessage liveIn(int bookBillId, int roomId,List<LiveInVO> liveInVOs);
+    public ResultMessage liveIn(LiveInVO liveInVO);
 
     /**
      * 办理住户离店

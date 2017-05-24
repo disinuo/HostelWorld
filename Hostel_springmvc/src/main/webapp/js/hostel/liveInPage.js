@@ -2,36 +2,35 @@
  * Created by disinuo on 17/3/13.
  */
 $("#liveInForm").submit(function(e) {
-    alert('JJJJJJJJ');
+    var guests=[];
+    var userNames=$('.userName');
+    var idCards=$('.idCard');
+    var vipIds=$('.vipId');
+    var numOfGuests=userNames.length;
+    console.log(numOfGuests);
+    console.log(userNames);
 
-    var url = "/hostel/liveIn"; // the script where you handle the form input.
-   // //int bookBillId,int roomId,List<LiveInVO> liveInVOs
-    var guests=[
-        {
-            userRealName:'啦啦啦',
-            idCard:33333333
-        }
-    ];
-   //  var guestDIVs=$('.guest');
-   //  guestDIVs.forEach(function (div) {
-   //      console.log(div);
-   //  });
-   //  alert('AAAAA???');
-   //  $('.guest ')
-   //
+    for(var i=0;i<numOfGuests;i++){
+        guests.push({
+                userRealName:userNames[i].value,
+                idCard:idCards[i].value,
+                vipId:vipIds[i].value
+        });
+    }
+
+    console.log(guests);
     var data={
-        roomId:$('#roomId').val(),
-        bookBillId:$('#bookBillId').val(),
-        liveInVOs:guests
+        roomId: $('#roomId').val(),
+        bookBillId: $('#bookBillId').val(),
+        guests: guests
     };
-   //  if($('#vipId').val()=="")data.vipId=0;
     $.ajax({
         type: "POST",
-        url: url,
+        url: '/hostel/liveIn',
         data: data, // serializes the form's elements.
         success: function(data) {
             $('#msg').html(data);
-            $('#msg').style.display='block';
+            // $('#msg').style.display='block';
         },
         error:function (data) {
             console.log(data);
@@ -49,10 +48,11 @@ $(function() {
             data:{billId:billId},
             success:function (data) {
                 console.log(data);
-                $('#userRealName').val(data.vipName);
-                $('#idCard').val(data.idCard);
-                $('#vipId').val(data.vipId);
                 $('#roomId').val(data.roomId);
+
+                $('.userName').val(data.vipName);
+                $('.idCard').val(data.idCard);
+                $('.vipId').val(data.vipId);
             }
         });
     });

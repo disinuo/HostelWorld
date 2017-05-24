@@ -36,15 +36,15 @@
                     <div class="panel-body">
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon">姓名</span>
-                            <input name="userRealName" type="text" class="form-control" placeholder="真实的名字~" aria-describedby="sizing-addon3" required>
+                            <input name="userRealName" type="text" class="userName form-control" placeholder="真实的名字~" aria-describedby="sizing-addon3" required>
                         </div>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon">身份证号</span>
-                            <input name="idCard" type="number" class="form-control" placeholder="18位哦" aria-describedby="sizing-addon3" required>
+                            <input name="idCard" type="number" class="idCard form-control" placeholder="18位哦" aria-describedby="sizing-addon3" required>
                         </div>
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon">会员编号</span>
-                            <input name="vipId" type="number" class="form-control" placeholder="不是会员的话不用填" aria-describedby="sizing-addon3">
+                            <input name="vipId" type="number" class="vipId form-control" placeholder="不是会员的话不用填" aria-describedby="sizing-addon3">
                         </div>
                     </div>
                 </div>

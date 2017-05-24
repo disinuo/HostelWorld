@@ -8,6 +8,7 @@ $(document).ready(function () {
 
 var id;
 var bookedNum;
+var descrip;
 function init() {
     id=requestParamFormatter()['roomId'];
     $("#startDate").flatpickr();
@@ -16,14 +17,17 @@ function init() {
         url:'/data/hostel/getRoom',
         data:{roomId:id},
         success:function (data) {
+            console.log(data);
             $('#roomId').val(data.id);
             bookedNum=data.bookedNum;
+            descrip=data.descrip;
             $('#name').val(data.name);
             $('#price').val(data.price);
             $('#capacity').val(data.capacity);
             $('#totalNum').val(data.totalNum);
             $("#startDate").val(data.startDate);
             $("#endDate").val(data.endDate);
+            $('#descrip').val(data.descrip);
             // $('#img').val(data.img);
         }
     })
@@ -45,6 +49,9 @@ $('#modifyRoomForm').submit(function (e) {
             roomId:id,
             capacity:$('#capacity').val(),
             totalNum:totalNum,
+            descrip:descrip,
+            startDate:$("#startDate").val(),
+            endDate:$("#endDate").val()
         };
         $.ajax({
             type:'POST',
