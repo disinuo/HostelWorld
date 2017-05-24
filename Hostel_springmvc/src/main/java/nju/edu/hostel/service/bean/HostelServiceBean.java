@@ -334,12 +334,23 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public List<LiveBill> getAllLiveBills(int hostelId) {
-        List<LiveBill> ans= liveBillDao.getByHostelId(hostelId);
+        List<LiveBill> ans= liveBillDao.getByRestrictEqual("hostel.id",hostelId);
         return ans;
     }
     @Override
     public List<LiveBill> getNotOutLiveBills(int hostelId){
-        return liveBillDao.getLivingByHostelId(hostelId);
+        Map restricts=new HashMap<String,Object>();
+        restricts.put("inHostel",true);
+        restricts.put("hostel.id",hostelId);
+        return liveBillDao.getByRestrictEqual(restricts);
+    }
+    @Override
+    public List<LiveBill> getNotPaidLiveBills(int hostelId){
+        Map restricts=new HashMap<String,Object>();
+        restricts.put("paid",false);
+        restricts.put("hostel.id",hostelId);
+
+        return liveBillDao.getByRestrictEqual(restricts);
     }
     @Override
     public int getTotalLiveInNum(int hostelId){

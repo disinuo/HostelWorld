@@ -20,12 +20,16 @@
     <jsp:include page="component/sideBar.jsp" flush="true"/>
     </div>
     <div class="col-lg-9 clo-md-9">
-         <form id="checkOutForm">
-            <div class="input-group input-group-sm">
-                <span class="input-group-addon">住户姓名</span>
-                <input id="liveInId" name="liveInId" type="number" class="form-control" placeholder="住店记录id~ 这样的交互是暂时哒！" aria-describedby="sizing-addon3" required>
-            </div>
 
+
+         <form id="checkOutForm">
+            <%--<div class="input-group input-group-sm">--%>
+                <%--<span class="input-group-addon">入住单id</span>--%>
+                <%--<input id="liveInId" name="liveInId" type="number" class="form-control" placeholder="住店记录id~ 这样的交互是暂时哒！" aria-describedby="sizing-addon3" required>--%>
+            <%--</div>--%>
+             <select id="liveInId">
+
+             </select>
             <input class="btn btn-primary" type="submit" value="确认"/>
         </form>
         <div id="msg" class="alert alert-success" role="alert"></div>

@@ -178,6 +178,14 @@ public interface HostelService {
      * @return
      */
     public List<LiveBill> getNotOutLiveBills(int hostelId);
+    /**
+     * 获取本店未记账的住店数据
+     比如
+     2016-12-10 vip01离店 豪华总统套房
+     * @param hostelId
+     * @return
+     */
+    public List<LiveBill> getNotPaidLiveBills(int hostelId);
 
 
     public int getTotalLiveInNum(int hostelId);

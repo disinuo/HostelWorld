@@ -78,25 +78,32 @@ public class HostelDataController {
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
         int id=user.getId();
         List<PayBillVO> vos=PayBillVO.entityToVO(hostelService.getAllPayBills(id));
-        System.err.println("************  in hostelDatacontroller *********************");
         for(PayBillVO vo:vos){
             System.out.print(vo.getId()+": ");
             for(GuestVO g:vo.getGuestVOS())
                 System.out.println(g.getUserRealName()+", "+g.getVipId() );
-
         }
         return vos;
     }
     @RequestMapping(value = "/getLiveBills")
     public List<LiveBillVO> getAllLiveBills(HttpSession session) {
-        System.out.print("In Hostel controller! getAllLiveBills");
-
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
         int id=user.getId();
         return LiveBillVO.entityToVO(hostelService.getAllLiveBills(id));
     }
+    @RequestMapping(value = "/getNotOutLiveBills")
+    public List<LiveBillVO> getNotOutLiveBills(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return LiveBillVO.entityToVO(hostelService.getNotOutLiveBills(id));
+    }
 
-
+    @RequestMapping(value = "/getNotPaidLiveBills")
+    public List<LiveBillVO> getNotPaidLiveBills(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return LiveBillVO.entityToVO(hostelService.getNotPaidLiveBills(id));
+    }
 
     @RequestMapping(value = "/others/getBookBills")
     public List<BookBillVO> getAllBookBillsByOthers(@RequestParam("hostelId")int hostelId){

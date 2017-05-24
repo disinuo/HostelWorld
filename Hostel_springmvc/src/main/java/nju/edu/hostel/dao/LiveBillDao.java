@@ -18,8 +18,6 @@ public interface LiveBillDao {
     public int add(LiveBill liveBill)throws Exception;
     public ResultMessage update(LiveBill liveBill);
 
-    public List<LiveBill> getByHostelId(int hostelId);
-    public List<LiveBill> getLivingByHostelId(int hostelId);
     public List<LiveBill> getByVipId(int hostelId);
 
 }
