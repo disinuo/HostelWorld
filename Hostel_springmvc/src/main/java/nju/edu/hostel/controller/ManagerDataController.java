@@ -1,5 +1,6 @@
 package nju.edu.hostel.controller;
 
+import nju.edu.hostel.model.BossMoneyRecord;
 import nju.edu.hostel.model.RequestModify;
 import nju.edu.hostel.service.HostelService;
 import nju.edu.hostel.service.ManagerService;
@@ -45,6 +46,11 @@ public class ManagerDataController {
     public List<VipVO> getViplList(){
         return VipVO.entityToVO(managerService.getAllVips());
     }
+    @RequestMapping(value = "/getMoneyRecord")
+    public List<MoneyRecordVO> getMoneyRecord(HttpSession session){
+        return MoneyRecordVO.entityToVO_boss(managerService.getAllMoneyRecords());
+    }
+
     @RequestMapping(value="/hostel/getLiveList")
     public List<LiveBillVO> getHostelLveList(int hostelId){
         return LiveBillVO.entityToVO(hostelService.getAllLiveBills(hostelId));

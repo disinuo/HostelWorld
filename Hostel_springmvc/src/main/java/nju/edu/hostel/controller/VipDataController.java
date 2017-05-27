@@ -1,6 +1,7 @@
 package nju.edu.hostel.controller;
 
 import nju.edu.hostel.dao.UserDao;
+import nju.edu.hostel.model.VipMoneyRecord;
 import nju.edu.hostel.service.HostelService;
 import nju.edu.hostel.service.VIPService;
 import nju.edu.hostel.vo.output.*;
@@ -44,6 +45,12 @@ public class VipDataController {
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
         int id=user.getId();
         return PayBillVO.entityToVO(vipService.getAllPayBills(id));
+    }
+    @RequestMapping(value = "/getMoneyRecord")
+    public List<MoneyRecordVO> getMoneyRecord(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return MoneyRecordVO.entityToVO_vip(vipService.getAllMoneyRecords(id));
     }
 
     @RequestMapping(value = "/getInfo")

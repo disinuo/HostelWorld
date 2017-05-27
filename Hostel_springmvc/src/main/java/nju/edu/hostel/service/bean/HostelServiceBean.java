@@ -423,6 +423,10 @@ public class HostelServiceBean implements HostelService {
         return bookBillDao.get(billId);
     }
 
+    @Override
+    public  List<HostelMoneyRecord> getAllMoneyRecords(int hostelId){
+        return hostelMoneyRecordDao.getByRestrictEqual("hostelId",hostelId);
+    }
     //only return valid rooms( state = 0 )
     private List<Room> refreshRoomValidity(List<Room> rooms){
         Iterator<Room> itr=rooms.iterator();

@@ -4,6 +4,18 @@
 
 $(document).ready(function () {
     getPayList();
+    $.ajax({
+        type: 'GET',
+        url:'/data/vip/getMoneyRecord',
+        success:function (data) {
+            console.log(data);
+            data.forEach(function (item) {
+                console.log(item.type);
+                console.log(item.typeStr);
+
+            });
+        }
+    })
 })
 
 function getPayList() {

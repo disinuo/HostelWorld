@@ -142,4 +142,7 @@ public interface VIPService {
      * @return
      */
     public List<Hostel> getAllPermittedHostels();
+
+    public List<VipMoneyRecord> getAllMoneyRecords(int vipId);
+
 }

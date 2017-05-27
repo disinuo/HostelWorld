@@ -1,5 +1,6 @@
 package nju.edu.hostel.controller;
 
+import nju.edu.hostel.model.HostelMoneyRecord;
 import nju.edu.hostel.service.HostelService;
 import nju.edu.hostel.vo.output.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,6 +104,12 @@ public class HostelDataController {
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
         int id=user.getId();
         return LiveBillVO.entityToVO(hostelService.getNotPaidLiveBills(id));
+    }
+    @RequestMapping(value = "/getMoneyRecord")
+    public List<MoneyRecordVO> getMoneyRecord(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return MoneyRecordVO.entityToVO_hostel(hostelService.getAllMoneyRecords(id));
     }
 
     @RequestMapping(value = "/others/getBookBills")

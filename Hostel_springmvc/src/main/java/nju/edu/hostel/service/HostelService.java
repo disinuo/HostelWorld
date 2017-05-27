@@ -237,4 +237,10 @@ public interface HostelService {
      * @return
      */
     public BookBill getBookBillById(int billId);
+
+    /**
+     * 根据酒店的id返回所有交易记录
+     * @return
+     */
+    public  List<HostelMoneyRecord> getAllMoneyRecords(int hostelId);
 }

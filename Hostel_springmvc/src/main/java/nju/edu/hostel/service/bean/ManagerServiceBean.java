@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static nju.edu.hostel.util.Constants.MANAGER_ID;
+
 
 /**
  * Created by disinuo on 17/3/3.
@@ -184,6 +186,11 @@ public class ManagerServiceBean implements ManagerService {
     public List<Vip> getAllVips(){
         return vipDao.getAll();
     }
+    @Override
+    public List<BossMoneyRecord> getAllMoneyRecords(){
+        return bossMoneyRecordDao.getByRestrictEqual("bossId",MANAGER_ID);
+    }
+
     @Autowired
     private HostelDao hostelDao;
     @Autowired

@@ -333,6 +333,10 @@ public class VIPServiceBean implements VIPService{
 
         }
     }
+    @Override
+    public List<VipMoneyRecord> getAllMoneyRecords(int vipId){
+        return vipMoneyRecordDao.getByRestrictEqual("vipId",vipId);
+    }
     @Autowired
     VIPDao vipDao;
     @Autowired

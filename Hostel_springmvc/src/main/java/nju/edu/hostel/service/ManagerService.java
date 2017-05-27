@@ -78,4 +78,5 @@ public interface ManagerService {
      * @return
      */
     public List<LiveInNumVO> getLiveInNums();
+    public List<BossMoneyRecord> getAllMoneyRecords();
 }
