@@ -6,6 +6,7 @@ import nju.edu.hostel.service.HostelService;
 import nju.edu.hostel.service.UserService;
 import nju.edu.hostel.service.VIPService;
 import nju.edu.hostel.util.DateHandler;
+import nju.edu.hostel.util.MoneyType;
 import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.model.*;
 import nju.edu.hostel.util.VIPState;
@@ -70,7 +71,6 @@ public class VIPServiceBean implements VIPService{
 
     @Override
     public ResultMessage topUp(double money, int vipId, String bankPassword) {
-        System.out.println("In VIPServiceBean--topUp");
         System.out.println("VIP 充值金额"+money+" id:"+vipId+" 密码:"+bankPassword);
         User user=userDao.get(vipId);
         Vip vip=vipDao.get(vipId);
@@ -89,6 +89,18 @@ public class VIPServiceBean implements VIPService{
         //        ----真的可以开始充值啦！------
         ResultMessage msg=userService.modifyBankMoneyBy(vipId,-money);
         vip.setMoneyLeft(vip.getMoneyLeft()+money);
+        //记录一个vip的充值记录
+        VipMoneyRecord vipMoneyRecord = new VipMoneyRecord();
+        vipMoneyRecord.setMoney(money);
+        vipMoneyRecord.setType(MoneyType.MONEY_TYPE_TOPUP.getCode());
+        vipMoneyRecord.setVipId(vipId);
+        vipMoneyRecord.setDate(new Date().getTime());
+        try {
+            vipMoneyRecordDao.add(vipMoneyRecord);
+        } catch (Exception e) {
+            return ResultMessage.FAILURE;
+        }
+        //判断一些特殊情况
         if(msg==ResultMessage.SUCCESS){
             if(money>=MONEY_ACTIVATE){//一次性交费大于？，需要的话去激活
                 activate(vip);
@@ -134,25 +146,49 @@ public class VIPServiceBean implements VIPService{
         }else if(vipState.equals(VIPState.UNACTIVATED.toString())) {
             return ResultMessage.VIP_STATE_UNACTIVATED;
         }else {//该会员有权利预订房间
+            Room room=hostelService.getRoomById(bookVO.getRoomId());
+            //房间已经订满
+            if(room.getBookedNum()>=room.getTotalNum()){
+                return ResultMessage.ROOM_FULL;
+            }
+            //房间可以订，
+            long today=new Date().getTime();
+            int moneyType=MoneyType.MONEY_TYPE_BOOK.getCode();
+
+            //先从会员扣预订费
             ResultMessage msg=payMoney(vip.getId(),MONEY_BOOK);
             if(msg==ResultMessage.NOT_ENOUGH_MONEY){//会员卡余额不足，无法预订
                 return msg;
-            }else {
-                Room room=hostelService.getRoomById(bookVO.getRoomId());
-                if(room.getBookedNum()>=room.getTotalNum()){
-                    //房间已经订满
-                    return ResultMessage.ROOM_FULL;
-                }
+            }else {//会员扣费成功
+                //创建预订的交易记录--vip的
+                VipMoneyRecord vipMoneyRecord=new VipMoneyRecord(
+                        vip.getId(),
+                        today,
+                        -MONEY_BOOK,
+                        moneyType
+                );
+                //更新房间信息
                 room.setBookedNum(room.getBookedNum()+1);
-                //这次万事俱备！生成预订订单
+                //生成预订订单
                 BookBill bookBill=new BookBill();
                 bookBill.setVip(vip);
                 bookBill.setRoom(room);
                 bookBill.setLiveOutDate(DateHandler.strToLong(bookVO.getLiveOutDate()));
                 bookBill.setCreateDate(new Date().getTime());
                 bookBill.setLiveInDate(DateHandler.strToLong(bookVO.getLiveInDate()));
+                //创建预订的交易记录--酒店的的
+                HostelMoneyRecord hostelMoneyRecord=new HostelMoneyRecord(
+                        room.getHostel().getId(),
+                        MONEY_BOOK,
+                        today,
+                        moneyType
+                );
+                msg=bossMoneyRecordDao.record(MONEY_BOOK,today,moneyType);
+                if(msg==ResultMessage.FAILURE) return msg;
                 try {
                     bookBillDao.add(bookBill);
+                    vipMoneyRecordDao.add(vipMoneyRecord);
+                    hostelMoneyRecordDao.add(hostelMoneyRecord);
                     return roomDao.update(room);
                 } catch (Exception e) {
                     return ResultMessage.FAILURE;
@@ -169,7 +205,9 @@ public class VIPServiceBean implements VIPService{
             return ResultMessage.NO_AUTHORITY;
         }else if(nowDate>=bookBill.getLiveInDate()){//超过了订单的入住时间
             return ResultMessage.LATE_TIME;
-        }else {
+        }else {//可以取消
+            long today=new Date().getTime();
+            int moneyType=MoneyType.MONEY_TYPE_UNBOOK.getCode();
             Room room=bookBill.getRoom();
             room.setBookedNum(room.getBookedNum()-1);
             ResultMessage msg=roomDao.update(room);
@@ -178,7 +216,26 @@ public class VIPServiceBean implements VIPService{
             payMoney(vipId,-MONEY_BOOK);
             //使该预订订单失效！~~~
             bookBill.setState(-1);
-            return bookBillDao.update(bookBill);
+            //创建预订的交易记录--vip的
+            VipMoneyRecord vipMoneyRecord=new VipMoneyRecord(
+                    vipId,
+                    today,
+                    MONEY_BOOK,
+                    moneyType
+            );
+            HostelMoneyRecord hostelMoneyRecord=new HostelMoneyRecord(
+                    room.getHostel().getId(),
+                    -MONEY_BOOK,
+                    today,
+                    moneyType
+            );
+            msg=bossMoneyRecordDao.record(MONEY_BOOK,today,moneyType);
+            if(msg==ResultMessage.FAILURE) return msg;
+             ResultMessage msgVipR = vipMoneyRecordDao.addNoId(vipMoneyRecord);
+             ResultMessage msgHostelR = hostelMoneyRecordDao.addNoId(hostelMoneyRecord);
+             if(msgHostelR==ResultMessage.SUCCESS&&msgVipR==ResultMessage.SUCCESS) {
+                 return bookBillDao.update(bookBill);
+             }else return ResultMessage.FAILURE;
         }
     }
 
@@ -211,7 +268,19 @@ public class VIPServiceBean implements VIPService{
             double moneyGot=score*RATE_SCORE_TO_MONEY;
             vip.setMoneyLeft(vip.getMoneyLeft()+moneyGot);
             vip.setScore(originalScore-score);
-            return vipDao.update(vip);
+            VipMoneyRecord vipMoneyRecord=new VipMoneyRecord(
+                    vipId,
+                    new Date().getTime(),
+                    moneyGot,
+                    MoneyType.MONEY_TYPE_SCORE_TO_MONEY.getCode()
+
+            );
+            //TODO
+            if(vipMoneyRecordDao.addNoId(vipMoneyRecord)==ResultMessage.SUCCESS){
+                return vipDao.update(vip);
+            }else {
+                return ResultMessage.FAILURE;
+            }
         }
     }
 
@@ -261,6 +330,7 @@ public class VIPServiceBean implements VIPService{
         }else {
             vip.setMoneyLeft(moneyLeft-money);
             return vipDao.update(vip);
+
         }
     }
     @Autowired
@@ -277,6 +347,13 @@ public class VIPServiceBean implements VIPService{
     PayBillDao payBillDao;
     @Autowired
     LiveBillDao liveBillDao;
+    @Autowired
+    VipMoneyRecordDao vipMoneyRecordDao;
+    @Autowired
+    HostelMoneyRecordDao hostelMoneyRecordDao;
+    @Autowired
+    BossMoneyRecordDao bossMoneyRecordDao;
+
     @Autowired
     UserService userService;
     @Autowired

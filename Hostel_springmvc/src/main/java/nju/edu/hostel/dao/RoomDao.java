@@ -14,7 +14,10 @@ public interface RoomDao {
     public Room load(int id);
     public List<Room> getByRestrictEqual(String column, Object value);
     public List<Room> getByRestrictEqual(Map<String,Object> map);
-
+    /**
+     * return rooms whose state= 0 or 1
+     */
+    public List<Room> getNotPassed(int hostelId);
     public int add(Room room)throws Exception;
     public ResultMessage add(List<Room> rooms);
     public ResultMessage update(Room room);

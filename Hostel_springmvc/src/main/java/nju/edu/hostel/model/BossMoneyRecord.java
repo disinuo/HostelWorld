@@ -14,6 +14,13 @@ public class BossMoneyRecord {
     private long date;
     private int type;
 
+    public BossMoneyRecord(int bossId, double money, long date, int type) {
+        this.bossId = bossId;
+        this.money = money;
+        this.date = date;
+        this.type = type;
+    }
+    public BossMoneyRecord(){}
     @Id
     @Column(name = "id", nullable = false)
     public int getId() {

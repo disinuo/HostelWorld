@@ -39,6 +39,7 @@ public class GuestInputVO {
 
 
     public GuestInputVO(){}
+
     public GuestInputVO(Map<String,Object> map){
         this.userRealName=(String)map.get("userRealName");
         this.idCard=(String)map.get("idCard");

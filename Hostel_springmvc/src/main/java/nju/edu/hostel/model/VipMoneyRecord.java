@@ -14,6 +14,14 @@ public class VipMoneyRecord {
     private double money;
     private int type;
 
+    public VipMoneyRecord(){}
+    public VipMoneyRecord(int vipId, long date, double money, int type) {
+        this.vipId = vipId;
+        this.date = date;
+        this.money = money;
+        this.type = type;
+    }
+
     @Id
     @Column(name = "id", nullable = false)
     public int getId() {

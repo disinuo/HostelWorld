@@ -14,6 +14,14 @@ public class HostelMoneyRecord {
     private long date;
     private int type;
 
+    public HostelMoneyRecord(int hostelId, double money, long date, int type) {
+        this.hostelId = hostelId;
+        this.money = money;
+        this.date = date;
+        this.type = type;
+    }
+
+    public HostelMoneyRecord(){}
     @Id
     @Column(name = "id", nullable = false)
     public int getId() {

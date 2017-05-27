@@ -10,6 +10,7 @@ import org.hibernate.Session;
 public interface BaseDao {
 
 	public int save(Object entity) throws Exception;
+	public ResultMessage saveNoId(Object entity);
 
 	//	public ResultMessage save(List<Object> entitys);
 	public ResultMessage saveOrUpdate(Object entity);

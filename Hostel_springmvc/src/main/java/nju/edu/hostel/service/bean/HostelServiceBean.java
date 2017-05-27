@@ -4,10 +4,7 @@ import nju.edu.hostel.dao.*;
 import nju.edu.hostel.model.*;
 import nju.edu.hostel.service.HostelService;
 import nju.edu.hostel.service.VIPService;
-import nju.edu.hostel.util.DateHandler;
-import nju.edu.hostel.util.NumberFormatter;
-import nju.edu.hostel.util.RequestState;
-import nju.edu.hostel.util.ResultMessage;
+import nju.edu.hostel.util.*;
 import nju.edu.hostel.vo.input.GuestInputVO;
 import nju.edu.hostel.vo.input.LiveInVO;
 import nju.edu.hostel.vo.input.RoomVO_input;
@@ -98,6 +95,7 @@ public class HostelServiceBean implements HostelService {
         List<LiveDetail> liveDetails=liveBill.getLiveDetails();
         Hostel hostel=liveBill.getHostel();
 
+        //生成付款单
         PayBill payBill=new PayBill();
         payBill.setCreateDate(new Date().getTime());
         payBill.setLiveBill(liveBill);
@@ -125,11 +123,13 @@ public class HostelServiceBean implements HostelService {
             for(LiveDetail detail:liveDetails) {
                 Vip vip=detail.getVip();
                 if(vip!=null) {
+                    //更新这个vip的各种属性
                     double vipPaidAll=vip.getMoneyPaid()+eachPay;
                     vip.setMoneyPaid(vipPaidAll);
                     vip.setScore(vip.getScore()+eachPay*RATE_MONEY_TO_SCORE);
                     vip.setLevel(VIP_MONEY_TO_LEVEL(vipPaidAll));
                     vipDao.update(vip);
+
                 }
             }
         }
@@ -142,8 +142,6 @@ public class HostelServiceBean implements HostelService {
             e.printStackTrace();
             return -1;
         }
-
-
         try {
             //更新住店单状态为【已支付】
             liveBill.setPaid(true);
@@ -160,7 +158,7 @@ public class HostelServiceBean implements HostelService {
 
             moneyUncounted+=moneyToPay;
             totalExpense+=moneyToPay;
-
+            //更新hostel信息
             hostel.setMoneyUncounted(moneyUncounted);
             numOfPeople+=liveBill.getNumOfPeople();
             avgExpense=totalExpense/numOfPeople;
@@ -175,18 +173,43 @@ public class HostelServiceBean implements HostelService {
         }
     }
     @Override
-    public ResultMessage vipPay(int vipId,double money){
+    public ResultMessage vipPay(int vipId,int hostelId,double money){
         ResultMessage msg=vipService.payMoney(vipId,money);
         if(msg!=ResultMessage.SUCCESS){
             return msg;
         }
-       return unVipPay(money);
+        //生成这个vip的money record
+        VipMoneyRecord vipMoneyRecord=new VipMoneyRecord();
+        vipMoneyRecord.setDate(new Date().getTime());
+        vipMoneyRecord.setMoney(-money);
+        vipMoneyRecord.setVipId(vipId);
+        vipMoneyRecord.setType(MoneyType.MONEY_TYPE_PAY.getCode());
+        if(vipMoneyRecordDao.addNoId(vipMoneyRecord)==ResultMessage.SUCCESS)
+           return unVipPay(hostelId,money);
+        return ResultMessage.FAILURE;
     }
     @Override
-    public ResultMessage unVipPay(double money){
+    public ResultMessage unVipPay(int hostelId,double money){
         User manager=userDao.get(MANAGER_ID);
         manager.setBankMoney(manager.getBankMoney()+money);
-        return userDao.update(manager);
+        HostelMoneyRecord hostelMoneyRecord=new HostelMoneyRecord(
+                hostelId,
+                money,
+                new Date().getTime(),
+                MoneyType.MONEY_TYPE_PAY.getCode()
+        );
+        ResultMessage msg=hostelMoneyRecordDao.addNoId(hostelMoneyRecord);
+        if(msg==ResultMessage.SUCCESS){
+            msg=bossMoneyRecordDao.record(
+                    money,
+                    new Date().getTime(),
+                    MoneyType.MONEY_TYPE_PAY.getCode()
+
+            );
+        }
+        if(msg==ResultMessage.SUCCESS)
+            return userDao.update(manager);
+        return ResultMessage.FAILURE;
     }
     @Override
     public ResultMessage liveIn(LiveInVO liveInVO){
@@ -265,6 +288,7 @@ public class HostelServiceBean implements HostelService {
                return ResultMessage.FAILURE;
            }
         }
+        //TODO 房间成本
         return ResultMessage.SUCCESS;
     }
     @Override
@@ -280,7 +304,6 @@ public class HostelServiceBean implements HostelService {
         room.setTotalNum(roomVO.getTotalNum());
         room.setStartDate(DateHandler.strToLong(roomVO.getStartDate()));
         room.setEndDate(DateHandler.strToLong(roomVO.getEndDate()));
-
         room.setState(countRoomState(room));
         try {
             roomDao.add(room);
@@ -303,6 +326,7 @@ public class HostelServiceBean implements HostelService {
         room.setTotalNum(roomVO.getTotalNum());
         room.setStartDate(DateHandler.strToLong(roomVO.getStartDate()));
         room.setEndDate(DateHandler.strToLong(roomVO.getEndDate()));
+        room.setState(countRoomState(room));
         return roomDao.update(room);
     }
     @Override
@@ -373,36 +397,11 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public List<Room> getAllValidRooms(int hostelId){
-        Map map=new HashMap<String,Object>();
-        map.put("hostel.id",hostelId);
-        map.put("state",0);
-        List<Room> rooms= roomDao.getByRestrictEqual(map);
+        List<Room> rooms= roomDao.getByRestrictEqual("hostel.id",hostelId);
         return refreshRoomValidity(rooms);
     }
 
-    private List<Room> refreshRoomValidity(List<Room> rooms){
-        Iterator<Room> itr=rooms.iterator();
-        while (itr.hasNext()){
-            Room room=itr.next();
-            int state=countRoomState(room);
-            if(state!=0){
-                room.setState(state);
-                roomDao.update(room);
-                itr.remove();
-            }
 
-        }
-        System.out.println("service refresh: rooms.size= "+rooms.size());
-        return rooms;
-    }
-
-    private int countRoomState(Room room){
-        long today=new Date().getTime();
-        System.out.println("today= "+today+", start="+room.getStartDate()+",endDate="+room.getEndDate());
-        if(room.getStartDate()>today) return 1;
-        else if(room.getEndDate()<today) return -1;
-        else return 0;
-    }
     @Override
     public Room getRoomById(int roomId){
         return roomDao.get(roomId);
@@ -424,10 +423,28 @@ public class HostelServiceBean implements HostelService {
         return bookBillDao.get(billId);
     }
 
+    //only return valid rooms( state = 0 )
+    private List<Room> refreshRoomValidity(List<Room> rooms){
+        Iterator<Room> itr=rooms.iterator();
+        while (itr.hasNext()){
+            Room room=itr.next();
+            int state=countRoomState(room);
+            room.setState(state);
+            roomDao.update(room);
+            if(state!=0){
+                itr.remove();
+            }
 
+        }
+        return rooms;
+    }
 
-
-
+    private int countRoomState(Room room){
+        long today=new Date().getTime();
+        if(room.getStartDate()>today) return 1;
+        else if(room.getEndDate()<today) return -1;
+        else return 0;
+    }
 
     private int getBigger(int x,int y) {
         if(x>y) return x;
@@ -450,6 +467,12 @@ public class HostelServiceBean implements HostelService {
     PayBillDao payBillDao;
     @Autowired
     BookBillDao bookBillDao;
+    @Autowired
+    HostelMoneyRecordDao hostelMoneyRecordDao;
+    @Autowired
+    BossMoneyRecordDao bossMoneyRecordDao;
+    @Autowired
+    VipMoneyRecordDao vipMoneyRecordDao;
     @Autowired
     VIPService vipService;
 

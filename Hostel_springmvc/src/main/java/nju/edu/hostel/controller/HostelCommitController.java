@@ -54,19 +54,19 @@ public class HostelCommitController {
         return hostelService.enrollPay(liveBillId);
     }
     @RequestMapping(value = "/pay",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
-    public String pay(int vipId,double money){
+    public String pay(HttpSession session,int vipId,double money){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int hostelId=user.getId();
         ResultMessage msg;
-        if(vipId==0){
-            msg=hostelService.unVipPay(money);
+        if(vipId<=0){
+            msg=hostelService.unVipPay(hostelId,money);
         }else {
-            msg=hostelService.vipPay(vipId,money);
+            msg=hostelService.vipPay(vipId,hostelId,money);
         }
         return msg.toShow();
     }
     @RequestMapping(value = "/liveIn",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
     public String liveIn(LiveInVO liveInVO){
-
-
         System.err.println("hostelController: liveIn POST");
         ResultMessage msg=hostelService.liveIn(liveInVO);
         System.err.println(liveInVO.toString());

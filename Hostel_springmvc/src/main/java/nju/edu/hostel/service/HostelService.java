@@ -72,18 +72,20 @@ public interface HostelService {
      * 若余额不足店员应该提示顾客，以其他方式支付
      * @param vipId
      * @param money
+     * @param hostelId
      * @return NOT_ENOUGH_MONEY,SUCCESS,FAILURE
      */
-    public ResultMessage vipPay(int vipId,double money);
+    public ResultMessage vipPay(int vipId,int hostelId,double money);
 
     /**
      * 非会员结账的时候 或会员选择不用会员卡支付的时候
      * 店员要调用这个服务！
      * 收到的钱会加到总经理的账户
      * @param money
+     * @param hostelId
      * @return SUCCESS,FAILURE
      */
-    public ResultMessage unVipPay(double money);
+    public ResultMessage unVipPay(int hostelId,double money);
 
     /**
      * 登记住户的入店信息：

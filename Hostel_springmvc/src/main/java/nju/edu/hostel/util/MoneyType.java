@@ -35,6 +35,7 @@ public enum  MoneyType {
         this.code=code;
         this.name=name;
     }
+    public int getCode(){return code;}
     private int code;
     private String name;
 }

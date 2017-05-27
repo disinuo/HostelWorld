@@ -37,7 +37,13 @@ public class RoomDaoImpl implements RoomDao {
     @Override
     public List<Room> getByRestrictEqual(Map<String, Object> map) {
         return baseDao.getByRestrictEqualASC(Room.class,map,"id");
-
+    }
+    @Override
+    public List<Room> getNotPassed(int hostelId){
+        String hql="SELECT room FROM Room as room" +
+                " WHERE room.hostel.id = "+hostelId+
+                " AND room.state > -1 "+" ORDER BY room.id DESC";
+        return baseDao.getByHql(Room.class,hql);
     }
 
     @Override

@@ -50,6 +50,15 @@ public class BaseDaoImpl implements BaseDao {
 		}
 	}
 	@Override
+	public ResultMessage saveNoId(Object entity){
+		try {
+			save(entity);
+		}catch (Exception e){
+			return ResultMessage.FAILURE;
+		}
+		return ResultMessage.SUCCESS;
+	}
+	@Override
 	public ResultMessage saveOrUpdate(Object entity) {
 		Session session=getNewSession();
 		Transaction tr=session.beginTransaction();

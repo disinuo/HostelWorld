@@ -4,6 +4,7 @@ import nju.edu.hostel.dao.*;
 import nju.edu.hostel.service.HostelService;
 import nju.edu.hostel.service.ManagerService;
 import nju.edu.hostel.service.UserService;
+import nju.edu.hostel.util.MoneyType;
 import nju.edu.hostel.util.RequestState;
 import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.model.*;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -89,6 +91,7 @@ public class ManagerServiceBean implements ManagerService {
     }
     @Override
     public ResultMessage count(int managerId, String bankPassword) {
+        int moneyType= MoneyType.MONEY_TYPE_COUNT.getCode();
         User manager=userDao.get(managerId);
         if(!manager.getBankPassword().equals(bankPassword)){
             return ResultMessage.WRONG_PASSWORD;//银行卡密码错误
@@ -97,6 +100,7 @@ public class ManagerServiceBean implements ManagerService {
             List<Hostel> hostels=hostelService.getAllPermittedHostels();
             //经理结算的总金额
             double allMoneyToPay=0;
+            long today=new Date().getTime();
             for(Hostel hostel:hostels){
                 //获取客栈的`未结算金额`
                 double moneyShouldBePaid=hostel.getMoneyUncounted();
@@ -110,12 +114,28 @@ public class ManagerServiceBean implements ManagerService {
                 //更新客栈信息
                 msg=hostelDao.update(hostel);
                 if(msg!=ResultMessage.SUCCESS) return msg;
+                //这个酒店要被结算的钱>0，则记录一条该酒店的交易记录
+                if(moneyShouldBePaid>0){
+                    msg=hostelMoneyRecordDao.record(
+                            hostel.getId(),
+                            moneyShouldBePaid,
+                            today,
+                            moneyType
+                    );
+                    if(msg!=ResultMessage.SUCCESS) return msg;
+                }
+
             }
             if(allMoneyToPay==0){
                 return ResultMessage.NO_NEED_COUNT;
             }
             msg=userService.modifyBankMoneyBy(managerId,-allMoneyToPay);
             if(msg!=ResultMessage.SUCCESS) return msg;
+            msg=bossMoneyRecordDao.record(
+                    -allMoneyToPay,
+                    today,
+                    moneyType
+            );
 //       -------到这里其实客栈和总经理之间的金钱交易就结束了，不过还要更新一下被结算的账单的状态orz，而且这一步会比较慢。。。
 //            为了总经理可以查看某个客栈的结算细节--账单信息，必须得更新这个状态位~！
             List<PayBill> payBills=payBillDao.getByRestrictEqual("counted",false);
@@ -174,6 +194,10 @@ public class ManagerServiceBean implements ManagerService {
     private UserDao userDao;
     @Autowired
     private RequestDao requestDao;
+    @Autowired
+    HostelMoneyRecordDao hostelMoneyRecordDao;
+    @Autowired
+    BossMoneyRecordDao bossMoneyRecordDao;
     @Autowired
     private HostelService hostelService;
     @Autowired
