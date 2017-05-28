@@ -79,7 +79,7 @@ public interface VIPService {
      考虑会员级别不同，预订费变化
      * @param bookVO
      * @return VIP_STATE_STOP,VIP_STATE_PAUSED,VIP_STATE_UNACTIVATED
-     *         NOT_ENOUGH_MONEY,FAILURE,SUCCESS
+     *         NOT_ENOUGH_MONEY,FAILURE,SUCCESS,EARLY_THAN_TODAY
      */
     public ResultMessage book(BookVO bookVO);
 

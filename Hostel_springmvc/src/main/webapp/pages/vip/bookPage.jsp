@@ -41,10 +41,11 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label">入住日期</label>
                     <%--<p><input required='true' class="flatpickr flatpickr-input selector" id="flatpicker" type="text" placeholder="选择日期" readonly="readonly"></p>--%>
-                    <div class="input-group date form_date col-md-5 myDatePicker" data-date="" data-date-format="" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    <div class="input-group " >
                         <input required='true' id="liveInDate" />
                     </div>
                 </div>
+
 
                 <div class="form-group">
                     <label class="col-md-2 control-label">离店日期</label>

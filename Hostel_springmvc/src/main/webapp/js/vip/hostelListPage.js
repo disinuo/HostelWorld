@@ -16,7 +16,7 @@ function getHostelList() {
             field: 'img',
             title: '',
             align: 'center',
-            formatter:imgWithLinkFormatter_vip,
+            formatter:imgFormatter_vip
         }, {
             field: 'name',
             title: '客栈名',
@@ -47,6 +47,18 @@ var operateEvents = {
     'click .name': function (event, value, row, index) {
         alert('You click like action, row: ' + JSON.stringify(row));
     }
+};
+function imgFormatter_vip(value,row,index) {
+    return [
+        '<a',
+        ' href="/vip/rooms?hostelId=',
+        row.id,
+        '"><img ',
+        'src="',
+        value,
+        '" alt="图片" class="image-little"',
+        '/></a>'
+    ].join('');
 }
 function operateFormatter(value, row, index) {
     return [

@@ -18,6 +18,10 @@ public enum ResultMessage {
      */
     DUPLICATE_NAME("注册时重名"),
     /**
+     * 预订时用的，预订的入住时间早于当天时反馈的
+     */
+    EARLY_THAN_TODAY("早于今天"),
+    /**
      * 原始密码错误
      */
     WRONG_ORIGINAL("原始密码错误"),

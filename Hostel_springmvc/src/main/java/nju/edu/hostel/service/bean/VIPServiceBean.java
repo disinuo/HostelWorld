@@ -138,6 +138,7 @@ public class VIPServiceBean implements VIPService{
     @Override
     public ResultMessage book(BookVO bookVO){
         Vip vip=getById(bookVO.getVipId());
+        long today=new Date().getTime();
         String vipState=vip.getState();
         if(vipState.equals(VIPState.STOP.toString())){
             return ResultMessage.VIP_STATE_STOP;
@@ -145,6 +146,8 @@ public class VIPServiceBean implements VIPService{
             return ResultMessage.VIP_STATE_PAUSED;
         }else if(vipState.equals(VIPState.UNACTIVATED.toString())) {
             return ResultMessage.VIP_STATE_UNACTIVATED;
+        }else if(DateHandler.strToLong(bookVO.getLiveInDate())<=today){
+            return ResultMessage.EARLY_THAN_TODAY;
         }else {//该会员有权利预订房间
             Room room=hostelService.getRoomById(bookVO.getRoomId());
             //房间已经订满
@@ -152,7 +155,6 @@ public class VIPServiceBean implements VIPService{
                 return ResultMessage.ROOM_FULL;
             }
             //房间可以订，
-            long today=new Date().getTime();
             int moneyType=MoneyType.MONEY_TYPE_BOOK.getCode();
 
             //先从会员扣预订费
@@ -173,6 +175,7 @@ public class VIPServiceBean implements VIPService{
                 BookBill bookBill=new BookBill();
                 bookBill.setVip(vip);
                 bookBill.setRoom(room);
+                bookBill.setHostel(room.getHostel());
                 bookBill.setCheckOutDate(DateHandler.strToLong(bookVO.getCheckOutDate()));
                 bookBill.setCreateDate(new Date().getTime());
                 bookBill.setLiveInDate(DateHandler.strToLong(bookVO.getLiveInDate()));

@@ -32,7 +32,7 @@ $('#form').submit(function (e) {
 });
 function init() {
     $("#liveInDate").flatpickr();
-    $("#liveOutDate").flatpickr();
+    $("#checkOutDate").flatpickr();
     $.ajax({
         url:'/data/hostel/getRoom',
         data:{roomId:roomId},
