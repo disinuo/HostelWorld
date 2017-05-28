@@ -338,7 +338,7 @@ public class HostelServiceBean implements HostelService {
     @Override
     public List<BookBill> getAllBookBills(int hostelId) {
 
-        return bookBillDao.getByHostelId(hostelId);
+        return bookBillDao.getByRestrictEqual("hostel.id",hostelId);
     }
 
     @Override

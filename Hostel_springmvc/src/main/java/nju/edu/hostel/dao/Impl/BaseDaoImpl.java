@@ -29,9 +29,18 @@ public class BaseDaoImpl implements BaseDao {
 
 		return session==null?getNewSession():session;
 	}
+	@Override
 	public <T> List<T> getByHql(Class<T> c,String hql){
 		Session session = getCurrentSession();
 		return session.createQuery(hql).list();
+	}
+	@Override
+	public <T> List<T> getByHql_paging(Class<T> c,String hql,int pageNum,int resultNum){
+		Session session = getCurrentSession();
+		Query query=session.createQuery(hql);
+		query.setFirstResult(pageNum);
+		query.setMaxResults(resultNum);
+		return query.list();
 	}
 	//TODO 可能要新加【返回排序结果】的接口
 	@Override

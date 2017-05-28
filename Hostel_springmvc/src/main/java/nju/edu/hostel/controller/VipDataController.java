@@ -20,13 +20,30 @@ import java.util.List;
 @RequestMapping(value = "/data/vip")//,produces = "text/html;charset=UTF-8")
 @ResponseBody
 public class VipDataController {
+    private final String CREATE_DATE="createDate";
+    private final String LIVEIN_DATE="liveInDate";
+    private final String CHECKOUT_DATE="checkOutDate";
     @Autowired
     VIPService vipService;
-    @RequestMapping(value = "/getBookList")
-    public List<BookBillVO> getBookList(HttpSession session){
+    @RequestMapping(value = "/getAllBookList")
+    public List<BookBillVO> getAllBookList(HttpSession session){
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
         int id=user.getId();
         return BookBillVO.entityToVO(vipService.getAllBookBills(id));
+    }
+    @RequestMapping(value = "/getBookList")
+    public List<BookBillVO> getBookList(HttpSession session,String dateType,String start,String end){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        switch (dateType){
+            case CREATE_DATE:
+                return BookBillVO.entityToVO(vipService.getBookBills_createDate(id,start,end));
+            case LIVEIN_DATE:
+                return BookBillVO.entityToVO(vipService.getBookBills_liveInDate(id,start,end));
+            case CHECKOUT_DATE:
+                return BookBillVO.entityToVO(vipService.getBookBills_checkOutDate(id,start,end));
+        }
+        return null;
     }
 
     @RequestMapping(value = "/getHostelList")

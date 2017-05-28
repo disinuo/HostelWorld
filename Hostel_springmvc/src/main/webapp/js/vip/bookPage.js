@@ -11,7 +11,7 @@ $('#form').submit(function (e) {
     var url = "/vip/book"; // the script where you handle the form input.
     var data={
         liveInDate:$('#liveInDate').val(),
-        liveOutDate:$('#liveOutDate').val(),
+        checkOutDate:$('#checkOutDate').val(),
         roomId:$('#roomId').val()
     };
     if($('#vipId').val()=="")data.vipId=0;

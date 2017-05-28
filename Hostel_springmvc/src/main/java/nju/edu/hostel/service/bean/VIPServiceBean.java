@@ -16,9 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static nju.edu.hostel.util.Constants.*;
 
@@ -173,7 +171,7 @@ public class VIPServiceBean implements VIPService{
                 BookBill bookBill=new BookBill();
                 bookBill.setVip(vip);
                 bookBill.setRoom(room);
-                bookBill.setLiveOutDate(DateHandler.strToLong(bookVO.getLiveOutDate()));
+                bookBill.setCheckOutDate(DateHandler.strToLong(bookVO.getCheckOutDate()));
                 bookBill.setCreateDate(new Date().getTime());
                 bookBill.setLiveInDate(DateHandler.strToLong(bookVO.getLiveInDate()));
                 //创建预订的交易记录--酒店的的
@@ -241,11 +239,35 @@ public class VIPServiceBean implements VIPService{
 
     @Override
     public List<BookBill> getAllBookBills(int vipId) {
-        return bookBillDao.getByRestrictEqual("vip.id",vipId);
+        return bookBillDao.getAllByVipId(vipId);
     }
     @Override
+    public List<BookBill> getBookBills_createDate(int vipId,String start,String end){
+        return bookBillDao.getByVip_createDate(
+                vipId,
+                DateHandler.strToLong(start),
+                DateHandler.strToLong(end)
+        );
+    }
+    public List<BookBill> getBookBills_liveInDate(int vipId,String start,String end){
+        return bookBillDao.getByVip_liveInDate(
+                vipId,
+                DateHandler.strToLong(start),
+                DateHandler.strToLong(end)
+        );
+    }
+    public List<BookBill> getBookBills_checkOutDate(int vipId,String start,String end){
+        return bookBillDao.getByVip_checkOutDate(
+                vipId,
+                DateHandler.strToLong(start),
+                DateHandler.strToLong(end)
+        );
+    }
+
+
+    @Override
     public List<BookBill> getValidBookBills(int vipId){
-        return bookBillDao.getValidByVipId(vipId);
+        return bookBillDao.getAllValidByVipId(vipId);
     }
     @Override
     public List<PayBill> getAllPayBills(int vipId) {

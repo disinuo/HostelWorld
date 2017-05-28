@@ -1,12 +1,7 @@
 /**
  * Created by disinuo on 17/3/13.
  */
-$/**
- * Created by disinuo on 17/3/13.
- */
-/**
- * Created by disinuo on 17/3/12.
- */
+
 $(document).ready(function () {
     getLiveBillList();
 

@@ -112,17 +112,19 @@ public interface VIPService {
     public List<BookBill> getAllBookBills(int vipId);
 
     public List<BookBill> getValidBookBills(int vipId);
-
-    /**
-     * 获取本人消费数据
-     比如
-     2016-12-02 预订房间 标间[含房间详情]-20元
-     2016-12-02 取消预订 标间[含房间详情]+20元
-     2016-12-02 预订房间 豪华总统套房[含房间详情]-20元
-     2016-12-10 消费 豪华总统套房[含房间详情]-2288元
-     * @param vipId
-     * @return
-     */
+    public List<BookBill> getBookBills_createDate(int vipId,String start,String end);
+    public List<BookBill> getBookBills_liveInDate(int vipId,String start,String end);
+    public List<BookBill> getBookBills_checkOutDate(int vipId,String start,String end);
+        /**
+         * 获取本人消费数据
+         比如
+         2016-12-02 预订房间 标间[含房间详情]-20元
+         2016-12-02 取消预订 标间[含房间详情]+20元
+         2016-12-02 预订房间 豪华总统套房[含房间详情]-20元
+         2016-12-10 消费 豪华总统套房[含房间详情]-2288元
+         * @param vipId
+         * @return
+         */
     public List<PayBill> getAllPayBills(int vipId);
 
     /**

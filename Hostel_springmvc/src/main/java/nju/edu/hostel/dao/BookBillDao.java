@@ -17,7 +17,30 @@ public interface BookBillDao {
 
     public int add(BookBill bookBill)throws Exception;
     public ResultMessage update(BookBill bookBill);
-    public List<BookBill> getByHostelId(int hostelId);
-    public List<BookBill> getByVipId(int vipId);
-    public List<BookBill> getValidByVipId(int vipId);
-    }
+
+    /**
+     * 返回默认前n条
+     * @param vipId
+     * @return
+     */
+    public List<BookBill> getAllByVipId(int vipId);
+    public List<BookBill> getDefaultNumByVipId(int vipId);
+    public List<BookBill> getByVip_createDate(int vipId,long start,long end);
+    public List<BookBill> getByVip_liveInDate(int vipId,long start,long end);
+    public List<BookBill> getByVip_checkOutDate(int vipId,long start,long end);
+
+    public List<BookBill> getAllValidByVipId(int vipId);
+    public List<BookBill> getDefaultNumOfValidByVipId(int vipId);
+    public List<BookBill> getValidByVip_createDate(int vipId,long start,long end);
+    public List<BookBill> getValidByVip_liveInDate(int vipId,long start,long end);
+    public List<BookBill> getValidByVip_checkOutDate(int vipId,long start,long end);
+
+
+    public List<BookBill> getAllByHostelId(int hostelId);
+    public List<BookBill> getDefaultNumByHostelId(int hostelId);
+    public List<BookBill> getByHostel_createDate(int hostelId,long start,long end);
+    public List<BookBill> getByHostel_liveInDate(int hostelId,long start,long end);
+    public List<BookBill> getByHostel_checkOutDate(int hostelId,long start,long end);
+
+
+}

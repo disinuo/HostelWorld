@@ -49,7 +49,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label">离店日期</label>
                     <div class="input-group date form_date col-md-5 myDatePicker" data-date="" data-date-format="" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                        <input required='true' id="liveOutDate" />
+                        <input required='true' id="checkOutDate" />
                     </div>
                     <input type="hidden" id="roomId" name="roomId" value="" /><br/>
                 </div>

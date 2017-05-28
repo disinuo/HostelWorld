@@ -23,6 +23,7 @@ public interface BaseDao {
 
 	public <T> List<T> getAll(Class<T> c);
 
+
 	/**
 	 *
 	 * @param c
@@ -34,9 +35,21 @@ public interface BaseDao {
 	public <T> List<T> getAllASC(Class<T> c,String base);
 	public <T> List<T> getByHql(Class<T> c,String hql);
 
-	public <T> List<T> getByRestrictEqual(Class<T> c, String column, Object value);
+	/**
+	 * 分页查询
+	 * @param c
+	 * @param hql
+	 * @param pageNum 第几页
+	 * @param resultNum 一页显示的最大行数
+	 * @param <T>
+	 * @return
+	 */
+	public <T> List<T> getByHql_paging(Class<T> c,String hql,int pageNum,int resultNum);
+
+		public <T> List<T> getByRestrictEqual(Class<T> c, String column, Object value);
 	public <T> List<T> getByRestrictEqualDESC(Class<T> c, String column, Object value,String base);
 	public <T> List<T> getByRestrictEqualASC(Class<T> c, String column, Object value,String base);
+	//>=
 
 	/**
 	 * 表的列名与对应的值构成的map

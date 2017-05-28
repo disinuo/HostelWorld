@@ -55,7 +55,7 @@ function getBookBillList() {
             title: '入住时间',
             align: 'center',
         },{
-            field: 'liveOutDate',
+            field: 'checkOutDate',
             title: '离店时间',
             align: 'center',
         },{

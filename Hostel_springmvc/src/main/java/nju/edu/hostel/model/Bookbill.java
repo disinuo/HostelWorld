@@ -13,10 +13,12 @@ import javax.persistence.*;
 public class BookBill {
     private int id;
     private long liveInDate;
-    private long liveOutDate;
+    private long checkOutDate;
     private long createDate;
     private Vip vip;
     private Room room;
+    private Hostel hostel;
+
     /*
      * [默认]0：预订未入住
      * -1：已取消
@@ -47,12 +49,12 @@ public class BookBill {
         this.state = state;
     }
     @Basic
-    @Column(name = "liveOutDate", nullable = false)
-    public long getLiveOutDate() {
-        return liveOutDate;
+    @Column(name = "checkOutDate", nullable = false)
+    public long getCheckOutDate() {
+        return checkOutDate;
     }
-    public void setLiveOutDate(long liveOutDate) {
-        this.liveOutDate = liveOutDate;
+    public void setCheckOutDate(long liveOutDate) {
+        this.checkOutDate = liveOutDate;
     }
 
     @Basic
@@ -76,9 +78,14 @@ public class BookBill {
     }
 
 
-    @Transient
+    @ManyToOne
+    @JoinColumn(name = "hostelId", referencedColumnName = "id", nullable = false)
     public Hostel getHostel() {
-        return room.getHostel();
+        return hostel;
+    }
+
+    public void setHostel(Hostel hostel) {
+        this.hostel = hostel;
     }
 
     @ManyToOne
@@ -109,8 +116,8 @@ public class BookBill {
         return DateHandler.longToStr(this.liveInDate);
     }
     @Transient
-    public String getLiveOutDateStr(){
-        return DateHandler.longToStr(this.liveOutDate);
+    public String getCheckOutDateStr(){
+        return DateHandler.longToStr(this.checkOutDate);
     }
     @Transient
     public int getVipId(){return this.vip.getId();}

@@ -11,7 +11,7 @@ import java.util.List;
 public class BookBillVO {
     private int id;
     private String liveInDate;
-    private String liveOutDate;
+    private String checkOutDate;
     private String createDate;
     private int hostelId;
     private int vipId;
@@ -36,7 +36,7 @@ public class BookBillVO {
     public BookBillVO(BookBill bookBillEntity){
         this.id=bookBillEntity.getId();
         this.liveInDate= bookBillEntity.getLiveInDateStr();
-        this.liveOutDate= bookBillEntity.getLiveOutDateStr();
+        this.checkOutDate = bookBillEntity.getCheckOutDateStr();
         this.createDate=bookBillEntity.getCreateDateStr();
         this.hostelId=bookBillEntity.getHostel().getId();
         this.hostelAddress
@@ -62,8 +62,8 @@ public class BookBillVO {
         return liveInDate;
     }
 
-    public String getLiveOutDate() {
-        return liveOutDate;
+    public String getCheckOutDate() {
+        return checkOutDate;
     }
 
     public String getCreateDate() {

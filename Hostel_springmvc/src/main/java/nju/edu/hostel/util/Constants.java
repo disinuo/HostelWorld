@@ -11,6 +11,10 @@ public class Constants {
 
     public static final int MANAGER_ID=666;
     /**
+     * 加载大量数据时默认显示前DEFAULT_NUM_OF_DATA条
+     */
+    public static final int DEFAULT_NUM_OF_DATA=20;
+    /**
      * 激活`DAY_OF_NORMAL_TO_PAUSE`天后，会员卡余额最小值，低于此，卡会被暂停
      * 暂停的时候（没有超过一年），一旦一次性充值大于此，卡会被复原
      */

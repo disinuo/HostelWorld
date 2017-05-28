@@ -42,7 +42,7 @@ function getBookBillList() {
             sortable:true
 
         },{
-            field: 'liveOutDate',
+            field: 'checkOutDate',
             title: '离店时间',
             align: 'center',
             sortable:true

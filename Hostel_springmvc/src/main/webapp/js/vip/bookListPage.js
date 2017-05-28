@@ -4,12 +4,64 @@
 
 $(document).ready(function () {
     getBookList();
+    $.ajax({
+        url:'/data/vip/getBookList',
+        data:{
+            dateType:"checkOutDate",
+            start:'2017-5-19',
+            end:'2017-5-25'
+        },
+        success:function (data) {
+            console.log('checkOutDate 2017-5-19~2017-5-25');
+            console.log(data);
+        },
+        error:function (data) {
+            console.log("ERROR!!!!!!!");
+            console.log(data);
+        }
 
-})
+    });
+    $.ajax({
+        url:'/data/vip/getBookList',
+        data:{
+            dateType:"liveInDate",
+            start:'2017-5-19',
+            end:'2017-5-25'
+        },
+        success:function (data) {
+            console.log('liveInDate 2017-5-19~2017-5-25');
+            console.log(data);
+        },
+        error:function (data) {
+            console.log("ERROR!!!!!!!");
+            console.log(data);
+        }
+
+    });
+
+    $.ajax({
+        url:'/data/vip/getBookList',
+        data:{
+            dateType:"createDate",
+            start:'2017-5-19',
+            end:'2017-5-25'
+        },
+        success:function (data) {
+            console.log('createDate 2017-5-19~2017-5-25');
+            console.log(data);
+        },
+        error:function (data) {
+            console.log("ERROR!!!!!!!");
+            console.log(data);
+        }
+
+    });
+
+});
 
 function getBookList() {
     $('#table').bootstrapTable({
-        url: '/data/vip/getBookList',
+        url: '/data/vip/getAllBookList',
         search:true,
         columns: [
         {
@@ -56,7 +108,7 @@ function getBookList() {
             sortable:true
 
             },{
-            field: 'liveOutDate',
+            field: 'checkOutDate',
             title: '离店时间',
             align: 'center',
             sortable:true
