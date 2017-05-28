@@ -19,7 +19,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import static nju.edu.hostel.dao.Impl.LiveBillDaoImpl.ENTITY_TYPE_VIP;
 import static nju.edu.hostel.util.Constants.*;
 
 /**
@@ -376,9 +375,29 @@ public class VIPServiceBean implements VIPService{
 
     @Override
     public List<PayBill> getAllPayBills(int vipId) {
-        return payBillDao.getByVipId(vipId);
+        return payBillDao.getAllByVipId(vipId);
     }
-
+    public List<PayBill> getRecentPayBills(int vipId){
+        return payBillDao.getRecentByVipId(vipId);
+    }
+    @Override
+    public List<PayBill> getRecentWeekPayBills(int vipId){
+        long today=new Date().getTime();
+        long start=DateHandler.add(today,Calendar.WEDNESDAY,-1);
+        return payBillDao.getRecentByVipId_Date(vipId,start,today);
+    }
+    @Override
+    public List<PayBill> getRecentMonthPayBills(int vipId){
+        long today=new Date().getTime();
+        long start=DateHandler.add(today,Calendar.MONTH,-1);
+        return payBillDao.getRecentByVipId_Date(vipId,start,today);
+    }
+    @Override
+    public List<PayBill> getRecentYearPayBills(int vipId){
+        long today=new Date().getTime();
+        long start=DateHandler.add(today,Calendar.YEAR,-1);
+        return payBillDao.getRecentByVipId_Date(vipId,start,today);
+    }
     @Override
     public List<LiveBill> getAllLiveBills(int vipId) {
         return liveBillDao.getAllByVipId(vipId);

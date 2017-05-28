@@ -137,6 +137,10 @@ public interface VIPService {
      */
     public List<PayBill> getAllPayBills(int vipId);
 
+    public List<PayBill> getRecentPayBills(int vipId);
+    public List<PayBill> getRecentWeekPayBills(int vipId);
+    public List<PayBill> getRecentMonthPayBills(int vipId);
+    public List<PayBill> getRecentYearPayBills(int vipId);
     /**
      * 返回所有通过总经理审批的客栈
      * @return

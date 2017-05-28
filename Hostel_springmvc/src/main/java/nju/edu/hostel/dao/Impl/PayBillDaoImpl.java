@@ -2,7 +2,6 @@ package nju.edu.hostel.dao.Impl;
 
 import nju.edu.hostel.dao.BaseDao;
 import nju.edu.hostel.dao.PayBillDao;
-import nju.edu.hostel.model.LiveDetail;
 import nju.edu.hostel.model.PayBill;
 import nju.edu.hostel.util.ResultMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
+import static nju.edu.hostel.util.Constants.DEFAULT_NUM_OF_DATA;
+
 
 /**
  * Created by disinuo on 17/3/3.
@@ -18,6 +19,15 @@ import java.util.Map;
 public class PayBillDaoImpl implements PayBillDao {
     @Autowired
     BaseDao baseDao;
+
+    private String baseHql_vip="SELECT paybill FROM PayBill as paybill,LiveBill as livebill,LiveDetail as detail" +
+            " WHERE paybill.liveBill.id = livebill.id "+
+            " AND livebill.id=detail.liveBill.id ";
+    private String baseHql_hostel="SELECT paybill FROM PayBill as paybill WHERE ";
+    private String hqlTail =" ORDER BY paybill.id DESC";
+    private String hostelColumnName=" paybill.hostel.id ";
+    private String vipColumnName="  detail.vip.id ";
+    private String restrict_uncounted=" paybill.counted = false ";
 
     @Override
     public PayBill get(int id) {
@@ -28,50 +38,6 @@ public class PayBillDaoImpl implements PayBillDao {
     public PayBill load(int id) {
         return baseDao.loadProxy(PayBill.class,id);
     }
-
-    @Override
-    public List<PayBill> getByHostelId(int hostelId){
-        String hql="SELECT bill FROM PayBill as bill" +
-                " WHERE bill.hostel.id = "+hostelId+" ORDER BY bill.id DESC";
-        List<PayBill> bills=baseDao.getByHql(PayBill.class,hql);
-        System.err.println("============================");
-        System.err.println("in PayDAO  size= "+bills.size());
-        for(PayBill payBill:bills){
-            System.out.print(payBill.getId()+": ");
-            List<LiveDetail> details=payBill.getLiveDetails();
-            for(LiveDetail d:details){
-                System.out.println(d.getId()+": "+d.getUserRealName());
-            }
-
-        }
-        return bills;
-    }
-    @Override
-    public List<PayBill> getByVipId(int vipId){
-        String hql="SELECT paybill FROM PayBill as paybill,LiveBill as livebill,LiveDetail as detail" +
-                " WHERE paybill.liveBill.id = livebill.id "+
-                " AND livebill.id=detail.liveBill.id "+
-                " AND detail.vip.id = "+vipId+" ORDER BY paybill.id DESC";
-        List<PayBill> bills=baseDao.getByHql(PayBill.class,hql);
-
-        return bills;
-    }
-
-    @Override
-    public List<PayBill> getAllByVipId(int vipId) {
-        return null;
-    }
-
-    @Override
-    public List<PayBill> getRecentByVipId(int vipId) {
-        return null;
-    }
-
-    @Override
-    public List<PayBill> getRecentByVipId_Date(int vipId, long start, long end) {
-        return null;
-    }
-
     @Override
     public List<PayBill> getByRestrictEqual(String column, Object value) {
 
@@ -93,5 +59,62 @@ public class PayBillDaoImpl implements PayBillDao {
     @Override
     public ResultMessage update(PayBill payBill) {
         return baseDao.update(payBill);
+    }
+
+    @Override
+    public List<PayBill> getAllByHostelId(int hostelId){
+        String hql=baseHql_hostel+hostelColumnName+" = "+hostelId+ hqlTail;
+        return baseDao.getByHql(PayBill.class,hql);
+    }
+
+    @Override
+    public List<PayBill> getRecentByHostelId(int hostelId) {
+        String hql=baseHql_hostel+hostelColumnName+" = "+hostelId+ hqlTail;
+        return baseDao.getByHql_paging(PayBill.class,hql,0,DEFAULT_NUM_OF_DATA);
+    }
+
+    @Override
+    public List<PayBill> getRecentByHostelId_Date(int hostelId,long start,long end){
+        String hql=baseHql_hostel+hostelColumnName+" = "+hostelId+
+                " AND paybill.createDate BETWEEN "+start+" AND "+end+
+                hqlTail;
+        return baseDao.getByHql(PayBill.class,hql);
+    }
+
+    @Override
+    public List<PayBill> getAllByVipId(int vipId){
+        String hql=baseHql_vip+" AND "+vipColumnName+" = "+vipId+ hqlTail;
+        return baseDao.getByHql(PayBill.class,hql);
+    }
+
+    @Override
+    public List<PayBill> getRecentByVipId(int vipId) {
+        String hql=baseHql_vip+" AND "+vipColumnName+" = "+vipId+ hqlTail;
+        return baseDao.getByHql_paging(PayBill.class,hql,0,DEFAULT_NUM_OF_DATA);
+    }
+
+
+    @Override
+    public List<PayBill> getRecentByVipId_Date(int vipId, long start, long end) {
+        String hql=baseHql_vip+" AND "+vipColumnName+" = "+vipId+
+                " AND paybill.createDate BETWEEN "+start+" AND "+end+
+                hqlTail;
+        return baseDao.getByHql(PayBill.class,hql);
+    }
+
+
+    @Override
+    public List<PayBill> getAllUncounted() {
+        String hql=baseHql_hostel+restrict_uncounted+hqlTail;
+        return baseDao.getByHql(PayBill.class,hql);
+    }
+
+    @Override
+    public List<PayBill> getAllUncountedByHostel(int hostelId) {
+        String hql=baseHql_hostel+
+                hostelColumnName+" = "+hostelId+
+                restrict_uncounted+
+                hqlTail;
+        return baseDao.getByHql(PayBill.class,hql);
     }
 }

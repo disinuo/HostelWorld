@@ -17,17 +17,16 @@ public interface PayBillDao {
 
     public int add(PayBill payBill)throws Exception;
     public ResultMessage update(PayBill payBill);
-    public List<PayBill> getByHostelId(int hostelId);
-    public List<PayBill> getByVipId(int hostelId);
+
+    public List<PayBill> getAllUncounted();
+    public List<PayBill> getAllUncountedByHostel(int hostelId);
+    public List<PayBill> getAllByHostelId(int hostelId);
+    public List<PayBill> getRecentByHostelId(int hostelId);
+    public List<PayBill> getRecentByHostelId_Date(int hostelId,long start,long end);
 
     public List<PayBill> getAllByVipId(int vipId);
-
-    /**
-     * 返回默认前n条
-     * @param vipId
-     * @return
-     */
     public List<PayBill> getRecentByVipId(int vipId);
+    public List<PayBill> getRecentByVipId_Date(int vipId,long start,long end);
 
     /**
      * 以入住时间为基准，返回时间段内的住房记录列表
@@ -36,6 +35,5 @@ public interface PayBillDao {
      * @param end
      * @return
      */
-    public List<PayBill> getRecentByVipId_Date(int vipId,long start,long end);
 
 }

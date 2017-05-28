@@ -8,7 +8,6 @@ import nju.edu.hostel.util.*;
 import nju.edu.hostel.vo.input.GuestInputVO;
 import nju.edu.hostel.vo.input.LiveInVO;
 import nju.edu.hostel.vo.input.RoomVO_input;
-import nju.edu.hostel.vo.output.GuestVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -336,6 +335,7 @@ public class HostelServiceBean implements HostelService {
         room.setState(-1);
         return roomDao.update(room);
     }
+//======================== BookBill ======================================
     @Override
     public List<BookBill> getAllBookBills(int hostelId) {
 
@@ -361,22 +361,40 @@ public class HostelServiceBean implements HostelService {
         long start=DateHandler.add(today,Calendar.YEAR,-1);
         return bookBillDao.getByHostel_createDate(hostelId,start,today);
     }
+//========================End Of BookBill ======================================
 
+//======================== PayBill ======================================
     @Override
     public List<PayBill> getAllPayBills(int hostelId) {
-        return payBillDao.getByHostelId(hostelId);//getByRestrictEqual("hostel.id",hostelId);
+        return payBillDao.getAllByHostelId(hostelId);//getByRestrictEqual("hostel.id",hostelId);
     }
-
     @Override
-    public double getIncome(int hostelId) {
-        double total=0;
-        List<PayBill> payBills=getAllPayBills(hostelId);
-        for(PayBill payBill:payBills){
-            total+=payBill.getMoney();
-        }
-        return NumberFormatter.saveOneDecimal(total);
+    public List<PayBill> getUncountedPayBills(int hostelId){
+        return payBillDao.getAllUncountedByHostel(hostelId);
     }
+    public List<PayBill> getRecentPayBills(int hostelId){
+        return payBillDao.getRecentByHostelId(hostelId);
+    }
+    public List<PayBill> getRecentWeekPayBills(int hostelId){
+        long today=new Date().getTime();
+        long start=DateHandler.add(today,Calendar.WEDNESDAY,-1);
+        return payBillDao.getRecentByHostelId_Date(hostelId,start,today);
+    }
+    public List<PayBill> getRecentMonthPayBills(int hostelId){
+        long today=new Date().getTime();
+        long start=DateHandler.add(today,Calendar.MONTH,-1);
+        return payBillDao.getRecentByHostelId_Date(hostelId,start,today);
+    }
+    public List<PayBill> getRecentYearPayBills(int hostelId){
+        long today=new Date().getTime();
+        long start=DateHandler.add(today,Calendar.YEAR,-1);
+        return payBillDao.getRecentByHostelId_Date(hostelId,start,today);
+    }
+//==================== End Of PayBill ===================================
 
+
+
+//======================== LiveBill ======================================
     @Override
     public List<LiveBill> getAllLiveBills(int hostelId) {
         List<LiveBill> ans= liveBillDao.getAllByHostelId(hostelId);
@@ -413,6 +431,17 @@ public class HostelServiceBean implements HostelService {
         long start=DateHandler.add(today,Calendar.YEAR,-1);
         return liveBillDao.getRecentByHostelId_Date(hostelId,start,today);
     }
+//========================End Of LiveBill ======================================
+
+    @Override
+    public double getIncome(int hostelId) {
+        double total=0;
+        List<PayBill> payBills=getAllPayBills(hostelId);
+        for(PayBill payBill:payBills){
+            total+=payBill.getMoney();
+        }
+        return NumberFormatter.saveOneDecimal(total);
+    }
     @Override
     public int getTotalLiveInNum(int hostelId){
        return getAllLiveBills(hostelId).size();
@@ -447,14 +476,7 @@ public class HostelServiceBean implements HostelService {
     public List<Hostel> getAllPermittedHostels() {
         return hostelDao.getByRestrictEqual("permitted",true);
     }
-    @Override
-    public List<PayBill> getAllUncountedPayBills(int hostelId){
-        Map map = new HashMap<String,Object>();
-        map.put("hostel.id",hostelId);
-        map.put("counted",false);
-        return payBillDao.getByRestrictEqual(map);
-    }
-
+   
     @Override
     public BookBill getBookBillById(int billId){
         return bookBillDao.get(billId);

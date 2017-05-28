@@ -149,6 +149,11 @@ public interface HostelService {
      * @return
      */
     public List<PayBill> getAllPayBills(int hostelId);
+    public List<PayBill> getRecentPayBills(int hostelId);
+    public List<PayBill> getRecentWeekPayBills(int hostelId);
+    public List<PayBill> getRecentMonthPayBills(int hostelId);
+    public List<PayBill> getRecentYearPayBills(int hostelId);
+    public List<PayBill> getUncountedPayBills(int hostelId);
 
     /**
      * 获取本店总收入
@@ -209,16 +214,6 @@ public interface HostelService {
      * @return
      */
     public List<Hostel> getAllPermittedHostels();
-
-    /**
-     * 获得hostelId的客栈没有被结算的账单，
-     * 给总经理看结算详情的时候用的~
-     * 总经理的结算界面默认不显示这些，只显示各个客栈需要结算的金额
-     * 要总经理点某一个客栈再显示这些详情
-     * @param hostelId
-     * @return
-     */
-    public List<PayBill> getAllUncountedPayBills(int hostelId);
 
 
     /**
