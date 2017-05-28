@@ -115,6 +115,40 @@ public class VipDataController {
         int id=user.getId();
         return PayBillVO.entityToVO(vipService.getAllPayBills(id));
     }
+
+    //======================= PayBill ============================================
+    @RequestMapping(value = "/getAllPayList")
+    public List<PayBillVO> getAllPayBills(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return PayBillVO.entityToVO(vipService.getAllPayBills(id));
+    }
+    @RequestMapping(value = "/getRecentPayList")
+    public List<PayBillVO> getRecentPayBills(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return PayBillVO.entityToVO(vipService.getRecentPayBills(id));
+    }
+    @RequestMapping(value = "/getRecentPayList/week")
+    public List<PayBillVO> getRecentWeekPayBills(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return PayBillVO.entityToVO(vipService.getRecentWeekPayBills(id));
+    }
+    @RequestMapping(value = "/getRecentPayList/month")
+    public List<PayBillVO> getRecentMonthPayBills(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return PayBillVO.entityToVO(vipService.getRecentMonthPayBills(id));
+    }
+    @RequestMapping(value = "/getRecentPayList/year")
+    public List<PayBillVO> getRecentYearPayBills(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return PayBillVO.entityToVO(vipService.getRecentYearPayBills(id));
+    }
+//======================= End Of PayBill ============================================
+
     @RequestMapping(value = "/getMoneyRecord")
     public List<MoneyRecordVO> getMoneyRecord(HttpSession session){
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");

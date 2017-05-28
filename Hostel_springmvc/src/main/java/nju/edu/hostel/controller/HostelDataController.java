@@ -150,19 +150,44 @@ public class HostelDataController {
     }
 //======================= End Of LiveBill ============================================
 
-    @RequestMapping(value = "/getPayBills")
+//======================= PayBill ============================================
+    @RequestMapping(value = "/getAllPayList")
     public List<PayBillVO> getAllPayBills(HttpSession session){
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
         int id=user.getId();
-        List<PayBillVO> vos=PayBillVO.entityToVO(hostelService.getAllPayBills(id));
-        for(PayBillVO vo:vos){
-            System.out.print(vo.getId()+": ");
-            for(GuestVO g:vo.getGuestVOS())
-                System.out.println(g.getUserRealName()+", "+g.getVipId() );
-        }
-        return vos;
+        return PayBillVO.entityToVO(hostelService.getAllPayBills(id));
     }
-    
+    @RequestMapping(value = "/getRecentPayList")
+    public List<PayBillVO> getRecentPayBills(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return PayBillVO.entityToVO(hostelService.getRecentPayBills(id));
+    }
+    @RequestMapping(value = "/getRecentPayList/week")
+    public List<PayBillVO> getRecentWeekPayBills(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return PayBillVO.entityToVO(hostelService.getRecentWeekPayBills(id));
+    }
+    @RequestMapping(value = "/getRecentPayList/month")
+    public List<PayBillVO> getRecentMonthPayBills(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return PayBillVO.entityToVO(hostelService.getRecentMonthPayBills(id));
+    }
+    @RequestMapping(value = "/getRecentPayList/year")
+    public List<PayBillVO> getRecentYearPayBills(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return PayBillVO.entityToVO(hostelService.getRecentYearPayBills(id));
+    }
+    @RequestMapping(value = "/getUncountedPayList")
+    public List<PayBillVO> getUncountedYearPayBills(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return PayBillVO.entityToVO(hostelService.getUncountedPayBills(id));
+    }
+//======================= End Of PayBill ============================================
     @RequestMapping(value = "/getMoneyRecord")
     public List<MoneyRecordVO> getMoneyRecord(HttpSession session){
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");

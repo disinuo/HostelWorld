@@ -16,11 +16,24 @@ $(document).ready(function () {
             });
         }
     })
-})
+});
+
+$('#btn_week').click(function (e) {
+    $('#table').bootstrapTable('refresh',{ url:'/data/vip/getRecentPayList/week'});
+});
+$('#btn_month').click(function (e) {
+    $('#table').bootstrapTable('refresh',{ url:'/data/vip/getRecentPayList/month'});
+});
+$('#btn_year').click(function (e) {
+    $('#table').bootstrapTable('refresh',{ url:'/data/vip/getRecentPayList/year'});
+});
+$('#btn_all').click(function (e) {
+    $('#table').bootstrapTable('refresh',{ url:'/data/vip/getAllPayList'});
+});
 
 function getPayList() {
     $('#table').bootstrapTable({
-        url: '/data/vip/getPayList',
+        url: '/data/vip/getAllPayList',
         search:true,
         pagination:true,
         height:TABLE_HEIGHT,

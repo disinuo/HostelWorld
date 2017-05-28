@@ -7,9 +7,21 @@ $(document).ready(function () {
 
 });
 
+$('#btn_week').click(function (e) {
+    $('#table').bootstrapTable('refresh',{ url:'/data/hostel/getRecentPayList/week'});
+});
+$('#btn_month').click(function (e) {
+    $('#table').bootstrapTable('refresh',{ url:'/data/hostel/getRecentPayList/month'});
+});
+$('#btn_year').click(function (e) {
+    $('#table').bootstrapTable('refresh',{ url:'/data/hostel/getRecentPayList/year'});
+});
+$('#btn_all').click(function (e) {
+    $('#table').bootstrapTable('refresh',{ url:'/data/hostel/getAllPayList'});
+});
 function getPayBillList() {
     $('#table').bootstrapTable({
-        url: '/data/hostel/getPayBills',
+        url: '/data/hostel/getAllPayList',
         search:true,
         pagination:true,
         height:TABLE_HEIGHT,
@@ -52,7 +64,7 @@ function getTotalIncome() {
     $.ajax({
         url:'/data/hostel/getIncome',
         success:function (data) {
-            $('#income').html(data+"元");
+            $('#value').html(data+"元");
         }
     })
 }
