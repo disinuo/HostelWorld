@@ -9,36 +9,36 @@ $(document).ready(function () {
 function getHostelList() {
     $('#table').bootstrapTable({
         url: '/data/vip/getHostelList',
-        // search:true,
+        search:true,
         // searchText:'找一找心仪的客栈~',
         columns: [{
             field: 'img',
             title: '',
             align: 'center',
-            formatter:imgFormatter
+            formatter:imgWithLinkFormatter_vip,
         }, {
             field: 'name',
             title: '客栈名',
             align: 'center',
             formatter: operateFormatter,
-            // events: operateEvents
+            sortable:true
+
         }, {
             field: 'avgExpense',
             title: '人均消费',
             align: 'center',
             formatter: moneyFormatter,
-
+            sortable:true
         }, {
             field: 'address',
             title: '地址',
             align: 'center',
             formatter: addressFormatter
-
         },{
             field: 'phone',
             title: '电话',
             align: 'center'
-        }],
+        }]
     });
 }
 

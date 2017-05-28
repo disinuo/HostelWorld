@@ -10,6 +10,18 @@ function imgFormatter(value,row,index) {
         '/>'
     ].join('');
 }
+function imgWithLinkFormatter_vip(value,row,index) {
+    return [
+        '<a',
+        ' href="/vip/rooms?hostelId=',
+        row.hostelId,
+        '"><img ',
+        'src="',
+        value,
+        '" alt="图片" class="image-little"',
+        '/></a>'
+    ].join('');
+}
 function moneyFormatter(value) {
     return '￥'+value;
 }

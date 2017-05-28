@@ -45,6 +45,11 @@ public class VipViewController {
          return model==null?( new ModelAndView("vip/hostelDetailPage")):model;
     }
 
+    @RequestMapping(value = "/moneyRecord")
+    public ModelAndView showmoneyRecord(HttpSession session){
+        ModelAndView model=checkRole(session);         return model==null?( new ModelAndView("vip/moneyRecordPage")):model;
+    }
+
     @RequestMapping(value = "/bookList")
     public ModelAndView showBookList(HttpSession session){
          ModelAndView model=checkRole(session);         return model==null?( new ModelAndView("vip/bookListPage")):model;

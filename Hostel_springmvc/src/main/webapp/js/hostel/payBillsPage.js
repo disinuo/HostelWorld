@@ -10,19 +10,26 @@ $(document).ready(function () {
 function getPayBillList() {
     $('#table').bootstrapTable({
         url: '/data/hostel/getPayBills',
+        search:true,
         columns: [{
             field: 'id',
             title: 'ID',
-            align: 'center'
+            align: 'center',
+            sortable:true
+
         },{
             field: 'createDate',
             title: '时间',
-            align: 'center'
+            align: 'center',
+            sortable:true
+
         }, {
             field: 'roomName',
             title: '房型',
             align: 'center',
-            formatter:roomFormatter
+            formatter:roomFormatter,
+            sortable:true
+
         },{
             field: 'userRealName',
             title: '住户真名',
@@ -33,7 +40,9 @@ function getPayBillList() {
             field: 'money',
             title: '收入',
             align: 'center',
-            formatter:moneyFormatter
+            formatter:moneyFormatter,
+            sortable:true
+
         }]
     });
 }

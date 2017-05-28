@@ -13,15 +13,19 @@ function getLiveList() {
             field: 'id',
             title: 'ID',
             align: 'center',
+            sortable:true
         },{
             field: 'date',
             title: '日期',
-            align: 'center'
+            align: 'center',
+            sortable:true
+
         },{
             field: 'hostelImg',
             title: '',
             align: 'center',
-            formatter:imgFormatter
+            formatter:imgWithLinkFormatter_vip
+
         }, {
             field: 'hostelName',
             title: '客栈名',
@@ -31,26 +35,35 @@ function getLiveList() {
             field: 'roomPrice',
             title: '房型',
             align: 'center',
-            formatter:roomFormatter
+            formatter:roomFormatter,
+            sortable:true
+
         },{
             field:'numOfPeople',
             title:'住店人数',
-            align:'center'
+            align:'center',
+            sortable:true
+
         },{//TODO 类型要变成以表格底色不同的形式展现
             field: 'inHostel',
             title: '',
             align: 'center',
-            formatter:typeFormatter
+            formatter:typeFormatter,
+            sortable:true
+
         },{//
             field: 'paid',
             title: '',
             align: 'center',
-            formatter:paidFormatter
+            formatter:paidFormatter,
+            sortable:true
+
         },{
             field: 'checkOutDate',
             title: '离店日期',
             align: 'center',
-            formatter:checkOutDateFormatter
+            formatter:checkOutDateFormatter,
+            sortable:true
 
         }]
     });

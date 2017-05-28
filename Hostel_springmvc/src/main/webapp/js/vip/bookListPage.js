@@ -10,49 +10,65 @@ $(document).ready(function () {
 function getBookList() {
     $('#table').bootstrapTable({
         url: '/data/vip/getBookList',
+        search:true,
         columns: [
         {
             field: 'createDate',
             title: '下单时间',
-            align: 'center'
+            align: 'center',
+            sortable:true
         },{
             field: 'id',
             title: '订单号',
             align: 'center',
-        },{
+            sortable:true
+
+            },{
             field: 'roomImg',
             title: '',
             align: 'center',
-            formatter:imgFormatter
-        },{
+            formatter:imgWithLinkFormatter_vip
+            },{
             field: 'hostelName',
             title: '客栈名',
             align: 'center',
             formatter: operateFormatter,
-        },
+            sortable:true
+
+            },
             {
             field: 'roomName',
             title: '房间类型',
-            align: 'center'
-        },{
+            align: 'center',
+            sortable:true
+
+            },{
             field: 'roomPrice',
             title: '价格',
             align: 'center',
-            formatter:moneyFormatter
-        },{
+            formatter:moneyFormatter,
+            sortable:true
+
+            },{
             field: 'liveInDate',
             title: '入住时间',
-            align: 'center'
-        },{
+            align: 'center',
+            sortable:true
+
+            },{
             field: 'liveOutDate',
             title: '离店时间',
-            align: 'center'
-        }, {
+            align: 'center',
+            sortable:true
+
+            }, {
             field:'state',
             title:'',
             formatter:unbookFormatter,
-            events:unbookEvents
-        }]
+            events:unbookEvents,
+            sortable:true
+
+            }]
     });
 }
 function operateFormatter(value, row, index) {

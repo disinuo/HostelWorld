@@ -15,40 +15,54 @@ $(document).ready(function () {
 function getLiveBillList() {
     $('#table').bootstrapTable({
         url: '/data/hostel/getLiveBills',
+        search:true,
         columns: [{
             field: 'id',
             title: 'ID',
             align: 'center',
+            sortable:true
+
         },{
             field: 'date',
             title: '日期',
             align: 'center',
+            sortable:true
+
         }, {
             field: 'roomPrice',
             title: '房型',
             align: 'center',
-            formatter:roomFormatter
+            formatter:roomFormatter,
+            sortable:true
+
         },{
             field: 'vipId',
             title: '会员编号',
             align: 'center',
             formatter:guestWithIDCardFormatter
 
+
         },{//TODO 类型要变成以表格底色不同的形式展现
             field: 'inHostel',
             title: '',
             align: 'center',
-            formatter:typeFormatter
+            formatter:typeFormatter,
+            sortable:true
+
         },{//
             field: 'paid',
             title: '',
             align: 'center',
-            formatter:paidFormatter
+            formatter:paidFormatter,
+            sortable:true
+
         },{
             field: 'checkOutDate',
             title: '离店日期',
             align: 'center',
-            formatter:checkOutDateFormatter
+            formatter:checkOutDateFormatter,
+            sortable:true
+
         }]
     });
 }

@@ -9,12 +9,15 @@ $(document).ready(function () {
 function getRoomList() {
     $('#table').bootstrapTable({
         url: '/data/hostel/getRooms',
+        search:true,
         // search:true,
         // searchText:'找一找心仪的客栈~',
         columns: [{
             field: 'id',
             title: 'ID',
             align: 'center',
+            sortable:true
+
         }, {
             field: 'img',
             title: '',
@@ -24,33 +27,36 @@ function getRoomList() {
             field: 'name',
             title: '房型',
             align: 'center',
-            // formatter: operateFormatter,
-            // events: operateEvents
+            sortable:true
         }, {
             field: 'price',
             title: '房价',
             align: 'center',
-            formatter: moneyFormatter
+            formatter: moneyFormatter,
+            sortable:true
         },{
             field: 'capacity',
             title: '容量',
-            align: 'center'
+            align: 'center',
+            sortable:true
 
         },{
             field: 'totalNum',
             title: '房间数',
-            align: 'center'
+            align: 'center',
+            sortable:true
 
         },{
             field: 'vacantNum',
             title: '空闲数',
-            align: 'center'
+            align: 'center',
+            sortable:true
 
         },{
             field: 'bookedNum',
             title: '预订数',
-            align: 'center'
-
+            align: 'center',
+            sortable:true
         },{
             field: 'startDate',
             title: '有效时段',
@@ -67,9 +73,10 @@ function getRoomList() {
             title: '',
             align: 'center',
             formatter:operateFormatter,
-            events: operateEvents
-        },
-        ]
+            events: operateEvents,
+            sortable:true
+
+        }]
     });
 }
 function stateFormatter(value,row,index) {

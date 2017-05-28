@@ -21,40 +21,51 @@ $(document).ready(function () {
 function getPayList() {
     $('#table').bootstrapTable({
         url: '/data/vip/getPayList',
+        search:true,
         columns: [{
             field: 'createDate',
             title: '时间',
-            align: 'center'
+            align: 'center',
+            sortable:true
+
         },{
             field: 'roomImg',
             title: '',
             align: 'center',
-            formatter:imgFormatter
+            formatter:imgWithLinkFormatter_vip
+
         }, {
             field: 'hostelName',
             title: '客栈名',
             align: 'center',
-            formatter: operateFormatter,
+            formatter: operateFormatter
         }, {
             field: 'roomName',
             title: '房间类型',
-            align: 'center'
+            align: 'center',
+            sortable:true
+
         },{
             field: 'roomPrice',
             title: '房间价格',
             align: 'center',
-            formatter:moneyFormatter
+            formatter:moneyFormatter,
+            sortable:true
+
 
         },{
             field: 'money',
             title: '实付价格',
             align: 'center',
-            formatter:moneyFormatter
+            formatter:moneyFormatter,
+            sortable:true
 
         },{
             field:'numOfPeople',
             title:'住店人数',
-            align:'center'
+            align:'center',
+            sortable:true
+
         }]
     });
 }
