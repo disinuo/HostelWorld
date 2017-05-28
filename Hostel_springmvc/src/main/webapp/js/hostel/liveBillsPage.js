@@ -12,6 +12,7 @@ $(document).ready(function () {
 
 });
 
+
 function getLiveBillList() {
     $('#table').bootstrapTable({
         url: '/data/hostel/getLiveBills',
