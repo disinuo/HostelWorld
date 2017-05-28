@@ -108,43 +108,34 @@ public interface VIPService {
     /**
      * 获取默认条数的本人预订数据，包括预订和取消预订
      */
-    public List<BookBill> getDefaultNumBookBills(int vipId);
+    public List<BookBill> getRecentBookBills(int vipId);
+
     public List<BookBill> getValidBookBills(int vipId);
+    public List<BookBill> getRecentWeekBookBills(int vipId);
+    public List<BookBill> getRecentMonthBookBills(int vipId);
+    public List<BookBill> getRecentYearBookBills(int vipId);
+
     public List<BookBill> getBookBills_createDate(int vipId,String start,String end);
     public List<BookBill> getBookBills_liveInDate(int vipId,String start,String end);
     public List<BookBill> getBookBills_checkOutDate(int vipId,String start,String end);
 
     /**
-     * 返回最近7天的预订订单（以下单日期计算）
-     * @param vipId
-     * @return
-     */
-    public List<BookBill> getRecentWeekBookBills(int vipId);
-    public List<BookBill> getRecentMonthBookBills(int vipId);
-    public List<BookBill> getRecentYearBookBills(int vipId);
-    /**
-     * 获取本人消费数据
-     比如
-     2016-12-02 预订房间 标间[含房间详情]-20元
-     2016-12-02 取消预订 标间[含房间详情]+20元
-     2016-12-02 预订房间 豪华总统套房[含房间详情]-20元
-     2016-12-10 消费 豪华总统套房[含房间详情]-2288元
-     * @param vipId
-     * @return
-     */
-    public List<PayBill> getAllPayBills(int vipId);
-
-    /**
-     * 获取本人住店数据，包含入店、离店信息
-     比如
-     2016-12-10 入店 豪华总统套房
-     2016-12-10 离店 豪华总统套房
+     * 获取本人住店数据
      * @param vipId
      * @return
      */
     public List<LiveBill> getAllLiveBills(int vipId);
+    public List<LiveBill> getRecentLiveBills(int vipId);
+    public List<LiveBill> getRecentWeekLiveBills(int vipId);
+    public List<LiveBill> getRecentMonthLiveBills(int vipId);
+    public List<LiveBill> getRecentYearLiveBills(int vipId);
 
-
+    /**
+     * 获取本人消费数据
+     * @param vipId
+     * @return
+     */
+    public List<PayBill> getAllPayBills(int vipId);
 
     /**
      * 返回所有通过总经理审批的客栈

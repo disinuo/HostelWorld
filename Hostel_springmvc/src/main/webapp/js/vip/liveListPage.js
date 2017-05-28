@@ -5,10 +5,24 @@
 $(document).ready(function () {
     getLiveList();
 });
-
+$('#btn_week').click(function (e) {
+    $('#table').bootstrapTable('refresh',{ url:'/data/vip/getRecentLiveList/week'});
+});
+$('#btn_month').click(function (e) {
+    $('#table').bootstrapTable('refresh',{ url:'/data/vip/getRecentLiveList/month'});
+});
+$('#btn_year').click(function (e) {
+    $('#table').bootstrapTable('refresh',{ url:'/data/vip/getRecentLiveList/year'});
+});
+$('#btn_all').click(function (e) {
+    $('#table').bootstrapTable('refresh',{ url:'/data/vip/getAllLiveList'});
+});
 function getLiveList() {
     $('#table').bootstrapTable({
-        url: '/data/vip/getLiveList',
+        url: '/data/vip/getRecentLiveList',
+        search:true,
+        pagination:true,
+        height:TABLE_HEIGHT,
         columns: [{
             field: 'id',
             title: 'ID',

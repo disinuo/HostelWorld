@@ -135,23 +135,16 @@ public interface HostelService {
     public ResultMessage invalidateRoom(int roomId);
     /**
      * 获取本店预订数据，包括预订和取消预订
-     比如
-     vip01 2016-12-02 预订 标间 入住时间2016-12-10
-     2晚 358元+图片
-     vip01 2016-12-02 取消预订 标间 入住时间2016-12-10   2晚 358元+图片
-     vip01 2016-12-02 预订 豪华总统套房 入住时间2016-12-10   2晚 2288元+图片
-     * @param hostelId
-     * @return
      */
     public List<BookBill> getAllBookBills(int hostelId);
+    public List<BookBill> getRecentBookBills(int hostelId);
+    public List<BookBill> getRecentWeekBookBills(int hostelId);
+    public List<BookBill> getRecentMonthBookBills(int hostelId);
+    public List<BookBill> getRecentYearBookBills(int hostelId);
+    public BookBill getBookBillById(int billId);
 
     /**
      * 获取本店财务情况
-     比如
-     vip01 2016-12-02 预订房间 标间[含房间详情]+20元
-     vip01 2016-12-02 取消预订 标间[含房间详情]-20元
-     vip01 2016-12-02 预订房间 豪华总统套房[含房间详情]+20元
-     vip01 2016-12-10 消费 豪华总统套房[含房间详情]+2288元
      * @param hostelId
      * @return
      */
@@ -166,28 +159,24 @@ public interface HostelService {
 
     /**
      * 获取本店住店数据
-     比如
-     2016-12-10 vip01入店 豪华总统套房
-     * @param hostelId
-     * @return
      */
     public List<LiveBill> getAllLiveBills(int hostelId);
     /**
-     * 获取本店未离店的住店数据
-     比如
-     2016-12-10 vip01离店 豪华总统套房
-     * @param hostelId
-     * @return
+     * 最近默认n天的本店住店数据
+     */
+    public List<LiveBill> getRecentLiveBills(int hostelId);
+    public List<LiveBill> getRecentWeekLiveBills(int hostelId);
+    public List<LiveBill> getRecentMonthLiveBills(int hostelId);
+    public List<LiveBill> getRecentYearLiveBills(int hostelId);
+    /**
+     * 获取本店所有未离店的住店数据
      */
     public List<LiveBill> getNotOutLiveBills(int hostelId);
     /**
-     * 获取本店未记账的住店数据
-     比如
-     2016-12-10 vip01离店 豪华总统套房
-     * @param hostelId
-     * @return
+     * 获取本店所有未记账的住店数据
      */
     public List<LiveBill> getNotPaidLiveBills(int hostelId);
+    public LiveBill getLiveBillById(int billId);
 
 
     public int getTotalLiveInNum(int hostelId);
@@ -231,12 +220,6 @@ public interface HostelService {
      */
     public List<PayBill> getAllUncountedPayBills(int hostelId);
 
-    /**
-     * 通过订单id返回订单
-     * @param billId
-     * @return
-     */
-    public BookBill getBookBillById(int billId);
 
     /**
      * 根据酒店的id返回所有交易记录

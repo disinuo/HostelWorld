@@ -4,21 +4,6 @@
 
 $(document).ready(function () {
     getBookList();
-
-
-    $.ajax({
-        url:'/data/vip/getRecentBookList/month',
-        success:function (data) {
-            console.log('month');
-            console.log(data);
-        },
-        error:function (data) {
-            console.log("ERROR!!!!!!!");
-            console.log(data);
-        }
-
-    });
-
 });
 
 $('#btn_week').click(function (e) {

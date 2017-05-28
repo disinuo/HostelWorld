@@ -19,6 +19,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import static nju.edu.hostel.dao.Impl.LiveBillDaoImpl.ENTITY_TYPE_VIP;
 import static nju.edu.hostel.util.Constants.*;
 
 /**
@@ -238,70 +239,6 @@ public class VIPServiceBean implements VIPService{
         }
     }
 
-    @Override
-    public List<BookBill> getAllBookBills(int vipId) {
-        return bookBillDao.getAllByVipId(vipId);
-    }
-    @Override
-    public List<BookBill> getDefaultNumBookBills(int vipId) {
-        return bookBillDao.getDefaultNumByVipId(vipId);
-    }
-    @Override
-    public List<BookBill> getRecentWeekBookBills(int vipId){
-        long today=new Date().getTime();
-        long start=DateHandler.add(today,Calendar.WEDNESDAY,-1);
-        return bookBillDao.getByVip_createDate(vipId,start,today);
-    }
-    @Override
-    public List<BookBill> getRecentMonthBookBills(int vipId){
-        long today=new Date().getTime();
-        long start=DateHandler.add(today,Calendar.MONTH,-1);
-        return bookBillDao.getByVip_createDate(vipId,start,today);
-    }
-    @Override
-    public List<BookBill> getRecentYearBookBills(int vipId){
-        long today=new Date().getTime();
-        long start=DateHandler.add(today,Calendar.YEAR,-1);
-        return bookBillDao.getByVip_createDate(vipId,start,today);
-
-    }
-    @Override
-    public List<BookBill> getBookBills_createDate(int vipId,String start,String end){
-        return bookBillDao.getByVip_createDate(
-                vipId,
-                DateHandler.strToLong(start),
-                DateHandler.strToLong(end)
-        );
-    }
-    public List<BookBill> getBookBills_liveInDate(int vipId,String start,String end){
-        return bookBillDao.getByVip_liveInDate(
-                vipId,
-                DateHandler.strToLong(start),
-                DateHandler.strToLong(end)
-        );
-    }
-    public List<BookBill> getBookBills_checkOutDate(int vipId,String start,String end){
-        return bookBillDao.getByVip_checkOutDate(
-                vipId,
-                DateHandler.strToLong(start),
-                DateHandler.strToLong(end)
-        );
-    }
-
-
-    @Override
-    public List<BookBill> getValidBookBills(int vipId){
-        return bookBillDao.getAllValidByVipId(vipId);
-    }
-    @Override
-    public List<PayBill> getAllPayBills(int vipId) {
-        return payBillDao.getByVipId(vipId);
-    }
-
-    @Override
-    public List<LiveBill> getAllLiveBills(int vipId) {
-        return liveBillDao.getByVipId(vipId);
-    }
 
 
     @Override
@@ -379,6 +316,95 @@ public class VIPServiceBean implements VIPService{
 
         }
     }
+
+    @Override
+    public List<BookBill> getAllBookBills(int vipId) {
+        return bookBillDao.getAllByVipId(vipId);
+    }
+    @Override
+    public List<BookBill> getRecentBookBills(int vipId) {
+        return bookBillDao.getRecentByVipId(vipId);
+    }
+    @Override
+    public List<BookBill> getRecentWeekBookBills(int vipId){
+        long today=new Date().getTime();
+        long start=DateHandler.add(today,Calendar.WEDNESDAY,-1);
+        return bookBillDao.getByVip_createDate(vipId,start,today);
+    }
+    @Override
+    public List<BookBill> getRecentMonthBookBills(int vipId){
+        long today=new Date().getTime();
+        long start=DateHandler.add(today,Calendar.MONTH,-1);
+        return bookBillDao.getByVip_createDate(vipId,start,today);
+    }
+    @Override
+    public List<BookBill> getRecentYearBookBills(int vipId){
+        long today=new Date().getTime();
+        long start=DateHandler.add(today,Calendar.YEAR,-1);
+        return bookBillDao.getByVip_createDate(vipId,start,today);
+
+    }
+    @Override
+    public List<BookBill> getBookBills_createDate(int vipId,String start,String end){
+        return bookBillDao.getByVip_createDate(
+                vipId,
+                DateHandler.strToLong(start),
+                DateHandler.strToLong(end)
+        );
+    }
+    public List<BookBill> getBookBills_liveInDate(int vipId,String start,String end){
+        return bookBillDao.getByVip_liveInDate(
+                vipId,
+                DateHandler.strToLong(start),
+                DateHandler.strToLong(end)
+        );
+    }
+    public List<BookBill> getBookBills_checkOutDate(int vipId,String start,String end){
+        return bookBillDao.getByVip_checkOutDate(
+                vipId,
+                DateHandler.strToLong(start),
+                DateHandler.strToLong(end)
+        );
+    }
+    @Override
+    public List<BookBill> getValidBookBills(int vipId){
+        return bookBillDao.getAllValidByVipId(vipId);
+    }
+
+    @Override
+    public List<PayBill> getAllPayBills(int vipId) {
+        return payBillDao.getByVipId(vipId);
+    }
+
+    @Override
+    public List<LiveBill> getAllLiveBills(int vipId) {
+        return liveBillDao.getAllByVipId(vipId);
+    }
+    @Override
+    public List<LiveBill> getRecentLiveBills(int vipId){
+        return liveBillDao.getRecentByVipId(vipId);
+    }
+    @Override
+    public List<LiveBill> getRecentWeekLiveBills(int vipId){
+        long today=new Date().getTime();
+        long start=DateHandler.add(today,Calendar.WEDNESDAY,-1);
+        return liveBillDao.getRecentByVipId_Date(vipId,start,today);
+    }
+
+    @Override
+    public List<LiveBill> getRecentMonthLiveBills(int vipId){
+        long today=new Date().getTime();
+        long start=DateHandler.add(today,Calendar.MONTH,-1);
+        return liveBillDao.getRecentByVipId_Date(vipId,start,today);
+    }
+
+    @Override
+    public List<LiveBill> getRecentYearLiveBills(int vipId){
+        long today=new Date().getTime();
+        long start=DateHandler.add(today,Calendar.YEAR,-1);
+        return liveBillDao.getRecentByVipId_Date(vipId,start,today);
+    }
+
     @Override
     public List<VipMoneyRecord> getAllMoneyRecords(int vipId){
         return vipMoneyRecordDao.getByRestrictEqual("vipId",vipId);

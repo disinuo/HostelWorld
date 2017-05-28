@@ -10,7 +10,8 @@ function getHostelList() {
     $('#table').bootstrapTable({
         url: '/data/vip/getHostelList',
         search:true,
-        // searchText:'找一找心仪的客栈~',
+        pagination:true,
+        height:TABLE_HEIGHT,
         columns: [{
             field: 'img',
             title: '',

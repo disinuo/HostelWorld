@@ -18,6 +18,41 @@ public interface LiveBillDao {
     public int add(LiveBill liveBill)throws Exception;
     public ResultMessage update(LiveBill liveBill);
 
-    public List<LiveBill> getByVipId(int hostelId);
+    /**
+     * All指的是时间维度上
+     * @param vipId
+     * @return
+     */
+    public List<LiveBill> getAllByVipId(int vipId);
+    public List<LiveBill> getAllByHostelId(int hostelId);
+    /**
+     * 返回默认前n条
+     * @param vipId
+     * @return
+     */
+    public List<LiveBill> getRecentByVipId(int vipId);
+    public List<LiveBill> getRecentByHostelId(int hostelId);
+
+    /**
+     * 以入住时间为基准，返回时间段内的住房记录列表
+     * @param vipId
+     * @return
+     */
+    public List<LiveBill> getRecentByVipId_Date(int vipId,long start,long end);
+    public List<LiveBill> getRecentByHostelId_Date(int hostelId,long start,long end);
+
+    /**
+     * 返回未离店的
+     * @param hostelId
+     * @return
+     */
+    public List<LiveBill> getNotOutByHostelId(int hostelId);
+
+    /**
+     * 返回未结账的
+     * @param hostelId
+     * @return
+     */
+    public List<LiveBill> getNotPaidByHostelId(int hostelId);
 
 }

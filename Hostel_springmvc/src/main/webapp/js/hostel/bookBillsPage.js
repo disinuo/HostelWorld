@@ -6,13 +6,25 @@
  */
 $(document).ready(function () {
     getBookBillList();
-
 });
-
+$('#btn_week').click(function (e) {
+    $('#table').bootstrapTable('refresh',{ url:'/data/hostel/getRecentBookList/week'});
+});
+$('#btn_month').click(function (e) {
+    $('#table').bootstrapTable('refresh',{ url:'/data/hostel/getRecentBookList/month'});
+});
+$('#btn_year').click(function (e) {
+    $('#table').bootstrapTable('refresh',{ url:'/data/hostel/getRecentBookList/year'});
+});
+$('#btn_all').click(function (e) {
+    $('#table').bootstrapTable('refresh',{ url:'/data/hostel/getAllBookList'});
+});
 function getBookBillList() {
     $('#table').bootstrapTable({
-        url: '/data/hostel/getBookBills',
+        url: '/data/hostel/getRecentBookList',
         search:true,
+        pagination:true,
+        height:TABLE_HEIGHT,
         columns: [{
             field: 'id',
             title: '单号',

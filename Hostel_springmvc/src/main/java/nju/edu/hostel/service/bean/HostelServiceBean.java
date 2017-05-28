@@ -12,6 +12,7 @@ import nju.edu.hostel.vo.output.GuestVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import static nju.edu.hostel.util.Constants.*;
 
 import java.util.*;
@@ -340,6 +341,26 @@ public class HostelServiceBean implements HostelService {
 
         return bookBillDao.getByRestrictEqual("hostel.id",hostelId);
     }
+    @Override
+    public List<BookBill> getRecentBookBills(int hostelId){
+        return bookBillDao.getRecentByHostelId(hostelId);
+    }
+    @Override
+    public List<BookBill> getRecentWeekBookBills(int hostelId){
+        long today=new Date().getTime();
+        long start=DateHandler.add(today,Calendar.WEDNESDAY,-1);
+        return bookBillDao.getByHostel_createDate(hostelId,start,today);
+    }
+    public List<BookBill> getRecentMonthBookBills(int hostelId){
+        long today=new Date().getTime();
+        long start=DateHandler.add(today,Calendar.MONTH,-1);
+        return bookBillDao.getByHostel_createDate(hostelId,start,today);
+    }
+    public List<BookBill> getRecentYearBookBills(int hostelId){
+        long today=new Date().getTime();
+        long start=DateHandler.add(today,Calendar.YEAR,-1);
+        return bookBillDao.getByHostel_createDate(hostelId,start,today);
+    }
 
     @Override
     public List<PayBill> getAllPayBills(int hostelId) {
@@ -358,23 +379,39 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public List<LiveBill> getAllLiveBills(int hostelId) {
-        List<LiveBill> ans= liveBillDao.getByRestrictEqual("hostel.id",hostelId);
+        List<LiveBill> ans= liveBillDao.getAllByHostelId(hostelId);
         return ans;
     }
     @Override
     public List<LiveBill> getNotOutLiveBills(int hostelId){
-        Map restricts=new HashMap<String,Object>();
-        restricts.put("inHostel",true);
-        restricts.put("hostel.id",hostelId);
-        return liveBillDao.getByRestrictEqual(restricts);
+
+        return liveBillDao.getNotOutByHostelId(hostelId);
     }
     @Override
     public List<LiveBill> getNotPaidLiveBills(int hostelId){
-        Map restricts=new HashMap<String,Object>();
-        restricts.put("paid",false);
-        restricts.put("hostel.id",hostelId);
-
-        return liveBillDao.getByRestrictEqual(restricts);
+        return liveBillDao.getNotPaidByHostelId(hostelId);
+    }
+    @Override
+    public LiveBill getLiveBillById(int billId){
+        return liveBillDao.get(billId);
+    }
+    public List<LiveBill> getRecentLiveBills(int hostelId){
+        return liveBillDao.getRecentByHostelId(hostelId);
+    }
+    public List<LiveBill> getRecentWeekLiveBills(int hostelId){
+        long today=new Date().getTime();
+        long start=DateHandler.add(today,Calendar.WEDNESDAY,-1);
+        return liveBillDao.getRecentByHostelId_Date(hostelId,start,today);
+    }
+    public List<LiveBill> getRecentMonthLiveBills(int hostelId){
+        long today=new Date().getTime();
+        long start=DateHandler.add(today,Calendar.MONTH,-1);
+        return liveBillDao.getRecentByHostelId_Date(hostelId,start,today);
+    }
+    public List<LiveBill> getRecentYearLiveBills(int hostelId){
+        long today=new Date().getTime();
+        long start=DateHandler.add(today,Calendar.YEAR,-1);
+        return liveBillDao.getRecentByHostelId_Date(hostelId,start,today);
     }
     @Override
     public int getTotalLiveInNum(int hostelId){

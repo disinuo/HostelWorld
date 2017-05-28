@@ -11,6 +11,8 @@ function getPayBillList() {
     $('#table').bootstrapTable({
         url: '/data/hostel/getPayBills',
         search:true,
+        pagination:true,
+        height:TABLE_HEIGHT,
         columns: [{
             field: 'id',
             title: 'ID',

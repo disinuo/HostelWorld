@@ -22,12 +22,13 @@ function getPayList() {
     $('#table').bootstrapTable({
         url: '/data/vip/getPayList',
         search:true,
+        pagination:true,
+        height:TABLE_HEIGHT,
         columns: [{
             field: 'createDate',
             title: '时间',
             align: 'center',
             sortable:true
-
         },{
             field: 'roomImg',
             title: '',

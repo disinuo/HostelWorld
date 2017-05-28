@@ -56,6 +56,22 @@ public class PayBillDaoImpl implements PayBillDao {
 
         return bills;
     }
+
+    @Override
+    public List<PayBill> getAllByVipId(int vipId) {
+        return null;
+    }
+
+    @Override
+    public List<PayBill> getRecentByVipId(int vipId) {
+        return null;
+    }
+
+    @Override
+    public List<PayBill> getRecentByVipId_Date(int vipId, long start, long end) {
+        return null;
+    }
+
     @Override
     public List<PayBill> getByRestrictEqual(String column, Object value) {
 

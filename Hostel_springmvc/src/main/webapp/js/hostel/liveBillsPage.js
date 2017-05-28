@@ -6,12 +6,25 @@ $(document).ready(function () {
     getLiveBillList();
 
 });
-
+$('#btn_week').click(function (e) {
+    $('#table').bootstrapTable('refresh',{ url:'/data/hostel/getRecentLiveList/week'});
+});
+$('#btn_month').click(function (e) {
+    $('#table').bootstrapTable('refresh',{ url:'/data/hostel/getRecentLiveList/month'});
+});
+$('#btn_year').click(function (e) {
+    $('#table').bootstrapTable('refresh',{ url:'/data/hostel/getRecentLiveList/year'});
+});
+$('#btn_all').click(function (e) {
+    $('#table').bootstrapTable('refresh',{ url:'/data/hostel/getAllLiveList'});
+});
 
 function getLiveBillList() {
     $('#table').bootstrapTable({
-        url: '/data/hostel/getLiveBills',
+        url: '/data/hostel/getRecentLiveList',
         search:true,
+        pagination:true,
+        height:TABLE_HEIGHT,
         columns: [{
             field: 'id',
             title: 'ID',

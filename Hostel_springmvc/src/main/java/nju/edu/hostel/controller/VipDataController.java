@@ -1,8 +1,5 @@
 package nju.edu.hostel.controller;
 
-import nju.edu.hostel.dao.UserDao;
-import nju.edu.hostel.model.VipMoneyRecord;
-import nju.edu.hostel.service.HostelService;
 import nju.edu.hostel.service.VIPService;
 import nju.edu.hostel.vo.output.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +22,18 @@ public class VipDataController {
     private final String CHECKOUT_DATE="checkOutDate";
     @Autowired
     VIPService vipService;
+//============= BookList========================================================
     @RequestMapping(value = "/getAllBookList")
     public List<BookBillVO> getAllBookList(HttpSession session){
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
         int id=user.getId();
         return BookBillVO.entityToVO(vipService.getAllBookBills(id));
+    }
+    @RequestMapping(value = "/getRecentBookList")
+    public List<BookBillVO> getRecentBookList(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return BookBillVO.entityToVO(vipService.getRecentBookBills(id));
     }
     @RequestMapping(value = "/getRecentBookList/week")
     public List<BookBillVO> getRecentWeekBookList(HttpSession session){
@@ -50,12 +54,8 @@ public class VipDataController {
         return BookBillVO.entityToVO(vipService.getRecentYearBookBills(id));
     }
 
-    @RequestMapping(value = "/getRecentBookList")
-    public List<BookBillVO> getRecentBookList(HttpSession session){
-        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
-        int id=user.getId();
-        return BookBillVO.entityToVO(vipService.getDefaultNumBookBills(id));
-    }
+    
+    //TODO 这个目前没用，不过先放着吧
     @RequestMapping(value = "/getBookList")
     public List<BookBillVO> getBookList(HttpSession session,String dateType,String start,String end){
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
@@ -70,18 +70,45 @@ public class VipDataController {
         }
         return null;
     }
-
+//==================== End Of BookList ======================================================
     @RequestMapping(value = "/getHostelList")
     public List<HostelVO> getHostelList(){
         return HostelVO.entityToVO(vipService.getAllPermittedHostels());
     }
-
-    @RequestMapping(value = "/getLiveList")
-    public List<LiveBillVO> getLiveList(HttpSession session){
+//==================== LiveList ==================================================
+    @RequestMapping(value = "/getAllLiveList")
+    public List<LiveBillVO> getAllLiveList(HttpSession session){
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
         int id=user.getId();
         return LiveBillVO.entityToVO(vipService.getAllLiveBills(id));
     }
+
+    @RequestMapping(value = "/getRecentLiveList")
+    public List<LiveBillVO> getRecentLiveList(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return LiveBillVO.entityToVO(vipService.getRecentLiveBills(id));
+    }
+    @RequestMapping(value = "/getRecentLiveList/week")
+    public List<LiveBillVO> getRecentWeekLiveList(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return LiveBillVO.entityToVO(vipService.getRecentWeekLiveBills(id));
+    }
+    @RequestMapping(value = "/getRecentLiveList/month")
+    public List<LiveBillVO> getRecentMonthLiveList(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return LiveBillVO.entityToVO(vipService.getRecentMonthLiveBills(id));
+    }
+    @RequestMapping(value = "/getRecentLiveList/year")
+    public List<LiveBillVO> getRecentYearLiveList(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return LiveBillVO.entityToVO(vipService.getRecentYearLiveBills(id));
+    }
+//==========================================================================
+
     @RequestMapping(value = "/getPayList")
     public List<PayBillVO> getPayList(HttpSession session){
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");

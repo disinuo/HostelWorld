@@ -10,6 +10,8 @@ function getRoomList() {
     $('#table').bootstrapTable({
         url: '/data/hostel/getRooms',
         search:true,
+        pagination:true,
+        height:TABLE_HEIGHT,
         // search:true,
         // searchText:'找一找心仪的客栈~',
         columns: [{
