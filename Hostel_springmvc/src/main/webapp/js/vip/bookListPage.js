@@ -7,23 +7,6 @@ $(document).ready(function () {
     $.ajax({
         url:'/data/vip/getBookList',
         data:{
-            dateType:"checkOutDate",
-            start:'2017-5-19',
-            end:'2017-5-25'
-        },
-        success:function (data) {
-            console.log('checkOutDate 2017-5-19~2017-5-25');
-            console.log(data);
-        },
-        error:function (data) {
-            console.log("ERROR!!!!!!!");
-            console.log(data);
-        }
-
-    });
-    $.ajax({
-        url:'/data/vip/getBookList',
-        data:{
             dateType:"liveInDate",
             start:'2017-5-19',
             end:'2017-5-25'
@@ -63,6 +46,8 @@ function getBookList() {
     $('#table').bootstrapTable({
         url: '/data/vip/getAllBookList',
         search:true,
+        pagination:true,
+        height:TABLE_HEIGHT,
         columns: [
         {
             field: 'createDate',
@@ -143,12 +128,6 @@ function unbookFormatter(value,row,index) {
         return '<button id="unbookBtn" type="button" class="btn btn-primary disabled">已入住</button>'
 
     }
-    // return [
-    //     '<a type="button" class="book btn btn-danger" ',
-    //     'href="#',
-    //     row.id,
-    //     '">取消</a>'
-    // ].join('');
 }
 
 var unbookEvents = {

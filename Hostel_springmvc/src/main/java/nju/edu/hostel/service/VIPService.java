@@ -102,15 +102,13 @@ public interface VIPService {
     public ResultMessage scoreToMoney(int vipId, double score);
 
     /**
-     * 获取本人预订数据，包括预订和取消预订
-     比如 2016-12-02 预订 标间 入住时间2016-12-10  2晚 358元+图片
-     2016-12-02 取消预订 标间 入住时间2016-12-10   2晚 358元+图片
-     2016-12-02 预订 豪华总统套房 入住时间2016-12-10   2晚 2288元+图片
-     * @param vipId
-     * @return
+     * 获取所有本人预订数据，包括预订和取消预订
      */
     public List<BookBill> getAllBookBills(int vipId);
-
+    /**
+     * 获取默认条数的本人预订数据，包括预订和取消预订
+     */
+    public List<BookBill> getDefaultNumBookBills(int vipId);
     public List<BookBill> getValidBookBills(int vipId);
     public List<BookBill> getBookBills_createDate(int vipId,String start,String end);
     public List<BookBill> getBookBills_liveInDate(int vipId,String start,String end);

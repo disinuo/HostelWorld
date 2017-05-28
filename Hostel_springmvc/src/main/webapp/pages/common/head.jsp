@@ -25,3 +25,4 @@
 
 
    <title>HostelWorld</title>
+<%! int table_height=500;%>

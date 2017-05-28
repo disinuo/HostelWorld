@@ -1,6 +1,7 @@
 /**
  * Created by disinuo on 17/3/13.
  */
+var TABLE_HEIGHT=600;
 function imgFormatter(value,row,index) {
     return [
         '<img ',

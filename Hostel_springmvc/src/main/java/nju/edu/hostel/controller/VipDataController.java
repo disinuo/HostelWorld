@@ -31,6 +31,12 @@ public class VipDataController {
         int id=user.getId();
         return BookBillVO.entityToVO(vipService.getAllBookBills(id));
     }
+    @RequestMapping(value = "/getRecentBookList")
+    public List<BookBillVO> getRecentBookList(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return BookBillVO.entityToVO(vipService.getDefaultNumBookBills(id));
+    }
     @RequestMapping(value = "/getBookList")
     public List<BookBillVO> getBookList(HttpSession session,String dateType,String start,String end){
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");

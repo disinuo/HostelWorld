@@ -110,6 +110,7 @@ public class HostelDataController {
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
         int id=user.getId();
         return MoneyRecordVO.entityToVO_hostel(hostelService.getAllMoneyRecords(id));
+
     }
 
     @RequestMapping(value = "/others/getBookBills")

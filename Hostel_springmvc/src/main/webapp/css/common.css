@@ -59,6 +59,9 @@ body,div{
     color: #fff;
     opacity: 0.9;
 }
+.flex-container{
+    display: flex;
+}
 /*.vip-self-panel{*/
     /*margin-left: -30px;*/
 /*}*/

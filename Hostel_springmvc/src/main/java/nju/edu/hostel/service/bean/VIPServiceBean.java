@@ -242,6 +242,10 @@ public class VIPServiceBean implements VIPService{
         return bookBillDao.getAllByVipId(vipId);
     }
     @Override
+    public List<BookBill> getDefaultNumBookBills(int vipId) {
+        return bookBillDao.getDefaultNumByVipId(vipId);
+    }
+    @Override
     public List<BookBill> getBookBills_createDate(int vipId,String start,String end){
         return bookBillDao.getByVip_createDate(
                 vipId,
