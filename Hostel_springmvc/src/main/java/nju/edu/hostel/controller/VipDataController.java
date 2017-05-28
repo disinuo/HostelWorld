@@ -31,6 +31,25 @@ public class VipDataController {
         int id=user.getId();
         return BookBillVO.entityToVO(vipService.getAllBookBills(id));
     }
+    @RequestMapping(value = "/getRecentBookList/week")
+    public List<BookBillVO> getRecentWeekBookList(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return BookBillVO.entityToVO(vipService.getRecentWeekBookBills(id));
+    }
+    @RequestMapping(value = "/getRecentBookList/month")
+    public List<BookBillVO> getRecentMonthBookList(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return BookBillVO.entityToVO(vipService.getRecentMonthBookBills(id));
+    }
+    @RequestMapping(value = "/getRecentBookList/year")
+    public List<BookBillVO> getRecentYearBookList(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return BookBillVO.entityToVO(vipService.getRecentYearBookBills(id));
+    }
+
     @RequestMapping(value = "/getRecentBookList")
     public List<BookBillVO> getRecentBookList(HttpSession session){
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");

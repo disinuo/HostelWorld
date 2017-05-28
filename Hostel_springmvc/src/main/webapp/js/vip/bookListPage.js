@@ -4,33 +4,12 @@
 
 $(document).ready(function () {
     getBookList();
-    $.ajax({
-        url:'/data/vip/getBookList',
-        data:{
-            dateType:"liveInDate",
-            start:'2017-5-19',
-            end:'2017-5-25'
-        },
-        success:function (data) {
-            console.log('liveInDate 2017-5-19~2017-5-25');
-            console.log(data);
-        },
-        error:function (data) {
-            console.log("ERROR!!!!!!!");
-            console.log(data);
-        }
 
-    });
 
     $.ajax({
-        url:'/data/vip/getBookList',
-        data:{
-            dateType:"createDate",
-            start:'2017-5-19',
-            end:'2017-5-25'
-        },
+        url:'/data/vip/getRecentBookList/month',
         success:function (data) {
-            console.log('createDate 2017-5-19~2017-5-25');
+            console.log('month');
             console.log(data);
         },
         error:function (data) {
@@ -42,9 +21,21 @@ $(document).ready(function () {
 
 });
 
+$('#btn_week').click(function (e) {
+    $('#table').bootstrapTable('refresh',{ url:'/data/vip/getRecentBookList/week'});
+});
+$('#btn_month').click(function (e) {
+    $('#table').bootstrapTable('refresh',{ url:'/data/vip/getRecentBookList/month'});
+});
+$('#btn_year').click(function (e) {
+    $('#table').bootstrapTable('refresh',{ url:'/data/vip/getRecentBookList/year'});
+});
+$('#btn_all').click(function (e) {
+    $('#table').bootstrapTable('refresh',{ url:'/data/vip/getAllBookList'});
+});
 function getBookList() {
     $('#table').bootstrapTable({
-        url: '/data/vip/getAllBookList',
+        url: '/data/vip/getRecentBookList',
         search:true,
         pagination:true,
         height:TABLE_HEIGHT,

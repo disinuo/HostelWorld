@@ -20,10 +20,10 @@
     </div>
     <div class="col-lg-9 col-md-9">
         <div class="flex-container">
-            <button class="btn btn-primary">最近30天</button>
-            <button class="btn btn-primary">最近7天</button>
-            <button class="btn btn-primary">今年</button>
-            <button class="btn btn-primary">所有</button>
+            <button id="btn_month" class="btn btn-primary">最近30天</button>
+            <button id="btn_week" class="btn btn-primary">最近7天</button>
+            <button id="btn_year" class="btn btn-primary">今年</button>
+            <button id="btn_all" class="btn btn-primary">所有</button>
         </div>
         <table id="table" class="table table-striped">
         </table>

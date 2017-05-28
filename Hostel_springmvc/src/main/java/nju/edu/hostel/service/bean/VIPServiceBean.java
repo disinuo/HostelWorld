@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -244,6 +245,25 @@ public class VIPServiceBean implements VIPService{
     @Override
     public List<BookBill> getDefaultNumBookBills(int vipId) {
         return bookBillDao.getDefaultNumByVipId(vipId);
+    }
+    @Override
+    public List<BookBill> getRecentWeekBookBills(int vipId){
+        long today=new Date().getTime();
+        long start=DateHandler.add(today,Calendar.WEDNESDAY,-1);
+        return bookBillDao.getByVip_createDate(vipId,start,today);
+    }
+    @Override
+    public List<BookBill> getRecentMonthBookBills(int vipId){
+        long today=new Date().getTime();
+        long start=DateHandler.add(today,Calendar.MONTH,-1);
+        return bookBillDao.getByVip_createDate(vipId,start,today);
+    }
+    @Override
+    public List<BookBill> getRecentYearBookBills(int vipId){
+        long today=new Date().getTime();
+        long start=DateHandler.add(today,Calendar.YEAR,-1);
+        return bookBillDao.getByVip_createDate(vipId,start,today);
+
     }
     @Override
     public List<BookBill> getBookBills_createDate(int vipId,String start,String end){

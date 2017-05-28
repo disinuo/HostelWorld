@@ -41,26 +41,18 @@ public class DateHandler {
         }
         return 0;
     }
-    public static long addDay(long originalDate,int num){
+    public static long add(long originalDate,int type,int num){
         Calendar helper=Calendar.getInstance();
         helper.setTimeInMillis(originalDate);
-        helper.add(Calendar.DAY_OF_YEAR,num);
-//        rightNow.setTime(dt);
-//        rightNow.add(Calendar.YEAR,-1);//日期减1年
-//        rightNow.add(Calendar.MONTH,3);//日期加3个月
-//        rightNow.add(Calendar.DAY_OF_YEAR,10);//日期加10天
+        helper.add(type,num);
         return helper.getTimeInMillis();
     }
     private static SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd");
 
     public static void main(String[] args){
-        System.out.println(DateHandler.longToStr(1494963332171L));
-        System.out.println(DateHandler.longToStr(1495956603995L));
-        System.out.println(DateHandler.strToLong("2017-5-10"));
-        System.out.println(DateHandler.strToLong("2017-5-15"));
-        System.out.println(DateHandler.strToLong("2017-7-15"));
-        System.out.println(DateHandler.strToLong("2017-8-15"));
-        System.out.println(DateHandler.strToLong("2017-10-15"));
-        System.out.println(DateHandler.strToLong("2018-10-15"));
+        long today=new Date().getTime();
+        System.out.println(longToStr(DateHandler.add(today,Calendar.YEAR,-1)));
+        System.out.println(longToStr(DateHandler.add(today,Calendar.MONTH,-1)));
+        System.out.println(longToStr(DateHandler.add(today,Calendar.WEDNESDAY,-1)));
     }
 }
