@@ -2,7 +2,6 @@ package nju.edu.hostel.dao.Impl;
 
 import nju.edu.hostel.dao.BaseDao;
 import nju.edu.hostel.dao.LiveBillDao;
-import nju.edu.hostel.dao.MyRestriction;
 import nju.edu.hostel.model.LiveBill;
 import nju.edu.hostel.model.LiveDetail;
 import nju.edu.hostel.util.ResultMessage;
@@ -78,7 +77,7 @@ public class LiveBillDaoImpl implements LiveBillDao {
     }
 
     @Override
-    public List<LiveBill> getRecentByVipId_Date(int vipId, long start, long end) {
+    public List<LiveBill> getByVipId_Date(int vipId, long start, long end) {
         String hql=baseHql_withDetail+ENTITY_TYPE_VIP+"="+vipId+
                 " AND bill.date BETWEEN "+start+" AND "+end+
                 hqlTail;
@@ -87,7 +86,7 @@ public class LiveBillDaoImpl implements LiveBillDao {
     }
 
     @Override
-    public List<LiveBill> getRecentByHostelId_Date(int hostelId, long start, long end) {
+    public List<LiveBill> getByHostelId_Date(int hostelId, long start, long end) {
         String hql=baseHql+ENTITY_TYPE_HOSTEL+"="+hostelId+
                 " AND bill.date BETWEEN "+start+" AND "+end+
                 hqlTail;

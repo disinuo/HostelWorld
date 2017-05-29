@@ -58,16 +58,8 @@ public class BookBillDaoImpl implements BookBillDao {
         return baseDao.getByHql_paging(BookBill.class,hql,0,DEFAULT_NUM_OF_DATA);
     }
     @Override
-    public List<BookBill> getValidByVip_createDate(int vipId, long start, long end) {
+    public List<BookBill> getValidByVip_Date(int vipId, long start, long end) {
         return getValidByVipHelper(vipId,"createDate",start,end);
-    }
-    @Override
-    public List<BookBill> getValidByVip_liveInDate(int vipId, long start, long end) {
-        return getValidByVipHelper(vipId,"liveInDate",start,end);
-    }
-    @Override
-    public List<BookBill> getValidByVip_checkOutDate(int vipId, long start, long end) {
-        return getValidByVipHelper(vipId,"checkout",start,end);
     }
 
 
@@ -80,18 +72,9 @@ public class BookBillDaoImpl implements BookBillDao {
         return getDefaultHelper("vip.id",vipId);
     }
     @Override
-    public List<BookBill> getByVip_createDate(int vipId, long start, long end) {
+    public List<BookBill> getByVip_Date(int vipId, long start, long end) {
         return getHelper("vip.id",vipId,"createDate",start,end);
     }
-    @Override
-    public List<BookBill> getByVip_liveInDate(int vipId, long start, long end) {
-        return getHelper("vip.id",vipId,"liveInDate",start,end);
-    }
-    @Override
-    public List<BookBill> getByVip_checkOutDate(int vipId, long start, long end) {
-        return getHelper("vip.id",vipId,"checkOutDate",start,end);
-    }
-
 
     @Override
     public List<BookBill> getAllByHostelId(int hostelId) {
@@ -102,18 +85,19 @@ public class BookBillDaoImpl implements BookBillDao {
         return getDefaultHelper("hostel.id",hostelId);
     }
     @Override
-    public List<BookBill> getByHostel_createDate(int hostelId, long start, long end) {
+    public List<BookBill> getByHostel_Date(int hostelId, long start, long end) {
         return getHelper("hostel.id",hostelId,"createDate",start,end);
     }
+
     @Override
-    public List<BookBill> getByHostel_liveInDate(int hostelId, long start, long end) {
-        return getHelper("hostel.id",hostelId,"liveInDate",start,end);
-    }
-    @Override
-    public List<BookBill> getByHostel_checkOutDate(int hostelId, long start, long end) {
-        return getHelper("hostel.id",hostelId,"checkOutDate",start,end);
+    public List<BookBill> getByHostel_Region(int hostelId, int whoseRegion, int regionType, String value) {
+        return null;
     }
 
+    @Override
+    public Map<String, Integer> getByHostel_Region(int hostelId, int whoseRegion, int regionType) {
+        return null;
+    }
 
     @Override
     public int add(BookBill bookBill) throws Exception {

@@ -54,22 +54,6 @@ public class VipDataController {
         return BookBillVO.entityToVO(vipService.getRecentYearBookBills(id));
     }
 
-    
-    //TODO 这个目前没用，不过先放着吧
-    @RequestMapping(value = "/getBookList")
-    public List<BookBillVO> getBookList(HttpSession session,String dateType,String start,String end){
-        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
-        int id=user.getId();
-        switch (dateType){
-            case CREATE_DATE:
-                return BookBillVO.entityToVO(vipService.getBookBills_createDate(id,start,end));
-            case LIVEIN_DATE:
-                return BookBillVO.entityToVO(vipService.getBookBills_liveInDate(id,start,end));
-            case CHECKOUT_DATE:
-                return BookBillVO.entityToVO(vipService.getBookBills_checkOutDate(id,start,end));
-        }
-        return null;
-    }
 //==================== End Of BookList ======================================================
     @RequestMapping(value = "/getHostelList")
     public List<HostelVO> getHostelList(){

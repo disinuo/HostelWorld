@@ -22,18 +22,11 @@ public interface PayBillDao {
     public List<PayBill> getAllUncountedByHostel(int hostelId);
     public List<PayBill> getAllByHostelId(int hostelId);
     public List<PayBill> getRecentByHostelId(int hostelId);
-    public List<PayBill> getRecentByHostelId_Date(int hostelId,long start,long end);
+    public List<PayBill> getByHostelId_Date(int hostelId, long start, long end);
 
     public List<PayBill> getAllByVipId(int vipId);
     public List<PayBill> getRecentByVipId(int vipId);
-    public List<PayBill> getRecentByVipId_Date(int vipId,long start,long end);
+    public List<PayBill> getByVipId_Date(int vipId, long start, long end);
 
-    /**
-     * 以入住时间为基准，返回时间段内的住房记录列表
-     * @param vipId
-     * @param start
-     * @param end
-     * @return
-     */
 
 }

@@ -3,7 +3,25 @@
  */
 $(document).ready(function () {
     getHostelList();
-
+    $.ajax({
+        url:'/constants/provinces',
+        success:function (data) {
+            console.log(data);
+        },
+        error:function (data) {
+            console.log(data);
+        }
+    });
+    $.ajax({
+        url:'/constants/cities',
+        data:{provinceId:320000},
+        success:function (data) {
+            console.log(data);
+        },
+        error:function (data) {
+            console.log(data);
+        }
+    });
 });
 
 function getHostelList() {

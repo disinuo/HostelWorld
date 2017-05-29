@@ -38,8 +38,8 @@ public interface LiveBillDao {
      * @param vipId
      * @return
      */
-    public List<LiveBill> getRecentByVipId_Date(int vipId,long start,long end);
-    public List<LiveBill> getRecentByHostelId_Date(int hostelId,long start,long end);
+    public List<LiveBill> getByVipId_Date(int vipId, long start, long end);
+    public List<LiveBill> getByHostelId_Date(int hostelId, long start, long end);
 
     /**
      * 返回未离店的

@@ -90,7 +90,6 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public double enrollPay(int liveBillId) {
-        System.out.println("In service---- id="+liveBillId+",money=");
         LiveBill liveBill= liveBillDao.get(liveBillId);
         List<LiveDetail> liveDetails=liveBill.getLiveDetails();
         Hostel hostel=liveBill.getHostel();
@@ -349,17 +348,17 @@ public class HostelServiceBean implements HostelService {
     public List<BookBill> getRecentWeekBookBills(int hostelId){
         long today=new Date().getTime();
         long start=DateHandler.add(today,Calendar.WEDNESDAY,-1);
-        return bookBillDao.getByHostel_createDate(hostelId,start,today);
+        return bookBillDao.getByHostel_Date(hostelId,start,today);
     }
     public List<BookBill> getRecentMonthBookBills(int hostelId){
         long today=new Date().getTime();
         long start=DateHandler.add(today,Calendar.MONTH,-1);
-        return bookBillDao.getByHostel_createDate(hostelId,start,today);
+        return bookBillDao.getByHostel_Date(hostelId,start,today);
     }
     public List<BookBill> getRecentYearBookBills(int hostelId){
         long today=new Date().getTime();
         long start=DateHandler.add(today,Calendar.YEAR,-1);
-        return bookBillDao.getByHostel_createDate(hostelId,start,today);
+        return bookBillDao.getByHostel_Date(hostelId,start,today);
     }
 //========================End Of BookBill ======================================
 
@@ -378,17 +377,17 @@ public class HostelServiceBean implements HostelService {
     public List<PayBill> getRecentWeekPayBills(int hostelId){
         long today=new Date().getTime();
         long start=DateHandler.add(today,Calendar.WEDNESDAY,-1);
-        return payBillDao.getRecentByHostelId_Date(hostelId,start,today);
+        return payBillDao.getByHostelId_Date(hostelId,start,today);
     }
     public List<PayBill> getRecentMonthPayBills(int hostelId){
         long today=new Date().getTime();
         long start=DateHandler.add(today,Calendar.MONTH,-1);
-        return payBillDao.getRecentByHostelId_Date(hostelId,start,today);
+        return payBillDao.getByHostelId_Date(hostelId,start,today);
     }
     public List<PayBill> getRecentYearPayBills(int hostelId){
         long today=new Date().getTime();
         long start=DateHandler.add(today,Calendar.YEAR,-1);
-        return payBillDao.getRecentByHostelId_Date(hostelId,start,today);
+        return payBillDao.getByHostelId_Date(hostelId,start,today);
     }
 //==================== End Of PayBill ===================================
 
@@ -419,17 +418,17 @@ public class HostelServiceBean implements HostelService {
     public List<LiveBill> getRecentWeekLiveBills(int hostelId){
         long today=new Date().getTime();
         long start=DateHandler.add(today,Calendar.WEDNESDAY,-1);
-        return liveBillDao.getRecentByHostelId_Date(hostelId,start,today);
+        return liveBillDao.getByHostelId_Date(hostelId,start,today);
     }
     public List<LiveBill> getRecentMonthLiveBills(int hostelId){
         long today=new Date().getTime();
         long start=DateHandler.add(today,Calendar.MONTH,-1);
-        return liveBillDao.getRecentByHostelId_Date(hostelId,start,today);
+        return liveBillDao.getByHostelId_Date(hostelId,start,today);
     }
     public List<LiveBill> getRecentYearLiveBills(int hostelId){
         long today=new Date().getTime();
         long start=DateHandler.add(today,Calendar.YEAR,-1);
-        return liveBillDao.getRecentByHostelId_Date(hostelId,start,today);
+        return liveBillDao.getByHostelId_Date(hostelId,start,today);
     }
 //========================End Of LiveBill ======================================
 

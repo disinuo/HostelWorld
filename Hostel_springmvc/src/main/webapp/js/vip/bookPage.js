@@ -44,7 +44,7 @@ function init() {
             $('#descrip').html(data.descrip);
             $('#roomId').val(roomId);
         }
-    })
+    });
 }
 function get() {
     var v = $('.form-control').val();

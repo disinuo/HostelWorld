@@ -74,7 +74,7 @@ public class PayBillDaoImpl implements PayBillDao {
     }
 
     @Override
-    public List<PayBill> getRecentByHostelId_Date(int hostelId,long start,long end){
+    public List<PayBill> getByHostelId_Date(int hostelId, long start, long end){
         String hql=baseHql_hostel+hostelColumnName+" = "+hostelId+
                 " AND paybill.createDate BETWEEN "+start+" AND "+end+
                 hqlTail;
@@ -95,7 +95,7 @@ public class PayBillDaoImpl implements PayBillDao {
 
 
     @Override
-    public List<PayBill> getRecentByVipId_Date(int vipId, long start, long end) {
+    public List<PayBill> getByVipId_Date(int vipId, long start, long end) {
         String hql=baseHql_vip+" AND "+vipColumnName+" = "+vipId+
                 " AND paybill.createDate BETWEEN "+start+" AND "+end+
                 hqlTail;

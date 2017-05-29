@@ -114,11 +114,6 @@ public interface VIPService {
     public List<BookBill> getRecentWeekBookBills(int vipId);
     public List<BookBill> getRecentMonthBookBills(int vipId);
     public List<BookBill> getRecentYearBookBills(int vipId);
-
-    public List<BookBill> getBookBills_createDate(int vipId,String start,String end);
-    public List<BookBill> getBookBills_liveInDate(int vipId,String start,String end);
-    public List<BookBill> getBookBills_checkOutDate(int vipId,String start,String end);
-
     /**
      * 获取本人住店数据
      * @param vipId
