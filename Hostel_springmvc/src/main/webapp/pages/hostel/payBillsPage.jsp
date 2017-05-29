@@ -29,6 +29,7 @@
             <button id="btn_week" class="btn btn-primary">最近7天</button>
             <button id="btn_year" class="btn btn-primary">今年</button>
             <button id="btn_all" class="btn btn-primary">所有</button>
+            <button id="btn_unCounted" class="btn btn-primary">未结算的</button>
         </div>
         <table id="table" class="col-lg-9 table table-striped">
         </table>

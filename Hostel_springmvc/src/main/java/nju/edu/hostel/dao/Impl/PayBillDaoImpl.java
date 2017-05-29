@@ -112,7 +112,7 @@ public class PayBillDaoImpl implements PayBillDao {
     @Override
     public List<PayBill> getAllUncountedByHostel(int hostelId) {
         String hql=baseHql_hostel+
-                hostelColumnName+" = "+hostelId+
+                hostelColumnName+" = "+hostelId+" AND "+
                 restrict_uncounted+
                 hqlTail;
         return baseDao.getByHql(PayBill.class,hql);

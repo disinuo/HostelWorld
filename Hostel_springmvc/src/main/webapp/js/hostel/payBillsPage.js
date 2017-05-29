@@ -19,6 +19,9 @@ $('#btn_year').click(function (e) {
 $('#btn_all').click(function (e) {
     $('#table').bootstrapTable('refresh',{ url:'/data/hostel/getAllPayList'});
 });
+$('#btn_unCounted').click(function (e) {
+    $('#table').bootstrapTable('refresh',{ url:'/data/hostel/getUncountedPayList'});
+});
 function getPayBillList() {
     $('#table').bootstrapTable({
         url: '/data/hostel/getAllPayList',
