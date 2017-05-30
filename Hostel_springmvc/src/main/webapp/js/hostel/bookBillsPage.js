@@ -6,6 +6,17 @@
  */
 $(document).ready(function () {
     getBookBillList();
+    // initChart();
+    $.ajax({
+       url:'/data/hostel/getAllBookNum/year',
+       success:function (data) {
+           console.log(data);
+       },
+        error:function (data) {
+            alert('ERROR');
+            console.log(data);
+        }
+    });
 });
 $('#btn_week').click(function (e) {
     $('#table').bootstrapTable('refresh',{ url:'/data/hostel/getRecentBookList/week'});
@@ -19,6 +30,53 @@ $('#btn_year').click(function (e) {
 $('#btn_all').click(function (e) {
     $('#table').bootstrapTable('refresh',{ url:'/data/hostel/getAllBookList'});
 });
+function initChart() {
+    // Instanciate the map
+    Highcharts.mapChart('container', {
+        chart: {
+            borderWidth: 1
+        },
+
+        title: {
+            text: 'Nordic countries'
+        },
+        subtitle: {
+            text: 'Demo of drawing all areas in the map, only highlighting partial data'
+        },
+
+        legend: {
+            enabled: false
+        },
+
+        series: [{
+            name: 'Country',
+            mapData: Highcharts.maps['custom/europe'],
+            data: [
+                ['is', 1],
+                ['no', 1],
+                ['se', 1],
+                ['dk', 1],
+                ['fi', 1]
+            ],
+            dataLabels: {
+                enabled: true,
+                color: '#FFFFFF',
+                formatter: function () {
+                    if (this.point.value) {
+                        return this.point.name;
+                    }
+                }
+            },
+            tooltip: {
+                headerFormat: '',
+                pointFormat: '{point.name}'
+            }
+        }]
+    });
+
+
+
+}
 function getBookBillList() {
     $('#table').bootstrapTable({
         url: '/data/hostel/getRecentBookList',
@@ -75,7 +133,7 @@ function getBookBillList() {
             align: 'center',
             sortable:true,
             formatter:stateFormatter
-        }],
+        }]
     });
 }
 function stateFormatter(value,row,index) {

@@ -68,9 +68,6 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public ResultMessage update(int id,String descrip,String name,String address,String phone) {
-        System.out.println("in service updateHostelInfo  ");
-        System.out.print(id+" "+name+" "+address+" "+phone);
-        //TODO 待测试
         RequestModify requestModify=new RequestModify();
         requestModify.setNewAddress(address);
         requestModify.setNewName(name);
@@ -85,7 +82,6 @@ public class HostelServiceBean implements HostelService {
             return ResultMessage.FAILURE;
         }
         return ResultMessage.SUCCESS;
-//        return hostelDao.update(hostel);
     }
 
     @Override
@@ -259,7 +255,6 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public ResultMessage checkOut(int liveBillId){
-        //TODO 要更新 更新人均消费等，再想想
         LiveBill liveBill= liveBillDao.get(liveBillId);
         liveBill.setCheckOutDate((new Date()).getTime());
         liveBill.setInHostel(false);
@@ -315,7 +310,6 @@ public class HostelServiceBean implements HostelService {
     }
     @Override
     public ResultMessage updateRoom(int roomId, RoomVO_input roomVO) {
-//        TODO updateRoom!!!!
         Room room=roomDao.get(roomId);
         room.setName(roomVO.getName());
 //        room.setImg(roomVO.getImg());
@@ -336,8 +330,12 @@ public class HostelServiceBean implements HostelService {
     }
 //======================== BookBill ======================================
     @Override
-    public List<BookBill> getAllBookBills(int hostelId) {
+    public BookBill getBookBillById(int billId){
+        return bookBillDao.get(billId);
+    }
 
+    @Override
+    public List<BookBill> getAllBookBills(int hostelId) {
         return bookBillDao.getByRestrictEqual("hostel.id",hostelId);
     }
     @Override
@@ -350,16 +348,108 @@ public class HostelServiceBean implements HostelService {
         long start=DateHandler.add(today,Calendar.WEDNESDAY,-1);
         return bookBillDao.getByHostel_Date(hostelId,start,today);
     }
+    @Override
     public List<BookBill> getRecentMonthBookBills(int hostelId){
         long today=new Date().getTime();
         long start=DateHandler.add(today,Calendar.MONTH,-1);
         return bookBillDao.getByHostel_Date(hostelId,start,today);
     }
+    @Override
     public List<BookBill> getRecentYearBookBills(int hostelId){
         long today=new Date().getTime();
         long start=DateHandler.add(today,Calendar.YEAR,-1);
         return bookBillDao.getByHostel_Date(hostelId,start,today);
     }
+
+    @Override
+    public Map<String, Integer> getAllBookNumByYear(int hostelId) {
+        List<BookBill> allBills=getAllBookBills(hostelId);
+        Map<String,Integer> map=new HashMap<String,Integer>();
+        for(BookBill bill:allBills){
+            int year=DateHandler.getFieldFromLong(Calendar.YEAR,bill.getCreateDate());
+            String yearStr=DateHandler.yearToShow(year);
+            if(map.containsKey(yearStr)){
+                int num=map.get(yearStr);
+                map.put(yearStr,++num);
+            }else {
+                map.put(yearStr,1);
+            }
+        }
+        return map;
+        //TODO 待测试
+    }
+
+    @Override
+    public Map<String, Double> getValidBookRateByYear(int hostelId) {
+        return null;//TODO
+    }
+
+    @Override
+    public Map<String, Double> getLiveInBookRateByYear(int hostelId) {
+        return null;//TODO
+    }
+
+    @Override
+    public Map<String, Integer> getAllBookNumByMonth(int hostelId) {
+        return null;//TODO
+    }
+
+    @Override
+    public Map<String, Double> getValidBookRateByMonth(int hostelId) {
+        return null;//TODO
+    }
+
+    @Override
+    public Map<String, Double> getLiveInBookRateByMonth(int hostelId) {
+        return null;//TODO
+    }
+
+    @Override
+    public Map<String, Integer> getAllBookNumByWeek(int hostelId) {
+        return null;//TODO
+    }
+
+    @Override
+    public Map<String, Double> getValidBookRateByWeek(int hostelId) {
+        return null;//TODO
+    }
+
+    @Override
+    public Map<String, Double> getLiveInBookRateByWeek(int hostelId) {
+        return null;//TODO
+    }
+
+    @Override
+    public Map<String, Integer> getAllBookNumByVipRegion(int hostelId, String regionType) {
+        return null;//TODO
+    }
+
+    @Override
+    public Map<String, Double> getValidBookRateByVipRegion(int hostelId, String regionType) {
+        return null;//TODO
+    }
+
+    @Override
+    public Map<String, Double> getLiveInBookRateByVipRegion(int hostelId, String regionType) {
+        return null;//TODO
+    }
+
+    @Override
+    public Map<String, Integer> getAllBookNumByVipAge(int hostelId) {
+        return null;//TODO
+    }
+
+    @Override
+    public Map<String, Integer> getValidBookRateByVipAge(int hostelId) {
+        return null;//TODO
+    }
+
+    @Override
+    public Map<String, Integer> getLiveInBookRateByVipAge(int hostelId) {
+        return null;//TODO
+    }
+
+
 //========================End Of BookBill ======================================
 
 //======================== PayBill ======================================
@@ -476,10 +566,6 @@ public class HostelServiceBean implements HostelService {
         return hostelDao.getByRestrictEqual("permitted",true);
     }
    
-    @Override
-    public BookBill getBookBillById(int billId){
-        return bookBillDao.get(billId);
-    }
 
     @Override
     public  List<HostelMoneyRecord> getAllMoneyRecords(int hostelId){

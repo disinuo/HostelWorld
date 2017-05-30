@@ -33,8 +33,6 @@
 <%--</div>--%>
 
 <%@include file="../common/tail.jsp" %>
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
 
 <%--<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>--%>
 

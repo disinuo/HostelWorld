@@ -9,7 +9,7 @@ public class Constants {
     public static final String ROLE_HOSTEL="hostel";
     public static final String ROLE_MANAGER="manager";
 
-    
+
     public static final String REGIONTYPE_PROVINCE="province";
     public static final String REGIONTYPE_CITY="city";
 

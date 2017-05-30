@@ -18,6 +18,10 @@
    <%--<link rel="stylesheet" href="/css/lib/bootstrap-datetimepicker.min.css" />--%>
    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
    <link rel="stylesheet" href="/css/lib/flatpickr.min.css"/>
+
+   <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+   <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
    <link rel="stylesheet" href="/css/common.css">
 
 <%--<link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">--%>

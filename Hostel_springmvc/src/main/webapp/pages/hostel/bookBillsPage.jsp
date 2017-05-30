@@ -28,6 +28,7 @@
         </div>
         <table id="table" class="col-lg-9 table table-striped">
         </table>
+        <div id="container" style="height: 500px; min-width: 310px; max-width: 600px; margin: 0 auto"></div>
     </div>
 </div>
 
