@@ -19,7 +19,7 @@ import static nju.edu.hostel.util.Constants.DEFAULT_NUM_OF_DATA;
 public class BookBillDaoImpl implements BookBillDao {
     @Autowired
     BaseDao baseDao;
-    private String baseHql="SELECT bill FROM BookBill as bill ";
+    private String baseHql="SELECT bill FROM BookBill as bill WHERE ";
     private String hqlTail=" ORDER BY bill.id DESC";
 
     @Override
@@ -45,15 +45,13 @@ public class BookBillDaoImpl implements BookBillDao {
 
     @Override
     public List<BookBill> getAllValidByVipId(int vipId){
-        String hql=baseHql+
-                " WHERE bill.vip.id = "+vipId+" AND bill.state>-1"+
+        String hql=baseHql+" bill.vip.id = "+vipId+" AND bill.state>-1"+
                 hqlTail;
         return baseDao.getByHql(BookBill.class,hql);
     }
     @Override
     public List<BookBill> getRecentValidByVipId(int vipId) {
-        String hql=baseHql+
-                " WHERE bill.vip.id = "+vipId+" AND bill.state>-1"+
+        String hql=baseHql+" bill.vip.id = "+vipId+" AND bill.state>-1"+
                 hqlTail;
         return baseDao.getByHql_paging(BookBill.class,hql,0,DEFAULT_NUM_OF_DATA);
     }
@@ -88,17 +86,6 @@ public class BookBillDaoImpl implements BookBillDao {
     public List<BookBill> getByHostel_Date(int hostelId, long start, long end) {
         return getHelper("hostel.id",hostelId,"createDate",start,end);
     }
-
-    @Override
-    public List<BookBill> getByHostel_Region(int hostelId, int whoseRegion, int regionType, String value) {
-        return null;
-    }
-
-    @Override
-    public Map<String, Integer> getByHostel_Region(int hostelId, int whoseRegion, int regionType) {
-        return null;
-    }
-
     @Override
     public int add(BookBill bookBill) throws Exception {
         return baseDao.save(bookBill);
@@ -112,21 +99,20 @@ public class BookBillDaoImpl implements BookBillDao {
 
 
     private  List<BookBill> getHelper(String idType,int id,String dateType,long start,long end){
-        String hql=baseHql+
-                " WHERE bill."+idType+" = "+id+
-                " AND bill."+dateType+" BETWEEN "+start+" AND "+end+
+        String hql=baseHql+" bill."+idType+" = "+id+
+                " AND bill."+dateType+" BETWEEN "+start+
+                " AND "+end+
                 hqlTail;
         return baseDao.getByHql(BookBill.class,hql);
     }
     private List<BookBill> getDefaultHelper(String idType,int id){
-        String hql=baseHql+
-                " WHERE bill."+idType+" = "+id+
+        String hql=baseHql+" bill."+idType+" = "+id+
                 hqlTail;
         return baseDao.getByHql_paging(BookBill.class,hql,0,DEFAULT_NUM_OF_DATA);
     }
     private List<BookBill> getValidByVipHelper(int vipId,String dateType,long start,long end){
         String hql=baseHql+
-                " WHERE bill.vip.id = "+vipId+
+                " bill.vip.id = "+vipId+
                 " AND bill."+dateType+">="+start+"&&<"+end+
                 hqlTail;
         return baseDao.getByHql(BookBill.class,hql);

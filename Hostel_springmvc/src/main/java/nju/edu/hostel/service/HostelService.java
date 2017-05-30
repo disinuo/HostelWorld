@@ -7,6 +7,7 @@ import nju.edu.hostel.vo.input.LiveInVO;
 import nju.edu.hostel.vo.input.RoomVO_input;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by disinuo on 17/3/2.
@@ -133,6 +134,9 @@ public interface HostelService {
      * @return
      */
     public ResultMessage invalidateRoom(int roomId);
+//==================== BookBill =============================================================
+    public BookBill getBookBillById(int billId);
+
     /**
      * 获取本店预订数据，包括预订和取消预订
      */
@@ -141,8 +145,56 @@ public interface HostelService {
     public List<BookBill> getRecentWeekBookBills(int hostelId);
     public List<BookBill> getRecentMonthBookBills(int hostelId);
     public List<BookBill> getRecentYearBookBills(int hostelId);
-    public BookBill getBookBillById(int billId);
 
+    /**
+     * 指标：
+     *  - 订单总量
+     *  - 有效订单率（未取消的/总量）
+     *  - 单入住订率（入住了的/未取消的）（注意：分母是预定的入住日期已到的）
+     *       注意！：没住不只是state=0，得是当前时间已经晚于预订的入住时间
+
+     */
+
+    /**
+     * 维度：时间
+     * @return year:numOfBill
+     */
+    // 范围：【所有订单】；分组标准【年】
+    public Map<String,Integer> getAllBookNumByYear(int hostelId);
+    public Map<String,Double> getValidBookRateByYear(int hostelId);
+    public Map<String,Double> getLiveInBookRateByYear(int hostelId);
+    // 范围：【今年】；分组标准【月份】
+    public Map<String,Integer> getAllBookNumByMonth(int hostelId);
+    public Map<String,Double> getValidBookRateByMonth(int hostelId);
+    public Map<String,Double> getLiveInBookRateByMonth(int hostelId);
+    // 范围：【今年】；分组标准【星期几】
+    public Map<String,Integer> getAllBookNumByWeek(int hostelId);
+    public Map<String,Double> getValidBookRateByWeek(int hostelId);
+    public Map<String,Double> getLiveInBookRateByWeek(int hostelId);
+    /**
+     * 维度：下单的vip的地区
+     * 范围：【所有订单】
+     * @return region:numOfBill
+     */
+    // 分组标准【vip的省或市】
+    public Map<String,Integer> getAllBookNumByVipRegion(int hostelId, String regionType);
+    public Map<String,Double> getValidBookRateByVipRegion(int hostelId, String regionType);
+    public Map<String,Double> getLiveInBookRateByVipRegion(int hostelId, String regionType);
+
+    /**
+     * 维度：下单的vip的年龄
+     * 范围：【所有订单】
+     * @return ageRange:numOfBill
+     */
+    // 分组标准【vip的年龄段：<18,18~30,30~50,>50】
+    public Map<String,Integer> getAllBookNumByVipAge(int hostelId);
+    public Map<String,Integer> getValidBookRateByVipAge(int hostelId);
+    public Map<String,Integer> getLiveInBookRateByVipAge(int hostelId);
+
+//==================== End Of BookBill =============================================================
+
+
+//==================== PayBill =============================================================
     /**
      * 获取本店财务情况
      * @param hostelId
@@ -155,20 +207,23 @@ public interface HostelService {
     public List<PayBill> getRecentYearPayBills(int hostelId);
     public List<PayBill> getUncountedPayBills(int hostelId);
 
+//==================== End Of PayBill =============================================================
+
+
+
+
     /**
      * 获取本店总收入
      * @param hostelId
      * @return
      */
     public double getIncome(int hostelId);
+//==================== LiveBill =============================================================
 
     /**
      * 获取本店住店数据
      */
     public List<LiveBill> getAllLiveBills(int hostelId);
-    /**
-     * 最近默认n天的本店住店数据
-     */
     public List<LiveBill> getRecentLiveBills(int hostelId);
     public List<LiveBill> getRecentWeekLiveBills(int hostelId);
     public List<LiveBill> getRecentMonthLiveBills(int hostelId);
@@ -182,6 +237,7 @@ public interface HostelService {
      */
     public List<LiveBill> getNotPaidLiveBills(int hostelId);
     public LiveBill getLiveBillById(int billId);
+//==================== End Of LiveBill =============================================================
 
 
     public int getTotalLiveInNum(int hostelId);

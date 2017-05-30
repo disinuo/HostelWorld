@@ -2,13 +2,48 @@ package nju.edu.hostel.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Year;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by disinuo on 17/3/10.
  */
 public class DateHandler {
+    public static long fieldToLong(int dateType,int value){
+        Calendar c=Calendar.getInstance();
+        c.setTimeInMillis(0);
+        c.set(dateType,value);
+        return c.getTimeInMillis();
+    }
+
+    /**
+     * DAY_OF_WEEK  周日开始，=1；周一 =2
+     */
+    public static int getFieldFromLong(int dateType,long date){
+        Calendar helper=Calendar.getInstance();
+        helper.setTimeInMillis(date);
+        return helper.get(dateType);
+    }
+
+    public static String dayOfWeekToShow(int value){
+        String base="周";
+        switch (value){
+            case 1:return base+"日";
+            case 2:return base+"一";
+            case 3:return base+"二";
+            case 4:return base+"三";
+            case 5:return base+"四";
+            case 6:return base+"五";
+            case 7:return base+"六";
+            default:return "未知";
+        }
+    }
+    public static String yearToShow(int year){
+        return year+"年";
+    }
     public static Date longToDate(long time){
         return new Date(time);
     }
@@ -17,6 +52,7 @@ public class DateHandler {
         Date date=new Date(time);
         return formatter.format(date);
     }
+
 
     /**
      * 将毫秒转化成天数
@@ -50,9 +86,21 @@ public class DateHandler {
     private static SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd");
 
     public static void main(String[] args){
-        long today=new Date().getTime();
-        System.out.println(longToStr(DateHandler.add(today,Calendar.YEAR,-1)));
-        System.out.println(longToStr(DateHandler.add(today,Calendar.MONTH,-1)));
-        System.out.println(longToStr(DateHandler.add(today,Calendar.WEDNESDAY,-1)));
+        Map<String,Integer> map=new HashMap<String,Integer>();
+        int[] years={2016,2016,2017,2016,2016,2011,2011,2016,};
+        for(int year:years){
+            String yearStr=DateHandler.yearToShow(year);
+            if(map.containsKey(yearStr)){
+                int num=map.get(yearStr);
+                map.put(yearStr,++num);
+            }else {
+                map.put(yearStr,1);
+            }
+        }
+        System.out.println(map.size());
+        for(String key:map.keySet()){
+            System.out.println(key+" : "+map.get(key));
+        }
+
     }
 }

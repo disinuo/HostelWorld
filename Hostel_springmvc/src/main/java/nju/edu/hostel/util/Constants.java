@@ -9,6 +9,10 @@ public class Constants {
     public static final String ROLE_HOSTEL="hostel";
     public static final String ROLE_MANAGER="manager";
 
+    
+    public static final String REGIONTYPE_PROVINCE="province";
+    public static final String REGIONTYPE_CITY="city";
+
     public static final int MANAGER_ID=666;
     /**
      * 加载大量数据时默认显示前DEFAULT_NUM_OF_DATA条
