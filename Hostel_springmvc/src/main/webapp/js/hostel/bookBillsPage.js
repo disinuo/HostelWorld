@@ -8,7 +8,17 @@ $(document).ready(function () {
     getBookBillList();
     // initChart();
     $.ajax({
-       url:'/data/hostel/getAllBookNum/year',
+        url:'/data/hostel/getLiveInBookRate/year',
+        success:function (data) {
+            console.log(data);
+        },
+        error:function (data) {
+            alert('ERROR');
+            console.log(data);
+        }
+    });
+    $.ajax({
+       url:'/data/hostel/getValidBookRate/year',
        success:function (data) {
            console.log(data);
        },
@@ -17,6 +27,37 @@ $(document).ready(function () {
             console.log(data);
         }
     });
+    $.ajax({
+        url:'/data/hostel/getAllBookNum/year',
+        success:function (data) {
+            console.log(data);
+        },
+        error:function (data) {
+            alert('ERROR');
+            console.log(data);
+        }
+    });
+    $.ajax({
+        url:'/data/hostel/getAllBookNum/month',
+        success:function (data) {
+            console.log(data);
+        },
+        error:function (data) {
+            alert('ERROR');
+            console.log(data);
+        }
+    });
+    $.ajax({
+        url:'/data/hostel/getAllBookNum/week',
+        success:function (data) {
+            console.log(data);
+        },
+        error:function (data) {
+            alert('ERROR');
+            console.log(data);
+        }
+    });
+
 });
 $('#btn_week').click(function (e) {
     $('#table').bootstrapTable('refresh',{ url:'/data/hostel/getRecentBookList/week'});

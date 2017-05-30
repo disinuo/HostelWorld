@@ -91,10 +91,31 @@ public class HostelDataController {
     public BookBillVO getBookBillById(int billId){
         return new BookBillVO(hostelService.getBookBillById(billId));
     }
+    //==== List<DataVO> =========
     @RequestMapping(value = "/getAllBookNum/year")
-    public Map<String, Integer> getAllBookNumByYear(HttpSession session) {
+    public List<DataVO> getAllBookNumByYear(HttpSession session) {
         int id= ControllerHelper.getUserIdFromSession(session);
         return hostelService.getAllBookNumByYear(id);
+    }
+    @RequestMapping(value = "/getAllBookNum/month")
+    public List<DataVO> getAllBookNumByMonth(HttpSession session) {
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return hostelService.getAllBookNumByMonth(id);
+    }
+    @RequestMapping(value = "/getAllBookNum/week")
+    public List<DataVO> getAllBookNumByWeek(HttpSession session) {
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return hostelService.getAllBookNumByWeek(id);
+    }
+    @RequestMapping(value = "/getValidBookRate/year")
+    public List<DataVO> getValidBookRateByYear(HttpSession session) {
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return hostelService.getValidBookRateByYear(id);
+    }
+    @RequestMapping(value = "/getLiveInBookRate/year")
+    public List<DataVO> getLiveInBookRateByYear(HttpSession session) {
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return hostelService.getLiveInBookRateByYear(id);
     }
 
 //======================= End Of BookList ============================================

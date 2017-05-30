@@ -27,7 +27,17 @@ public class DateHandler {
         helper.setTimeInMillis(date);
         return helper.get(dateType);
     }
-
+    public static String dateFieldToShow(int dateType,int value){
+        switch (dateType){
+            case Calendar.YEAR:return yearToShow(value);
+            case Calendar.WEDNESDAY:return dayOfWeekToShow(value);
+            case Calendar.MONTH:return monthToShow(value);
+            default:return value+"";
+        }
+    }
+    public static String monthToShow(int value){
+        return (value+1)+"月";
+    }
     public static String dayOfWeekToShow(int value){
         String base="周";
         switch (value){
@@ -86,6 +96,10 @@ public class DateHandler {
     private static SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd");
 
     public static void main(String[] args){
+        long test1=strToLong("2017-4-5");
+        System.out.println(longToStr(add(test1,Calendar.WEDNESDAY,1)));
+        System.out.println(longToStr(add(test1,Calendar.WEDNESDAY,4)));
+
         Map<String,Integer> map=new HashMap<String,Integer>();
         int[] years={2016,2016,2017,2016,2016,2011,2011,2016,};
         for(int year:years){

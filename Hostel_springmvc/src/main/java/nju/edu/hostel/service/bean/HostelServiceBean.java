@@ -8,6 +8,7 @@ import nju.edu.hostel.util.*;
 import nju.edu.hostel.vo.input.GuestInputVO;
 import nju.edu.hostel.vo.input.LiveInVO;
 import nju.edu.hostel.vo.input.RoomVO_input;
+import nju.edu.hostel.vo.output.DataVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -362,12 +363,17 @@ public class HostelServiceBean implements HostelService {
     }
 
     @Override
-    public Map<String, Integer> getAllBookNumByYear(int hostelId) {
-        List<BookBill> allBills=getAllBookBills(hostelId);
+    public List<DataVO>  getAllBookNumByYear(int hostelId) {
+        return DataVO.mapToVO(getAllBookNumByDate_Helper(hostelId,Calendar.YEAR));
+    }
+
+    private  Map<String,Integer>  getAllBookNumByDate_Helper(int hostelId,int dateType) {
+        List<BookBill> bills=getAllBookBills(hostelId);
         Map<String,Integer> map=new HashMap<String,Integer>();
-        for(BookBill bill:allBills){
-            int year=DateHandler.getFieldFromLong(Calendar.YEAR,bill.getCreateDate());
-            String yearStr=DateHandler.yearToShow(year);
+        for(BookBill bill:bills){
+            int year=DateHandler.getFieldFromLong(dateType,bill.getCreateDate());
+            //TODO
+            String yearStr=DateHandler.dateFieldToShow(dateType,year);
             if(map.containsKey(yearStr)){
                 int num=map.get(yearStr);
                 map.put(yearStr,++num);
@@ -376,80 +382,129 @@ public class HostelServiceBean implements HostelService {
             }
         }
         return map;
-        //TODO 待测试
     }
 
     @Override
-    public Map<String, Double> getValidBookRateByYear(int hostelId) {
+    public List<DataVO>  getValidBookRateByYear(int hostelId) {
+        Map<String,Double> map=new HashMap<String,Double>();
+        Map<String,Integer> all=getAllBookNumByDate_Helper(hostelId,Calendar.YEAR);
+        Map<String,Integer> notCanceled=getNotCanceledBookNumByYear(hostelId);
+        for(String key:all.keySet()){
+            double ans=(double)notCanceled.get(key)/(double)all.get(key);
+            map.put(key,NumberFormatter.saveTwoDecimal(ans));
+        }
+        return DataVO.mapToVO(map);
+    }
+
+    @Override
+    public List<DataVO>  getLiveInBookRateByYear(int hostelId) {
+        long today=new Date().getTime();
+        Map<String,Double> map=new HashMap<String,Double>();
+        List<BookBill> bills=getAllBookBills(hostelId);
+        for(BookBill bill:bills){
+            //状态的【未入住】 且 现在已经晚于预订的入住日期
+            if(bill.getState()==0&&bill.getLiveInDate()<today){
+                int year=DateHandler.getFieldFromLong(Calendar.YEAR,bill.getCreateDate());
+                String yearStr=DateHandler.yearToShow(year);
+                if(map.containsKey(yearStr)){
+                    double num=map.get(yearStr);
+                    map.put(yearStr,++num);
+                }else {
+                    map.put(yearStr,1.0);
+                }
+            }
+        }
+        Map<String,Integer> notCanceled=getNotCanceledBookNumByYear(hostelId);
+        for(String key:notCanceled.keySet()){
+            double ans=map.get(key)/(double)notCanceled.get(key);
+            map.put(key,NumberFormatter.saveTwoDecimal(1-ans));
+        }
+        return DataVO.mapToVO(map);
+
+    }
+
+    @Override
+    public List<DataVO>  getAllBookNumByMonth(int hostelId) {
+        return DataVO.mapToVO(getAllBookNumByDate_Helper(hostelId,Calendar.MONTH));
+
+    }
+
+    @Override
+    public List<DataVO>  getValidBookRateByMonth(int hostelId) {
         return null;//TODO
     }
 
     @Override
-    public Map<String, Double> getLiveInBookRateByYear(int hostelId) {
+    public List<DataVO>  getLiveInBookRateByMonth(int hostelId) {
         return null;//TODO
     }
 
     @Override
-    public Map<String, Integer> getAllBookNumByMonth(int hostelId) {
+    public List<DataVO> getAllBookNumByWeek(int hostelId) {
+
+        return DataVO.mapToVO(getAllBookNumByDate_Helper(hostelId,Calendar.WEDNESDAY));
+
+    }
+
+    @Override
+    public List<DataVO>  getValidBookRateByWeek(int hostelId) {
         return null;//TODO
     }
 
     @Override
-    public Map<String, Double> getValidBookRateByMonth(int hostelId) {
+    public List<DataVO>  getLiveInBookRateByWeek(int hostelId) {
         return null;//TODO
     }
 
     @Override
-    public Map<String, Double> getLiveInBookRateByMonth(int hostelId) {
+    public List<DataVO>  getAllBookNumByVipRegion(int hostelId, String regionType) {
         return null;//TODO
     }
 
     @Override
-    public Map<String, Integer> getAllBookNumByWeek(int hostelId) {
+    public List<DataVO>  getValidBookRateByVipRegion(int hostelId, String regionType) {
         return null;//TODO
     }
 
     @Override
-    public Map<String, Double> getValidBookRateByWeek(int hostelId) {
+    public List<DataVO>  getLiveInBookRateByVipRegion(int hostelId, String regionType) {
         return null;//TODO
     }
 
     @Override
-    public Map<String, Double> getLiveInBookRateByWeek(int hostelId) {
+    public List<DataVO>  getAllBookNumByVipAge(int hostelId) {
         return null;//TODO
     }
 
     @Override
-    public Map<String, Integer> getAllBookNumByVipRegion(int hostelId, String regionType) {
+    public List<DataVO>  getValidBookRateByVipAge(int hostelId) {
         return null;//TODO
     }
 
     @Override
-    public Map<String, Double> getValidBookRateByVipRegion(int hostelId, String regionType) {
-        return null;//TODO
-    }
-
-    @Override
-    public Map<String, Double> getLiveInBookRateByVipRegion(int hostelId, String regionType) {
-        return null;//TODO
-    }
-
-    @Override
-    public Map<String, Integer> getAllBookNumByVipAge(int hostelId) {
-        return null;//TODO
-    }
-
-    @Override
-    public Map<String, Integer> getValidBookRateByVipAge(int hostelId) {
-        return null;//TODO
-    }
-
-    @Override
-    public Map<String, Integer> getLiveInBookRateByVipAge(int hostelId) {
+    public List<DataVO>  getLiveInBookRateByVipAge(int hostelId) {
         return null;//TODO
     }
 
 
+    //获得未取消的订单数
+    private Map<String,Integer> getNotCanceledBookNumByYear(int hostelId){
+        List<BookBill> bills=getAllBookBills(hostelId);
+        Map<String,Integer> map=new HashMap<String,Integer>();
+        for(BookBill bill:bills){
+            if(bill.getState()>=0){//未取消的
+                int year=DateHandler.getFieldFromLong(Calendar.YEAR,bill.getCreateDate());
+                String yearStr=DateHandler.yearToShow(year);
+                if(map.containsKey(yearStr)){
+                    int num=map.get(yearStr);
+                    map.put(yearStr,++num);
+                }else {
+                    map.put(yearStr,1);
+                }
+            }
+        }
+        return map;
+    }
 //========================End Of BookBill ======================================
 
 //======================== PayBill ======================================

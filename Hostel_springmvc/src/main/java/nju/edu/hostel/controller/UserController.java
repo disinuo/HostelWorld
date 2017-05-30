@@ -70,7 +70,6 @@ public class UserController {
     @RequestMapping(value = "/checkUser" ,produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String checkUser(HttpServletResponse response, String name){
-        System.out.println("in /checkUser post");
         ResultMessage msg=userService.checkUser(name);
         System.out.println(msg);
         return msg.toShow();
@@ -78,14 +77,10 @@ public class UserController {
     @RequestMapping(value = "/checkPassword",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String checkPassword(UserVO userVO){
-        System.out.println("in /checkPassword post");
 
         String name=userVO.getUserName();
         String password=userVO.getPassword();
-        System.out.println(name);
-        System.out.println(password);
         ResultMessage msg=userService.checkUser(name,password);
-        System.out.println(msg);
         return msg.toShow();
     }
     @RequestMapping("")
@@ -130,7 +125,6 @@ public class UserController {
     public UserVO_output getUserInfo(HttpSession session){
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
         int id=user.getId();
-        System.out.println("in User controller!!! userMoney= "+userService.getById(id).getBankMoney());
         return new UserVO_output(userService.getById(id));
     }
 

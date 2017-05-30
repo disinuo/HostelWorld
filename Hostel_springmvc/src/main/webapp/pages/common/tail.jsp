@@ -14,7 +14,8 @@
 <script type="text/javascript" language="javascript" src="/js/lib/jquery-2.1.4.js"></script>
 <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script type="text/javascript" language="javascript" src="/js/lib/bootstrap.min.js"></script>
+
 <!-- Latest compiled and minified JavaScript -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
 <!-- Latest compiled and minified Locales -->

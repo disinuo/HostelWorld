@@ -14,8 +14,10 @@ public class NumberFormatter {
      */
     public static double saveOneDecimal(double number){
         DecimalFormat df = new DecimalFormat("#.#");
-        double res=Double.parseDouble(df.format(number));
-
-        return res;
+        return Double.parseDouble(df.format(number));
+    }
+    public static double saveTwoDecimal(double number){
+        DecimalFormat df = new DecimalFormat("#.##");
+        return Double.parseDouble(df.format(number));
     }
 }

@@ -172,11 +172,8 @@ public class BaseDaoImpl implements BaseDao {
 		Criteria criteria=session.createCriteria(c);
 		criteria.add(Restrictions.eq(column,value));
 		criteria.addOrder(Order.desc(base));
-		System.out.println("In baseDao!");
-		System.out.println("column="+column+",value="+value);
 
 		List<T> ans=criteria.list();
-		System.out.println(" size= "+ans.size());
 
 		return ans;
 
