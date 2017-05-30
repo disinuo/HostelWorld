@@ -2,6 +2,7 @@ package nju.edu.hostel.controller;
 
 import nju.edu.hostel.model.HostelMoneyRecord;
 import nju.edu.hostel.service.HostelService;
+import nju.edu.hostel.util.ControllerHelper;
 import nju.edu.hostel.vo.output.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by disinuo on 17/3/13.
@@ -44,16 +46,14 @@ public class HostelDataController {
 
     @RequestMapping(value = "/getRooms")
     public List<RoomVO> getRooms(HttpSession session){
-        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
-        int id=user.getId();
+        int id= ControllerHelper.getUserIdFromSession(session);
         return RoomVO.entityToVO(hostelService.getAllRooms(id));
     }
 
 
     @RequestMapping(value = "/getInfo")
     public HostelVO getHostelInfo(HttpSession session){
-        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
-        int id=user.getId();
+        int id= ControllerHelper.getUserIdFromSession(session);
         return new HostelVO(hostelService.getById(id));
     }
 /*   这个自己用，别人用 都行*/
@@ -64,39 +64,39 @@ public class HostelDataController {
 //============= BookList========================================================
     @RequestMapping(value = "/getAllBookList")
     public List<BookBillVO> getAllBookList(HttpSession session){
-        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
-        int id=user.getId();
+        int id= ControllerHelper.getUserIdFromSession(session);
         return BookBillVO.entityToVO(hostelService.getAllBookBills(id));
     }
     @RequestMapping(value = "/getRecentBookList")
     public List<BookBillVO> getRecentBookList(HttpSession session){
-        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
-        int id=user.getId();
+        int id= ControllerHelper.getUserIdFromSession(session);
         return BookBillVO.entityToVO(hostelService.getRecentBookBills(id));
     }
     @RequestMapping(value = "/getRecentBookList/week")
     public List<BookBillVO> getRecentWeekBookList(HttpSession session){
-        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
-        int id=user.getId();
+        int id= ControllerHelper.getUserIdFromSession(session);
         return BookBillVO.entityToVO(hostelService.getRecentWeekBookBills(id));
     }
     @RequestMapping(value = "/getRecentBookList/month")
     public List<BookBillVO> getRecentMonthBookList(HttpSession session){
-        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
-        int id=user.getId();
+        int id= ControllerHelper.getUserIdFromSession(session);
         return BookBillVO.entityToVO(hostelService.getRecentMonthBookBills(id));
     }
     @RequestMapping(value = "/getRecentBookList/year")
     public List<BookBillVO> getRecentYearBookList(HttpSession session){
-        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
-        int id=user.getId();
+        int id= ControllerHelper.getUserIdFromSession(session);
         return BookBillVO.entityToVO(hostelService.getRecentYearBookBills(id));
     }
     @RequestMapping(value = "/getBookBillById")
     public BookBillVO getBookBillById(int billId){
-        System.out.println("controller: billId= "+billId);
         return new BookBillVO(hostelService.getBookBillById(billId));
     }
+    @RequestMapping(value = "/getAllBookNum/year")
+    public Map<String, Integer> getAllBookNumByYear(HttpSession session) {
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return hostelService.getAllBookNumByYear(id);
+    }
+
 //======================= End Of BookList ============================================
    
 //======================= LiveBill ============================================
@@ -196,19 +196,6 @@ public class HostelDataController {
 
     }
 
-    @RequestMapping(value = "/others/getAllBookBills")
-    public List<BookBillVO> getAllBookBillsByOthers(@RequestParam("hostelId")int hostelId){
-        return BookBillVO.entityToVO(hostelService.getAllBookBills(hostelId));
-    }
-    @RequestMapping(value = "/others/geAllPayBills")
-    public List<PayBillVO> getAllPayBillsByOthers(@RequestParam("hostelId")int hostelId){
-        return PayBillVO.entityToVO(hostelService.getAllPayBills(hostelId));
-    }
-
-    @RequestMapping(value = "/others/getAllLiveBills")
-    public List<LiveBillVO> getAllLiveBillsByOthers(@RequestParam("hostelId")int hostelId){
-        return LiveBillVO.entityToVO(hostelService.getAllLiveBills(hostelId));
-    }
 
 
     @RequestMapping(value = "/getIncome",produces = "text/html;charset=UTF-8")
