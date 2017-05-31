@@ -1,5 +1,11 @@
 package nju.edu.hostel.util;
 
+import org.hibernate.annotations.Immutable;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by disinuo on 17/3/4.
  */
@@ -92,9 +98,25 @@ public class Constants {
     }
     //【vip的年龄段：<18,18~30,30~50,>50】
     public static String AGE_TO_RANGE(int age){
-        if(age<18) return "<18岁";
-        else if(age<30) return "18~30岁";
-        else if(age<50) return "30~50岁";
-        else return ">50岁";
+        if(age<18) return AGE_RANGE[0];
+        else if(age<30) return AGE_RANGE[1];
+        else if(age<50) return AGE_RANGE[2];
+        else return AGE_RANGE[3];
     }
+    public static final String[] AGE_RANGE={
+            "<18岁",
+            "18~30岁",
+            "30~50岁",
+            ">=50岁"
+    };
+
+//    private static final Map<String, Integer> ROOMPRICE_RANGE;
+//    static {
+//        Map<String, Integer> aMap = new HashMap<String,Integer>();
+//        aMap.put("one",1);
+//        aMap.put("two",2);
+//        ROOMPRICE_RANGE=Collections.unmodifiableMap(aMap);
+//    }
+
+
 }
