@@ -361,99 +361,53 @@ public class HostelServiceBean implements HostelService {
         long start=DateHandler.add(today,Calendar.YEAR,-1);
         return bookBillDao.getByHostel_Date(hostelId,start,today);
     }
-
+//===== DataVO ===============
     @Override
     public List<DataVO>  getAllBookNumByYear(int hostelId) {
-        return DataVO.mapToVO(getAllBookNumByDate_Helper(hostelId,Calendar.YEAR));
+        Map<String,Double> map=new HashMap<>();
+        return DataVO.mapToVO(getAllBookNumByDate_Helper(hostelId,Calendar.YEAR,map));
     }
-
-    private  Map<String,Integer>  getAllBookNumByDate_Helper(int hostelId,int dateType) {
-        List<BookBill> bills=getAllBookBills(hostelId);
-        Map<String,Integer> map=new HashMap<String,Integer>();
-        for(BookBill bill:bills){
-            int year=DateHandler.getFieldFromLong(dateType,bill.getCreateDate());
-            //TODO
-            String yearStr=DateHandler.dateFieldToShow(dateType,year);
-            if(map.containsKey(yearStr)){
-                int num=map.get(yearStr);
-                map.put(yearStr,++num);
-            }else {
-                map.put(yearStr,1);
-            }
-        }
-        return map;
-    }
-
     @Override
     public List<DataVO>  getValidBookRateByYear(int hostelId) {
-        Map<String,Double> map=new HashMap<String,Double>();
-        Map<String,Integer> all=getAllBookNumByDate_Helper(hostelId,Calendar.YEAR);
-        Map<String,Integer> notCanceled=getNotCanceledBookNumByYear(hostelId);
-        for(String key:all.keySet()){
-            double ans=(double)notCanceled.get(key)/(double)all.get(key);
-            map.put(key,NumberFormatter.saveTwoDecimal(ans));
-        }
-        return DataVO.mapToVO(map);
+        Map<String,Double> map=new HashMap<>();
+        return getValidBookRateByDate_Helper(hostelId,Calendar.YEAR,map);
     }
-
     @Override
     public List<DataVO>  getLiveInBookRateByYear(int hostelId) {
-        long today=new Date().getTime();
-        Map<String,Double> map=new HashMap<String,Double>();
-        List<BookBill> bills=getAllBookBills(hostelId);
-        for(BookBill bill:bills){
-            //状态的【未入住】 且 现在已经晚于预订的入住日期
-            if(bill.getState()==0&&bill.getLiveInDate()<today){
-                int year=DateHandler.getFieldFromLong(Calendar.YEAR,bill.getCreateDate());
-                String yearStr=DateHandler.yearToShow(year);
-                if(map.containsKey(yearStr)){
-                    double num=map.get(yearStr);
-                    map.put(yearStr,++num);
-                }else {
-                    map.put(yearStr,1.0);
-                }
-            }
-        }
-        Map<String,Integer> notCanceled=getNotCanceledBookNumByYear(hostelId);
-        for(String key:notCanceled.keySet()){
-            double ans=map.get(key)/(double)notCanceled.get(key);
-            map.put(key,NumberFormatter.saveTwoDecimal(1-ans));
-        }
-        return DataVO.mapToVO(map);
-
+        Map<String,Double> map=new HashMap<>();
+        return getLiveInBookRateByDate_Helper(hostelId,Calendar.YEAR,map);
     }
-
     @Override
     public List<DataVO>  getAllBookNumByMonth(int hostelId) {
-        return DataVO.mapToVO(getAllBookNumByDate_Helper(hostelId,Calendar.MONTH));
-
+        Map<String,Double> map=createMonthMap();
+        return DataVO.mapToVO(getAllBookNumByDate_Helper(hostelId,Calendar.MONTH,map));
     }
-
     @Override
     public List<DataVO>  getValidBookRateByMonth(int hostelId) {
-        return null;//TODO
-    }
+        Map<String,Double> map=createMonthMap();
 
+        return getValidBookRateByDate_Helper(hostelId,Calendar.MONTH,map);
+    }
     @Override
     public List<DataVO>  getLiveInBookRateByMonth(int hostelId) {
-        return null;//TODO
+        Map<String,Double> map=createMonthMap();
+        return getLiveInBookRateByDate_Helper(hostelId,Calendar.MONTH,map);
     }
-
     @Override
     public List<DataVO> getAllBookNumByWeek(int hostelId) {
-
-        return DataVO.mapToVO(getAllBookNumByDate_Helper(hostelId,Calendar.WEDNESDAY));
-
+        Map<String,Double> map=createWeekMap();
+        return DataVO.mapToVO(getAllBookNumByDate_Helper(hostelId,Calendar.WEDNESDAY,map));
     }
-
     @Override
     public List<DataVO>  getValidBookRateByWeek(int hostelId) {
-        return null;//TODO
-    }
+        Map<String,Double> map=createWeekMap();
 
+        return getValidBookRateByDate_Helper(hostelId,Calendar.WEDNESDAY,map);
+    }
     @Override
     public List<DataVO>  getLiveInBookRateByWeek(int hostelId) {
-        return null;//TODO
+        Map<String,Double> map=createWeekMap();
+        return getLiveInBookRateByDate_Helper(hostelId,Calendar.WEDNESDAY,map);
     }
 
     @Override
@@ -488,23 +442,87 @@ public class HostelServiceBean implements HostelService {
 
 
     //获得未取消的订单数
-    private Map<String,Integer> getNotCanceledBookNumByYear(int hostelId){
+    private Map<String,Double> getNotCanceledBookNumByDate_Helper(int hostelId,int dateType,Map<String,Double> map){
         List<BookBill> bills=getAllBookBills(hostelId);
-        Map<String,Integer> map=new HashMap<String,Integer>();
         for(BookBill bill:bills){
             if(bill.getState()>=0){//未取消的
-                int year=DateHandler.getFieldFromLong(Calendar.YEAR,bill.getCreateDate());
-                String yearStr=DateHandler.yearToShow(year);
-                if(map.containsKey(yearStr)){
-                    int num=map.get(yearStr);
-                    map.put(yearStr,++num);
+                int dateField=DateHandler.getFieldFromLong(dateType,bill.getCreateDate());
+
+                String dateFieldStr=DateHandler.dateFieldToShow(dateType,dateField);
+                if(map.containsKey(dateFieldStr)){
+                    double num=map.get(dateFieldStr);
+                    map.put(dateFieldStr,++num);
                 }else {
-                    map.put(yearStr,1);
+                    map.put(dateFieldStr,1.0);
                 }
             }
         }
         return map;
     }
+    private  Map<String,Double>  getAllBookNumByDate_Helper(int hostelId,int dateType,Map<String,Double>map) {
+        List<BookBill> bills=getAllBookBills(hostelId);
+        for(BookBill bill:bills){
+            int year=DateHandler.getFieldFromLong(dateType,bill.getCreateDate());
+            String yearStr=DateHandler.dateFieldToShow(dateType,year);
+            if(map.containsKey(yearStr)){
+                double num=map.get(yearStr);
+                map.put(yearStr,++num);
+            }else {
+                map.put(yearStr,1.0);
+            }
+        }
+        return map;
+    }
+    private List<DataVO>  getValidBookRateByDate_Helper(int hostelId,int dateType,Map<String,Double> map) {
+        Map<String,Double> all=getAllBookNumByDate_Helper(hostelId,dateType,map);
+        Map<String,Double> notCanceled=getNotCanceledBookNumByDate_Helper(hostelId,dateType,createDateMap(dateType));
+        for(String key:all.keySet()){
+            double ans=0;
+            if(notCanceled.containsKey(key)){
+                ans=doDivide(notCanceled.get(key),all.get(key));
+                System.out.println("未取消的/总数= "+notCanceled.get(key)+"/"+all.get(key)+" = "+ans);
+
+            }
+            System.err.print("ValidBookRateByDate_Helper dateType= "+dateType+"  map= ");
+
+            map.put(key,NumberFormatter.saveTwoDecimal(ans));
+            System.err.println(map);
+
+        }
+        return DataVO.mapToVO(map);
+    }
+    private List<DataVO>  getLiveInBookRateByDate_Helper(int hostelId,int dateType,Map<String,Double> map) {
+
+        long today=new Date().getTime();
+        List<BookBill> bills=getAllBookBills(hostelId);
+        for(BookBill bill:bills){
+            //状态的【未入住】 且 现在已经晚于预订的入住日期
+            if(bill.getState()==0&&bill.getLiveInDate()<today){
+                int dateField=DateHandler.getFieldFromLong(dateType,bill.getCreateDate());
+                String dateFieldStr=DateHandler.dateFieldToShow(dateType,dateField);
+                if(map.containsKey(dateFieldStr)){
+                    double num=map.get(dateFieldStr);
+                    map.put(dateFieldStr,++num);
+                }else {
+                    map.put(dateFieldStr,1.0);
+                }
+
+            }
+        }
+        Map<String,Double> notCanceled=getNotCanceledBookNumByDate_Helper(hostelId,dateType,createDateMap(dateType));
+
+        for(String key:notCanceled.keySet()){
+            double ans=0;
+            if(map.containsKey(key)){
+                ans=doDivide(map.get(key),notCanceled.get(key));
+            }
+            map.put(key,NumberFormatter.saveTwoDecimal(1-ans));
+        }
+        return DataVO.mapToVO(map);
+
+    }
+
+
 //========================End Of BookBill ======================================
 
 //======================== PayBill ======================================
@@ -652,6 +670,32 @@ public class HostelServiceBean implements HostelService {
     private int getBigger(int x,int y) {
         if(x>y) return x;
         else return y;
+    }
+    private Map createDateMap(int dateType){
+        switch (dateType){
+            case Calendar.MONTH:return createMonthMap();
+            case Calendar.WEDNESDAY:return createWeekMap();
+            case Calendar.YEAR:return new HashMap<>();
+            default:return createWeekMap();
+        }
+    }
+    private Map createMonthMap(){
+        Map map=new HashMap();
+        for(int i=0;i<12;i++){
+            map.put(DateHandler.dateFieldToShow(Calendar.MONTH,i),0.0);
+        }
+        return map;
+    }
+    private Map createWeekMap(){
+        Map map=new HashMap();
+        for(int i=1;i<=7;i++){
+            map.put(DateHandler.dateFieldToShow(Calendar.WEDNESDAY,i),0.0);
+        }
+        return map;
+    }
+    private double doDivide(double x,double y){
+        if(y==0) return 0;
+        return x/y;
     }
 //   ----------------------------------------
     @Autowired

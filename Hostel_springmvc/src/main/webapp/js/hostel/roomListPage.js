@@ -1,9 +1,19 @@
 /**
  * Created by disinuo on 17/3/12.
  */
-$(document).ready(function () {
+$(function () {
     getRoomList();
-
+    $.ajax({
+        url:'/data/hostel/getLiveInBookRate/year',
+        success:function (data) {
+            console.log('入住率 年');
+            console.log(data);
+        },
+        error:function (data) {
+            alert('ERROR');
+            console.log(data);
+        }
+    });
 });
 
 function getRoomList() {

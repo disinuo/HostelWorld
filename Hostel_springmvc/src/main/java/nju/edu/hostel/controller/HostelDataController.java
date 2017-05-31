@@ -112,10 +112,31 @@ public class HostelDataController {
         int id= ControllerHelper.getUserIdFromSession(session);
         return hostelService.getValidBookRateByYear(id);
     }
+    @RequestMapping(value = "/getValidBookRate/month")
+    public List<DataVO> getValidBookRateByMonth(HttpSession session) {
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return hostelService.getValidBookRateByMonth(id);
+    }
+    @RequestMapping(value = "/getValidBookRate/week")
+    public List<DataVO> getValidBookRateByWeek(HttpSession session) {
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return hostelService.getValidBookRateByWeek(id);
+    }
+
     @RequestMapping(value = "/getLiveInBookRate/year")
     public List<DataVO> getLiveInBookRateByYear(HttpSession session) {
         int id= ControllerHelper.getUserIdFromSession(session);
         return hostelService.getLiveInBookRateByYear(id);
+    }
+    @RequestMapping(value = "/getLiveInBookRate/month")
+    public List<DataVO> getLiveInBookRateByMonth(HttpSession session) {
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return hostelService.getLiveInBookRateByMonth(id);
+    }
+    @RequestMapping(value = "/getLiveInBookRate/week")
+    public List<DataVO> getLiveInBookRateByWeek(HttpSession session) {
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return hostelService.getLiveInBookRateByWeek(id);
     }
 
 //======================= End Of BookList ============================================

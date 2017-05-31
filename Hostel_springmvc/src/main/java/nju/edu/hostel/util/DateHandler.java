@@ -25,6 +25,7 @@ public class DateHandler {
     public static int getFieldFromLong(int dateType,long date){
         Calendar helper=Calendar.getInstance();
         helper.setTimeInMillis(date);
+        if(dateType==Calendar.WEDNESDAY) return helper.get(Calendar.DAY_OF_WEEK);
         return helper.get(dateType);
     }
     public static String dateFieldToShow(int dateType,int value){

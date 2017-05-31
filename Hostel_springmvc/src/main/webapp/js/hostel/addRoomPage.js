@@ -26,8 +26,8 @@ $('#addRoomForm').submit(function (e) {
         }
     });
     e.preventDefault(); // avoid to execute the actual submit of the form.
-})
-$(document).ready(function () {
+});
+$(function () {
     $("#startDate").flatpickr();
     $("#endDate").flatpickr();
 });

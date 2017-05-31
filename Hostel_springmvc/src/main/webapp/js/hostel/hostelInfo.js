@@ -1,7 +1,7 @@
 /**
  * Created by disinuo on 17/3/13.
  */
-$(document).ready(function () {
+$(function () {
     $.ajax({
         url:'/user/getInfo',
         success:function (data) {
@@ -10,7 +10,7 @@ $(document).ready(function () {
         error:function (data) {
             alert(JSON.stringify(data));
         }
-    })
+    });
     $.ajax({
         url:'/data/hostel/getInfo',
         success:function (data) {

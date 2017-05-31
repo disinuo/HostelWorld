@@ -4,57 +4,108 @@
 /**
  * Created by disinuo on 17/3/12.
  */
-$(document).ready(function () {
+$(function () {
     getBookBillList();
     // initChart();
     $.ajax({
         url:'/data/hostel/getLiveInBookRate/year',
         success:function (data) {
-            console.log(data);
+            console.log('入住率 年');
+            data.forEach(function (item) {
+                console.log(item.key+":"+item.value);
+            });
         },
         error:function (data) {
             alert('ERROR');
-            console.log(data);
+            data.forEach(function (item) {                 console.log(item.key+":"+item.value);             });
+        }
+    });
+    $.ajax({
+        url:'/data/hostel/getLiveInBookRate/month',
+        success:function (data) {
+            console.log('入住率 月');
+            data.forEach(function (item) {                 console.log(item.key+":"+item.value);             });
+        },
+        error:function (data) {
+            alert('ERROR');
+            data.forEach(function (item) {                 console.log(item.key+":"+item.value);             });
+        }
+    });
+    $.ajax({
+        url:'/data/hostel/getLiveInBookRate/week',
+        success:function (data) {
+            console.log('入住率 周');
+            data.forEach(function (item) {                 console.log(item.key+":"+item.value);             });
+        },
+        error:function (data) {
+            alert('ERROR');
+            data.forEach(function (item) {                 console.log(item.key+":"+item.value);             });
         }
     });
     $.ajax({
        url:'/data/hostel/getValidBookRate/year',
        success:function (data) {
-           console.log(data);
+           console.log('有效率 年');
+           data.forEach(function (item) {                 console.log(item.key+":"+item.value);             });
        },
         error:function (data) {
             alert('ERROR');
-            console.log(data);
+            data.forEach(function (item) {                 console.log(item.key+":"+item.value);             });
+        }
+    });
+    $.ajax({
+        url:'/data/hostel/getValidBookRate/month',
+        success:function (data) {
+            console.log('有效率 月');
+            data.forEach(function (item) {                 console.log(item.key+":"+item.value);             });
+        },
+        error:function (data) {
+            alert('ERROR');
+            data.forEach(function (item) {                 console.log(item.key+":"+item.value);             });
+        }
+    });
+    $.ajax({
+        url:'/data/hostel/getValidBookRate/week',
+        success:function (data) {
+            console.log('有效率 周');
+            data.forEach(function (item) {                 console.log(item.key+":"+item.value);             });
+        },
+        error:function (data) {
+            alert('ERROR');
+            data.forEach(function (item) {                 console.log(item.key+":"+item.value);             });
         }
     });
     $.ajax({
         url:'/data/hostel/getAllBookNum/year',
         success:function (data) {
-            console.log(data);
+            console.log('订单量 年');
+            data.forEach(function (item) {                 console.log(item.key+":"+item.value);             });
         },
         error:function (data) {
             alert('ERROR');
-            console.log(data);
+            data.forEach(function (item) {                 console.log(item.key+":"+item.value);             });
         }
     });
     $.ajax({
         url:'/data/hostel/getAllBookNum/month',
         success:function (data) {
-            console.log(data);
+            console.log('订单量 月');
+            data.forEach(function (item) {                 console.log(item.key+":"+item.value);             });
         },
         error:function (data) {
             alert('ERROR');
-            console.log(data);
+            data.forEach(function (item) {                 console.log(item.key+":"+item.value);             });
         }
     });
     $.ajax({
         url:'/data/hostel/getAllBookNum/week',
         success:function (data) {
-            console.log(data);
+            console.log('订单量 周');
+            data.forEach(function (item) {                 console.log(item.key+":"+item.value);             });
         },
         error:function (data) {
             alert('ERROR');
-            console.log(data);
+            data.forEach(function (item) {                 console.log(item.key+":"+item.value);             });
         }
     });
 
