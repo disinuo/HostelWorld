@@ -419,18 +419,14 @@ public class HostelServiceBean implements HostelService {
     @Override
     public List<DataVO>  getNotCancelledBookNumByVipAge(int hostelId) {
         int currentYear=DateHandler.getFieldFromLong(Calendar.YEAR,new Date().getTime());
-        Map<String,Double>map=new HashMap<>();
+        Map<String,Double>map=createAgeMap();
         List<BookBill> bills=getAllValidBookBills(hostelId);
         for(BookBill bill:bills){
             int birthYear=bill.getVip().getBirthYear();
             int age=currentYear-birthYear;
             String ageRange=AGE_TO_RANGE(age);
-            if(map.containsKey(ageRange)){
-                double num=map.get(ageRange);
-                map.put(ageRange,++num);
-            }else {
-                map.put(ageRange,1.0);
-            }
+            double num=map.get(ageRange);
+            map.put(ageRange,++num);
         }
         return DataVO.mapToVO(map);
     }
@@ -451,7 +447,16 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public List<DataVO>  getNotCancelledBookNumByRoomPrice(int hostelId){
-        return null;//TODO
+        Map<String,Double>map=createRoomPriceMap();
+        List<BookBill> bills=getAllValidBookBills(hostelId);
+        for(BookBill bill:bills){
+            double roomPrice=bill.getRoom().getPrice();
+            String priceRange= ROOM_PRICE_TO_RANGE(roomPrice);
+            double num=map.get(priceRange);
+            map.put(priceRange,++num);
+        }
+        return DataVO.mapToVO(map);
+
     }
 
 
@@ -507,7 +512,7 @@ public class HostelServiceBean implements HostelService {
     }
 
     private  Map<String,Double> getNotCanceledBookNumByVipRegion_Helper(int hostelId, int regionType) {
-        Map<String,Double>map=new HashMap<>();
+        Map<String,Double>map=new LinkedHashMap<>();
         List<BookBill> bills=getAllValidBookBills(hostelId);
         for(BookBill bill:bills){
             String region="";
@@ -701,19 +706,20 @@ public class HostelServiceBean implements HostelService {
         switch (dateType){
             case Calendar.MONTH:return createMonthMap();
             case Calendar.WEDNESDAY:return createWeekMap();
-            case Calendar.YEAR:return new HashMap<>();
+            case Calendar.YEAR:return new LinkedHashMap();
             default:return createWeekMap();
         }
     }
     private Map createMonthMap(){
-        Map map=new HashMap();
+        Map map=new LinkedHashMap();
         for(int i=0;i<12;i++){
             map.put(DateHandler.dateFieldToShow(Calendar.MONTH,i),0.0);
         }
         return map;
     }
     private Map createWeekMap(){
-        Map map=new HashMap();
+        Map map=new LinkedHashMap();
+
         for(int i=1;i<=7;i++){
             map.put(DateHandler.dateFieldToShow(Calendar.WEDNESDAY,i),0.0);
         }
@@ -721,9 +727,26 @@ public class HostelServiceBean implements HostelService {
     }
     private Map createRoomMap(int hostelId){
         List<Room> rooms=getAllRooms(hostelId);
-        Map map=new HashMap();
+        Map map=new LinkedHashMap();
+
         for(Room room:rooms){
             map.put(room.getName(),0.0);
+        }
+        return map;
+    }
+    public Map<String,Double> createAgeMap(){
+        Map<String,Double> map=new LinkedHashMap<>();
+        for(String range:AGE_RANGE){
+            map.put(range,0.0);
+        }
+        return map;
+    }
+    public static Map<String,Double> createRoomPriceMap(){
+        Map<String,Double> map=new LinkedHashMap<>();
+        for(String range: ROOMPRICE_RANGE){
+            map.put(range,0.0);
+            System.err.println(map);
+
         }
         return map;
     }

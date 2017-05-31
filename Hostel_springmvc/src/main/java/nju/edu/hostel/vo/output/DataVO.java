@@ -13,11 +13,13 @@ public class DataVO {
 
     public static List<DataVO> mapToVO(Map map){
         List<DataVO> list=new ArrayList<DataVO>();
+
         for(Object key:map.keySet()){
-            list.add(new DataVO((String) key,map.get(key)));
+            list.add(new DataVO(key.toString(),map.get(key)));
         }
         return list;
     }
+
     public DataVO(String key,Object value){
         this.key=key;
         this.value=value;

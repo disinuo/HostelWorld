@@ -109,7 +109,9 @@ public class Constants {
             "30~50岁",
             ">=50岁"
     };
-
+    public static final String[] ROOMPRICE_RANGE={
+            "<100", "100~200","200~300","300~500","500~700","700~1000",">1000"
+    };
 //    private static final Map<String, Integer> ROOMPRICE_RANGE;
 //    static {
 //        Map<String, Integer> aMap = new HashMap<String,Integer>();
@@ -118,5 +120,13 @@ public class Constants {
 //        ROOMPRICE_RANGE=Collections.unmodifiableMap(aMap);
 //    }
 
-
+    public static String ROOM_PRICE_TO_RANGE(double price){
+        if(price<100) return ROOMPRICE_RANGE[0];
+        if(price<200) return ROOMPRICE_RANGE[1];
+        if(price<300) return ROOMPRICE_RANGE[2];
+        if(price<500) return ROOMPRICE_RANGE[3];
+        if(price<700) return  ROOMPRICE_RANGE[4];
+        if(price<1000) return  ROOMPRICE_RANGE[5];
+        else  return  ROOMPRICE_RANGE[6];
+    }
 }
