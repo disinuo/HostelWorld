@@ -48,8 +48,8 @@
       <file leaf-file-name="HostelServiceBean.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/bean/HostelServiceBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-290">
-              <caret line="477" column="114" lean-forward="false" selection-start-line="477" selection-start-column="114" selection-end-line="477" selection-end-column="114" />
+            <state relative-caret-position="-552">
+              <caret line="364" column="13" lean-forward="true" selection-start-line="364" selection-start-column="13" selection-end-line="364" selection-end-column="13" />
               <folding>
                 <element signature="method#init#0;class#HostelServiceBean#0" expanded="false" />
                 <element signature="method#requestManager#0;class#HostelServiceBean#0" expanded="false" />
@@ -57,6 +57,10 @@
                 <element signature="e#7499#7511#0" expanded="true" />
                 <element signature="method#addRoom#0;class#HostelServiceBean#0" expanded="false" />
                 <element signature="method#addRoom#1;class#HostelServiceBean#0" expanded="false" />
+                <element signature="method#getNotCanceledBookNumByDate_Helper#0;class#HostelServiceBean#0" expanded="false" />
+                <element signature="method#getAllBookNumByDate_Helper#0;class#HostelServiceBean#0" expanded="false" />
+                <element signature="method#getValidBookRateByDate_Helper#0;class#HostelServiceBean#0" expanded="false" />
+                <element signature="method#getLiveInBookRateByDate_Helper#0;class#HostelServiceBean#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -65,8 +69,8 @@
       <file leaf-file-name="roomListPage.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/js/hostel/roomListPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="2" lean-forward="false" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="2" />
+            <state relative-caret-position="75">
+              <caret line="5" column="4" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -117,9 +121,9 @@
       <find>Id=</find>
       <find>没入住数/未取消数</find>
       <find>dateField=</find>
-      <find>console.log(data);</find>
       <find>err.</find>
       <find>ValidBookRateByDate_Helper</find>
+      <find>console.log(data);</find>
     </findStrings>
     <replaceStrings>
       <replace>pay</replace>
@@ -1518,7 +1522,7 @@
       <workItem from="1495608862234" duration="20844000" />
       <workItem from="1495678702634" duration="3374000" />
       <workItem from="1495864961369" duration="94253000" />
-      <workItem from="1496089653840" duration="40881000" />
+      <workItem from="1496089653840" duration="41482000" />
     </task>
     <servers />
   </component>
@@ -1555,7 +1559,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="795344000" />
+    <option name="totallyTimeSpent" value="795945000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -1568,7 +1572,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="160" y="47" width="1179" height="733" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1589,7 +1593,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4602184" sideWeight="0.4925187" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1950078" sideWeight="0.4925187" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32817337" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -1862,7 +1866,7 @@
           <option name="timeStamp" value="45" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="64" />
+      <option name="time" value="65" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2204,14 +2208,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/hostel/roomListPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="2" lean-forward="false" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/js/hostel/addRoomPage.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="202">
@@ -2255,14 +2251,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/hostel/bookBillsPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
-          <caret line="54" column="7" lean-forward="true" selection-start-line="54" selection-start-column="7" selection-end-line="54" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/controller/HostelDataController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -2273,10 +2261,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/hostel/bookBillsPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="780">
+          <caret line="54" column="7" lean-forward="true" selection-start-line="54" selection-start-column="7" selection-end-line="54" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/hostel/roomListPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="4" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/bean/HostelServiceBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-290">
-          <caret line="477" column="114" lean-forward="false" selection-start-line="477" selection-start-column="114" selection-end-line="477" selection-end-column="114" />
+        <state relative-caret-position="-552">
+          <caret line="364" column="13" lean-forward="true" selection-start-line="364" selection-start-column="13" selection-end-line="364" selection-end-column="13" />
           <folding>
             <element signature="method#init#0;class#HostelServiceBean#0" expanded="false" />
             <element signature="method#requestManager#0;class#HostelServiceBean#0" expanded="false" />
@@ -2284,6 +2288,10 @@
             <element signature="e#7499#7511#0" expanded="true" />
             <element signature="method#addRoom#0;class#HostelServiceBean#0" expanded="false" />
             <element signature="method#addRoom#1;class#HostelServiceBean#0" expanded="false" />
+            <element signature="method#getNotCanceledBookNumByDate_Helper#0;class#HostelServiceBean#0" expanded="false" />
+            <element signature="method#getAllBookNumByDate_Helper#0;class#HostelServiceBean#0" expanded="false" />
+            <element signature="method#getValidBookRateByDate_Helper#0;class#HostelServiceBean#0" expanded="false" />
+            <element signature="method#getLiveInBookRateByDate_Helper#0;class#HostelServiceBean#0" expanded="false" />
           </folding>
         </state>
       </provider>
