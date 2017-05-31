@@ -23,6 +23,11 @@ public class HostelViewController {
         ModelAndView model=checkRole(session);
         return model==null?(new ModelAndView("hostel/roomListPage")):model;
     }
+    @RequestMapping(value = "/info")
+    public ModelAndView showInfo(HttpSession session){
+        ModelAndView model=checkRole(session);
+        return model==null?(new ModelAndView("hostel/sideBar")):model;
+    }
     @RequestMapping(value = "/modifyInfo",method = RequestMethod.GET)
     public ModelAndView showUpdatePage(HttpSession session){
         ModelAndView model=checkRole(session);
@@ -49,7 +54,7 @@ public class HostelViewController {
         return model==null?( new ModelAndView("hostel/liveInPage")):model;
     }
     @RequestMapping(value = "/checkOut",method = RequestMethod.GET)
-    public ModelAndView showDepartPage(HttpSession session){
+    public ModelAndView showCheckOutPage(HttpSession session){
         ModelAndView model=checkRole(session);
 
         return model==null?( new ModelAndView("hostel/checkOutPage")):model;
@@ -68,19 +73,25 @@ public class HostelViewController {
     }
 
     @RequestMapping(value="/bookBills")
-    public ModelAndView showAnalyseHostelsPage(HttpSession session){
+    public ModelAndView showBookBillsPage(HttpSession session){
         ModelAndView model=checkRole(session);
 
         return model==null?( new ModelAndView("hostel/bookBillsPage")):model;
     }
+    @RequestMapping(value="/bookBills/analyze")
+    public ModelAndView showBookBillAnalyzePage(HttpSession session){
+        ModelAndView model=checkRole(session);
+
+        return model==null?( new ModelAndView("hostel/bookBillsAnalyzePage")):model;
+    }
     @RequestMapping(value="/payBills")
-    public ModelAndView showAnalyseVipsPage(HttpSession session){
+    public ModelAndView showPayBillsPage(HttpSession session){
         ModelAndView model=checkRole(session);
 
         return model==null?( new ModelAndView("hostel/payBillsPage")):model;
     }
     @RequestMapping(value="/liveBills")
-    public ModelAndView showAnalyseCompanyPage(HttpSession session){
+    public ModelAndView showLiveBillsPage(HttpSession session){
         ModelAndView model=checkRole(session);
         return model==null?( new ModelAndView("hostel/liveBillsPage")):model;
     }

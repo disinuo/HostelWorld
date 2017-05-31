@@ -21,12 +21,7 @@
 <!-- Latest compiled and minified Locales -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
 <script type="text/javascript" src="/js/lib/flatpickr.min.js" charset="UTF-8"></script>
-
-<%--highChart--%>
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-
-<%--highChart--%>
+<script type="text/javascript" src="/js/lib/echarts.min.js" charset="UTF-8"></script>
 
 
 

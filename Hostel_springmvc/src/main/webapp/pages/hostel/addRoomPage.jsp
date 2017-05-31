@@ -18,7 +18,7 @@
 
 <div class="big-container">
     <div class="col-lg-3 col-md-3 col-xs-3">
-        <jsp:include page="component/sideBar.jsp" flush="true"/>
+        <jsp:include page="sideBar.jsp" flush="true"/>
     </div>
     <div class="col-lg-9 col-md-9 col-xs-9">
         <form id="addRoomForm">

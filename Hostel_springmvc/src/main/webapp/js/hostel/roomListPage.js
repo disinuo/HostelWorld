@@ -5,9 +5,9 @@ $(function () {
     //只有6号订单是真的是1号会员
     getRoomList();
     $.ajax({
-        url:'/data/hostel/getAllBookNum/vipProvince',
+        url:'/data/hostel/getAllBookNum/vipAge',
         success:function (data) {
-            console.log('订单量 省');
+            console.log('订单量 年龄');
             console.log(data);
         },
         error:function (data) {
@@ -15,6 +15,39 @@ $(function () {
             console.log(data);
         }
     });
+    $.ajax({
+        url:'/data/hostel/getAllBookNum/roomType',
+        success:function (data) {
+            console.log('订单量 房间类型');
+            console.log(data);
+        },
+        error:function (data) {
+            alert('ERROR');
+            console.log(data);
+        }
+    });
+    $.ajax({
+        url:'/data/hostel/getAllBookNum/roomPrice',
+        success:function (data) {
+            console.log('订单量 房间价位');
+            console.log(data);
+        },
+        error:function (data) {
+            alert('ERROR');
+            console.log(data);
+        }
+    });
+    // $.ajax({
+    //     url:'/data/hostel/getAllBookNum/vipProvince',
+    //     success:function (data) {
+    //         console.log('订单量 省');
+    //         console.log(data);
+    //     },
+    //     error:function (data) {
+    //         alert('ERROR');
+    //         console.log(data);
+    //     }
+    // });
     $.ajax({
         url:'/data/hostel/getAllBookNum/vipCity',
         success:function (data) {

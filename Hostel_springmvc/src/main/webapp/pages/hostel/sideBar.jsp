@@ -6,6 +6,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <%@include file="../common/head.jsp" %>
+
+</head>
+<body>
+<%@include file="../common/header.jsp" %>
+<%@include file="component/navigation.jsp" %>
+
 <link type="text/css" rel="stylesheet" href="../../css/vip_selfPanel.css"/>
 <div class="self-info-container">
     <a href="/hostel/modifyInfo"><i class="glyphicon glyphicon-pencil"></i></a>
@@ -50,3 +59,8 @@
         <a type="button" class="btn btn-warning" href="/hostel/addRoom">发布房间计划</a>
     </div>
 </div>
+<%@include file="../common/tail.jsp" %>
+<%@include file="component/hostelTail.jsp"%>
+<script type="text/javascript" src="../../js/hostel/hostelInfo.js"></script>
+</body>
+</html>

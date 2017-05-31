@@ -174,24 +174,29 @@ public interface HostelService {
     public List<DataVO>  getLiveInBookRateByWeek(int hostelId);
     /**
      * 维度：下单的vip的地区
-     * 范围：【所有订单】
+     * 范围：【未取消的订单】
      * @return region:numOfBill
      */
     // 分组标准【vip的省或市】
     public List<DataVO>  getNotCancelledBookNumByVipRegion(int hostelId, int regionType);
     /**
      * 维度：下单的vip的年龄
-     * 范围：【所有订单】
+     * 范围：【未取消的订单】
      * @return ageRange:numOfBill
      */
     // 分组标准【vip的年龄段：<18,18~30,30~50,>50】
     public List<DataVO>  getNotCancelledBookNumByVipAge(int hostelId);
     /**
      * 维度：下单的房型
-     * 范围：【所有订单】
+     * 范围：【未取消的订单】
      * @return roomType:numOfBill
      */
     public List<DataVO>  getNotCancelledBookNumByRoomType(int hostelId);
+    /**
+     * 维度：下单的房型
+     * 范围：【未取消的订单】
+     * @return roomPrice:numOfBill
+     */
     public List<DataVO>  getNotCancelledBookNumByRoomPrice(int hostelId);
 
 //==================== End Of BookBill =============================================================

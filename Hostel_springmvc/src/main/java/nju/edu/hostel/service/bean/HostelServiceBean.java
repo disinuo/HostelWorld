@@ -745,7 +745,6 @@ public class HostelServiceBean implements HostelService {
         Map<String,Double> map=new LinkedHashMap<>();
         for(String range: ROOMPRICE_RANGE){
             map.put(range,0.0);
-            System.err.println(map);
 
         }
         return map;

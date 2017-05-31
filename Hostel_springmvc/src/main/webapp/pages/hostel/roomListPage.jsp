@@ -16,10 +16,8 @@
 
 
 <div class="big-container ">
-    <div class="col-lg-3 col-md-3 col-xs-2">
-        <jsp:include page="component/sideBar.jsp" flush="true"/>
-    </div>
-    <div class="col-lg-9 col-md-9 col-xs-10">
+
+    <div class="col-lg-12 col-md-12 col-xs-12">
         <table id="table" class="col-lg-9 table table-striped">
         </table>
     </div>
