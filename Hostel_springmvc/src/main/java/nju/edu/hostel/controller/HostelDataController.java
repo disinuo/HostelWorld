@@ -117,6 +117,21 @@ public class HostelDataController {
         int id= ControllerHelper.getUserIdFromSession(session);
         return hostelService.getNotCancelledBookNumByVipRegion(id,REGIONTYPE_CITY);
     }
+    @RequestMapping(value = "/getAllBookNum/vipAge")
+    public List<DataVO> getNotCancelledBookNumByVipAge(HttpSession session) {
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return hostelService.getNotCancelledBookNumByVipAge(id);
+    }
+    @RequestMapping(value = "/getAllBookNum/roomType")
+    public List<DataVO> getNotCancelledBookNumByRoomType(HttpSession session) {
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return hostelService.getNotCancelledBookNumByRoomType(id);
+    }
+    @RequestMapping(value = "/getAllBookNum/roomPrice")
+    public List<DataVO> getNotCancelledBookNumByRoomPrice(HttpSession session) {
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return hostelService.getNotCancelledBookNumByRoomPrice(id);
+    }
     @RequestMapping(value = "/getValidBookRate/year")
     public List<DataVO> getValidBookRateByYear(HttpSession session) {
         int id= ControllerHelper.getUserIdFromSession(session);

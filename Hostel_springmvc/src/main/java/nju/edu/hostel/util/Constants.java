@@ -90,4 +90,11 @@ public class Constants {
             return 8;
         }
     }
+    //【vip的年龄段：<18,18~30,30~50,>50】
+    public static String AGE_TO_RANGE(int age){
+        if(age<18) return "<18岁";
+        else if(age<30) return "18~30岁";
+        else if(age<50) return "30~50岁";
+        else return ">50岁";
+    }
 }

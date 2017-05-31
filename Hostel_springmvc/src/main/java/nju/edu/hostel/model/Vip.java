@@ -182,4 +182,14 @@ public class Vip {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+    @Transient
+    public int getBirthYear(){
+        String birthYearStr=getIdCard().substring(6,10);
+        try{
+            int birthYear=Integer.parseInt(birthYearStr);
+            return birthYear;
+        }catch (Exception e){
+            return 2000;
+        }
+    }
 }

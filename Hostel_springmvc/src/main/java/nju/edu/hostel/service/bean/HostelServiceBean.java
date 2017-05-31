@@ -340,7 +340,6 @@ public class HostelServiceBean implements HostelService {
         return bookBillDao.getByRestrictEqual("hostel.id",hostelId);
     }
     public List<BookBill> getAllValidBookBills(int hostelId) {
-        //TODO
         List<BookBill> bills=getAllBookBills(hostelId);
         Iterator<BookBill> itr=bills.iterator();
         while (itr.hasNext()){
@@ -419,13 +418,35 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public List<DataVO>  getNotCancelledBookNumByVipAge(int hostelId) {
-        return null;//TODO
+        int currentYear=DateHandler.getFieldFromLong(Calendar.YEAR,new Date().getTime());
+        Map<String,Double>map=new HashMap<>();
+        List<BookBill> bills=getAllValidBookBills(hostelId);
+        for(BookBill bill:bills){
+            int birthYear=bill.getVip().getBirthYear();
+            int age=currentYear-birthYear;
+            String ageRange=AGE_TO_RANGE(age);
+            if(map.containsKey(ageRange)){
+                double num=map.get(ageRange);
+                map.put(ageRange,++num);
+            }else {
+                map.put(ageRange,1.0);
+            }
+        }
+        return DataVO.mapToVO(map);
     }
 
 
     @Override
     public List<DataVO>  getNotCancelledBookNumByRoomType(int hostelId){
-        return null;//TODO
+        Map<String,Double> map=(Map<String,Double>)createRoomMap(hostelId);
+        List<BookBill> bills=getAllValidBookBills(hostelId);
+        for(BookBill bill:bills){
+            String roomType=bill.getRoom().getName();
+            double num=map.get(roomType);
+            map.put(roomType,++num);
+        }
+        return DataVO.mapToVO(map);
+
     }
 
     @Override
@@ -527,6 +548,7 @@ public class HostelServiceBean implements HostelService {
         return map;
 
     }
+
 //========================End Of BookBill ======================================
 
 //======================== PayBill ======================================
@@ -694,6 +716,14 @@ public class HostelServiceBean implements HostelService {
         Map map=new HashMap();
         for(int i=1;i<=7;i++){
             map.put(DateHandler.dateFieldToShow(Calendar.WEDNESDAY,i),0.0);
+        }
+        return map;
+    }
+    private Map createRoomMap(int hostelId){
+        List<Room> rooms=getAllRooms(hostelId);
+        Map map=new HashMap();
+        for(Room room:rooms){
+            map.put(room.getName(),0.0);
         }
         return map;
     }
