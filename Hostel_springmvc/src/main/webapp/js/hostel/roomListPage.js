@@ -2,11 +2,23 @@
  * Created by disinuo on 17/3/12.
  */
 $(function () {
+    //只有6号订单是真的是1号会员
     getRoomList();
     $.ajax({
-        url:'/data/hostel/getLiveInBookRate/year',
+        url:'/data/hostel/getAllBookNum/vipProvince',
         success:function (data) {
-            console.log('入住率 年');
+            console.log('订单量 省');
+            console.log(data);
+        },
+        error:function (data) {
+            alert('ERROR');
+            console.log(data);
+        }
+    });
+    $.ajax({
+        url:'/data/hostel/getAllBookNum/vipCity',
+        success:function (data) {
+            console.log('订单量 市');
             console.log(data);
         },
         error:function (data) {

@@ -1,6 +1,5 @@
 package nju.edu.hostel.controller;
 
-import nju.edu.hostel.model.HostelMoneyRecord;
 import nju.edu.hostel.service.HostelService;
 import nju.edu.hostel.util.ControllerHelper;
 import nju.edu.hostel.vo.output.*;
@@ -10,9 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import static nju.edu.hostel.util.Constants.*;
+
 import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by disinuo on 17/3/13.
@@ -95,17 +95,27 @@ public class HostelDataController {
     @RequestMapping(value = "/getAllBookNum/year")
     public List<DataVO> getAllBookNumByYear(HttpSession session) {
         int id= ControllerHelper.getUserIdFromSession(session);
-        return hostelService.getAllBookNumByYear(id);
+        return hostelService.getNotCancelledBookNumByYear(id);
     }
     @RequestMapping(value = "/getAllBookNum/month")
     public List<DataVO> getAllBookNumByMonth(HttpSession session) {
         int id= ControllerHelper.getUserIdFromSession(session);
-        return hostelService.getAllBookNumByMonth(id);
+        return hostelService.getNotCancelledBookNumByMonth(id);
     }
     @RequestMapping(value = "/getAllBookNum/week")
     public List<DataVO> getAllBookNumByWeek(HttpSession session) {
         int id= ControllerHelper.getUserIdFromSession(session);
-        return hostelService.getAllBookNumByWeek(id);
+        return hostelService.getNotCancelledBookNumByWeek(id);
+    }
+    @RequestMapping(value = "/getAllBookNum/vipProvince")
+    public List<DataVO> getAllBookNumByVipProvince(HttpSession session) {
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return hostelService.getNotCancelledBookNumByVipRegion(id,REGIONTYPE_PROVINCE);
+    }
+    @RequestMapping(value = "/getAllBookNum/vipCity")
+    public List<DataVO> getAllBookNumByVipCity(HttpSession session) {
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return hostelService.getNotCancelledBookNumByVipRegion(id,REGIONTYPE_CITY);
     }
     @RequestMapping(value = "/getValidBookRate/year")
     public List<DataVO> getValidBookRateByYear(HttpSession session) {

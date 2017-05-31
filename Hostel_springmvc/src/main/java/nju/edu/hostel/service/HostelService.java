@@ -161,15 +161,15 @@ public interface HostelService {
      * @return year:numOfBill
      */
     // 范围：【所有订单】；分组标准【年】
-    public List<DataVO> getAllBookNumByYear(int hostelId);
+    public List<DataVO> getNotCancelledBookNumByYear(int hostelId);
     public List<DataVO> getValidBookRateByYear(int hostelId);
     public List<DataVO> getLiveInBookRateByYear(int hostelId);
     // 范围：【今年】；分组标准【月份】
-    public List<DataVO> getAllBookNumByMonth(int hostelId);
+    public List<DataVO> getNotCancelledBookNumByMonth(int hostelId);
     public List<DataVO> getValidBookRateByMonth(int hostelId);
     public List<DataVO>  getLiveInBookRateByMonth(int hostelId);
     // 范围：【今年】；分组标准【星期几】
-    public List<DataVO> getAllBookNumByWeek(int hostelId);
+    public List<DataVO> getNotCancelledBookNumByWeek(int hostelId);
     public List<DataVO>  getValidBookRateByWeek(int hostelId);
     public List<DataVO>  getLiveInBookRateByWeek(int hostelId);
     /**
@@ -178,19 +178,21 @@ public interface HostelService {
      * @return region:numOfBill
      */
     // 分组标准【vip的省或市】
-    public List<DataVO>  getAllBookNumByVipRegion(int hostelId, String regionType);
-    public List<DataVO>  getValidBookRateByVipRegion(int hostelId, String regionType);
-    public List<DataVO>  getLiveInBookRateByVipRegion(int hostelId, String regionType);
-
+    public List<DataVO>  getNotCancelledBookNumByVipRegion(int hostelId, int regionType);
     /**
      * 维度：下单的vip的年龄
      * 范围：【所有订单】
      * @return ageRange:numOfBill
      */
     // 分组标准【vip的年龄段：<18,18~30,30~50,>50】
-    public List<DataVO>  getAllBookNumByVipAge(int hostelId);
-    public List<DataVO>  getValidBookRateByVipAge(int hostelId);
-    public List<DataVO>  getLiveInBookRateByVipAge(int hostelId);
+    public List<DataVO>  getNotCancelledBookNumByVipAge(int hostelId);
+    /**
+     * 维度：下单的房型
+     * 范围：【所有订单】
+     * @return roomType:numOfBill
+     */
+    public List<DataVO>  getNotCancelledBookNumByRoomType(int hostelId);
+    public List<DataVO>  getNotCancelledBookNumByRoomPrice(int hostelId);
 
 //==================== End Of BookBill =============================================================
 

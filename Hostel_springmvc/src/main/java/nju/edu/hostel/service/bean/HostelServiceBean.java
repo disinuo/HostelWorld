@@ -339,6 +339,16 @@ public class HostelServiceBean implements HostelService {
     public List<BookBill> getAllBookBills(int hostelId) {
         return bookBillDao.getByRestrictEqual("hostel.id",hostelId);
     }
+    public List<BookBill> getAllValidBookBills(int hostelId) {
+        //TODO
+        List<BookBill> bills=getAllBookBills(hostelId);
+        Iterator<BookBill> itr=bills.iterator();
+        while (itr.hasNext()){
+            if(itr.next().getState()<0)
+                itr.remove();
+        }
+        return bills;
+    }
     @Override
     public List<BookBill> getRecentBookBills(int hostelId){
         return bookBillDao.getRecentByHostelId(hostelId);
@@ -361,11 +371,12 @@ public class HostelServiceBean implements HostelService {
         long start=DateHandler.add(today,Calendar.YEAR,-1);
         return bookBillDao.getByHostel_Date(hostelId,start,today);
     }
-//===== DataVO ===============
+    //===== DataVO ===============
     @Override
-    public List<DataVO>  getAllBookNumByYear(int hostelId) {
-        return DataVO.mapToVO(getAllBookNumByDate_Helper(hostelId,Calendar.YEAR));
+    public List<DataVO> getNotCancelledBookNumByYear(int hostelId) {
+        return DataVO.mapToVO(getNotCanceledBookNumByDate_Helper(hostelId,Calendar.YEAR));
     }
+
     @Override
     public List<DataVO>  getValidBookRateByYear(int hostelId) {
         return getValidBookRateByDate_Helper(hostelId,Calendar.YEAR);
@@ -375,8 +386,8 @@ public class HostelServiceBean implements HostelService {
         return getLiveInBookRateByDate_Helper(hostelId,Calendar.YEAR);
     }
     @Override
-    public List<DataVO>  getAllBookNumByMonth(int hostelId) {
-        return DataVO.mapToVO(getAllBookNumByDate_Helper(hostelId,Calendar.MONTH));
+    public List<DataVO> getNotCancelledBookNumByMonth(int hostelId) {
+        return DataVO.mapToVO(getNotCanceledBookNumByDate_Helper(hostelId,Calendar.MONTH));
     }
     @Override
     public List<DataVO>  getValidBookRateByMonth(int hostelId) {
@@ -388,8 +399,8 @@ public class HostelServiceBean implements HostelService {
         return getLiveInBookRateByDate_Helper(hostelId,Calendar.MONTH);
     }
     @Override
-    public List<DataVO> getAllBookNumByWeek(int hostelId) {
-        return DataVO.mapToVO(getAllBookNumByDate_Helper(hostelId,Calendar.WEDNESDAY));
+    public List<DataVO> getNotCancelledBookNumByWeek(int hostelId) {
+        return DataVO.mapToVO(getNotCanceledBookNumByDate_Helper(hostelId,Calendar.WEDNESDAY));
     }
     @Override
     public List<DataVO>  getValidBookRateByWeek(int hostelId) {
@@ -402,69 +413,29 @@ public class HostelServiceBean implements HostelService {
     }
 
     @Override
-    public List<DataVO>  getAllBookNumByVipRegion(int hostelId, String regionType) {
+    public List<DataVO>  getNotCancelledBookNumByVipRegion(int hostelId, int regionType) {
+        return DataVO.mapToVO(getNotCanceledBookNumByVipRegion_Helper(hostelId,regionType));
+    }
+
+    @Override
+    public List<DataVO>  getNotCancelledBookNumByVipAge(int hostelId) {
+        return null;//TODO
+    }
+
+
+    @Override
+    public List<DataVO>  getNotCancelledBookNumByRoomType(int hostelId){
         return null;//TODO
     }
 
     @Override
-    public List<DataVO>  getValidBookRateByVipRegion(int hostelId, String regionType) {
-        return null;//TODO
-    }
-
-    @Override
-    public List<DataVO>  getLiveInBookRateByVipRegion(int hostelId, String regionType) {
-        return null;//TODO
-    }
-
-    @Override
-    public List<DataVO>  getAllBookNumByVipAge(int hostelId) {
-        return null;//TODO
-    }
-
-    @Override
-    public List<DataVO>  getValidBookRateByVipAge(int hostelId) {
-        return null;//TODO
-    }
-
-    @Override
-    public List<DataVO>  getLiveInBookRateByVipAge(int hostelId) {
+    public List<DataVO>  getNotCancelledBookNumByRoomPrice(int hostelId){
         return null;//TODO
     }
 
 
-    //获得未取消的订单数
-    private Map<String,Double> getNotCanceledBookNumByDate_Helper(int hostelId,int dateType){
-        Map<String,Double> map=createDateMap(dateType);
-        List<BookBill> bills=getAllBookBills(hostelId);
-        for(BookBill bill:bills){
-            if(bill.getState()>=0){//未取消的
-                int dateField=DateHandler.getFieldFromLong(dateType,bill.getCreateDate());
-                String dateFieldStr=DateHandler.dateFieldToShow(dateType,dateField);
-                if(map.containsKey(dateFieldStr)){
-                    double num=map.get(dateFieldStr);
-                    map.put(dateFieldStr,++num);
-                }else {
-                    map.put(dateFieldStr,1.0);
-                }
-            }
-        }
-        return map;
-    }
-    private  Map<String,Double>  getAllBookNumByDate_Helper(int hostelId,int dateType) {
-        Map<String,Double>map=createDateMap(dateType);
-        List<BookBill> bills=getAllBookBills(hostelId);
-        for(BookBill bill:bills){
-            int year=DateHandler.getFieldFromLong(dateType,bill.getCreateDate());
-            String yearStr=DateHandler.dateFieldToShow(dateType,year);
-            if(map.containsKey(yearStr)){
-                double num=map.get(yearStr);
-                map.put(yearStr,++num);
-            }else {
-                map.put(yearStr,1.0);
-            }
-        }
-        return map;
-    }
+
+
     private List<DataVO>  getValidBookRateByDate_Helper(int hostelId,int dateType) {
         Map<String,Double> map=createDateMap(dateType);
         Map<String,Double> all=getAllBookNumByDate_Helper(hostelId,dateType);
@@ -514,7 +485,48 @@ public class HostelServiceBean implements HostelService {
 
     }
 
+    private  Map<String,Double> getNotCanceledBookNumByVipRegion_Helper(int hostelId, int regionType) {
+        Map<String,Double>map=new HashMap<>();
+        List<BookBill> bills=getAllValidBookBills(hostelId);
+        for(BookBill bill:bills){
+            String region="";
+            if(regionType==REGIONTYPE_CITY) region=bill.getVip().getCity();
+            if(regionType==REGIONTYPE_PROVINCE) region=bill.getVip().getProvince();
+            if(map.containsKey(region)){
+                double num=map.get(region);
+                map.put(region,++num);
+            }else {
+                map.put(region,1.0);
+            }
+        }
+        return map;
+    }
+    //获得未取消的订单数
+    private Map<String,Double> getNotCanceledBookNumByDate_Helper(int hostelId,int dateType){
+        List<BookBill> bills=getAllValidBookBills(hostelId);
+        return getBookNumByDate_Helper(bills,dateType);
 
+    }
+    private  Map<String,Double>  getAllBookNumByDate_Helper(int hostelId,int dateType) {
+        List<BookBill> bills=getAllBookBills(hostelId);
+        return getBookNumByDate_Helper(bills,dateType);
+
+    }
+    private Map<String,Double> getBookNumByDate_Helper(List<BookBill> bills,int dateType){
+        Map<String,Double>map=createDateMap(dateType);
+        for(BookBill bill:bills){
+            int year=DateHandler.getFieldFromLong(dateType,bill.getCreateDate());
+            String yearStr=DateHandler.dateFieldToShow(dateType,year);
+            if(map.containsKey(yearStr)){
+                double num=map.get(yearStr);
+                map.put(yearStr,++num);
+            }else {
+                map.put(yearStr,1.0);
+            }
+        }
+        return map;
+
+    }
 //========================End Of BookBill ======================================
 
 //======================== PayBill ======================================
@@ -605,7 +617,7 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public List<Room> getAllRooms(int hostelId){
-        List<Room> rooms= getById(hostelId).getRooms();
+        List<Room> rooms= roomDao.getByRestrictEqual("hostel.id",hostelId,"state");
         Iterator<Room> itr=rooms.iterator();
         while (itr.hasNext()){
             Room room=itr.next();

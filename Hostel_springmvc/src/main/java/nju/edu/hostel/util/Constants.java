@@ -10,8 +10,8 @@ public class Constants {
     public static final String ROLE_MANAGER="manager";
 
 
-    public static final String REGIONTYPE_PROVINCE="province";
-    public static final String REGIONTYPE_CITY="city";
+    public static final int REGIONTYPE_PROVINCE=0;
+    public static final int REGIONTYPE_CITY=1;
 
     public static final int MANAGER_ID=666;
     /**
