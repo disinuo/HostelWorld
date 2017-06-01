@@ -13,9 +13,8 @@ import java.util.Map;
  */
 public interface UserDao{
     public User get(int id);
+    public List<User> getByUserName(String name);
     public User load(int id);
-    public List<User> getByRestrictEqual(String column, Object value);
-    public List<User> getByRestrictEqual(Map<String,Object> map);
 
     public int add(User user)throws Exception;
     public ResultMessage update(User user);

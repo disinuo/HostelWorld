@@ -10,10 +10,8 @@ import java.util.Map;
  */
 public interface BossMoneyRecordDao {
     public BossMoneyRecord get(int id);
+    public List<BossMoneyRecord> getByBoss(int bossId);
     public BossMoneyRecord load(int id);
-    public List<BossMoneyRecord> getByRestrictEqual(String column, Object value);
-    public List<BossMoneyRecord> getByRestrictEqual(Map<String, Object> map);
-    public List<BossMoneyRecord> getAll();
     public int add(BossMoneyRecord bossMoneyRecord)throws Exception;
     public ResultMessage addNoId(BossMoneyRecord bossMoneyRecord);
     public ResultMessage update(BossMoneyRecord bossMoneyRecord);

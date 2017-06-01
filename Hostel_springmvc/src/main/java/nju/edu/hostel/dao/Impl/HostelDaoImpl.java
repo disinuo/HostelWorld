@@ -28,13 +28,13 @@ public class HostelDaoImpl implements HostelDao{
         return baseDao.loadProxy(Hostel.class,id);
 
     }
-    public List<Hostel> getByRestrictEqual(String column,Object value){
-        return baseDao.getByRestrictEqual(Hostel.class,column,value);
-    }
+
     @Override
-    public List<Hostel> getByRestrictEqual(Map<String, Object> map) {
-        return baseDao.getByRestrictEqual(Hostel.class,map);
+    public List<Hostel> getAllPermitted() {
+        String hql="SELECT hostel FROM Hostel as hostel WHERE hostel.permitted=true ORDER BY hostel.id DESC";
+        return baseDao.getByHql(Hostel.class,hql);
     }
+
 
     @Override
     public int add(Hostel hostel) throws Exception {

@@ -38,18 +38,6 @@ public class PayBillDaoImpl implements PayBillDao {
     public PayBill load(int id) {
         return baseDao.loadProxy(PayBill.class,id);
     }
-    @Override
-    public List<PayBill> getByRestrictEqual(String column, Object value) {
-
-        return baseDao.getByRestrictEqualDESC(PayBill.class,column,value,"id");
-    }
-
-    @Override
-    public List<PayBill> getByRestrictEqual(Map<String, Object> map) {
-
-        return baseDao.getByRestrictEqualDESC(PayBill.class,map,"id");
-
-    }
 
     @Override
     public int add(PayBill payBill) throws Exception {

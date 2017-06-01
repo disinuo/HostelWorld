@@ -30,16 +30,27 @@ public class HostelServiceBean implements HostelService {
     public ResultMessage init(int hostelId){
         Hostel hostel=getById(hostelId);
         if(!hostel.getPermitted()){//店还没通过审核
-            List<RequestOpen> requests=requestDao.getOpenRequestByRestrictEqual("hostel",hostel);
+            List<RequestOpen> requests=requestDao.getOpenRequestByHostel(hostelId);
             if(requests==null||requests.size()==0){//客栈没提交过申请，提醒
                 return ResultMessage.REMIND_REQUEST;
             }else {
-                for(RequestOpen req:requests){//有一个拒绝的，就返回拒绝
-                    if(req.getState().equals(RequestState.DENIED.toString())){
-                        return ResultMessage.REQUEST_DENIED;
+                /*
+                 有一个同意的就返回成功；
+                 如果没有"同意"的：
+                    有【未审核】则返回【未审核】
+                    有【拒绝】则返回【拒绝】
+                    两者都有优先返回【未审核】 因为可能以前拒绝过，又申请了，还没审核。
+                 */
+                ResultMessage msg=ResultMessage.REQUEST_DENIED;
+                for(RequestOpen req:requests){//有一个同意的，就返回成功
+                    if(req.getState().equals(RequestState.APPROVED.toString())){
+                        return ResultMessage.SUCCESS;
+                    }
+                    if(req.getState().equals(RequestState.UNCHECKED.toString())){
+                        msg=ResultMessage.REQUEST_UNCHECKED;
                     }
                 }//否则返回 等待中
-                return ResultMessage.REQUEST_UNCHECKED;
+                return msg;
             }
         }
         return ResultMessage.SUCCESS;
@@ -337,7 +348,7 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public List<BookBill> getAllBookBills(int hostelId) {
-        return bookBillDao.getByRestrictEqual("hostel.id",hostelId);
+        return bookBillDao.getAllByHostelId(hostelId);
     }
     public List<BookBill> getAllValidBookBills(int hostelId) {
         List<BookBill> bills=getAllBookBills(hostelId);
@@ -644,7 +655,7 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public List<Room> getAllRooms(int hostelId){
-        List<Room> rooms= roomDao.getByRestrictEqual("hostel.id",hostelId,"state");
+        List<Room> rooms= roomDao.getByHostel(hostelId,"state");
         Iterator<Room> itr=rooms.iterator();
         while (itr.hasNext()){
             Room room=itr.next();
@@ -656,7 +667,7 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public List<Room> getAllValidRooms(int hostelId){
-        List<Room> rooms= roomDao.getByRestrictEqual("hostel.id",hostelId);
+        List<Room> rooms= roomDao.getByHostel(hostelId,"id");
         return refreshRoomValidity(rooms);
     }
 
@@ -667,13 +678,13 @@ public class HostelServiceBean implements HostelService {
     }
     @Override
     public List<Hostel> getAllPermittedHostels() {
-        return hostelDao.getByRestrictEqual("permitted",true);
+        return hostelDao.getAllPermitted();
     }
    
 
     @Override
     public  List<HostelMoneyRecord> getAllMoneyRecords(int hostelId){
-        return hostelMoneyRecordDao.getByRestrictEqual("hostelId",hostelId);
+        return hostelMoneyRecordDao.getByHostel(hostelId);
     }
     //only return valid rooms( state = 0 )
     private List<Room> refreshRoomValidity(List<Room> rooms){

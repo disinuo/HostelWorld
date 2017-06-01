@@ -26,23 +26,14 @@ public class BossMoneyRecordDaoImpl implements BossMoneyRecordDao {
     }
 
     @Override
+    public List<BossMoneyRecord> getByBoss(int bossId) {
+        String hql="SELECT record FROM BossMoneyRecord as record WHERE record.bossId="+bossId;
+        return baseDao.getByHql(BossMoneyRecord.class,hql);
+    }
+
+    @Override
     public BossMoneyRecord load(int id) {
         return baseDao.loadProxy(BossMoneyRecord.class,id);
-    }
-
-    @Override
-    public List<BossMoneyRecord> getByRestrictEqual(String column, Object value) {
-        return baseDao.getByRestrictEqual(BossMoneyRecord.class,column,value);
-    }
-
-    @Override
-    public List<BossMoneyRecord> getByRestrictEqual(Map<String, Object> map) {
-        return baseDao.getByRestrictEqual(BossMoneyRecord.class,map);
-    }
-
-    @Override
-    public List<BossMoneyRecord> getAll() {
-        return baseDao.getAll(BossMoneyRecord.class);
     }
 
     @Override

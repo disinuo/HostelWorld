@@ -146,7 +146,6 @@ function initRegionChart(data_input) {
     option = {
         title: {
             text: '订单量',
-            subtext: '纯属虚构',
             left: 'center'
         },
         tooltip: {

@@ -17,6 +17,7 @@ import java.util.Map;
 public class RoomDaoImpl implements RoomDao {
     @Autowired
     BaseDao baseDao;
+    String baseHql="SELECT room FROM Room as room WHERE ";
 
     @Override
     public Room get(int id) {
@@ -28,26 +29,18 @@ public class RoomDaoImpl implements RoomDao {
         return baseDao.loadProxy(Room.class,id);
     }
 
-    @Override
-    public List<Room> getByRestrictEqual(String column, Object value) {
-
-        return baseDao.getByRestrictEqualDESC(Room.class,column,value,"id");
-    }
-    @Override
-    public List<Room> getByRestrictEqual(String column, Object value,String base) {
-
-        return baseDao.getByRestrictEqualDESC(Room.class,column,value,base);
-    }
+//
+//    @Override
+//    public List<Room> getNotPassed(int hostelId){
+//        String hql=baseHql+ "room.hostel.id = "+hostelId+
+//                " AND room.state > -1 "+" ORDER BY room.id DESC";
+//        return baseDao.getByHql(Room.class,hql);
+//    }
 
     @Override
-    public List<Room> getByRestrictEqual(Map<String, Object> map) {
-        return baseDao.getByRestrictEqualDESC(Room.class,map,"id");
-    }
-    @Override
-    public List<Room> getNotPassed(int hostelId){
-        String hql="SELECT room FROM Room as room" +
-                " WHERE room.hostel.id = "+hostelId+
-                " AND room.state > -1 "+" ORDER BY room.id DESC";
+    public List<Room> getByHostel(int hostelId, String base) {
+        String hql=baseHql+"room.hostel.id="+hostelId+" ORDER BY "+
+                "room."+base+" DESC";
         return baseDao.getByHql(Room.class,hql);
     }
 

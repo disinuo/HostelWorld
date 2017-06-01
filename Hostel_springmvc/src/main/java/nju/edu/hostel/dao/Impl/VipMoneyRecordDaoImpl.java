@@ -31,18 +31,9 @@ public class VipMoneyRecordDaoImpl implements VipMoneyRecordDao {
     }
 
     @Override
-    public List<VipMoneyRecord> getByRestrictEqual(String column, Object value) {
-        return baseDao.getByRestrictEqual(VipMoneyRecord.class,column,value);
-    }
-
-    @Override
-    public List<VipMoneyRecord> getByRestrictEqual(Map<String, Object> map) {
-        return baseDao.getByRestrictEqual(VipMoneyRecord.class,map);
-    }
-
-    @Override
-    public List<VipMoneyRecord> getAll() {
-        return baseDao.getAll(VipMoneyRecord.class);
+    public List<VipMoneyRecord> getByVipId(int vipId) {
+        String hql="SELECT record FROM VipMoneyRecord as record WHERE record.vipId="+vipId;
+        return baseDao.getByHql(VipMoneyRecord.class,hql);
     }
 
     @Override

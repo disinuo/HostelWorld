@@ -70,7 +70,7 @@ public interface UserService {
      * @param type
      * @return
      */
-    public List<User> getByType(String type);
+//    public List<User> getByType(String type);
 
     /**
      * 用户通过用户名,密码登录，

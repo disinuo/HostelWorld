@@ -11,9 +11,7 @@ import java.util.Map;
 public interface HostelMoneyRecordDao {
     public HostelMoneyRecord get(int id);
     public HostelMoneyRecord load(int id);
-    public List<HostelMoneyRecord> getByRestrictEqual(String column, Object value);
-    public List<HostelMoneyRecord> getByRestrictEqual(Map<String, Object> map);
-    public List<HostelMoneyRecord> getAll();
+    public List<HostelMoneyRecord> getByHostel(int hostelId);
     public int add(HostelMoneyRecord hostelMoneyRecord)throws Exception;
     public ResultMessage addNoId(HostelMoneyRecord hostelMoneyRecord);
     public ResultMessage record(int hostelId, double money, long date, int type);

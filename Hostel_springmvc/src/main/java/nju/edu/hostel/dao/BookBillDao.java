@@ -12,8 +12,6 @@ import java.util.Map;
 public interface BookBillDao {
     public BookBill get(int id);
     public BookBill load(int id);
-    public List<BookBill> getByRestrictEqual(String column, Object value);
-    public List<BookBill> getByRestrictEqual(Map<String,Object> map);
 
     public int add(BookBill bookBill)throws Exception;
     public ResultMessage update(BookBill bookBill);

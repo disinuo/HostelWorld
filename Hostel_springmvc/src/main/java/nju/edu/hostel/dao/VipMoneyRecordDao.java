@@ -11,9 +11,7 @@ import java.util.Map;
 public interface VipMoneyRecordDao {
     public VipMoneyRecord get(int id);
     public VipMoneyRecord load(int id);
-    public List<VipMoneyRecord> getByRestrictEqual(String column, Object value);
-    public List<VipMoneyRecord> getByRestrictEqual(Map<String, Object> map);
-    public List<VipMoneyRecord> getAll();
+    public List<VipMoneyRecord> getByVipId(int vipId);
     public int add(VipMoneyRecord vipMoneyRecord)throws Exception;
     public ResultMessage addNoId(VipMoneyRecord vipMoneyRecord);
     public ResultMessage update(VipMoneyRecord vipMoneyRecord);

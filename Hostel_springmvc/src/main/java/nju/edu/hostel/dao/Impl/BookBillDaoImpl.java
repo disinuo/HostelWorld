@@ -32,14 +32,7 @@ public class BookBillDaoImpl implements BookBillDao {
         return baseDao.loadProxy(BookBill.class,id);
     }
 
-    @Override
-    public List<BookBill> getByRestrictEqual(String column, Object value) {
-        return baseDao.getByRestrictEqualDESC(BookBill.class,column,value,"id");
-    }
-    @Override
-    public List<BookBill> getByRestrictEqual(Map<String, Object> map) {
-        return baseDao.getByRestrictEqualDESC(BookBill.class,map,"id");
-    }
+
     // ================== DATES========
 
 
@@ -63,7 +56,8 @@ public class BookBillDaoImpl implements BookBillDao {
 
     @Override
     public List<BookBill> getAllByVipId(int vipId) {
-        return getByRestrictEqual("vip.id",vipId);
+        String hql=baseHql+" bill.vip.id = "+vipId+hqlTail;
+        return baseDao.getByHql(BookBill.class,hql);
     }
     @Override
     public List<BookBill> getRecentByVipId(int vipId) {
@@ -76,7 +70,8 @@ public class BookBillDaoImpl implements BookBillDao {
 
     @Override
     public List<BookBill> getAllByHostelId(int hostelId) {
-        return getByRestrictEqual("hostel.id",hostelId);
+        String hql=baseHql+" bill.hostel.id = "+hostelId+hqlTail;
+        return baseDao.getByHql(BookBill.class,hql);
     }
     @Override
     public List<BookBill> getRecentByHostelId(int hostelId) {

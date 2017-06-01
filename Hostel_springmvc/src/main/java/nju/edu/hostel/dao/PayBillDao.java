@@ -12,8 +12,6 @@ import java.util.Map;
 public interface PayBillDao {
     public PayBill get(int id);
     public PayBill load(int id);
-    public List<PayBill> getByRestrictEqual(String column, Object value);
-    public List<PayBill> getByRestrictEqual(Map<String,Object> map);
 
     public int add(PayBill payBill)throws Exception;
     public ResultMessage update(PayBill payBill);

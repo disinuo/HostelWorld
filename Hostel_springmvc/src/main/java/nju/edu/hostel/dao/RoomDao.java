@@ -12,18 +12,18 @@ import java.util.Map;
 public interface RoomDao {
     public Room get(int id);
     public Room load(int id);
-    public List<Room> getByRestrictEqual(String column, Object value);
-    public List<Room> getByRestrictEqual(Map<String,Object> map);
 
     /**
-     * @param base：排序的基准
+     * return rooms whose state= 0 or 1
+     */
+//    public List<Room> getNotPassed(int hostelId);
+
+    /**
+     * 按room的base属性排序
+     * @param hostelId
      * @return
      */
-    public List<Room> getByRestrictEqual(String column, Object value,String base);
-        /**
-         * return rooms whose state= 0 or 1
-         */
-    public List<Room> getNotPassed(int hostelId);
+    public List<Room> getByHostel(int hostelId,String base);
     public int add(Room room)throws Exception;
     public ResultMessage add(List<Room> rooms);
     public ResultMessage update(Room room);

@@ -12,8 +12,6 @@ import java.util.Map;
 public interface LiveBillDao {
     public LiveBill get(int id);
     public LiveBill load(int id);
-    public List<LiveBill> getByRestrictEqual(String column, Object value);
-    public List<LiveBill> getByRestrictEqual(Map<String,Object> map);
 
     public int add(LiveBill liveBill)throws Exception;
     public ResultMessage update(LiveBill liveBill);

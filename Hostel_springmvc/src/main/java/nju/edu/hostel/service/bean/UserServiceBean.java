@@ -28,7 +28,7 @@ public class UserServiceBean implements UserService {
     HostelDao hostelDao;
     @Override
     public ResultMessage register(Class<?> c,String userName, String password) {
-        List users=userDao.getByRestrictEqual("userName",userName);
+        List<User> users=userDao.getByUserName(userName);
         if(users.size()!=0) return ResultMessage.DUPLICATE_NAME;
         int userId=0;
         if(c==Vip.class){
@@ -114,27 +114,23 @@ public class UserServiceBean implements UserService {
     }
 
     @Override
-    public List<User> getByType(String type) {
-        return userDao.getByRestrictEqual("type",type);
-    }
-
-    @Override
     public User login(String userName, String password) {
         System.out.println("UserServiceBean-login "+userName+"  "+password);
         Map map=new HashMap<String,Object>();
         map.put("userName",userName);
         map.put("password",password);
-        List<User> ans=userDao.getByRestrictEqual(map);
+        List<User> ans=userDao.getByUserName(userName);
         if(ans==null||ans.size()==0) {
             return null;
-        }
-        else {
+        }else if(ans.get(0).getPassword().equals(password)){
             return ans.get(0);
+        }else {
+            return null;
         }
     }
     @Override
     public ResultMessage checkUser(String userName,String password){
-        List<User> users=userDao.getByRestrictEqual("userName",userName);
+        List<User> users=userDao.getByUserName(userName);
         if(users==null||users.size()==0){
             return ResultMessage.NOT_EXIST;
         }
@@ -147,7 +143,7 @@ public class UserServiceBean implements UserService {
     }
     @Override
     public ResultMessage checkUser(String userName){
-        List<User> users=userDao.getByRestrictEqual("userName",userName);
+        List<User> users=userDao.getByUserName(userName);
         if(users==null||users.size()==0){
             return ResultMessage.NOT_EXIST;
         }else return ResultMessage.SUCCESS;

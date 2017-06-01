@@ -46,21 +46,6 @@ public interface BaseDao {
 	 */
 	public <T> List<T> getByHql_paging(Class<T> c,String hql,int pageNum,int resultNum);
 
-		public <T> List<T> getByRestrictEqual(Class<T> c, String column, Object value);
-	public <T> List<T> getByRestrictEqualDESC(Class<T> c, String column, Object value,String base);
-	public <T> List<T> getByRestrictEqualASC(Class<T> c, String column, Object value,String base);
-	//>=
 
-	/**
-	 * 表的列名与对应的值构成的map
-	 *
-	 * @param c
-	 * @param map
-	 * @param <T>
-	 * @return
-	 */
-	public <T> List<T> getByRestrictEqual(Class<T> c, Map<String, Object> map);
-	public <T> List<T> getByRestrictEqualDESC(Class<T> c, Map<String, Object> map,String base);
-	public <T> List<T> getByRestrictEqualASC(Class<T> c, Map<String, Object> map,String base);
 
 }

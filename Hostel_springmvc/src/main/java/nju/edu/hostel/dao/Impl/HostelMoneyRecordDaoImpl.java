@@ -29,19 +29,11 @@ public class HostelMoneyRecordDaoImpl implements HostelMoneyRecordDao {
     }
 
     @Override
-    public List<HostelMoneyRecord> getByRestrictEqual(String column, Object value) {
-        return baseDao.getByRestrictEqual(HostelMoneyRecord.class,column,value);
+    public List<HostelMoneyRecord> getByHostel(int hostelId) {
+        String hql="SELECT record FROM HostelMoneyRecord as record WHERE record.hostelId="+hostelId;
+        return baseDao.getByHql(HostelMoneyRecord.class,hql);
     }
 
-    @Override
-    public List<HostelMoneyRecord> getByRestrictEqual(Map<String, Object> map) {
-        return baseDao.getByRestrictEqual(HostelMoneyRecord.class,map);
-    }
-
-    @Override
-    public List<HostelMoneyRecord> getAll() {
-        return baseDao.getAll(HostelMoneyRecord.class);
-    }
 
     @Override
     public int add(HostelMoneyRecord hostelMoneyRecord) throws Exception {

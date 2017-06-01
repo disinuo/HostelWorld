@@ -41,14 +41,7 @@ public class LiveBillDaoImpl implements LiveBillDao {
         return baseDao.loadProxy(LiveBill.class,id);
     }
 
-    @Override
-    public List<LiveBill> getByRestrictEqual(String column, Object value) {
-        return baseDao.getByRestrictEqualDESC(LiveBill.class,column,value,"id");
-    }
-    @Override
-    public List<LiveBill> getByRestrictEqual(Map<String, Object> map) {
-        return baseDao.getByRestrictEqualDESC(LiveBill.class,map,"id");
-    }
+
 //============================================================
     @Override
     public List<LiveBill> getAllByVipId(int vipId) {

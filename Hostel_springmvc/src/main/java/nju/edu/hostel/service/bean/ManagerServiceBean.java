@@ -29,12 +29,12 @@ import static nju.edu.hostel.util.Constants.MANAGER_ID;
 public class ManagerServiceBean implements ManagerService {
     @Override
     public List<RequestOpen> getOpenRequests(){
-        return requestDao.getOpenRequestByRestrictEqual("state", RequestState.UNCHECKED.toString());
+        return requestDao.getUncheckedOpenRequests();
     }
 
     @Override
     public List<RequestModify> getModifyRequests(){
-        return requestDao.getModifyRequestByRestrictEqual("state", RequestState.UNCHECKED.toString());
+        return requestDao.getUncheckedModifyRequests();
     }
 
     /**
@@ -140,7 +140,7 @@ public class ManagerServiceBean implements ManagerService {
             );
 //       -------到这里其实客栈和总经理之间的金钱交易就结束了，不过还要更新一下被结算的账单的状态orz，而且这一步会比较慢。。。
 //            为了总经理可以查看某个客栈的结算细节--账单信息，必须得更新这个状态位~！
-            List<PayBill> payBills=payBillDao.getByRestrictEqual("counted",false);
+            List<PayBill> payBills=payBillDao.getAllUncounted();
             for(PayBill payBill:payBills){
                 payBill.setCounted(true);
                 msg=payBillDao.update(payBill);
@@ -188,7 +188,7 @@ public class ManagerServiceBean implements ManagerService {
     }
     @Override
     public List<BossMoneyRecord> getAllMoneyRecords(){
-        return bossMoneyRecordDao.getByRestrictEqual("bossId",MANAGER_ID);
+        return bossMoneyRecordDao.getByBoss(MANAGER_ID);
     }
 
     @Autowired

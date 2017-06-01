@@ -28,6 +28,13 @@ public class UserDaoImpl implements UserDao{
     public User get(int id) {
         return baseDao.getEntity(User.class,id);
     }
+
+    @Override
+    public List<User> getByUserName(String name) {
+        String hql="SELECT user FROM User as user WHERE user.userName= '"+name+"'";
+        return baseDao.getByHql(User.class,hql);
+    }
+
     @Override
     public User load(int id){
         return baseDao.loadProxy(User.class,id);
@@ -35,17 +42,6 @@ public class UserDaoImpl implements UserDao{
     @Override
     public ResultMessage update(User user){
         return baseDao.update(user);
-    }
-    @Override
-    public List<User> getByRestrictEqual(String column, Object value){
-        List<User> users=baseDao.getByRestrictEqual(User.class,column,value);
-        return users;
-    }
-
-    @Override
-    public List<User> getByRestrictEqual(Map<String,Object> map){
-        List<User> users=baseDao.getByRestrictEqual(User.class,map);
-        return users;
     }
 
     @Override

@@ -36,16 +36,6 @@ public class VIPDaoImpl implements VIPDao {
     }
 
     @Override
-    public List<Vip> getByRestrictEqual(String column, Object value) {
-        return baseDao.getByRestrictEqual(Vip.class,column,value);
-    }
-
-    @Override
-    public List<Vip> getByRestrictEqual(Map<String, Object> map) {
-        return baseDao.getByRestrictEqual(Vip.class,map);
-    }
-
-    @Override
     public int add(Vip vip) throws Exception{
         return baseDao.save(vip);
     }
