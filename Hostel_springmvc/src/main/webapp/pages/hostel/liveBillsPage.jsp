@@ -14,13 +14,8 @@
 <%@include file="../common/header.jsp" %>
 <%@include file="component/navigation.jsp" %>
 
-客栈管理员你好
-所有住店、离店的记录界面
 <div class="big-container ">
-    <div class="col-lg-3 col-md-3 ">
-        <jsp:include page="sideBar.jsp" flush="true"/>
-    </div>
-    <div class="col-lg-9 clo-md-9">
+    <div class="col-lg-10 col-md-10 col-xs-10">
         <div class="flex-container">
             <button id="btn_month" class="btn btn-primary">最近30天</button>
             <button id="btn_week" class="btn btn-primary">最近7天</button>

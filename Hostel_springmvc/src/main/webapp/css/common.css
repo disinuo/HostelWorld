@@ -62,6 +62,9 @@ body,div{
 .flex-container{
     display: flex;
 }
+.dark-container{
+    background: #20252C;
+}
 /*.vip-self-panel{*/
     /*margin-left: -30px;*/
 /*}*/

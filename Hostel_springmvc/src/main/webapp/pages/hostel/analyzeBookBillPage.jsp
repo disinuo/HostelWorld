@@ -17,6 +17,7 @@
 
 <div class="big-container ">
     <div class="col-lg-2 col-md-2 col-xs-2">
+        <h4>预订情况</h4>
         <ul class="nav nav-pills nav-stacked">
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -28,32 +29,27 @@
                     <li id="week"><a href="#">周</a></li>
                 </ul>
             </li>
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    地区 <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li ><a href="#">省份</a></li>
-                    <li ><a href="#">城市</a></li>
-                </ul>
-            </li>
+            <li id="province"><a href="#">省份</a></li>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     房间 <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li ><a href="#">房型</a></li>
-                    <li ><a href="#">房价</a></li>
+                    <li id="roomType"><a href="#roomType">房型</a></li>
+                    <li id="roomPrice"><a href="#">房价</a></li>
                 </ul>
             </li>
-            <li ><a href="#">年龄</a></li>
+            <li id="vipAge"><a href="#">会员年龄</a></li>
 
         </ul>
     </div>
 
 
-    <div class="col-lg-10 col-md-10 col-xs-10">
-        <div id="container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>
+    <div class="dark-container col-lg-10 col-md-10 col-xs-10">
+        <%--<div id="container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>--%>
+        <div id="dateChart-container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>
+        <div id="pieChart-container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>
+        <div id="mapChart-container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>
     </div>
 </div>
 

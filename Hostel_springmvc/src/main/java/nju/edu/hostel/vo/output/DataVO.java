@@ -8,7 +8,7 @@ import java.util.Map;
  * Created by disinuo on 17/5/31.
  */
 public class DataVO {
-    String key;
+    String name;
     Object value;
 
     public static List<DataVO> mapToVO(Map map){
@@ -21,13 +21,13 @@ public class DataVO {
         return list;
     }
 
-    public DataVO(String key,Object value){
-        this.key=key;
+    public DataVO(String name, Object value){
+        this.name = name;
         this.value=value;
     }
     public DataVO(){}
-    public String getKey() {
-        return key;
+    public String getName() {
+        return name;
     }
 
     public Object getValue() {

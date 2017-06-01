@@ -17,10 +17,8 @@
 
 
 <div class="big-container ">
-    <div class="col-lg-3 col-md-3 ">
-        <jsp:include page="sideBar.jsp" flush="true"/>
-    </div>
-    <div class="col-lg-9 clo-md-9">
+
+    <div class="col-lg-10 col-md-10 col-xs-10">
 
         <h2>总收入：<span id="value" class="label label-success"></span>
         </h2>

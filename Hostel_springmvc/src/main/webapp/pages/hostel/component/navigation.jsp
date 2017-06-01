@@ -22,18 +22,19 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>${valid}</li>
                 <li class="active"><a href="/hostel/rooms">所有房间</a></li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        预订记录 <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/hostel/bookBills">详情</a></li>
-                        <li> <a href="/hostel/bookBills/analyze">统计</a></li>
-                    </ul>
-                </li>
+                <li><a href="/hostel/bookBills">预订记录</a></li>
                 <li><a href="/hostel/payBills">财政收入</a></li>
                 <li><a href="/hostel/liveBills">住房记录</a></li>
                 <li><a href="/hostel/info">基本信息</a></li>
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        统计分析 <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li> <a href="/hostel/analyze/bookBill">预订情况</a></li>
+                    </ul>
+                </li>
 
                 <li><a class="btn btn-primary" href="/logout">登出</a></li>
             </ul>

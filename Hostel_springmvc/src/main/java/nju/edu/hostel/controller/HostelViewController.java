@@ -18,6 +18,11 @@ import static nju.edu.hostel.util.Constants.ROLE_HOSTEL;
 @Controller
 @RequestMapping("/hostel")
 public class HostelViewController {
+    @RequestMapping(value="/analyze/bookBill")
+    public ModelAndView showAnalyzeBookBillPage(HttpSession session){
+        ModelAndView model=checkRole(session);
+        return model==null?( new ModelAndView("hostel/analyzeBookBillPage")):model;
+    }
     @RequestMapping(value = "/rooms")
     public ModelAndView showRooms(HttpSession session){
         ModelAndView model=checkRole(session);
@@ -78,12 +83,7 @@ public class HostelViewController {
 
         return model==null?( new ModelAndView("hostel/bookBillsPage")):model;
     }
-    @RequestMapping(value="/bookBills/analyze")
-    public ModelAndView showBookBillAnalyzePage(HttpSession session){
-        ModelAndView model=checkRole(session);
 
-        return model==null?( new ModelAndView("hostel/bookBillsAnalyzePage")):model;
-    }
     @RequestMapping(value="/payBills")
     public ModelAndView showPayBillsPage(HttpSession session){
         ModelAndView model=checkRole(session);
