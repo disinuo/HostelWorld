@@ -12,7 +12,8 @@ public class DataVO {
     Object value;
 
     public static List<DataVO> mapToVO(Map map){
-        List<DataVO> list=new ArrayList<DataVO>();
+
+        List<DataVO> list=new ArrayList<DataVO>(map.size());
 
         for(Object key:map.keySet()){
             list.add(new DataVO(key.toString(),map.get(key)));
