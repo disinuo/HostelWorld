@@ -17,11 +17,11 @@
 
 <div class="big-container ">
     <div class="col-lg-2 col-md-2 col-xs-2">
-        <h4>入住情况</h4>
+        <h4>收支情况</h4>
         <ul class="nav nav-pills nav-stacked">
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    时间 <span class="caret"></span>
+                    vip收入/总收入 <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
                     <li id="year"><a href="#">年</a></li>
@@ -29,12 +29,26 @@
                     <li id="week"><a href="#">周</a></li>
                 </ul>
             </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    人均消费 <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li id="avg_year"><a href="#">年</a></li>
+                    <li id="avg_month"><a href="#">月</a></li>
+                    <li id="avg_week"><a href="#">周</a></li>
+                </ul>
+            </li>
 
         </ul>
     </div>
 
-
     <div class="dark-container col-lg-10 col-md-10 col-xs-10">
+        <div class="flex-container">
+            <div class="flex-container"><h4>今日收入</h4><div id="incomeToday"></div></div>
+            <div class="flex-container"><h4>今日人均消费</h4><div id="incomeAvgToday"></div></div>
+        </div>
+
         <%--<div id="container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>--%>
         <div id="dateChart-container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>
         <div id="pieChart-container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>
