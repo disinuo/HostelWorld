@@ -4,13 +4,11 @@
 var NAME_INCOME='总收入';
 var NAME_VIP_INCOME='会员收入';
 var myChart=null;
-var dateChart_container=null;
-var pieChart_container=null;
-var mapChart_container=null;
+var incomeChart_container=null;
+var avgChart_container=null;
 $(function () {
-    dateChart_container=$('#dateChart-container');
-    pieChart_container=$('#pieChart-container');
-    mapChart_container=$('#mapChart-container');
+    incomeChart_container=$('#incomeChart-container');
+    avgChart_container=$('#avgChart-container');
     incomeToday();
     incomeAvgToday();
     vip_income_Month();
@@ -35,160 +33,11 @@ $('#avg_week').click(function (e) {
     avgWeek();
 });
 
-function initPieChart(data_input,name) {
-    console.log('init room chart');
-    console.log(data_input);
-    pieChart_container.css("display", "block");
-    mapChart_container.css("display", "none");
-    dateChart_container.css("display", "none");
-
-    myChart = echarts.init(document.getElementById('pieChart-container'));
-    var data_max=0;
-    data_input.forEach(function (item) {
-        if(item.value>data_max) data_max=item.value;
-    });
-    var option = {
-        title:{
-            text:name,
-            left: 'center',
-            top: 20,
-            textStyle: {
-                color: '#ccc'
-            }
-        },
-        visualMap: {
-            min: 0,
-            max: data_max,
-            left: 'left',
-            top: 'bottom',
-            text: ['高','低'],           // 文本，默认为数值文本
-            calculable: true
-        },
-
-        tooltip: {
-            trigger: 'item',
-            formatter: "{a} <br/>{b} : {c} ({d}%)"
-        },
-        toolbox: {
-            feature: {
-                dataView: {show: true, readOnly: false},
-                restore: {show: true},
-                saveAsImage: {show: true}
-            }
-        },
-        series: [
-            {
-                name:name,
-                type:'pie',
-                data:data_input.sort(function (a, b) { return a.value - b.value; }),
-                roseType:'radius',
-                radius : '55%',
-                center: ['50%', '50%'],
-                itemStyle: {
-                    normal: {
-                        // color: '#c23531',
-                        shadowBlur: 200,
-                        shadowColor: 'rgba(0, 0, 0, 0.5)'
-                    }
-                },
-
-                label: {
-                    normal: {
-                        textStyle: {
-                            color: 'rgba(255, 255, 255, 0.3)'
-                        }
-                    }
-                },
-                labelLine: {
-                    normal: {
-                        lineStyle: {
-                            color: 'rgba(255, 255, 255, 0.3)'
-                        },
-                        smooth: 0.2,
-                        length: 10,
-                        length2: 20
-                    }
-                },
-                animationType: 'scale',
-                animationEasing: 'elasticOut',
-                animationDelay: function (idx) {
-                    return Math.random() * 200;
-                }
-                // center: ['50%', '50%'],
-            }
-        ]
-    };
-    myChart.setOption(option);
-}
-function initRegionChart(data_input) {
-    pieChart_container.css("display", "none");
-    mapChart_container.css("display", "block");
-    dateChart_container.css("display", "none");
-    myChart = echarts.init(document.getElementById('mapChart-container'));
-
-    var data_max=0;
-    data_input.forEach(function (item) {
-        if(item.value>data_max) data_max=item.value;
-    });
-    console.log(data_max);
-    option = {
-        title: {
-            text: '订单量',
-            left: 'center'
-        },
-        tooltip: {
-            trigger: 'item'
-        },
-
-        visualMap: {
-            min: 0,
-            max: data_max,
-            left: 'left',
-            top: 'bottom',
-            text: ['高','低'],           // 文本，默认为数值文本
-            calculable: true
-        },
-        toolbox: {
-            show: true,
-            orient: 'vertical',
-            left: 'right',
-            top: 'center',
-            feature: {
-                dataView: {readOnly: false},
-                restore: {},
-                saveAsImage: {}
-            }
-        },
-        series: [
-            {
-                name: '订单量',
-                type: 'map',
-                mapType: 'china',
-                roam: false,
-                label: {
-                    normal: {
-                        show: true
-                    },
-                    emphasis: {
-                        show: true
-                    }
-                },
-                data:data_input
-            }
-
-        ]
-    };
-    myChart.setOption(option);
-}
-function randomData() {
-    return Math.round(Math.random()*1000);
-}
 function initAvg_Income_DateChart(data_incomeAvg) {
-    pieChart_container.css("display", "none");
-    mapChart_container.css("display", "none");
-    dateChart_container.css("display", "block");
+    incomeChart_container.css("display", "none");
+    avgChart_container.css("display", "block");
 
-    myChart = echarts.init(document.getElementById('dateChart-container'));
+    myChart = echarts.init(document.getElementById('avgChart-container'));
 
 
 
@@ -199,6 +48,14 @@ function initAvg_Income_DateChart(data_incomeAvg) {
         data_y_incomeAvg.push(item.value);
     });
     var option = {
+        title:{
+            text:'人均消费',
+            left: 'center',
+            top: 20,
+            textStyle: {
+                color: '#ccc'
+            }
+        },
         tooltip: {
             trigger: 'axis',
             axisPointer: {
@@ -277,24 +134,33 @@ function initAvg_Income_DateChart(data_incomeAvg) {
 }
 
 function initVip_Income_DateChart(data_income) {
-    pieChart_container.css("display", "none");
-    mapChart_container.css("display", "none");
-    dateChart_container.css("display", "block");
+    avgChart_container.css("display", "none");
+    incomeChart_container.css("display", "block");
 
-    myChart = echarts.init(document.getElementById('dateChart-container'));
+    myChart = echarts.init(document.getElementById('incomeChart-container'));
 
     var data_y_income=[];
     var data_y_vip_income=[];
     var data_x =[];
+    var max=0;
     data_income.forEach(function (item) {
         data_x.push(item[0]);
         data_y_vip_income.push(item[1]);
         data_y_income.push(item[2]);
+        if(item[2]>max) max=item[2];
     });
     var colors = [
         '#5793f3',
         '#abcf2e'];
     var option = {
+        title:{
+            text:'会员收入/总收入',
+            left: 'center',
+            top: 20,
+            textStyle: {
+                color: '#ccc'
+            }
+        },
 
         color: colors,
         tooltip: {
@@ -331,6 +197,7 @@ function initVip_Income_DateChart(data_income) {
                 type: 'value',
                 name: NAME_INCOME,
                 min: 0,
+                max:max,
                 position: 'left',
                 axisLine: {
                     lineStyle: {
@@ -344,7 +211,7 @@ function initVip_Income_DateChart(data_income) {
                 type: 'value',
                 name: NAME_VIP_INCOME,
                 min: 0,
-                // max: 600,
+                max: max,
                 position: 'right',
                 axisLine: {
                     lineStyle: {
