@@ -14,10 +14,9 @@
 <%@include file="../common/header.jsp" %>
 <jsp:include page="component/navigation.jsp" ><jsp:param name="valid" value='呵呵哈哈哈' /></jsp:include>
 
-
 <div class="big-container ">
 
-    <div class="col-lg-12 col-md-12 col-xs-12">
+    <div class="top-padding-container col-lg-12 col-md-12 col-xs-12">
         <table id="table" class="col-lg-9 table table-striped">
         </table>
     </div>

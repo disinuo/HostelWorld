@@ -27,11 +27,32 @@
 
    <!-- Optional theme -->
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-   <link rel="stylesheet" href="/css/common.css">
+
+
+<!-- Propeller card (CSS for helping component example file)-->
+<link href="http://propeller.in/components/card/css/card.css" type="text/css" rel="stylesheet" />
+
+<!-- Example docs (CSS for helping component example file)-->
+<link href="http://propeller.in/docs/css/example-docs.css" type="text/css" rel="stylesheet" />
+
+<!-- Propeller typography -->
+<link href="http://propeller.in/components/typography/css/typography.css" type="text/css" rel="stylesheet" />
+
+<!-- Google Icon Font -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!--<link href="../components/icons/css/google-icons.css" type="text/css" rel="stylesheet" /> -->
+
+<!-- Propeller Button -->
+<link href="http://propeller.in/components/button/css/button.css" type="text/css" rel="stylesheet" />
+
+<!-- Propeller Accordion -->
+<link href="http://propeller.in/components/floating-action-button/css/floating-action-button.css" type="text/css" rel="stylesheet" />
+
+
+<link rel="stylesheet" href="/css/common.css">
 
 <%--<link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">--%>
 <%--<script src="https://unpkg.com/flatpickr"></script>--%>
 
 
    <title>HostelWorld</title>
-<%! int table_height=500;%>

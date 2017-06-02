@@ -1,70 +1,64 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-        <link href="../css/lib/jquery-ui.css" rel="stylesheet">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-		<link href="../css/common.css" rel="stylesheet">
-        <link href="../css/breadcrumb.css" rel="stylesheet">
-	</head>
-	<body>
+<!doctype html>
+<html lang="">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="Propeller is a front-end responsive framework based on Material design & Bootstrap.">
+	<meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport">
+	<title>Accordion - Style - Propeller</title>
 
-	<div class="col-lg-2 col-md-2 col-xs-2">
-		<h4>预订情况</h4>
-		<ul class="nav nav-pills nav-stacked">
-			<li class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-					时间 <span class="caret"></span>
-				</a>
-				<ul class="dropdown-menu">
-					<li id="year"><a href="#">年</a></li>
-					<li id="month"><a href="#">月</a></li>
-					<li id="week"><a href="#">周</a></li>
-					<li id="day"><a href="#">周</a></li>
-				</ul>
-			</li>
-			<li class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-					地区 <span class="caret"></span>
-				</a>
-				<ul class="dropdown-menu">
-					<li ><a href="#">省份</a></li>
-					<li ><a href="#">城市</a></li>
-				</ul>
-			</li>
-			<li class="dropdown">
-				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-					房间 <span class="caret"></span>
-				</a>
-				<ul class="dropdown-menu">
-					<li ><a href="#">房型</a></li>
-					<li ><a href="#">房价</a></li>
-				</ul>
-			</li>
-			<li ><a href="#">年龄</a></li>
+	<!-- favicon -->
+	<!--<link rel="icon" href="http://propeller.in/assets/images/favicon.ico" type="image/x-icon">-->
 
-		</ul>
-	</div>
+	<!-- Bootstrap -->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
 
-	<div class="dark-container col-lg-10 col-md-10 col-xs-10">
-		<div id="dateChart-container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>
-		<div id="weekChart-container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>
-		<div id="dayChart-container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>
-		<div id="pieChart-container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>
-		<div id="mapChart-container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>
-	</div>
+	<!-- Propeller card (CSS for helping component example file)-->
+	<link href="http://propeller.in/components/card/css/card.css" type="text/css" rel="stylesheet" />
 
-	</body>
-	<script type="text/javascript" language="javascript" src="../js/lib/jquery-2.1.4.js"></script>
-	<script type="text/javascript" language="javascript" src="../js/lib/bootstrap.min.js"></script>
+	<!-- Example docs (CSS for helping component example file)-->
+	<link href="http://propeller.in/docs/css/example-docs.css" type="text/css" rel="stylesheet" />
 
-	<script type="text/javascript" src="../js/lib/echarts.min.js" charset="UTF-8"></script>
-	<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
-	<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
-	<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
-	<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
-	<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
-	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
-	<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
-	<script type="text/javascript" src="demo.js" charset="UTF-8"></script>
+	<!-- Propeller typography -->
+	<link href="http://propeller.in/components/typography/css/typography.css" type="text/css" rel="stylesheet" />
+
+	<!-- Google Icon Font -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<!--<link href="../components/icons/css/google-icons.css" type="text/css" rel="stylesheet" /> -->
+
+	<!-- Propeller Button -->
+	<link href="http://propeller.in/components/button/css/button.css" type="text/css" rel="stylesheet" />
+
+	<!-- Propeller Accordion -->
+	<link href="http://propeller.in/components/floating-action-button/css/floating-action-button.css" type="text/css" rel="stylesheet" />
+
+	<style>
+		body { background:transparent;}
+	</style>
+
+</head>
+
+<div class="menu pmd-floating-action" role="navigation">
+	<a href="javascript:void(0);" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default"
+	   data-title="住店">
+		<i class="material-icons">person_add</i>
+	</a>
+	<a href="javascript:void(0);" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default"
+	   data-title="离店">
+		<i class="material-icons">reply_all</i>
+	</a>
+	<a href="javascript:void(0);" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default"
+	   data-title="记账">
+		<i class="material-icons">attach_money</i>
+	</a>
+	<a href="javascript:void(0);" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default"
+	   data-title="发布房间">
+		<i class="material-icons">store</i>
+	</a>
+	<a href="javascript:void(0);" class="pmd-floating-action-btn btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary" data-title="Add">
+		<span class="pmd-floating-hidden">Primary</span>
+		<i class="material-icons pmd-sm">add</i>
+	</a>
+</div>
+</body>
 </html>

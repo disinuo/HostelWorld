@@ -16,11 +16,7 @@
 
 
 <div class="big-container">
-    <div class="col-lg-3 col-md-3 ">
-    <jsp:include page="sideBar.jsp" flush="true"/>
-    </div>
-    <div class="col-lg-9 clo-md-9">
-
+    <div class="top-padding-container col-lg-12 col-md-12 col-xs-12">
 
          <form id="checkOutForm">
             <%--<div class="input-group input-group-sm">--%>

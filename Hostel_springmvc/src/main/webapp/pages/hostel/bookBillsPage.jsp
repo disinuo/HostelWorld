@@ -16,9 +16,8 @@
 
 
 <div class="big-container ">
-    <div class="col-lg-12 col-md-12 col-xs-12">
-
-        <div class="flex-container">
+    <div class="top-padding-container col-lg-12 col-md-12 col-xs-12">
+    <div class="flex-container">
             <button id="btn_month" class="btn btn-primary">最近30天</button>
             <button id="btn_week" class="btn btn-primary">最近7天</button>
             <button id="btn_year" class="btn btn-primary">今年</button>

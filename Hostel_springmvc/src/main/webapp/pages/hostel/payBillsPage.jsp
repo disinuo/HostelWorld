@@ -18,8 +18,7 @@
 
 <div class="big-container ">
 
-    <div class="col-lg-10 col-md-10 col-xs-10">
-
+    <div class="top-padding-container col-lg-12 col-md-12 col-xs-12">
         <h2>总收入：<span id="value" class="label label-success"></span>
         </h2>
         <div class="flex-container">

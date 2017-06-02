@@ -15,10 +15,7 @@
 <%@include file="component/navigation.jsp" %>
 
 <div class="big-container">
-    <div class="col-lg-3 col-md-4 col-xs-4 ">
-        <jsp:include page="sideBar.jsp" flush="true"/>
-    </div>
-    <div class="col-lg-9 clo-md-8 col-xs-8">
+    <div class="top-padding-container col-lg-12 col-md-12 col-xs-12">
         <form id="modifyHostelInfoForm">
             <div class="input-group input-group-sm">
                 <span class="input-group-addon">店名</span>
