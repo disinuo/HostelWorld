@@ -1,5 +1,6 @@
 package nju.edu.hostel.controller;
 
+import net.sf.json.JSONObject;
 import nju.edu.hostel.service.HostelService;
 import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.vo.input.LiveInVO;
@@ -50,7 +51,7 @@ public class HostelCommitController {
     }
 
     @RequestMapping(value = "/enrollPay",method = RequestMethod.POST)
-    public double enrollPay(int liveBillId){
+    public JSONObject enrollPay(int liveBillId){
         return hostelService.enrollPay(liveBillId);
     }
     @RequestMapping(value = "/pay",method = RequestMethod.POST,produces = "text/html;charset=UTF-8")

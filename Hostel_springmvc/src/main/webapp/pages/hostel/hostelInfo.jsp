@@ -17,15 +17,17 @@
 
 <link type="text/css" rel="stylesheet" href="../../css/vip_selfPanel.css"/>
 <div class="self-info-container">
-    <a href="/hostel/modifyInfo"><i class="glyphicon glyphicon-pencil"></i></a>
     <div class="hostel-info">
         <img class="avatar" id="hostel_info_img" >
         <form id="openRequestForm">
             <input type="submit" class="btn btn-primary" value="申请开店">
         </form>
+        <a href="/hostel/modifyInfo"><i class="glyphicon glyphicon-pencil"></i></a>
+
         <div  class="vip-self-li">
             <span id="hostel_info_descrip"></span>
         </div>
+
         <div  class="vip-self-li">
             <i class="glyphicon glyphicon-asterisk"></i>
             编号：<span id="hostel_info_id"></span>
@@ -50,13 +52,6 @@
             <i class="glyphicon glyphicon-yen"></i>
             银行卡余额：<span id="hostel_info_money"></span>元
         </div>
-    </div>
-    <div  class="vip-self-li">
-        <a type="button" class="btn btn-primary" href="/hostel/liveIn">住店</a>
-        <a type="button" class="btn btn-primary" href="/hostel/checkOut">离店</a><br><br>
-        <a type="button" class="btn btn-primary" href="/hostel/enrollPay">记账</a>
-        <a type="button" class="btn btn-primary" href="/hostel/pay">付款</a><br><br>
-        <a type="button" class="btn btn-warning" href="/hostel/addRoom">发布房间计划</a>
     </div>
 </div>
 <%@include file="../common/tail.jsp" %>

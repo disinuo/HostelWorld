@@ -1,5 +1,6 @@
 package nju.edu.hostel.service;
 
+import net.sf.json.JSONObject;
 import nju.edu.hostel.model.*;
 import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.vo.input.LiveInVO;
@@ -63,7 +64,7 @@ public interface HostelService {
      * @param liveBillId
      * @return 实际顾客应支付的值or-1
      */
-    public double enrollPay(int liveBillId);
+    public JSONObject enrollPay(int liveBillId);
 
     /**
      * 会员选择用会员卡支付的时候，店员会选择这个服务。

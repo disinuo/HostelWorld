@@ -102,11 +102,18 @@ public class DateHandler {
     private static SimpleDateFormat formatter_withTime=new SimpleDateFormat("yyyy-MM-dd hh:mm");
 
     public static void main(String[] args){
-        long today=new Date().getTime();
-        long start=calculateStartOfToday(today);
-
-
+//        long today=1496428315841L;
+        long today=1496828515841L;
         System.out.println(longToStr_withTime(today)+"   "+today);
+        long start=1496394046976L;
         System.out.println(longToStr_withTime(start)+"   "+start);
+
+        Calendar start_helper=Calendar.getInstance();
+        start_helper.setTimeInMillis(start);
+
+        Calendar today_helper=Calendar.getInstance();
+        today_helper.setTimeInMillis(today);
+        System.out.print(today_helper.compareTo(start_helper));
+
     }
 }

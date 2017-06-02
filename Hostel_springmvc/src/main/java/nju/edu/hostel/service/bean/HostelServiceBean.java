@@ -1,5 +1,6 @@
 package nju.edu.hostel.service.bean;
 
+import net.sf.json.JSONObject;
 import nju.edu.hostel.dao.*;
 import nju.edu.hostel.model.*;
 import nju.edu.hostel.service.HostelService;
@@ -97,7 +98,7 @@ public class HostelServiceBean implements HostelService {
     }
 
     @Override
-    public double enrollPay(int liveBillId) {
+    public JSONObject enrollPay(int liveBillId) {
         LiveBill liveBill= liveBillDao.get(liveBillId);
         List<LiveDetail> liveDetails=liveBill.getLiveDetails();
         Hostel hostel=liveBill.getHostel();
@@ -108,8 +109,19 @@ public class HostelServiceBean implements HostelService {
         payBill.setLiveBill(liveBill);
         payBill.setHostel(hostel);
 
-        //房间原价
-        double moneyToPay=liveBill.getRoom().getPrice();
+        //房间原价【单价】
+        double roomPrice=liveBill.getRoom().getPrice();
+        //算住了几晚
+        int numOfDay=1;
+        if(liveBill.getCheckOutDate()>0){
+            numOfDay=(int)DateHandler.milliSecondToDay(liveBill.getCheckOutDate()-liveBill.getDate());
+        }else {
+            numOfDay=(int)DateHandler.milliSecondToDay(new Date().getTime()-liveBill.getDate());
+        }
+        numOfDay=numOfDay==0?1:numOfDay;
+        double moneyToPay=roomPrice*numOfDay;//这里是原价
+
+        double money_after_Discounted=moneyToPay;
         //找到房价最低折扣
         int highestLevel=-1;
         for(LiveDetail detail:liveDetails) {
@@ -118,11 +130,12 @@ public class HostelServiceBean implements HostelService {
                 highestLevel=getBigger(highestLevel,vip.getLevel());
             }
         }
+        double discount=1;
         if(highestLevel>0) {//顾客里有会员
-            double discount=VIP_LEVEL_TO_DISCOUNT(highestLevel);
-            moneyToPay*=discount;
+            discount=VIP_LEVEL_TO_DISCOUNT(highestLevel);
+            money_after_Discounted*=discount;
 
-            double eachPay=moneyToPay/liveBill.getNumOfPeople();
+            double eachPay=money_after_Discounted/liveBill.getNumOfPeople();
             /*
              *消费要积分的！还要升级！
              */
@@ -141,13 +154,14 @@ public class HostelServiceBean implements HostelService {
             }
         }
         //顾客里没有会员，直接生成账单
-        payBill.setMoney(moneyToPay);
+        payBill.setMoney(money_after_Discounted);
+
 
         try {
             payBillDao.add(payBill);
         } catch (Exception e) {
             e.printStackTrace();
-            return -1;
+            return null;
         }
         try {
             //更新住店单状态为【已支付】
@@ -163,8 +177,8 @@ public class HostelServiceBean implements HostelService {
             //本酒店顾客消费总金额
             double totalExpense=avgExpense*numOfPeople;
 
-            moneyUncounted+=moneyToPay;
-            totalExpense+=moneyToPay;
+            moneyUncounted+=money_after_Discounted;
+            totalExpense+=money_after_Discounted;
             //更新hostel信息
             hostel.setMoneyUncounted(moneyUncounted);
             numOfPeople+=liveBill.getNumOfPeople();
@@ -173,10 +187,16 @@ public class HostelServiceBean implements HostelService {
             hostel.setNumOfPeople(numOfPeople);
 
             hostelDao.update(hostel);
-            return NumberFormatter.saveOneDecimal(moneyToPay);
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("roomPrice",roomPrice);
+            jsonObject.put("numOfDay",numOfDay);
+            jsonObject.put("originalPrice",moneyToPay);
+            jsonObject.put("finalPrice",money_after_Discounted);
+            jsonObject.put("discount",discount);
+            return jsonObject;
         }catch (Exception e){
             e.printStackTrace();
-            return -1;
+            return null;
         }
     }
     @Override

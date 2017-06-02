@@ -26,7 +26,7 @@ $(function () {
 $("#enrollPayForm").submit(function(e) {
     var url = "/hostel/enrollPay"; // the script where you handle the form input.
     var data={
-        liveBillId:$('#liveInId').val(),
+        liveBillId:$('#liveInId').val()
     };
     $.ajax({
         type: "POST",
@@ -34,7 +34,15 @@ $("#enrollPayForm").submit(function(e) {
         // data: $("#idForm").serialize(),
         data: data, // serializes the form's elements.
         success: function(data) {
-            $('#msg').html('记录成功！ 折后价  '+data+' 元');
+            console.log(data);
+            var roomPrice=data.roomPrice;
+            var numOfDay=data.numOfDay;
+            var originalPrice=data.originalPrice;
+            var finalPrice=data.finalPrice;
+            var discount=data.discount*10;
+            var msg="记录成功！<br> 原价= "+originalPrice+", 折后价= "+finalPrice+"。<br>"
+            +" = "+roomPrice+" * "+numOfDay+"天 *"+discount+" 折。";
+            $('#msg').html(msg);
         },
         error:function (data) {
             alert('ERROR!!!: '+JSON.stringify(data));

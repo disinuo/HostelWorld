@@ -15,20 +15,39 @@
 <%@include file="component/navigation.jsp" %>
 
 <div class="big-container">
-    <div class="top-padding-container col-lg-12 col-md-12 col-xs-12">
-        <form id="payForm">
-            <div class="input-group input-group-sm">
-                <span class="input-group-addon">会员编号</span>
-                <input id="vipId" name="vipId" type="text" class="form-control" placeholder="不是会员的话不用填" aria-describedby="sizing-addon3">
-            </div>
+    <div class="component-box">
+        <!-- Text fields example -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="pmd-card pmd-z-depth pmd-card-custom-form">
+                    <div class="pmd-card-body">
+                        <form id="payForm">
+                            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                <label for="vipId" class="control-label">会员编号</label>
+                                <input type="text" id="vipId" name="vipId" class="form-control">
+                                <p class="help-block">不是会员的话不用填</p>
 
-            <div class="input-group input-group-sm">
-                <span class="input-group-addon">金额</span>
-                <input id="money" name="money" type="number" class="form-control" placeholder="" aria-describedby="sizing-addon3" required>
+                            </div>
+                            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                <label for="money" class="control-label">金额</label>
+                                <input id="money" name="money" type="number" class="form-control">
+                            </div>
+
+                            <input id="btnLogin"  class="btn btn-primary" type="submit" value="保存"/>
+                        </form>
+                        <div id="msg" class="alert alert-success" role="alert"></div>
+
+
+
+                    </div>
+                </div>
             </div>
-            <input id="btnLogin"  class="btn btn-primary" type="submit" value="保存"/>
-        </form>
-        <div id="msg" class="alert alert-success" role="alert"></div>
+        </div><!-- end Text fields example -->
+
+    </div>
+</div><!--end Text fields code, example -->
+    <div class="top-padding-container col-lg-12 col-md-12 col-xs-12">
+
     </div>
 </div>
 
