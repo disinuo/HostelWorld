@@ -243,16 +243,6 @@ public class HostelDataController {
         int id= ControllerHelper.getUserIdFromSession(session);
         return hostelService.getLiveInNumByDay(id);
     }
-    @RequestMapping(value = "/getLiveInNum/vip/region")
-    public List<DataVO> getLiveInNumByVipRegion(HttpSession session){
-        int id= ControllerHelper.getUserIdFromSession(session);
-        return hostelService.getLiveInNumByVipRegion(id);
-    }
-    @RequestMapping(value = "/getLiveInNum/vip/age")
-    public List<DataVO> getLiveInNumByVipAge(HttpSession session){
-        int id= ControllerHelper.getUserIdFromSession(session);
-        return hostelService.getLiveInNumByVipAge(id);
-    }
     @RequestMapping(value = "/getLiveInNum/room/type")
     public List<DataVO> getLiveInNumByRoomType(HttpSession session){
         int id= ControllerHelper.getUserIdFromSession(session);

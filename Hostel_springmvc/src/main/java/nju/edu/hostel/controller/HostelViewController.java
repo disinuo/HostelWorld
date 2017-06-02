@@ -28,6 +28,11 @@ public class HostelViewController {
         ModelAndView model=checkRole(session);
         return model==null?( new ModelAndView("hostel/analyzeLiveInBillPage")):model;
     }
+    @RequestMapping(value="/analyze/payBill")
+    public ModelAndView showAnalyzePayBillPage(HttpSession session){
+        ModelAndView model=checkRole(session);
+        return model==null?( new ModelAndView("hostel/analyzePayBillPage")):model;
+    }
     @RequestMapping(value = "/rooms")
     public ModelAndView showRooms(HttpSession session){
         ModelAndView model=checkRole(session);

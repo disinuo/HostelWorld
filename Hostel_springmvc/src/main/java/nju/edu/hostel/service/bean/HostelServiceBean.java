@@ -628,16 +628,6 @@ public class HostelServiceBean implements HostelService {
     }
 
     @Override
-    public List<DataVO> getLiveInNumByVipRegion(int hostelId) {
-        return null;//TODO
-    }
-
-    @Override
-    public List<DataVO> getLiveInNumByVipAge(int hostelId) {
-        return null;//TODO
-    }
-
-    @Override
     public List<DataVO> getLiveInNumByRoomType(int hostelId) {
         return null;//TODO
     }

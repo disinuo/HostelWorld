@@ -233,8 +233,6 @@ public interface HostelService {
      * 分组标准：一天内的【时段】
      */
     public List<DataVO> getLiveInNumByDay(int hostelId);
-    public List<DataVO> getLiveInNumByVipRegion(int hostelId);
-    public List<DataVO> getLiveInNumByVipAge(int hostelId);
     public List<DataVO> getLiveInNumByRoomType(int hostelId);
     public List<DataVO> getLiveInNumByRoomPrice(int hostelId);
 
