@@ -446,6 +446,64 @@ function initDayChart(data_liveInNum) {
     mapChart_container.css("display", "none");
     dayChart_container.css("display", "block");
     myChart = echarts.init(document.getElementById('dayChart-container'));
+    var hours = data_liveInNum.x;
+    var days = data_liveInNum.y;
+
+    var data = data_liveInNum.z;
+    option = {
+        title: {
+            text: 'Punch Card of Github',
+            link: 'https://github.com/pissang/echarts-next/graphs/punch-card'
+        },
+        legend: {
+            data: ['Punch Card'],
+            left: 'right'
+        },
+        polar: {},
+        tooltip: {
+            formatter: function (params) {
+                return  days[params.value[0]]+":"+ hours[params.value[1]] +'<br>'+ params.value[2] + '单入住';
+            }
+        },
+        angleAxis: {
+            type: 'category',
+            data: hours,
+            boundaryGap: false,
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    color: '#fff',
+                    type: 'dashed'
+                }
+            },
+            axisLine: {
+                show: false
+            }
+        },
+        radiusAxis: {
+            type: 'category',
+            data: days,
+            axisLine: {
+                show: false
+            },
+            axisLabel: {
+                rotate: 45
+            }
+        },
+        series: [{
+            name: 'Punch Card',
+            type: 'scatter',
+            coordinateSystem: 'polar',
+            symbolSize: function (val) {
+                return val[2] * 2;
+            },
+            data: data,
+            animationDelay: function (idx) {
+                return idx * 5;
+            }
+        }]
+    };
+    myChart.setOption(option);
 
 }
 function showWeek() {
@@ -515,7 +573,7 @@ function showYear() {
 }
 function showDay() {
     $.ajax({
-        url:'/data/hostel/getLiveInNum/day',
+        url:'/data/hostel/getLiveInNum/hour',
         async: false,
         success:function (data) {
             console.log(data);

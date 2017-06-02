@@ -614,16 +614,28 @@ public class HostelServiceBean implements HostelService {
         return DataVO.mapToVO(getAllLiveInNumByDate_Helper(hostelId, Calendar.WEDNESDAY));
     }
     @Override
-    public List<DataVO> getLiveInNumByDay(int hostelId) {
+    public List<Object[]> getLiveInNumByHour(int hostelId) {
         Map<String,Double>map= CREATE_DAY_MAP();
         List<LiveBill> bills=getAllLiveBills(hostelId);
         for(LiveBill bill:bills){
             int hour=DateHandler.getFieldFromLong(Calendar.HOUR,bill.getDate());
-            String hourStr=HOUR_TO_RANGE(hour);
-            double num=map.get(hourStr);
-            map.put(hourStr,++num);
+            int hourIndex=HOUR_TO_RANGE_INDEX(hour);
+            int dayOfWeekIndex=DateHandler.getFieldFromLong(Calendar.WEDNESDAY,bill.getDate())-1;
+            String key=dayOfWeekIndex+""+hourIndex;
+            double num=map.get(key);
+            map.put(key,++num);
         }
-        return DataVO.mapToVO(map);
+        System.err.println(map.size());
+        System.err.print(map);
+        List<Object[]> vos=new ArrayList<>(map.size());
+        for(String key:map.keySet()){
+            int y=Integer.parseInt(key.substring(0,1));
+            int x=Integer.parseInt(key.substring(1));
+            Object z=map.get(key);
+            vos.add(new Object[]{x,y,z});
+        }
+        return vos;
+        //TODO
     }
 
     @Override

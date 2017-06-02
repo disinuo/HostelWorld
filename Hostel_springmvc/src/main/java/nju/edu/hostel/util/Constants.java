@@ -102,11 +102,14 @@ public class Constants {
             "30~50岁",
             ">=50岁"
     };
+    public static final String[] DAY_OF_WEEK={
+      "周日","周一","周二","周三","周四","周五","周六"
+    };
     public static final String[] ROOMPRICE_RANGE={
             "<100", "100~200","200~300","300~500","500~700","700~1000",">1000"
     };
     public static final String[] HOUR_OF_DAY_RANGE={
-        "0:00~3:00","3:00~6:00","6:00~9:00","9:00~12:00","12:00~15:00","15:00~18:00","18:00~21:00","21:00~0:00"
+        "0:00~2:00","2:00~4:00","4:00~6:00","6:00~8:00","8:00~10:00","10:00~12:00","12:00~14:00","14:00~16:00","16:00~18:00","18:00~20:00","20:00~22:00","22:00~0:00"
     };
     public static String AGE_TO_RANGE(int age){
         if(age<18) return AGE_RANGE[0];
@@ -124,10 +127,14 @@ public class Constants {
         else  return  ROOMPRICE_RANGE[6];
     }
     public static String HOUR_TO_RANGE(int hour){
-        int index=hour/3;
-        int size=HOUR_OF_DAY_RANGE.length;
-        if(index>=size) return HOUR_OF_DAY_RANGE[size-1];
+        int index=HOUR_TO_RANGE_INDEX(hour);
         return HOUR_OF_DAY_RANGE[index];
+    }
+    public static int HOUR_TO_RANGE_INDEX(int hour){
+        int index=hour/2;
+        int size=HOUR_OF_DAY_RANGE.length;
+        if(index>=size) return size-1;
+        return index;
     }
     public static double DO_DIVIDE(double x, double y){
         if(y==0) return 0;
@@ -145,9 +152,12 @@ public class Constants {
     }
     public static Map<String,Double> CREATE_DAY_MAP(){
         Map<String,Double> map=new LinkedHashMap<>();
-        for(String range:HOUR_OF_DAY_RANGE){
-            map.put(range,0.0);
+        for(int i=0;i<7;i++){
+            for(int j=0;j<HOUR_OF_DAY_RANGE.length;j++){
+                map.put(i+""+j,0.0);
+            }
         }
+
         return map;
 
     }

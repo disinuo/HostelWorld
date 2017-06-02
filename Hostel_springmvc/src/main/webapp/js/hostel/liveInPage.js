@@ -17,13 +17,15 @@ $("#liveInForm").submit(function(e) {
                 vipId:vipIds[i].value
         });
     }
-
-    console.log(guests);
+    var bookId=$('#bookBillId').val();
+   if(bookId=="") bookId=-1;
     var data={
         roomId: $('#roomId').val(),
-        bookBillId: $('#bookBillId').val(),
+        bookBillId:bookId,
         guests: guests
     };
+    console.log(data);
+
     $.ajax({
         type: "POST",
         url: '/hostel/liveIn',

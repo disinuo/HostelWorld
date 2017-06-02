@@ -1,5 +1,8 @@
 package nju.edu.hostel.controller;
 
+import static nju.edu.hostel.util.Constants.*;
+
+import net.sf.json.JSONObject;
 import nju.edu.hostel.service.HostelService;
 import nju.edu.hostel.util.ControllerHelper;
 import nju.edu.hostel.vo.output.*;
@@ -233,10 +236,15 @@ public class HostelDataController {
         int id= ControllerHelper.getUserIdFromSession(session);
         return hostelService.getLiveInNumByWeek(id);
     }
-    @RequestMapping(value = "/getLiveInNum/day")
-    public List<DataVO> getLiveInNumByDay(HttpSession session){
+    @RequestMapping(value = "/getLiveInNum/hour")
+    public JSONObject getLiveInNumByHour(HttpSession session){
         int id= ControllerHelper.getUserIdFromSession(session);
-        return hostelService.getLiveInNumByDay(id);
+        List<Object[]> data=hostelService.getLiveInNumByHour(id);
+        JSONObject jsonObject=new JSONObject();
+        jsonObject.put("x",HOUR_OF_DAY_RANGE);
+        jsonObject.put("y",DAY_OF_WEEK);
+        jsonObject.put("z",data);
+        return jsonObject;
     }
     @RequestMapping(value = "/getLiveInNum/room/type")
     public List<DataVO> getLiveInNumByRoomType(HttpSession session){

@@ -2,13 +2,11 @@ package nju.edu.hostel.service;
 
 import nju.edu.hostel.model.*;
 import nju.edu.hostel.util.ResultMessage;
-import nju.edu.hostel.vo.input.GuestInputVO;
 import nju.edu.hostel.vo.input.LiveInVO;
 import nju.edu.hostel.vo.input.RoomVO_input;
 import nju.edu.hostel.vo.output.DataVO;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by disinuo on 17/3/2.
@@ -229,9 +227,11 @@ public interface HostelService {
     public List<DataVO> getLiveInVipRateByYear(int hostelId);
     public List<DataVO> getLiveInVipRateByMonth(int hostelId);
     /**
-     * 分组标准：一天内的【时段】
+     * 分组标准：一周内的【时段】
+     * 周几的哪个时段入住量
      */
-    public List<DataVO> getLiveInNumByDay(int hostelId);
+    public List<Object[]> getLiveInNumByHour(int hostelId);
+
     public List<DataVO> getLiveInNumByRoomType(int hostelId);
     public List<DataVO> getLiveInNumByRoomPrice(int hostelId);
 

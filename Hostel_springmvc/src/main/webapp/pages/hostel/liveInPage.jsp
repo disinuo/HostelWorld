@@ -22,7 +22,7 @@
         <form id="liveInForm">
             <div class="input-group input-group-sm">
                 <span class="input-group-addon">预订单号</span>
-                <input id="bookBillId" name="bookBillId" type="number" class="form-control" placeholder="预订单号" aria-describedby="sizing-addon3" required>
+                <input id="bookBillId" name="bookBillId" type="number" class="form-control" placeholder="预订单号" aria-describedby="sizing-addon3" >
             </div>
             <div class="input-group input-group-sm">
                 <span class="input-group-addon">房间编号</span>

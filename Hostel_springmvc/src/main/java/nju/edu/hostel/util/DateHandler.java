@@ -6,6 +6,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import static nju.edu.hostel.util.Constants.*;
+
 
 /**
  * Created by disinuo on 17/3/10.
@@ -39,17 +41,8 @@ public class DateHandler {
         return (value+1)+"月";
     }
     public static String dayOfWeekToShow(int value){
-        String base="周";
-        switch (value){
-            case 1:return base+"日";
-            case 2:return base+"一";
-            case 3:return base+"二";
-            case 4:return base+"三";
-            case 5:return base+"四";
-            case 6:return base+"五";
-            case 7:return base+"六";
-            default:return "未知";
-        }
+        return DAY_OF_WEEK[value-1];
+        
     }
     public static String yearToShow(int year){
         return year+"年";
