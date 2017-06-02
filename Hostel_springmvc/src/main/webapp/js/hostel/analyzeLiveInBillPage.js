@@ -1,26 +1,30 @@
 /**
  * Created by disinuo on 17/3/13.
  */
-var NAME_LIVE_IN_RATE='入住率';
-var NAME_VALID_RATE='有效率';
-var NAME_BOOK_NUM='订单量';
+var NAME_LIVEIN_VIP_RATE='入住会员率';
+var NAME_LIVEIN_NUM='订单量';
 var NAME_ROOM_PRICE='房价(/元)';
 var NAME_ROOM_TYPE='房型';
-var NAME_VIP_AGE='会员年龄';
+var NAME_GUEST_TYPE='顾客类型';
 var NAME_PROVINCE='省';
 var NAME_CITY='市';
 var myChart=null;
-var data_liveInRate=null;
-var data_validRate=null;
-var data_bookNum=null;
+var data_liveInVipRate=null;
+var data_liveInNum=null;
 var dateChart_container=null;
 var pieChart_container=null;
 var mapChart_container=null;
+var weekChart_container=null;
+var dayChart_container=null;
 $(function () {
-    showWeek();
+
     dateChart_container=$('#dateChart-container');
     pieChart_container=$('#pieChart-container');
     mapChart_container=$('#mapChart-container');
+    weekChart_container=$('#weekChart-container');
+    dayChart_container=$('#dayChart-container');
+    showWeek();
+
 });
 
 
@@ -49,9 +53,11 @@ $('#guestType').click(function (e) {
 function initPieChart(data_input,name) {
     console.log('init room chart');
     console.log(data_input);
+    dateChart_container.css("display", "none");
+    weekChart_container.css("display", "none");
     pieChart_container.css("display", "block");
     mapChart_container.css("display", "none");
-    dateChart_container.css("display", "none");
+    dayChart_container.css("display", "none");
 
     myChart = echarts.init(document.getElementById('pieChart-container'));
     var data_max=0;
@@ -132,9 +138,11 @@ function initPieChart(data_input,name) {
     myChart.setOption(option);
 }
 function initRegionChart(data_input) {
+    dateChart_container.css("display", "none");
+    weekChart_container.css("display", "none");
     pieChart_container.css("display", "none");
     mapChart_container.css("display", "block");
-    dateChart_container.css("display", "none");
+    dayChart_container.css("display", "none");
     myChart = echarts.init(document.getElementById('mapChart-container'));
 
     var data_max=0;
@@ -195,38 +203,33 @@ function randomData() {
     return Math.round(Math.random()*1000);
 }
 
-function initDateChart(data_liveInRate, data_validRate, data_bookNum) {
+function initDateChart(data_liveInNum,data_liveInVipRate) {
+    dateChart_container.css("display", "block");
+
+    weekChart_container.css("display", "none");
     pieChart_container.css("display", "none");
     mapChart_container.css("display", "none");
-    dateChart_container.css("display", "block");
+    dayChart_container.css("display", "none");
 
     myChart = echarts.init(document.getElementById('dateChart-container'));
 
-    console.log('入住率');
-    console.log(data_liveInRate);
-    console.log('有效率');
-    console.log(data_validRate);
-    console.log('订单量');
-    console.log(data_bookNum);
-    var data_y_liveInRate=[];
-    var data_y_validRate=[];
-    var data_y_bookNum=[];
+    console.log('入住会员率');
+    console.log(data_liveInVipRate);
+    console.log('入住量');
+    console.log(data_liveInNum);
+    var data_y_liveInVipRate=[];
+    var data_y_liveInNum=[];
     var data_x =[];
-    data_liveInRate.forEach(function (item) {
+    data_liveInVipRate.forEach(function (item) {
         data_x.push(item.name);
-        data_y_liveInRate.push(item.value);
+        data_y_liveInVipRate.push(item.value);
     });
-    data_bookNum.forEach(function (item) {
-        data_y_bookNum.push(item.value);
+    data_liveInNum.forEach(function (item) {
+        data_y_liveInNum.push(item.value);
     });
-    data_validRate.forEach(function (item) {
-        data_y_validRate.push(item.value);
-    });
-
-
     var colors = [
         '#5793f3',
-        '#abcf2e',
+        // '#abcf2e',
         '#FFA039'];
     var option = {
 
@@ -249,8 +252,7 @@ function initDateChart(data_liveInRate, data_validRate, data_bookNum) {
             }
         },
         legend: {
-            data:[NAME_LIVE_IN_RATE,NAME_VALID_RATE,NAME_BOOK_NUM]
-
+            data:[NAME_LIVEIN_NUM,NAME_LIVEIN_VIP_RATE]
         },
         xAxis: [
             {
@@ -264,7 +266,7 @@ function initDateChart(data_liveInRate, data_validRate, data_bookNum) {
         yAxis: [
             {
                 type: 'value',
-                name: NAME_LIVE_IN_RATE,
+                name: NAME_LIVEIN_NUM,
                 min: 0,
                 max: 1,
                 position: 'left',
@@ -278,17 +280,14 @@ function initDateChart(data_liveInRate, data_validRate, data_bookNum) {
                 // }
             },
             {
-                show:false
-            },
-            {
                 type: 'value',
-                name: NAME_BOOK_NUM,
+                name: NAME_LIVEIN_VIP_RATE,
                 min: 0,
                 // max: 600,
                 position: 'right',
                 axisLine: {
                     lineStyle: {
-                        color: colors[2]
+                        color: colors[1]
                     }
                 },
                 axisLabel: {
@@ -298,26 +297,19 @@ function initDateChart(data_liveInRate, data_validRate, data_bookNum) {
         ],
         series: [
             {
-                name:NAME_LIVE_IN_RATE,
-                type:'bar',
-                data:data_y_liveInRate
-            },
-            {
-                name:NAME_VALID_RATE,
+                name:NAME_LIVEIN_NUM,
                 type:'bar',
                 yAxisIndex: 1,
-                data:data_y_validRate
+                data:data_y_liveInNum
             },
             {
-                name:NAME_BOOK_NUM,
+                name:NAME_LIVEIN_VIP_RATE,
                 type:'line',
-                yAxisIndex: 2,
-                data:data_y_bookNum
+                data:data_y_liveInVipRate
             }
         ]
     };
     myChart.setOption(option);
-
 // Enable data zoom when user click bar.
     var zoomSize = 6;
     myChart.on('click', function (params) {
@@ -331,12 +323,138 @@ function initDateChart(data_liveInRate, data_validRate, data_bookNum) {
 }
 
 
+function initWeekChart(data_liveInNum) {
+    weekChart_container.css("display", "block");
+
+    pieChart_container.css("display", "none");
+    mapChart_container.css("display", "none");
+    dayChart_container.css("display", "none");
+    dateChart_container.css("display", "none");
+
+    myChart = echarts.init(document.getElementById('weekChart-container'));
+
+
+
+    var data_y_liveInNum=[];
+    var data_x =[];
+    data_liveInNum.forEach(function (item) {
+        data_x.push(item.name);
+        data_y_liveInNum.push(item.value);
+    });
+//     var colors = [
+//         '#5793f3',
+//         // '#abcf2e',
+//         '#FFA039'];
+    var option = {
+
+        // color: colors,
+
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross'
+            }
+        },
+        grid: {
+            right: '20%'
+        },
+        toolbox: {
+            feature: {
+                dataView: {show: true, readOnly: false},
+                restore: {show: true},
+                saveAsImage: {show: true}
+            }
+        },
+        xAxis: {
+            axisTick: {
+                alignWithLabel: true
+            },
+            data: data_x
+        },
+        yAxis: {
+            // type: 'value',
+            // name: NAME_LIVEIN_NUM,
+            // min: 0,
+            // max: 1,
+            // axisLine: {
+            //     lineStyle: {
+            //         color: colors[0]
+            //     }
+            // }
+            // axisLabel: {
+            //     formatter: '{value}'
+            // }
+        },
+        series: [
+            { // For shadow
+                type: 'bar',
+                itemStyle: {
+                    normal: {color: 'rgba(0,0,0,0.05)'}
+                },
+                barGap:'-100%',
+                barCategoryGap:'40%',
+                data: data_x,
+                animation: false
+            },
+            {
+                type: 'bar',
+                itemStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(
+                            0, 0, 0, 1,
+                            [
+                                {offset: 0, color: '#83bff6'},
+                                {offset: 0.5, color: '#188df0'},
+                                {offset: 1, color: '#188df0'}
+                            ]
+                        )
+                    },
+                    emphasis: {
+                        color: new echarts.graphic.LinearGradient(
+                            0, 0, 0, 1,
+                            [
+                                {offset: 0, color: '#2378f7'},
+                                {offset: 0.7, color: '#2378f7'},
+                                {offset: 1, color: '#83bff6'}
+                            ]
+                        )
+                    }
+                },
+                data: data_y_liveInNum
+            }
+        ]
+    };
+    myChart.setOption(option);
+
+
+// Enable data zoom when user click bar.
+    var zoomSize = 6;
+    myChart.on('click', function (params) {
+        console.log(data_x[Math.max(params.dataIndex - zoomSize / 2, 0)]);
+        myChart.dispatchAction({
+            type: 'dataZoom',
+            startValue: data_x[Math.max(params.dataIndex - zoomSize / 2, 0)],
+            endValue: data_x[Math.min(params.dataIndex + zoomSize / 2, data.length - 1)]
+        });
+    });
+}
+
+function initDayChart(data_liveInNum) {
+    dateChart_container.css("display", "none");
+    weekChart_container.css("display", "none");
+    pieChart_container.css("display", "none");
+    mapChart_container.css("display", "none");
+    dayChart_container.css("display", "block");
+    myChart = echarts.init(document.getElementById('dayChart-container'));
+
+}
 function showWeek() {
     $.ajax({
         url:'/data/hostel/getLiveInNum/week',
         async: false,
         success:function (data) {
             console.log(data);
+            initWeekChart(data);
         },
         error:function (data) {
             alert('ERROR');
@@ -349,11 +467,16 @@ function showMonth() {
         async: false,
         success:function (data) {
             console.log(data);
+            data_liveInNum=data;
+
             $.ajax({
                 url:'/data/hostel/getLiveInVipRate/month',
                 async: false,
                 success:function (data) {
                     console.log(data);
+                    data_liveInVipRate=data;
+                    initDateChart(data_liveInNum,data_liveInVipRate);
+
                 },
                 error:function (data) {
                     alert('ERROR');
@@ -371,11 +494,14 @@ function showYear() {
         async: false,
         success:function (data) {
             console.log(data);
+            data_liveInNum=data;
             $.ajax({
                 url:'/data/hostel/getLiveInVipRate/year',
                 async: false,
                 success:function (data) {
                     console.log(data);
+                    data_liveInVipRate=data;
+                    initDateChart(data_liveInNum,data_liveInVipRate);
                 },
                 error:function (data) {
                     alert('ERROR');
@@ -393,6 +519,7 @@ function showDay() {
         async: false,
         success:function (data) {
             console.log(data);
+            initDayChart(data);
         },
         error:function (data) {
             alert('ERROR');
@@ -405,7 +532,7 @@ function showRoomType() {
         url: '/data/hostel/getLiveInNum/room/type',
         success: function (data) {
             console.log(data);
-
+            initPieChart(data,NAME_ROOM_TYPE);
         },
         error:function (data) {
             alert('showProvince ERROR!');
@@ -417,7 +544,7 @@ function showRoomPrice() {
         url: '/data/hostel/getLiveInNum/room/price',
         success: function (data) {
             console.log(data);
-
+            initPieChart(data,NAME_ROOM_PRICE);
         },
         error:function (data) {
             alert('showProvince ERROR!');
@@ -429,8 +556,7 @@ function showGuestType() {
         url: '/data/hostel/getLiveInNum/guestType',
         success: function (data) {
             console.log(data);
-            //pie
-
+            initPieChart(data,NAME_GUEST_TYPE);
         },
         error:function (data) {
             alert('showProvince ERROR!');
