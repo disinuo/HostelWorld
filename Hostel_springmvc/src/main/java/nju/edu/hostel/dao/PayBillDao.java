@@ -19,6 +19,7 @@ public interface PayBillDao {
     public List<PayBill> getAllUncounted();
     public List<PayBill> getAllUncountedByHostel(int hostelId);
     public List<PayBill> getAllByHostelId(int hostelId);
+    public List<PayBill> getAllVipPayBillsByHostelId(int hostelId);
     public List<PayBill> getRecentByHostelId(int hostelId);
     public List<PayBill> getByHostelId_Date(int hostelId, long start, long end);
 

@@ -261,11 +261,11 @@ public class HostelDataController {
         int id= ControllerHelper.getUserIdFromSession(session);
         return hostelService.getLiveInNumByGuestType(id);
     }
-    @RequestMapping(value = "/getVacantRate/roomType")
-    public List<DataVO> getVacantRateByRoomType(HttpSession session){
-        int id= ControllerHelper.getUserIdFromSession(session);
-        return hostelService.getVacantRateByRoomType(id);
-    }
+//    @RequestMapping(value = "/getVacantRate/roomType")
+//    public List<DataVO> getVacantRateByRoomType(HttpSession session){
+//        int id= ControllerHelper.getUserIdFromSession(session);
+//        return hostelService.getVacantRateByRoomType(id);
+//    }
 
 
 //======================= End Of LiveBill ============================================
@@ -307,7 +307,59 @@ public class HostelDataController {
         int id=user.getId();
         return PayBillVO.entityToVO(hostelService.getUncountedPayBills(id));
     }
-//======================= End Of PayBill ============================================
+    @RequestMapping(value = "/getMoneyVipRate/year")
+    public List<Object[]> getMoneyVipRateByYear(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return hostelService.getMoneyVipRateByYear(id);
+    }
+    @RequestMapping(value = "/getMoneyVipRate/month")
+    public List<Object[]> getMoneyVipRateByMonth(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return hostelService.getMoneyVipRateByMonth(id);
+    }
+    @RequestMapping(value = "/getMoneyVipRate/week")
+    public List<Object[]> getMoneyVipRateByWeek(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return hostelService.getMoneyVipRateByWeek(id);
+    }
+    @RequestMapping(value = "/getIncome/today")
+    public double getIncomeToday(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return hostelService.getIncomeToday(id);
+    }
+
+    @RequestMapping(value = "/getIncomeAvg/today")
+    public double getIncomeAvgToday(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return hostelService.getIncomeAvgToday(id);
+    }
+    @RequestMapping(value = "/getIncomeAvg/year")
+    public List<DataVO> getIncomeAvgByYear(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return hostelService.getIncomeAvgByYear(id);
+    }
+    @RequestMapping(value = "/getIncomeAvg/month")
+    public List<DataVO> getIncomeAvgByMonth(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return hostelService.getIncomeAvgByMonth(id);
+    }
+    @RequestMapping(value = "/getIncomeAvg/week")
+    public List<DataVO> getIncomeAvgByWeek(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return hostelService.getIncomeAvgByWeek(id);
+    }
+
+
+
+    //======================= End Of PayBill ============================================
     @RequestMapping(value = "/getMoneyRecord")
     public List<MoneyRecordVO> getMoneyRecord(HttpSession session){
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");

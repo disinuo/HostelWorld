@@ -55,6 +55,7 @@ public class PayBillDaoImpl implements PayBillDao {
         return baseDao.getByHql(PayBill.class,hql);
     }
 
+
     @Override
     public List<PayBill> getRecentByHostelId(int hostelId) {
         String hql=baseHql_hostel+hostelColumnName+" = "+hostelId+ hqlTail;
@@ -68,7 +69,12 @@ public class PayBillDaoImpl implements PayBillDao {
                 hqlTail;
         return baseDao.getByHql(PayBill.class,hql);
     }
-
+    @Override
+    public List<PayBill> getAllVipPayBillsByHostelId(int hostelId){
+        String hql=baseHql_vip+" AND "+hostelColumnName+" = "+hostelId+
+                " AND "+vipColumnName+">0"+hqlTail;
+        return baseDao.getByHql(PayBill.class,hql);
+    }
     @Override
     public List<PayBill> getAllByVipId(int vipId){
         String hql=baseHql_vip+" AND "+vipColumnName+" = "+vipId+ hqlTail;

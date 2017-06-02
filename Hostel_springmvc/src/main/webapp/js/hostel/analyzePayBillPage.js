@@ -17,10 +17,11 @@ var dateChart_container=null;
 var pieChart_container=null;
 var mapChart_container=null;
 $(function () {
-    showProvince();
     dateChart_container=$('#dateChart-container');
     pieChart_container=$('#pieChart-container');
     mapChart_container=$('#mapChart-container');
+    incomeToday();
+    incomeAvgToday();
 });
 
 
@@ -33,22 +34,6 @@ $('#month').click(function (e) {
 $('#week').click(function (e) {
     showWeek();
 });
-$('#day').click(function (e) {
-    showDay();
-});
-//
-// $('#province').click(function (e) {
-//     showProvince();
-// });
-// $('#roomType').click(function (e) {
-//     showRoomType();
-// });
-// $('#roomPrice').click(function (e) {
-//     showRoomPrice();
-// });
-// $('#vipAge').click(function (e) {
-//     showVipAge();
-// });
 
 function initPieChart(data_input,name) {
     console.log('init room chart');
@@ -337,12 +322,12 @@ function initDateChart(data_liveInRate, data_validRate, data_bookNum) {
 
 function showWeek() {
     $.ajax({
-        url:'/data/hostel/getLiveInNum/week',
+        url:'/data/hostel/getMoneyVipRate/week',
         async: false,
         success:function (data) {
             console.log(data);
             $.ajax({
-                url:'/data/hostel/getLiveInVipRate/week',
+                url:'/data/hostel/getIncomeAvg/week',
                 async: false,
                 success:function (data) {
                     console.log(data);
@@ -359,12 +344,12 @@ function showWeek() {
 }
 function showMonth() {
     $.ajax({
-        url:'/data/hostel/getLiveInNum/month',
+        url:'/data/hostel/getMoneyVipRate/month',
         async: false,
         success:function (data) {
             console.log(data);
             $.ajax({
-                url:'/data/hostel/getLiveInVipRate/month',
+                url:'/data/hostel/getIncomeAvg/month',
                 async: false,
                 success:function (data) {
                     console.log(data);
@@ -381,34 +366,12 @@ function showMonth() {
 }
 function showYear() {
     $.ajax({
-        url:'/data/hostel/getLiveInNum/year',
+        url:'/data/hostel/getMoneyVipRate/year',
         async: false,
         success:function (data) {
             console.log(data);
             $.ajax({
-                url:'/data/hostel/getLiveInVipRate/year',
-                async: false,
-                success:function (data) {
-                    console.log(data);
-                },
-                error:function (data) {
-                    alert('ERROR');
-                }
-            });
-        },
-        error:function (data) {
-            alert('ERROR');
-        }
-    });
-}
-function showDay() {
-    $.ajax({
-        url:'/data/hostel/getLiveInNum/day',
-        async: false,
-        success:function (data) {
-            console.log(data);
-            $.ajax({
-                url:'/data/hostel/getLiveInVipRate/day',
+                url:'/data/hostel/getIncomeAvg/year',
                 async: false,
                 success:function (data) {
                     console.log(data);
@@ -424,72 +387,27 @@ function showDay() {
     });
 }
 
-function showProvince() {
-    var  data_fake=[
-        {name: '北京',value: 800},
-        {name: '天津',value: 2000 },
-        {name: '上海',value: 150 },
-        {name: '重庆',value: 200 },
-        {name: '河北',value: 300 },
-        {name: '河南',value: 200 },
-        {name: '云南',value: 10 },
-        {name: '辽宁',value: 550 },
-        {name: '黑龙江',value: 19 },
-        {name: '湖南',value: 2 },
-        {name: '安徽',value: 88 },
-        {name: '山东',value: 1200 }];
+function incomeToday() {
     $.ajax({
-        url: '/data/hostel/getAllBookNum/vipProvince',
-        success: function (data) {
-            initRegionChart(data);
-        },
-        error:function (data) {
-            alert('showProvince ERROR!');
-        }
-    });
-}
-function showCity() {
-    $.ajax({
-        url: '/data/hostel/getAllBookNum/vipCity',
-        success: function (data) {
+        url:'/data/hostel/getIncome/today',
+        async: false,
+        success:function (data) {
             console.log(data);
-            initRegionChart(data);
         },
         error:function (data) {
-            alert('showCity ERROR!');
+            alert('ERROR');
         }
     });
 }
-function showRoomType() {
+function incomeAvgToday() {
     $.ajax({
-        url: '/data/hostel/getAllBookNum/roomType',
-        success: function (data) {
-            initPieChart(data,NAME_ROOM_TYPE);
+        url:'/data/hostel/getIncomeAvg/today',
+        async: false,
+        success:function (data) {
+            console.log(data);
         },
         error:function (data) {
-            alert('showProvince ERROR!');
-        }
-    });
-}
-function showRoomPrice() {
-    $.ajax({
-        url: '/data/hostel/getAllBookNum/roomPrice',
-        success: function (data) {
-            initPieChart(data,NAME_ROOM_PRICE);
-        },
-        error:function (data) {
-            alert('showProvince ERROR!');
-        }
-    });
-}
-function showVipAge() {
-    $.ajax({
-        url: '/data/hostel/getAllBookNum/vipAge',
-        success: function (data) {
-            initPieChart(data,NAME_VIP_AGE);
-        },
-        error:function (data) {
-            alert('showProvince ERROR!');
+            alert('ERROR');
         }
     });
 }

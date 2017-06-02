@@ -635,7 +635,6 @@ public class HostelServiceBean implements HostelService {
             vos.add(new Object[]{x,y,z});
         }
         return vos;
-        //TODO
     }
 
     @Override
@@ -682,7 +681,7 @@ public class HostelServiceBean implements HostelService {
             if(vip_map.containsKey(key)){
                 rate=DO_DIVIDE(vip_map.get(key),all_map.get(key));
             }
-            vip_map.put(key,rate);
+            vip_map.put(key,NumberFormatter.saveTwoDecimal(rate));
         }
         return DataVO.mapToVO(vip_map);
     }
@@ -736,6 +735,120 @@ public class HostelServiceBean implements HostelService {
     public List<PayBill> getUncountedPayBills(int hostelId){
         return payBillDao.getAllUncountedByHostel(hostelId);
     }
+
+    /**
+     * Object[]长度是3，[dateField,money_vip,money_total]
+     * 第几月，从vip赚得的收入，总收入
+     */
+    private List<Object[]> getMoneyVipRateByDate_Helper(int hostelId,int dateType){
+        List<Object[]> res=new ArrayList<>();
+        List<PayBill> bills_all=getAllPayBills(hostelId);
+        List<PayBill> bills_vip=payBillDao.getAllVipPayBillsByHostelId(hostelId);
+        Map<String,Double> map_all=getMoneyByDate_Helper(bills_all,dateType);
+        Map<String,Double> map_vip=getMoneyByDate_Helper(bills_vip,dateType);
+        for(String key:map_all.keySet()){
+            res.add(new Object[]{key,map_vip.get(key),map_all.get(key)});
+        }
+        return res;
+
+    }
+    private Map<String,Double> getMoneyByDate_Helper(List<PayBill> bills,int dateType){
+        Map<String,Double> map=CREATE_DATE_MAP(dateType);
+        for(PayBill bill:bills){
+            int dateField=DateHandler.getFieldFromLong(dateType,bill.getCreateDate());
+            String dateFieldStr=DateHandler.dateFieldToShow(dateType,dateField);
+            if(map.containsKey(dateFieldStr)){
+                double money=map.get(dateFieldStr);
+                map.put(dateFieldStr,money+bill.getMoney());
+            }else {
+                map.put(dateFieldStr,bill.getMoney());
+            }
+        }
+        return map;
+    }
+    private Map<String,Double> getPeopleNumByDate_Helper(List<PayBill> bills,int dateType){
+        Map<String,Double> map=CREATE_DATE_MAP(dateType);
+        for(PayBill bill:bills){
+            int dateField=DateHandler.getFieldFromLong(dateType,bill.getCreateDate());
+            String dateFieldStr=DateHandler.dateFieldToShow(dateType,dateField);
+            if(map.containsKey(dateFieldStr)){
+                double people=map.get(dateFieldStr);
+                map.put(dateFieldStr,people+bill.getNumOfPeople());
+            }else {
+                map.put(dateFieldStr,(double)bill.getNumOfPeople());
+            }
+        }
+        return map;
+    }
+    @Override
+    public List<Object[]> getMoneyVipRateByYear(int hostelId) {
+        return getMoneyVipRateByDate_Helper(hostelId,Calendar.YEAR);
+    }
+
+    @Override
+    public List<Object[]> getMoneyVipRateByMonth(int hostelId) {
+        return getMoneyVipRateByDate_Helper(hostelId,Calendar.MONTH);
+
+    }
+
+    @Override
+    public List<Object[]> getMoneyVipRateByWeek(int hostelId) {
+        return getMoneyVipRateByDate_Helper(hostelId,Calendar.WEDNESDAY);
+    }
+
+    @Override
+    public double getIncomeToday(int hostelId) {
+        long today=new Date().getTime();
+        long start=DateHandler.calculateStartOfToday(today);
+        List<PayBill> bills_today=payBillDao.getByHostelId_Date(hostelId,start,today);
+        double income=0;
+        for(PayBill bill:bills_today){
+            income+=bill.getMoney();
+        }
+        return income;
+    }
+
+    @Override
+    public double getIncomeAvgToday(int hostelId) {
+        long today=new Date().getTime();
+        long start=DateHandler.calculateStartOfToday(today);
+        List<PayBill> bills_today=payBillDao.getByHostelId_Date(hostelId,start,today);
+        double income=0;
+        double numOfPeople=0;
+        for(PayBill bill:bills_today){
+            income+=bill.getMoney();
+            numOfPeople+=bill.getNumOfPeople();
+        }
+        double ans=DO_DIVIDE(income,numOfPeople);
+        return NumberFormatter.saveTwoDecimal(ans);
+    }
+    private List<DataVO> getIncomeAvgByDate_Helper(int hostelId,int dateType){
+        List<PayBill> bills=getAllPayBills(hostelId);
+        Map<String,Double> map_money=getMoneyByDate_Helper(bills,dateType);
+        Map<String,Double> map_peopleNum=getPeopleNumByDate_Helper(bills,dateType);
+        List<DataVO> vos=new ArrayList<>(map_money.size());
+        for(String key:map_money.keySet()){
+            double ans=DO_DIVIDE(map_money.get(key),map_peopleNum.get(key));
+            vos.add(new DataVO(key,NumberFormatter.saveTwoDecimal(ans)));
+        }
+        return vos;
+    }
+
+    @Override
+    public List<DataVO> getIncomeAvgByYear(int hostelId) {
+        return getIncomeAvgByDate_Helper(hostelId,Calendar.YEAR);
+    }
+
+    @Override
+    public List<DataVO> getIncomeAvgByMonth(int hostelId) {
+        return getIncomeAvgByDate_Helper(hostelId,Calendar.MONTH);
+    }
+
+    @Override
+    public List<DataVO> getIncomeAvgByWeek(int hostelId) {
+        return getIncomeAvgByDate_Helper(hostelId,Calendar.WEDNESDAY);
+    }
+
     public List<PayBill> getRecentPayBills(int hostelId){
         return payBillDao.getRecentByHostelId(hostelId);
     }

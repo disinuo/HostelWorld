@@ -28,7 +28,6 @@ $("#enrollPayForm").submit(function(e) {
     var data={
         liveBillId:$('#liveInId').val(),
     };
-    alert(JSON.stringify(data));
     $.ajax({
         type: "POST",
         url: url,

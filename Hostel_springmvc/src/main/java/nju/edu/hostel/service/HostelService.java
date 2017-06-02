@@ -250,6 +250,9 @@ public interface HostelService {
 
 //    public List<DataVO> getVacantRateByRoomType(int hostelId);
 
+    public int getTotalLiveInNum(int hostelId);
+    public int getPresentLiveInNum(int hostelId);
+
 
 //==================== End Of LiveBill =============================================================
 
@@ -257,7 +260,6 @@ public interface HostelService {
 //==================== PayBill =============================================================
     /**
      * 获取本店财务情况
-     * @param hostelId
      * @return
      */
     public List<PayBill> getAllPayBills(int hostelId);
@@ -267,14 +269,45 @@ public interface HostelService {
     public List<PayBill> getRecentYearPayBills(int hostelId);
     public List<PayBill> getUncountedPayBills(int hostelId);
 
+    /**
+     * Object[]长度是3，[dateField,money_vip,money_total]
+     * 第几月，从vip赚得的收入，总收入
+     */
+    public List<Object[]> getMoneyVipRateByYear(int hostelId);
+    public List<Object[]> getMoneyVipRateByMonth(int hostelId);
+    public List<Object[]> getMoneyVipRateByWeek(int hostelId);
+
+
+    /**
+     * 当天收入
+     * @param hostelId
+     * @return
+     */
+    public double getIncomeToday(int hostelId);
+
+    /**
+     * 当天人均消费
+     */
+    public double getIncomeAvgToday(int hostelId);
+
+    /**
+     * 人均消费
+     */
+    public List<DataVO> getIncomeAvgByYear(int hostelId);
+    public List<DataVO> getIncomeAvgByMonth(int hostelId);
+    public List<DataVO> getIncomeAvgByWeek(int hostelId);
+
+
+
+
+
+
 //==================== End Of PayBill =============================================================
 
 
 
 
 
-    public int getTotalLiveInNum(int hostelId);
-    public int getPresentLiveInNum(int hostelId);
 
 
     /**

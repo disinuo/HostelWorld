@@ -19,6 +19,14 @@ public class DateHandler {
         c.set(dateType,value);
         return c.getTimeInMillis();
     }
+    public static long calculateStartOfToday(long date){
+        int year=getFieldFromLong(Calendar.YEAR,date);
+        int month=getFieldFromLong(Calendar.MONTH,date);
+        int day=getFieldFromLong(Calendar.DAY_OF_MONTH,date);
+        Calendar helper=Calendar.getInstance();
+        helper.set(year,month,day,0,0,0);
+        return helper.getTimeInMillis();
+    }
 
     /**
      * DAY_OF_WEEK  周日开始，=1；周一 =2
@@ -42,7 +50,7 @@ public class DateHandler {
     }
     public static String dayOfWeekToShow(int value){
         return DAY_OF_WEEK[value-1];
-        
+
     }
     public static String yearToShow(int year){
         return year+"年";
@@ -94,25 +102,11 @@ public class DateHandler {
     private static SimpleDateFormat formatter_withTime=new SimpleDateFormat("yyyy-MM-dd hh:mm");
 
     public static void main(String[] args){
-        long test1=strToLong("2017-4-5");
-        System.out.println(longToStr_noTime(add(test1,Calendar.WEDNESDAY,1)));
-        System.out.println(longToStr_noTime(add(test1,Calendar.WEDNESDAY,4)));
+        long today=new Date().getTime();
+        long start=calculateStartOfToday(today);
 
-        Map<String,Integer> map=new HashMap<String,Integer>();
-        int[] years={2016,2016,2017,2016,2016,2011,2011,2016,};
-        for(int year:years){
-            String yearStr=DateHandler.yearToShow(year);
-            if(map.containsKey(yearStr)){
-                int num=map.get(yearStr);
-                map.put(yearStr,++num);
-            }else {
-                map.put(yearStr,1);
-            }
-        }
-        System.out.println(map.size());
-        for(String key:map.keySet()){
-            System.out.println(key+" : "+map.get(key));
-        }
 
+        System.out.println(longToStr_withTime(today)+"   "+today);
+        System.out.println(longToStr_withTime(start)+"   "+start);
     }
 }
