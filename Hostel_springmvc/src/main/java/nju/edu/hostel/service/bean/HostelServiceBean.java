@@ -430,7 +430,7 @@ public class HostelServiceBean implements HostelService {
     @Override
     public List<DataVO>  getNotCancelledBookNumByVipAge(int hostelId) {
         int currentYear=DateHandler.getFieldFromLong(Calendar.YEAR,new Date().getTime());
-        Map<String,Double>map=createAgeMap();
+        Map<String,Double>map= CREATE_AGE_MAP();
         List<BookBill> bills=getAllValidBookBills(hostelId);
         for(BookBill bill:bills){
             int birthYear=bill.getVip().getBirthYear();
@@ -445,7 +445,7 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public List<DataVO>  getNotCancelledBookNumByRoomType(int hostelId){
-        Map<String,Double> map=(Map<String,Double>)createRoomMap(hostelId);
+        Map<String,Double> map=(Map<String,Double>) createRoomTypeMap(hostelId);
         List<BookBill> bills=getAllValidBookBills(hostelId);
         for(BookBill bill:bills){
             String roomType=bill.getRoom().getName();
@@ -458,7 +458,7 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public List<DataVO>  getNotCancelledBookNumByRoomPrice(int hostelId){
-        Map<String,Double>map=createRoomPriceMap();
+        Map<String,Double>map= CREATE_ROOM_PRICE_MAP();
         List<BookBill> bills=getAllValidBookBills(hostelId);
         for(BookBill bill:bills){
             double roomPrice=bill.getRoom().getPrice();
@@ -474,13 +474,13 @@ public class HostelServiceBean implements HostelService {
 
 
     private List<DataVO>  getValidBookRateByDate_Helper(int hostelId,int dateType) {
-        Map<String,Double> map=createDateMap(dateType);
+        Map<String,Double> map= CREATE_DATE_MAP(dateType);
         Map<String,Double> all=getAllBookNumByDate_Helper(hostelId,dateType);
         Map<String,Double> notCanceled=getNotCanceledBookNumByDate_Helper(hostelId,dateType);
         for(String key:all.keySet()){
             double ans=0;
             if(notCanceled.containsKey(key)){
-                ans=doDivide(notCanceled.get(key),all.get(key));
+                ans= DO_DIVIDE(notCanceled.get(key),all.get(key));
                 System.out.println("未取消的/总数= "+notCanceled.get(key)+"/"+all.get(key)+" = "+ans);
 
             }
@@ -493,7 +493,7 @@ public class HostelServiceBean implements HostelService {
         return DataVO.mapToVO(map);
     }
     private List<DataVO>  getLiveInBookRateByDate_Helper(int hostelId,int dateType) {
-        Map<String,Double> map=createDateMap(dateType);
+        Map<String,Double> map= CREATE_DATE_MAP(dateType);
         long today=new Date().getTime();
         List<BookBill> bills=getAllBookBills(hostelId);
         for(BookBill bill:bills){
@@ -514,7 +514,7 @@ public class HostelServiceBean implements HostelService {
         for(String key:notCanceled.keySet()){
             double ans=0;
             if(map.containsKey(key)){
-                ans=doDivide(map.get(key),notCanceled.get(key));
+                ans= DO_DIVIDE(map.get(key),notCanceled.get(key));
             }
             map.put(key,NumberFormatter.saveTwoDecimal(1-ans));
         }
@@ -550,7 +550,7 @@ public class HostelServiceBean implements HostelService {
 
     }
     private Map<String,Double> getBookNumByDate_Helper(List<BookBill> bills,int dateType){
-        Map<String,Double>map=createDateMap(dateType);
+        Map<String,Double>map= CREATE_DATE_MAP(dateType);
         for(BookBill bill:bills){
             int year=DateHandler.getFieldFromLong(dateType,bill.getCreateDate());
             String yearStr=DateHandler.dateFieldToShow(dateType,year);
@@ -566,36 +566,6 @@ public class HostelServiceBean implements HostelService {
     }
 
 //========================End Of BookBill ======================================
-
-//======================== PayBill ======================================
-    @Override
-    public List<PayBill> getAllPayBills(int hostelId) {
-        return payBillDao.getAllByHostelId(hostelId);//getByRestrictEqual("hostel.id",hostelId);
-    }
-    @Override
-    public List<PayBill> getUncountedPayBills(int hostelId){
-        return payBillDao.getAllUncountedByHostel(hostelId);
-    }
-    public List<PayBill> getRecentPayBills(int hostelId){
-        return payBillDao.getRecentByHostelId(hostelId);
-    }
-    public List<PayBill> getRecentWeekPayBills(int hostelId){
-        long today=new Date().getTime();
-        long start=DateHandler.add(today,Calendar.WEDNESDAY,-1);
-        return payBillDao.getByHostelId_Date(hostelId,start,today);
-    }
-    public List<PayBill> getRecentMonthPayBills(int hostelId){
-        long today=new Date().getTime();
-        long start=DateHandler.add(today,Calendar.MONTH,-1);
-        return payBillDao.getByHostelId_Date(hostelId,start,today);
-    }
-    public List<PayBill> getRecentYearPayBills(int hostelId){
-        long today=new Date().getTime();
-        long start=DateHandler.add(today,Calendar.YEAR,-1);
-        return payBillDao.getByHostelId_Date(hostelId,start,today);
-    }
-//==================== End Of PayBill ===================================
-
 
 
 //======================== LiveBill ======================================
@@ -616,6 +586,7 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public List<DataVO> getLiveInNumByYear(int hostelId) {
+        
         return null;//TODO
     }
 
@@ -703,6 +674,36 @@ public class HostelServiceBean implements HostelService {
     }
 //========================End Of LiveBill ======================================
 
+//======================== PayBill ======================================
+    @Override
+    public List<PayBill> getAllPayBills(int hostelId) {
+        return payBillDao.getAllByHostelId(hostelId);//getByRestrictEqual("hostel.id",hostelId);
+    }
+    @Override
+    public List<PayBill> getUncountedPayBills(int hostelId){
+        return payBillDao.getAllUncountedByHostel(hostelId);
+    }
+    public List<PayBill> getRecentPayBills(int hostelId){
+        return payBillDao.getRecentByHostelId(hostelId);
+    }
+    public List<PayBill> getRecentWeekPayBills(int hostelId){
+        long today=new Date().getTime();
+        long start=DateHandler.add(today,Calendar.WEDNESDAY,-1);
+        return payBillDao.getByHostelId_Date(hostelId,start,today);
+    }
+    public List<PayBill> getRecentMonthPayBills(int hostelId){
+        long today=new Date().getTime();
+        long start=DateHandler.add(today,Calendar.MONTH,-1);
+        return payBillDao.getByHostelId_Date(hostelId,start,today);
+    }
+    public List<PayBill> getRecentYearPayBills(int hostelId){
+        long today=new Date().getTime();
+        long start=DateHandler.add(today,Calendar.YEAR,-1);
+        return payBillDao.getByHostelId_Date(hostelId,start,today);
+    }
+//==================== End Of PayBill ===================================
+
+
     @Override
     public double getIncome(int hostelId) {
         double total=0;
@@ -779,30 +780,8 @@ public class HostelServiceBean implements HostelService {
         if(x>y) return x;
         else return y;
     }
-    private Map createDateMap(int dateType){
-        switch (dateType){
-            case Calendar.MONTH:return createMonthMap();
-            case Calendar.WEDNESDAY:return createWeekMap();
-            case Calendar.YEAR:return new LinkedHashMap();
-            default:return createWeekMap();
-        }
-    }
-    private Map createMonthMap(){
-        Map map=new LinkedHashMap();
-        for(int i=0;i<12;i++){
-            map.put(DateHandler.dateFieldToShow(Calendar.MONTH,i),0.0);
-        }
-        return map;
-    }
-    private Map createWeekMap(){
-        Map map=new LinkedHashMap();
 
-        for(int i=1;i<=7;i++){
-            map.put(DateHandler.dateFieldToShow(Calendar.WEDNESDAY,i),0.0);
-        }
-        return map;
-    }
-    private Map createRoomMap(int hostelId){
+    private Map createRoomTypeMap(int hostelId){
         List<Room> rooms=getAllRooms(hostelId);
         Map map=new LinkedHashMap();
 
@@ -810,25 +789,6 @@ public class HostelServiceBean implements HostelService {
             map.put(room.getName(),0.0);
         }
         return map;
-    }
-    public Map<String,Double> createAgeMap(){
-        Map<String,Double> map=new LinkedHashMap<>();
-        for(String range:AGE_RANGE){
-            map.put(range,0.0);
-        }
-        return map;
-    }
-    public static Map<String,Double> createRoomPriceMap(){
-        Map<String,Double> map=new LinkedHashMap<>();
-        for(String range: ROOMPRICE_RANGE){
-            map.put(range,0.0);
-
-        }
-        return map;
-    }
-    private double doDivide(double x,double y){
-        if(y==0) return 0;
-        return x/y;
     }
 //   ----------------------------------------
     @Autowired

@@ -2,9 +2,7 @@ package nju.edu.hostel.util;
 
 import org.hibernate.annotations.Immutable;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by disinuo on 17/3/4.
@@ -97,12 +95,7 @@ public class Constants {
         }
     }
     //【vip的年龄段：<18,18~30,30~50,>50】
-    public static String AGE_TO_RANGE(int age){
-        if(age<18) return AGE_RANGE[0];
-        else if(age<30) return AGE_RANGE[1];
-        else if(age<50) return AGE_RANGE[2];
-        else return AGE_RANGE[3];
-    }
+
     public static final String[] AGE_RANGE={
             "<18岁",
             "18~30岁",
@@ -112,14 +105,12 @@ public class Constants {
     public static final String[] ROOMPRICE_RANGE={
             "<100", "100~200","200~300","300~500","500~700","700~1000",">1000"
     };
-//    private static final Map<String, Integer> ROOMPRICE_RANGE;
-//    static {
-//        Map<String, Integer> aMap = new HashMap<String,Integer>();
-//        aMap.put("one",1);
-//        aMap.put("two",2);
-//        ROOMPRICE_RANGE=Collections.unmodifiableMap(aMap);
-//    }
-
+    public static String AGE_TO_RANGE(int age){
+        if(age<18) return AGE_RANGE[0];
+        else if(age<30) return AGE_RANGE[1];
+        else if(age<50) return AGE_RANGE[2];
+        else return AGE_RANGE[3];
+    }
     public static String ROOM_PRICE_TO_RANGE(double price){
         if(price<100) return ROOMPRICE_RANGE[0];
         if(price<200) return ROOMPRICE_RANGE[1];
@@ -129,4 +120,50 @@ public class Constants {
         if(price<1000) return  ROOMPRICE_RANGE[5];
         else  return  ROOMPRICE_RANGE[6];
     }
+    public static double DO_DIVIDE(double x, double y){
+        if(y==0) return 0;
+        return x/y;
+    }
+//========= Create Constant Map ===================================
+    public static Map CREATE_DATE_MAP(int dateType){
+        switch (dateType){
+            case Calendar.MONTH:return CREATE_MONTH_MAP();
+            case Calendar.WEDNESDAY:return CREATE_WEEK_MAP();
+            case Calendar.YEAR:return new LinkedHashMap();
+            default:return CREATE_WEEK_MAP();
+        }
+    }
+    public static Map CREATE_MONTH_MAP(){
+        Map map=new LinkedHashMap();
+        for(int i=0;i<12;i++){
+            map.put(DateHandler.dateFieldToShow(Calendar.MONTH,i),0.0);
+        }
+        return map;
+    }
+    public static Map CREATE_WEEK_MAP(){
+        Map map=new LinkedHashMap();
+
+        for(int i=1;i<=7;i++){
+            map.put(DateHandler.dateFieldToShow(Calendar.WEDNESDAY,i),0.0);
+        }
+        return map;
+    }
+    public static Map<String,Double> CREATE_AGE_MAP(){
+        Map<String,Double> map=new LinkedHashMap<>();
+        for(String range:AGE_RANGE){
+            map.put(range,0.0);
+        }
+        return map;
+    }
+    public static Map<String,Double> CREATE_ROOM_PRICE_MAP(){
+        Map<String,Double> map=new LinkedHashMap<>();
+        for(String range: ROOMPRICE_RANGE){
+            map.put(range,0.0);
+
+        }
+        return map;
+    }
+//========= End Of Create Constant Map ===================================
+
+
 }
