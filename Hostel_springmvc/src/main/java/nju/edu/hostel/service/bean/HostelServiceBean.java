@@ -697,11 +697,11 @@ public class HostelServiceBean implements HostelService {
     }
 
 
-    @Override
-    public List<DataVO> getVacantRateByRoomType(int hostelId) {
-
-        return null;//TODO
-    }
+//    @Override
+//    public List<DataVO> getVacantRateByRoomType(int hostelId) {
+//
+//        return null;//TODO
+//    }
 
     @Override
     public LiveBill getLiveBillById(int billId){

@@ -245,9 +245,10 @@ public interface HostelService {
      */
     public List<DataVO> getLiveInNumByGuestType(int hostelId);
     /**
-     * 各种房型的空房率 每天
+     * //TODO 各种房型的空房率 每天
      */
-    public List<DataVO> getVacantRateByRoomType(int hostelId);
+
+//    public List<DataVO> getVacantRateByRoomType(int hostelId);
 
 
 //==================== End Of LiveBill =============================================================
