@@ -246,7 +246,7 @@ public interface HostelService {
      * 维度：顾客类型。guestType就只有会员、非会员两种。
      * 范围：所有入住单
      */
-    public List<DataVO> getLiveInNumByguestType(int hostelId);
+    public List<DataVO> getLiveInNumByGuestType(int hostelId);
     /**
      * 各种房型的空房率 每天
      */

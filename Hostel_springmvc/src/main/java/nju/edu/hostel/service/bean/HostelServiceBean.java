@@ -670,7 +670,7 @@ public class HostelServiceBean implements HostelService {
     }
 
     @Override
-    public List<DataVO> getLiveInNumByguestType(int hostelId) {
+    public List<DataVO> getLiveInNumByGuestType(int hostelId) {
         return null;//TODO
     }
 

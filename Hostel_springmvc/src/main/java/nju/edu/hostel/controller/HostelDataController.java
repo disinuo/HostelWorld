@@ -213,6 +213,67 @@ public class HostelDataController {
         int id= ControllerHelper.getUserIdFromSession(session);
         return hostelService.getLiveInNumByYear(id);
     }
+    @RequestMapping(value = "/getLiveInVipRate/year")
+    public List<DataVO> getLiveInVipRateByYear(HttpSession session){
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return hostelService.getLiveInVipRateByYear(id);
+    }
+    @RequestMapping(value = "/getLiveInNum/month")
+    public List<DataVO> getLiveInNumByMonth(HttpSession session){
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return hostelService.getLiveInNumByMonth(id);
+    }
+    @RequestMapping(value = "/getLiveInVipRate/month")
+    public List<DataVO> getLiveInVipRateByMonth(HttpSession session){
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return hostelService.getLiveInVipRateByMonth(id);
+    }
+    @RequestMapping(value = "/getLiveInNum/week")
+    public List<DataVO> getLiveInNumByWeek(HttpSession session){
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return hostelService.getLiveInNumByWeek(id);
+    }
+    @RequestMapping(value = "/getLiveInVipRate/week")
+    public List<DataVO> getLiveInVipRateByWeek(HttpSession session){
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return hostelService.getLiveInVipRateByWeek(id);
+    }
+    @RequestMapping(value = "/getLiveInNum/day")
+    public List<DataVO> getLiveInNumByDay(HttpSession session){
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return hostelService.getLiveInNumByDay(id);
+    }
+    @RequestMapping(value = "/getLiveInNum/vip/region")
+    public List<DataVO> getLiveInNumByVipRegion(HttpSession session){
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return hostelService.getLiveInNumByVipRegion(id);
+    }
+    @RequestMapping(value = "/getLiveInNum/vip/age")
+    public List<DataVO> getLiveInNumByVipAge(HttpSession session){
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return hostelService.getLiveInNumByVipAge(id);
+    }
+    @RequestMapping(value = "/getLiveInNum/room/type")
+    public List<DataVO> getLiveInNumByRoomType(HttpSession session){
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return hostelService.getLiveInNumByRoomType(id);
+    }
+    @RequestMapping(value = "/getLiveInNum/room/price")
+    public List<DataVO> getLiveInNumByRoomPrice(HttpSession session){
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return hostelService.getLiveInNumByRoomPrice(id);
+    }
+    @RequestMapping(value = "/getLiveInNum/guestType")
+    public List<DataVO> getLiveInNumByguestType(HttpSession session){
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return hostelService.getLiveInNumByGuestType(id);
+    }
+    @RequestMapping(value = "/getVacantRate/roomType")
+    public List<DataVO> getVacantRateByRoomType(HttpSession session){
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return hostelService.getVacantRateByRoomType(id);
+    }
+
 
 //======================= End Of LiveBill ============================================
 
