@@ -1,7 +1,6 @@
 package nju.edu.hostel.vo.output;
 
 import nju.edu.hostel.model.BossMoneyRecord;
-import nju.edu.hostel.model.Hostel;
 import nju.edu.hostel.model.HostelMoneyRecord;
 import nju.edu.hostel.model.VipMoneyRecord;
 import nju.edu.hostel.util.DateHandler;
@@ -22,19 +21,19 @@ public class MoneyRecordVO {
     public MoneyRecordVO(VipMoneyRecord record){
         this.userId=record.getVipId();
         this.money=record.getMoney();
-        this.date= DateHandler.longToStr(record.getDate());
+        this.date= DateHandler.longToStr_noTime(record.getDate());
         this.type=MoneyType.codeToType(record.getType());
     }
     public MoneyRecordVO(HostelMoneyRecord record){
         this.userId=record.getHostelId();
         this.money=record.getMoney();
-        this.date= DateHandler.longToStr(record.getDate());
+        this.date= DateHandler.longToStr_noTime(record.getDate());
         this.type=MoneyType.codeToType(record.getType());
     }
     public MoneyRecordVO(BossMoneyRecord record){
         this.userId=record.getBossId();
         this.money=record.getMoney();
-        this.date= DateHandler.longToStr(record.getDate());
+        this.date= DateHandler.longToStr_noTime(record.getDate());
         this.type=MoneyType.codeToType(record.getType());
     }
     public static List<MoneyRecordVO> entityToVO_vip(List<VipMoneyRecord> records){

@@ -5,9 +5,9 @@ package test;
 
 
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import nju.edu.hostel.util.DateHandler;
+
+import java.util.*;
 
 /**
  * Created by disinuo on 17/3/5.
@@ -15,14 +15,9 @@ import java.util.Map;
 
 public class BaseTest {
     public static void main(String[]args){
-        Map<String,Double> map= new LinkedHashMap<>();
-        map.put("a",33.0);
-        map.put("b",33.0);
-        map.put("3",33.0);
-        map.put("4",33.0);
-        map.put("1",33.0);
-
-        System.out.println(map);
+        long date= new Date().getTime();
+        int hour=DateHandler.getFieldFromLong(Calendar.HOUR,date);
+        System.out.println(hour);
     }
 
 

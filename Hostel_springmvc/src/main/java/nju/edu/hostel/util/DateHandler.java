@@ -2,7 +2,6 @@ package nju.edu.hostel.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Year;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -59,9 +58,13 @@ public class DateHandler {
         return new Date(time);
     }
 
-    public static String longToStr(long time){
+    public static String longToStr_noTime(long time){
         Date date=new Date(time);
-        return formatter.format(date);
+        return formatter_noTime.format(date);
+    }
+    public static String longToStr_withTime(long time){
+        Date date=new Date(time);
+        return formatter_withTime.format(date);
     }
 
 
@@ -81,7 +84,7 @@ public class DateHandler {
     }
     public static long strToLong(String time){
         try {
-            Date date=formatter.parse(time);
+            Date date=formatter_noTime.parse(time);
             return date.getTime();
         }catch (ParseException e){
             e.printStackTrace();
@@ -94,12 +97,13 @@ public class DateHandler {
         helper.add(type,num);
         return helper.getTimeInMillis();
     }
-    private static SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd");
+    private static SimpleDateFormat formatter_noTime=new SimpleDateFormat("yyyy-MM-dd");
+    private static SimpleDateFormat formatter_withTime=new SimpleDateFormat("yyyy-MM-dd hh:mm");
 
     public static void main(String[] args){
         long test1=strToLong("2017-4-5");
-        System.out.println(longToStr(add(test1,Calendar.WEDNESDAY,1)));
-        System.out.println(longToStr(add(test1,Calendar.WEDNESDAY,4)));
+        System.out.println(longToStr_noTime(add(test1,Calendar.WEDNESDAY,1)));
+        System.out.println(longToStr_noTime(add(test1,Calendar.WEDNESDAY,4)));
 
         Map<String,Integer> map=new HashMap<String,Integer>();
         int[] years={2016,2016,2017,2016,2016,2011,2011,2016,};

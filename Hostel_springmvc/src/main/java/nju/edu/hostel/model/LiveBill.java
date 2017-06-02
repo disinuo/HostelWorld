@@ -122,11 +122,11 @@ public class LiveBill {
 
     @Transient
     public String getDateStr(){
-        return DateHandler.longToStr(this.date);
+        return DateHandler.longToStr_withTime(this.date);
     }
     @Transient
     public String getCheckOutDateStr(){
-        return DateHandler.longToStr(this.checkOutDate);
+        return DateHandler.longToStr_withTime(this.checkOutDate);
     }
 
     @OneToMany(mappedBy = "liveBill")

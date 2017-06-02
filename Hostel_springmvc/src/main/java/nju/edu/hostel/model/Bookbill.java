@@ -109,15 +109,15 @@ public class BookBill {
     }
     @Transient
     public String getCreateDateStr(){
-        return DateHandler.longToStr(this.createDate);
+        return DateHandler.longToStr_noTime(this.createDate);
     }
     @Transient
     public String getLiveInDateStr(){
-        return DateHandler.longToStr(this.liveInDate);
+        return DateHandler.longToStr_noTime(this.liveInDate);
     }
     @Transient
     public String getCheckOutDateStr(){
-        return DateHandler.longToStr(this.checkOutDate);
+        return DateHandler.longToStr_noTime(this.checkOutDate);
     }
     @Transient
     public int getVipId(){return this.vip.getId();}

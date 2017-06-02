@@ -105,6 +105,9 @@ public class Constants {
     public static final String[] ROOMPRICE_RANGE={
             "<100", "100~200","200~300","300~500","500~700","700~1000",">1000"
     };
+    public static final String[] HOUR_OF_DAY_RANGE={
+        "0:00~3:00","3:00~6:00","6:00~9:00","9:00~12:00","12:00~15:00","15:00~18:00","18:00~21:00","21:00~0:00"
+    };
     public static String AGE_TO_RANGE(int age){
         if(age<18) return AGE_RANGE[0];
         else if(age<30) return AGE_RANGE[1];
@@ -120,6 +123,12 @@ public class Constants {
         if(price<1000) return  ROOMPRICE_RANGE[5];
         else  return  ROOMPRICE_RANGE[6];
     }
+    public static String HOUR_TO_RANGE(int hour){
+        int index=hour/3;
+        int size=HOUR_OF_DAY_RANGE.length;
+        if(index>=size) return HOUR_OF_DAY_RANGE[size-1];
+        return HOUR_OF_DAY_RANGE[index];
+    }
     public static double DO_DIVIDE(double x, double y){
         if(y==0) return 0;
         return x/y;
@@ -130,9 +139,19 @@ public class Constants {
             case Calendar.MONTH:return CREATE_MONTH_MAP();
             case Calendar.WEDNESDAY:return CREATE_WEEK_MAP();
             case Calendar.YEAR:return new LinkedHashMap();
+            case Calendar.HOUR:return CREATE_DAY_MAP();
             default:return CREATE_WEEK_MAP();
         }
     }
+    public static Map<String,Double> CREATE_DAY_MAP(){
+        Map<String,Double> map=new LinkedHashMap<>();
+        for(String range:HOUR_OF_DAY_RANGE){
+            map.put(range,0.0);
+        }
+        return map;
+
+    }
+
     public static Map CREATE_MONTH_MAP(){
         Map map=new LinkedHashMap();
         for(int i=0;i<12;i++){

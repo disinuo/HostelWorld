@@ -33,6 +33,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li> <a href="/hostel/analyze/bookBill">预订情况</a></li>
+                        <li> <a href="/hostel/analyze/liveInBill">入住情况</a></li>
                     </ul>
                 </li>
 

@@ -91,7 +91,7 @@ public class PayBill {
 
     @Transient
     public String getCreateDateStr(){
-        return DateHandler.longToStr(this.createDate);
+        return DateHandler.longToStr_noTime(this.createDate);
     }
 
     @Transient

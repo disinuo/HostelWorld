@@ -552,13 +552,13 @@ public class HostelServiceBean implements HostelService {
     private Map<String,Double> getBookNumByDate_Helper(List<BookBill> bills,int dateType){
         Map<String,Double>map= CREATE_DATE_MAP(dateType);
         for(BookBill bill:bills){
-            int year=DateHandler.getFieldFromLong(dateType,bill.getCreateDate());
-            String yearStr=DateHandler.dateFieldToShow(dateType,year);
-            if(map.containsKey(yearStr)){
-                double num=map.get(yearStr);
-                map.put(yearStr,++num);
+            int dateField=DateHandler.getFieldFromLong(dateType,bill.getCreateDate());
+            String dateFieldStr=DateHandler.dateFieldToShow(dateType,dateField);
+            if(map.containsKey(dateFieldStr)){
+                double num=map.get(dateFieldStr);
+                map.put(dateFieldStr,++num);
             }else {
-                map.put(yearStr,1.0);
+                map.put(dateFieldStr,1.0);
             }
         }
         return map;
@@ -584,40 +584,47 @@ public class HostelServiceBean implements HostelService {
         return liveBillDao.getNotPaidByHostelId(hostelId);
     }
 
+    private Map<String,Double> getLiveInNumByDate_Helper(List<LiveBill> bills,int dateType){
+        Map<String,Double>map= CREATE_DATE_MAP(dateType);
+        for(LiveBill bill:bills){
+            int dateField=DateHandler.getFieldFromLong(dateType,bill.getDate());
+            String dateFieldStr=DateHandler.dateFieldToShow(dateType,dateField);
+            if(map.containsKey(dateFieldStr)){
+                double num=map.get(dateFieldStr);
+                map.put(dateFieldStr,++num);
+            }else {
+                map.put(dateFieldStr,1.0);
+            }
+        }
+        return map;
+    }
+    private Map<String,Double> getAllLiveInNumByDate_Helper(int hostelId,int dateType){
+        List<LiveBill> bills=getAllLiveBills(hostelId);
+        return getLiveInNumByDate_Helper(bills,dateType);
+    }
     @Override
     public List<DataVO> getLiveInNumByYear(int hostelId) {
-        
-        return null;//TODO
+        return DataVO.mapToVO(getAllLiveInNumByDate_Helper(hostelId, Calendar.YEAR));
     }
-
     @Override
     public List<DataVO> getLiveInNumByMonth(int hostelId) {
-        return null;//TODO
+        return DataVO.mapToVO(getAllLiveInNumByDate_Helper(hostelId, Calendar.MONTH));
     }
-
     @Override
     public List<DataVO> getLiveInNumByWeek(int hostelId) {
-        return null;//TODO
+        return DataVO.mapToVO(getAllLiveInNumByDate_Helper(hostelId, Calendar.WEDNESDAY));
     }
-
-    @Override
-    public List<DataVO> getLiveInVipRateByYear(int hostelId) {
-        return null;//TODO
-    }
-
-    @Override
-    public List<DataVO> getLiveInVipRateByMonth(int hostelId) {
-        return null;//TODO
-    }
-
-    @Override
-    public List<DataVO> getLiveInVipRateByWeek(int hostelId) {
-        return null;//TODO
-    }
-
     @Override
     public List<DataVO> getLiveInNumByDay(int hostelId) {
-        return null;//TODO
+        Map<String,Double>map= CREATE_DAY_MAP();
+        List<LiveBill> bills=getAllLiveBills(hostelId);
+        for(LiveBill bill:bills){
+            int hour=DateHandler.getFieldFromLong(Calendar.HOUR,bill.getDate());
+            String hourStr=HOUR_TO_RANGE(hour);
+            double num=map.get(hourStr);
+            map.put(hourStr,++num);
+        }
+        return DataVO.mapToVO(map);
     }
 
     @Override
@@ -644,7 +651,20 @@ public class HostelServiceBean implements HostelService {
     public List<DataVO> getLiveInNumByGuestType(int hostelId) {
         return null;//TODO
     }
+    @Override
+    public List<DataVO> getLiveInVipRateByYear(int hostelId) {
+        return null;//TODO
+    }
 
+    @Override
+    public List<DataVO> getLiveInVipRateByMonth(int hostelId) {
+        return null;//TODO
+    }
+
+    @Override
+    public List<DataVO> getLiveInVipRateByWeek(int hostelId) {
+        return null;//TODO
+    }
     @Override
     public List<DataVO> getVacantRateByRoomType(int hostelId) {
         return null;//TODO

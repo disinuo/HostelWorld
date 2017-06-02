@@ -17,7 +17,7 @@
 
 <div class="big-container ">
     <div class="col-lg-2 col-md-2 col-xs-2">
-        <h4>预订情况</h4>
+        <h4>入住情况</h4>
         <ul class="nav nav-pills nav-stacked">
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -27,6 +27,7 @@
                     <li id="year"><a href="#">年</a></li>
                     <li id="month"><a href="#">月</a></li>
                     <li id="week"><a href="#">周</a></li>
+                    <li id="day"><a href="#">时段</a></li>
                 </ul>
             </li>
             <li id="province"><a href="#">省份</a></li>
@@ -56,7 +57,7 @@
 <%@include file="../common/tail.jsp" %>
 <%@include file="component/hostelTail.jsp"%>
 
-<script type="text/javascript" src="../../js/hostel/analyzeBookBillPage.js"></script>
+<script type="text/javascript" src="../../js/hostel/analyzeLiveInBillPage.js"></script>
 
 
 </body>

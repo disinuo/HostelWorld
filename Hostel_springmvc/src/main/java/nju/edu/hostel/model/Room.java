@@ -176,11 +176,11 @@ public class Room {
 
     @Transient
     public String getStartDateStr(){
-        return DateHandler.longToStr(this.startDate);
+        return DateHandler.longToStr_noTime(this.startDate);
     }
     @Transient
     public String getEndDateStr(){
-        return DateHandler.longToStr(this.endDate);
+        return DateHandler.longToStr_noTime(this.endDate);
     }
 
 
