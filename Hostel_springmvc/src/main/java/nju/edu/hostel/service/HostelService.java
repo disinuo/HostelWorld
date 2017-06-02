@@ -218,25 +218,25 @@ public interface HostelService {
     public List<LiveBill> getNotPaidLiveBills(int hostelId);
 
 
-    public List<DataVO> getLiveInNumByYear();
-    public List<DataVO> getLiveInNumByMonth();
-    public List<DataVO> getLiveInNumByWeek();
+    public List<DataVO> getLiveInNumByYear(int hostelId);
+    public List<DataVO> getLiveInNumByMonth(int hostelId);
+    public List<DataVO> getLiveInNumByWeek(int hostelId);
 
     /**
      * 住店记录中是会员的占比
      * @return
      */
-    public List<DataVO> getLiveInVipRateByYear();
-    public List<DataVO> getLiveInVipRateByMonth();
-    public List<DataVO> getLiveInVipRateByWeek();
+    public List<DataVO> getLiveInVipRateByYear(int hostelId);
+    public List<DataVO> getLiveInVipRateByMonth(int hostelId);
+    public List<DataVO> getLiveInVipRateByWeek(int hostelId);
     /**
      * 分组标准：一天内的【时段】
      */
-    public List<DataVO> getLiveInNumByDay();
-    public List<DataVO> getLiveInNumByVipRegion();
-    public List<DataVO> getLiveInNumByVipAge();
-    public List<DataVO> getLiveInNumByRoomType();
-    public List<DataVO> getLiveInNumByRoomPrice();
+    public List<DataVO> getLiveInNumByDay(int hostelId);
+    public List<DataVO> getLiveInNumByVipRegion(int hostelId);
+    public List<DataVO> getLiveInNumByVipAge(int hostelId);
+    public List<DataVO> getLiveInNumByRoomType(int hostelId);
+    public List<DataVO> getLiveInNumByRoomPrice(int hostelId);
 
 
 //TODO 还要加接口---预订并入住了的会员，实际入住的日期区间与预订日期区间的比较
@@ -246,11 +246,11 @@ public interface HostelService {
      * 维度：顾客类型。guestType就只有会员、非会员两种。
      * 范围：所有入住单
      */
-    public List<DataVO> getLiveInNumByguestType();
+    public List<DataVO> getLiveInNumByguestType(int hostelId);
     /**
      * 各种房型的空房率 每天
      */
-    public List<DataVO> getVacantRateByRoomType();
+    public List<DataVO> getVacantRateByRoomType(int hostelId);
 
 
 //==================== End Of LiveBill =============================================================

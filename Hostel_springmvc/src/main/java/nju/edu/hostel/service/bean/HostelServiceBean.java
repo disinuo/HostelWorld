@@ -615,67 +615,67 @@ public class HostelServiceBean implements HostelService {
     }
 
     @Override
-    public List<DataVO> getLiveInNumByYear() {
+    public List<DataVO> getLiveInNumByYear(int hostelId) {
         return null;//TODO
     }
 
     @Override
-    public List<DataVO> getLiveInNumByMonth() {
+    public List<DataVO> getLiveInNumByMonth(int hostelId) {
         return null;//TODO
     }
 
     @Override
-    public List<DataVO> getLiveInNumByWeek() {
+    public List<DataVO> getLiveInNumByWeek(int hostelId) {
         return null;//TODO
     }
 
     @Override
-    public List<DataVO> getLiveInVipRateByYear() {
+    public List<DataVO> getLiveInVipRateByYear(int hostelId) {
         return null;//TODO
     }
 
     @Override
-    public List<DataVO> getLiveInVipRateByMonth() {
+    public List<DataVO> getLiveInVipRateByMonth(int hostelId) {
         return null;//TODO
     }
 
     @Override
-    public List<DataVO> getLiveInVipRateByWeek() {
+    public List<DataVO> getLiveInVipRateByWeek(int hostelId) {
         return null;//TODO
     }
 
     @Override
-    public List<DataVO> getLiveInNumByDay() {
+    public List<DataVO> getLiveInNumByDay(int hostelId) {
         return null;//TODO
     }
 
     @Override
-    public List<DataVO> getLiveInNumByVipRegion() {
+    public List<DataVO> getLiveInNumByVipRegion(int hostelId) {
         return null;//TODO
     }
 
     @Override
-    public List<DataVO> getLiveInNumByVipAge() {
+    public List<DataVO> getLiveInNumByVipAge(int hostelId) {
         return null;//TODO
     }
 
     @Override
-    public List<DataVO> getLiveInNumByRoomType() {
+    public List<DataVO> getLiveInNumByRoomType(int hostelId) {
         return null;//TODO
     }
 
     @Override
-    public List<DataVO> getLiveInNumByRoomPrice() {
+    public List<DataVO> getLiveInNumByRoomPrice(int hostelId) {
         return null;//TODO
     }
 
     @Override
-    public List<DataVO> getLiveInNumByguestType() {
+    public List<DataVO> getLiveInNumByguestType(int hostelId) {
         return null;//TODO
     }
 
     @Override
-    public List<DataVO> getVacantRateByRoomType() {
+    public List<DataVO> getVacantRateByRoomType(int hostelId) {
         return null;//TODO
     }
 

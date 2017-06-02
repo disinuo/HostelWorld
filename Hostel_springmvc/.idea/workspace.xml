@@ -34,61 +34,15 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
+    <splitter split-orientation="horizontal" split-proportion="0.535745">
       <split-first>
         <leaf>
           <file leaf-file-name="HostelService.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/HostelService.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-2610">
-                  <caret line="15" column="17" lean-forward="false" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+                <state relative-caret-position="-1168">
+                  <caret line="217" column="41" lean-forward="true" selection-start-line="217" selection-start-column="41" selection-end-line="217" selection-end-column="41" />
                   <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="HostelServiceBean.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/bean/HostelServiceBean.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1118">
-                  <caret line="678" column="26" lean-forward="false" selection-start-line="618" selection-start-column="6" selection-end-line="680" selection-end-column="0" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="method#requestManager#0;class#HostelServiceBean#0" expanded="false" />
-                    <element signature="method#enrollPay#0;class#HostelServiceBean#0" expanded="false" />
-                    <element signature="e#7901#7913#0" expanded="true" />
-                    <element signature="method#addRoom#1;class#HostelServiceBean#0" expanded="false" />
-                    <element signature="e#22238#22239#0" expanded="true" />
-                    <element signature="e#22303#22304#0" expanded="true" />
-                    <element signature="e#22365#22366#0" expanded="true" />
-                    <element signature="e#22398#22399#0" expanded="true" />
-                    <element signature="e#22461#22462#0" expanded="true" />
-                    <element signature="e#22494#22495#0" expanded="true" />
-                    <element signature="e#22556#22557#0" expanded="true" />
-                    <element signature="e#22589#22590#0" expanded="true" />
-                    <element signature="e#22655#22656#0" expanded="true" />
-                    <element signature="e#22688#22689#0" expanded="true" />
-                    <element signature="e#22755#22756#0" expanded="true" />
-                    <element signature="e#22788#22789#0" expanded="true" />
-                    <element signature="e#22854#22855#0" expanded="true" />
-                    <element signature="e#22887#22888#0" expanded="true" />
-                    <element signature="e#22948#22949#0" expanded="true" />
-                    <element signature="e#22981#22982#0" expanded="true" />
-                    <element signature="e#23048#23049#0" expanded="true" />
-                    <element signature="e#23081#23082#0" expanded="true" />
-                    <element signature="e#23145#23146#0" expanded="true" />
-                    <element signature="e#23178#23179#0" expanded="true" />
-                    <element signature="e#23244#23245#0" expanded="true" />
-                    <element signature="e#23277#23278#0" expanded="true" />
-                    <element signature="e#23344#23345#0" expanded="true" />
-                    <element signature="e#23377#23378#0" expanded="true" />
-                    <element signature="e#23444#23445#0" expanded="true" />
-                    <element signature="e#23477#23478#0" expanded="true" />
-                    <element signature="e#23544#23545#0" expanded="true" />
-                    <element signature="e#23577#23578#0" expanded="true" />
-                    <element signature="e#23747#23748#0" expanded="true" />
-                    <element signature="e#23811#23812#0" expanded="true" />
-                  </folding>
                 </state>
               </provider>
             </entry>
@@ -100,8 +54,8 @@
           <file leaf-file-name="HostelDataController.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/controller/HostelDataController.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1927">
-                  <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+                <state relative-caret-position="173">
+                  <caret line="207" column="62" lean-forward="true" selection-start-line="207" selection-start-column="62" selection-end-line="207" selection-end-column="62" />
                   <folding />
                 </state>
               </provider>
@@ -127,7 +81,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Age</find>
       <find>age</find>
       <find>add</find>
       <find>list</find>
@@ -157,9 +110,9 @@
       <find>纯属</find>
       <find>users</find>
       <find>return null;</find>
+      <find>(</find>
     </findStrings>
     <replaceStrings>
-      <replace>ModelAndView model=checkRole(session);         return model==null?(</replace>
       <replace>&quot;)):model;</replace>
       <replace>CheckOutBill</replace>
       <replace>getLiveDetail</replace>
@@ -189,6 +142,7 @@
       <replace>name</replace>
       <replace>200</replace>
       <replace>return null;//TODO</replace>
+      <replace>(int hostelId</replace>
     </replaceStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -199,7 +153,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/test/BaseTest.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/hostel/sideBar.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/hostel/roomListPage.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/hostel/bookBillsPage.jsp" />
@@ -249,6 +202,7 @@
         <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/dao/Impl/VipMoneyRecordDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/dao/Impl/UserDaoImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/HostelService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/controller/HostelDataController.java" />
         <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/bean/HostelServiceBean.java" />
       </list>
     </option>
@@ -290,7 +244,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="49" />
     <option name="y" value="70" />
-    <option name="width" value="1069" />
+    <option name="width" value="1203" />
     <option name="height" value="694" />
   </component>
   <component name="ProjectView">
@@ -1540,7 +1494,7 @@
       <workItem from="1495678702634" duration="3374000" />
       <workItem from="1495864961369" duration="94253000" />
       <workItem from="1496089653840" duration="72989000" />
-      <workItem from="1496270036582" duration="34609000" />
+      <workItem from="1496270036582" duration="34993000" />
     </task>
     <servers />
   </component>
@@ -1577,7 +1531,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="862061000" />
+    <option name="totallyTimeSpent" value="862445000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -1589,12 +1543,12 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="49" y="70" width="1069" height="694" extended-state="0" />
+    <frame x="49" y="70" width="1203" height="694" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4078125" sideWeight="0.5074813" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40697673" sideWeight="0.5074813" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32858595" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1616,7 +1570,7 @@
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32817337" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25650558" sideWeight="0.5813953" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16455697" sideWeight="0.41860464" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16451335" sideWeight="0.41860464" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19386107" sideWeight="0.36981758" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25696594" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -2304,8 +2258,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/bean/HostelServiceBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1118">
-          <caret line="678" column="26" lean-forward="false" selection-start-line="618" selection-start-column="6" selection-end-line="680" selection-end-column="0" />
+        <state relative-caret-position="955">
+          <caret line="677" column="60" lean-forward="false" selection-start-line="617" selection-start-column="38" selection-end-line="677" selection-end-column="63" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#requestManager#0;class#HostelServiceBean#0" expanded="false" />
@@ -2314,50 +2268,50 @@
             <element signature="method#addRoom#1;class#HostelServiceBean#0" expanded="false" />
             <element signature="e#22238#22239#0" expanded="true" />
             <element signature="e#22303#22304#0" expanded="true" />
-            <element signature="e#22365#22366#0" expanded="true" />
-            <element signature="e#22398#22399#0" expanded="true" />
-            <element signature="e#22461#22462#0" expanded="true" />
-            <element signature="e#22494#22495#0" expanded="true" />
-            <element signature="e#22556#22557#0" expanded="true" />
-            <element signature="e#22589#22590#0" expanded="true" />
-            <element signature="e#22655#22656#0" expanded="true" />
-            <element signature="e#22688#22689#0" expanded="true" />
-            <element signature="e#22755#22756#0" expanded="true" />
-            <element signature="e#22788#22789#0" expanded="true" />
-            <element signature="e#22854#22855#0" expanded="true" />
-            <element signature="e#22887#22888#0" expanded="true" />
-            <element signature="e#22948#22949#0" expanded="true" />
-            <element signature="e#22981#22982#0" expanded="true" />
-            <element signature="e#23048#23049#0" expanded="true" />
-            <element signature="e#23081#23082#0" expanded="true" />
-            <element signature="e#23145#23146#0" expanded="true" />
-            <element signature="e#23178#23179#0" expanded="true" />
-            <element signature="e#23244#23245#0" expanded="true" />
-            <element signature="e#23277#23278#0" expanded="true" />
-            <element signature="e#23344#23345#0" expanded="true" />
-            <element signature="e#23377#23378#0" expanded="true" />
-            <element signature="e#23444#23445#0" expanded="true" />
-            <element signature="e#23477#23478#0" expanded="true" />
-            <element signature="e#23544#23545#0" expanded="true" />
-            <element signature="e#23577#23578#0" expanded="true" />
-            <element signature="e#23747#23748#0" expanded="true" />
-            <element signature="e#23811#23812#0" expanded="true" />
+            <element signature="e#22377#22378#0" expanded="true" />
+            <element signature="e#22410#22411#0" expanded="true" />
+            <element signature="e#22485#22486#0" expanded="true" />
+            <element signature="e#22518#22519#0" expanded="true" />
+            <element signature="e#22592#22593#0" expanded="true" />
+            <element signature="e#22625#22626#0" expanded="true" />
+            <element signature="e#22703#22704#0" expanded="true" />
+            <element signature="e#22736#22737#0" expanded="true" />
+            <element signature="e#22815#22816#0" expanded="true" />
+            <element signature="e#22848#22849#0" expanded="true" />
+            <element signature="e#22926#22927#0" expanded="true" />
+            <element signature="e#22959#22960#0" expanded="true" />
+            <element signature="e#23032#23033#0" expanded="true" />
+            <element signature="e#23065#23066#0" expanded="true" />
+            <element signature="e#23144#23145#0" expanded="true" />
+            <element signature="e#23177#23178#0" expanded="true" />
+            <element signature="e#23253#23254#0" expanded="true" />
+            <element signature="e#23286#23287#0" expanded="true" />
+            <element signature="e#23364#23365#0" expanded="true" />
+            <element signature="e#23397#23398#0" expanded="true" />
+            <element signature="e#23476#23477#0" expanded="true" />
+            <element signature="e#23509#23510#0" expanded="true" />
+            <element signature="e#23588#23589#0" expanded="true" />
+            <element signature="e#23621#23622#0" expanded="true" />
+            <element signature="e#23700#23701#0" expanded="true" />
+            <element signature="e#23733#23734#0" expanded="true" />
+            <element signature="e#23903#23904#0" expanded="true" />
+            <element signature="e#23967#23968#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/HostelService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2610">
-          <caret line="15" column="17" lean-forward="false" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+        <state relative-caret-position="-1168">
+          <caret line="217" column="41" lean-forward="true" selection-start-line="217" selection-start-column="41" selection-end-line="217" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/controller/HostelDataController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1927">
-          <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        <state relative-caret-position="173">
+          <caret line="207" column="62" lean-forward="true" selection-start-line="207" selection-start-column="62" selection-end-line="207" selection-end-column="62" />
           <folding />
         </state>
       </provider>

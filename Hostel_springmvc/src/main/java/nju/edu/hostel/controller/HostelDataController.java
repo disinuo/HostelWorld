@@ -167,54 +167,53 @@ public class HostelDataController {
 //======================= End Of BookList ============================================
    
 //======================= LiveBill ============================================
-    @RequestMapping(value = "/getAllLiveList")
-    public List<LiveBillVO> getAllLivList(HttpSession session) {
-        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
-        int id=user.getId();
-        return LiveBillVO.entityToVO(hostelService.getAllLiveBills(id));
-    }
-    @RequestMapping(value = "/getRecentLiveList")
-    public List<LiveBillVO> getRecentLiveList(HttpSession session){
-        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
-        int id=user.getId();
-        return LiveBillVO.entityToVO(hostelService.getRecentLiveBills(id));
-    }
-    @RequestMapping(value = "/getRecentLiveList/week")
-    public List<LiveBillVO> getRecentWeekLiveList(HttpSession session){
-        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
-        int id=user.getId();
-        return LiveBillVO.entityToVO(hostelService.getRecentWeekLiveBills(id));
-    }
-    @RequestMapping(value = "/getRecentLiveList/month")
-    public List<LiveBillVO> getRecentMonthLiveList(HttpSession session){
-        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
-        int id=user.getId();
-        return LiveBillVO.entityToVO(hostelService.getRecentMonthLiveBills(id));
-    }
-    @RequestMapping(value = "/getRecentLiveList/year")
-    public List<LiveBillVO> getRecentYearLiveList(HttpSession session){
-        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
-        int id=user.getId();
-        return LiveBillVO.entityToVO(hostelService.getRecentYearLiveBills(id));
-    }
-    @RequestMapping(value = "/getNotOutLiveBills")
-    public List<LiveBillVO> getNotOutLiveBills(HttpSession session){
-        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
-        int id=user.getId();
-        return LiveBillVO.entityToVO(hostelService.getNotOutLiveBills(id));
-    }
-
-    @RequestMapping(value = "/getNotPaidLiveBills")
-    public List<LiveBillVO> getNotPaidLiveBills(HttpSession session){
-        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
-        int id=user.getId();
-        return LiveBillVO.entityToVO(hostelService.getNotPaidLiveBills(id));
-    }
     @RequestMapping(value = "/getLiveBillById")
     public LiveBillVO getLiveBillById(int billId){
         System.out.println("controller: billId= "+billId);
         return new LiveBillVO(hostelService.getLiveBillById(billId));
     }
+    @RequestMapping(value = "/getAllLiveList")
+    public List<LiveBillVO> getAllLivList(HttpSession session) {
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return LiveBillVO.entityToVO(hostelService.getAllLiveBills(id));
+    }
+    @RequestMapping(value = "/getRecentLiveList")
+    public List<LiveBillVO> getRecentLiveList(HttpSession session){
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return LiveBillVO.entityToVO(hostelService.getRecentLiveBills(id));
+    }
+    @RequestMapping(value = "/getRecentLiveList/week")
+    public List<LiveBillVO> getRecentWeekLiveList(HttpSession session){
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return LiveBillVO.entityToVO(hostelService.getRecentWeekLiveBills(id));
+    }
+    @RequestMapping(value = "/getRecentLiveList/month")
+    public List<LiveBillVO> getRecentMonthLiveList(HttpSession session){
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return LiveBillVO.entityToVO(hostelService.getRecentMonthLiveBills(id));
+    }
+    @RequestMapping(value = "/getRecentLiveList/year")
+    public List<LiveBillVO> getRecentYearLiveList(HttpSession session){
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return LiveBillVO.entityToVO(hostelService.getRecentYearLiveBills(id));
+    }
+    @RequestMapping(value = "/getNotOutLiveBills")
+    public List<LiveBillVO> getNotOutLiveBills(HttpSession session){
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return LiveBillVO.entityToVO(hostelService.getNotOutLiveBills(id));
+    }
+
+    @RequestMapping(value = "/getNotPaidLiveBills")
+    public List<LiveBillVO> getNotPaidLiveBills(HttpSession session){
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return LiveBillVO.entityToVO(hostelService.getNotPaidLiveBills(id));
+    }
+    @RequestMapping(value = "/getLiveInNum/year")
+    public List<DataVO> getLiveInNumByYear(HttpSession session){
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return hostelService.getLiveInNumByYear(id);
+    }
+
 //======================= End Of LiveBill ============================================
 
 //======================= PayBill ============================================
