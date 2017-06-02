@@ -613,6 +613,72 @@ public class HostelServiceBean implements HostelService {
     public List<LiveBill> getNotPaidLiveBills(int hostelId){
         return liveBillDao.getNotPaidByHostelId(hostelId);
     }
+
+    @Override
+    public List<DataVO> getLiveInNumByYear() {
+        return null;//TODO
+    }
+
+    @Override
+    public List<DataVO> getLiveInNumByMonth() {
+        return null;//TODO
+    }
+
+    @Override
+    public List<DataVO> getLiveInNumByWeek() {
+        return null;//TODO
+    }
+
+    @Override
+    public List<DataVO> getLiveInVipRateByYear() {
+        return null;//TODO
+    }
+
+    @Override
+    public List<DataVO> getLiveInVipRateByMonth() {
+        return null;//TODO
+    }
+
+    @Override
+    public List<DataVO> getLiveInVipRateByWeek() {
+        return null;//TODO
+    }
+
+    @Override
+    public List<DataVO> getLiveInNumByDay() {
+        return null;//TODO
+    }
+
+    @Override
+    public List<DataVO> getLiveInNumByVipRegion() {
+        return null;//TODO
+    }
+
+    @Override
+    public List<DataVO> getLiveInNumByVipAge() {
+        return null;//TODO
+    }
+
+    @Override
+    public List<DataVO> getLiveInNumByRoomType() {
+        return null;//TODO
+    }
+
+    @Override
+    public List<DataVO> getLiveInNumByRoomPrice() {
+        return null;//TODO
+    }
+
+    @Override
+    public List<DataVO> getLiveInNumByguestType() {
+        return null;//TODO
+    }
+
+    @Override
+    public List<DataVO> getVacantRateByRoomType() {
+        return null;//TODO
+    }
+
     @Override
     public LiveBill getLiveBillById(int billId){
         return liveBillDao.get(billId);

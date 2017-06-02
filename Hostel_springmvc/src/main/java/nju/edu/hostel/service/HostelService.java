@@ -201,6 +201,60 @@ public interface HostelService {
 
 //==================== End Of BookBill =============================================================
 
+//==================== LiveBill =============================================================
+    public LiveBill getLiveBillById(int billId);
+    public List<LiveBill> getAllLiveBills(int hostelId);
+    public List<LiveBill> getRecentLiveBills(int hostelId);
+    public List<LiveBill> getRecentWeekLiveBills(int hostelId);
+    public List<LiveBill> getRecentMonthLiveBills(int hostelId);
+    public List<LiveBill> getRecentYearLiveBills(int hostelId);
+    /**
+     * 获取本店所有未离店的住店数据
+     */
+    public List<LiveBill> getNotOutLiveBills(int hostelId);
+    /**
+     * 获取本店所有未记账的住店数据
+     */
+    public List<LiveBill> getNotPaidLiveBills(int hostelId);
+
+
+    public List<DataVO> getLiveInNumByYear();
+    public List<DataVO> getLiveInNumByMonth();
+    public List<DataVO> getLiveInNumByWeek();
+
+    /**
+     * 住店记录中是会员的占比
+     * @return
+     */
+    public List<DataVO> getLiveInVipRateByYear();
+    public List<DataVO> getLiveInVipRateByMonth();
+    public List<DataVO> getLiveInVipRateByWeek();
+    /**
+     * 分组标准：一天内的【时段】
+     */
+    public List<DataVO> getLiveInNumByDay();
+    public List<DataVO> getLiveInNumByVipRegion();
+    public List<DataVO> getLiveInNumByVipAge();
+    public List<DataVO> getLiveInNumByRoomType();
+    public List<DataVO> getLiveInNumByRoomPrice();
+
+
+//TODO 还要加接口---预订并入住了的会员，实际入住的日期区间与预订日期区间的比较
+
+    /**
+     * 此接口返回各顾客类型的入住量。
+     * 维度：顾客类型。guestType就只有会员、非会员两种。
+     * 范围：所有入住单
+     */
+    public List<DataVO> getLiveInNumByguestType();
+    /**
+     * 各种房型的空房率 每天
+     */
+    public List<DataVO> getVacantRateByRoomType();
+
+
+//==================== End Of LiveBill =============================================================
+
 
 //==================== PayBill =============================================================
     /**
@@ -220,37 +274,17 @@ public interface HostelService {
 
 
 
+
+    public int getTotalLiveInNum(int hostelId);
+    public int getPresentLiveInNum(int hostelId);
+
+
     /**
      * 获取本店总收入
      * @param hostelId
      * @return
      */
     public double getIncome(int hostelId);
-//==================== LiveBill =============================================================
-
-    /**
-     * 获取本店住店数据
-     */
-    public List<LiveBill> getAllLiveBills(int hostelId);
-    public List<LiveBill> getRecentLiveBills(int hostelId);
-    public List<LiveBill> getRecentWeekLiveBills(int hostelId);
-    public List<LiveBill> getRecentMonthLiveBills(int hostelId);
-    public List<LiveBill> getRecentYearLiveBills(int hostelId);
-    /**
-     * 获取本店所有未离店的住店数据
-     */
-    public List<LiveBill> getNotOutLiveBills(int hostelId);
-    /**
-     * 获取本店所有未记账的住店数据
-     */
-    public List<LiveBill> getNotPaidLiveBills(int hostelId);
-    public LiveBill getLiveBillById(int billId);
-//==================== End Of LiveBill =============================================================
-
-
-    public int getTotalLiveInNum(int hostelId);
-    public int getPresentLiveInNum(int hostelId);
-
     /**
      * 得到该客栈的所有房间
      * @param hostelId
