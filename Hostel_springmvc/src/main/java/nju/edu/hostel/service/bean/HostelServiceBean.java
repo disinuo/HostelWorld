@@ -629,16 +629,32 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public List<DataVO> getLiveInNumByRoomType(int hostelId) {
-        return null;//TODO
+        Map<String,Double> map=(Map<String,Double>) createRoomTypeMap(hostelId);
+        List<LiveBill> bills=getAllLiveBills(hostelId);
+        for(LiveBill bill:bills){
+            String roomType=bill.getRoom().getName();
+            double num=map.get(roomType);
+            map.put(roomType,++num);
+        }
+        return DataVO.mapToVO(map);
     }
 
     @Override
     public List<DataVO> getLiveInNumByRoomPrice(int hostelId) {
-        return null;//TODO
+        Map<String,Double> map=(Map<String,Double>) CREATE_ROOM_PRICE_MAP();
+        List<LiveBill> bills=getAllLiveBills(hostelId);
+        for(LiveBill bill:bills){
+            double roomPrice=bill.getRoom().getPrice();
+            String roomPriceStr=ROOM_PRICE_TO_RANGE(roomPrice);
+            double num=map.get(roomPriceStr);
+            map.put(roomPriceStr,++num);
+        }
+        return DataVO.mapToVO(map);
     }
 
     @Override
     public List<DataVO> getLiveInNumByGuestType(int hostelId) {
+
         return null;//TODO
     }
     @Override

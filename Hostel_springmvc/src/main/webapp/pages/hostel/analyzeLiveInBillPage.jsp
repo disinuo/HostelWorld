@@ -30,7 +30,6 @@
                     <li id="day"><a href="#">时段</a></li>
                 </ul>
             </li>
-            <li id="province"><a href="#">省份</a></li>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     房间 <span class="caret"></span>
@@ -40,7 +39,6 @@
                     <li id="roomPrice"><a href="#">房价</a></li>
                 </ul>
             </li>
-            <li id="vipAge"><a href="#">会员年龄</a></li>
 
         </ul>
     </div>
