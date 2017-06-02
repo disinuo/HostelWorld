@@ -233,11 +233,6 @@ public class HostelDataController {
         int id= ControllerHelper.getUserIdFromSession(session);
         return hostelService.getLiveInNumByWeek(id);
     }
-    @RequestMapping(value = "/getLiveInVipRate/week")
-    public List<DataVO> getLiveInVipRateByWeek(HttpSession session){
-        int id= ControllerHelper.getUserIdFromSession(session);
-        return hostelService.getLiveInVipRateByWeek(id);
-    }
     @RequestMapping(value = "/getLiveInNum/day")
     public List<DataVO> getLiveInNumByDay(HttpSession session){
         int id= ControllerHelper.getUserIdFromSession(session);

@@ -42,6 +42,9 @@ $('#roomType').click(function (e) {
 $('#roomPrice').click(function (e) {
     showRoomPrice();
 });
+$('#guestType').click(function (e) {
+   showGuestType();
+});
 
 function initPieChart(data_input,name) {
     console.log('init room chart');
@@ -334,16 +337,6 @@ function showWeek() {
         async: false,
         success:function (data) {
             console.log(data);
-            $.ajax({
-                url:'/data/hostel/getLiveInVipRate/week',
-                async: false,
-                success:function (data) {
-                    console.log(data);
-                },
-                error:function (data) {
-                    alert('ERROR');
-                }
-            });
         },
         error:function (data) {
             alert('ERROR');
@@ -400,16 +393,6 @@ function showDay() {
         async: false,
         success:function (data) {
             console.log(data);
-            $.ajax({
-                url:'/data/hostel/getLiveInVipRate/day',
-                async: false,
-                success:function (data) {
-                    console.log(data);
-                },
-                error:function (data) {
-                    alert('ERROR');
-                }
-            });
         },
         error:function (data) {
             alert('ERROR');
@@ -434,6 +417,19 @@ function showRoomPrice() {
         url: '/data/hostel/getLiveInNum/room/price',
         success: function (data) {
             console.log(data);
+
+        },
+        error:function (data) {
+            alert('showProvince ERROR!');
+        }
+    });
+}
+function showGuestType() {
+    $.ajax({
+        url: '/data/hostel/getLiveInNum/guestType',
+        success: function (data) {
+            console.log(data);
+            //pie
 
         },
         error:function (data) {

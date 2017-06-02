@@ -228,7 +228,6 @@ public interface HostelService {
      */
     public List<DataVO> getLiveInVipRateByYear(int hostelId);
     public List<DataVO> getLiveInVipRateByMonth(int hostelId);
-    public List<DataVO> getLiveInVipRateByWeek(int hostelId);
     /**
      * 分组标准：一天内的【时段】
      */

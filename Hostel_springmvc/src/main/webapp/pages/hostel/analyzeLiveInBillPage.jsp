@@ -40,6 +40,8 @@
                 </ul>
             </li>
 
+            <li id="guestType"><a href="#">住户类型</a></li>
+
         </ul>
     </div>
 

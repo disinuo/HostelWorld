@@ -23,6 +23,14 @@ public interface LiveBillDao {
      */
     public List<LiveBill> getAllByVipId(int vipId);
     public List<LiveBill> getAllByHostelId(int hostelId);
+
+    /**
+     * 返回此酒店所有【会员入住】的记录
+     * @param hostelId
+     * @return
+     */
+    public List<LiveBill> getAllVipLiveInByHostel(int hostelId);
+
     /**
      * 返回默认前n条
      * @param vipId

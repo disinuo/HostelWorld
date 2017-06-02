@@ -49,6 +49,13 @@ public class LiveBillDaoImpl implements LiveBillDao {
         System.err.println("HQL= "+hql);
         return baseDao.getByHql(LiveBill.class,hql);
     }
+    @Override
+    public List<LiveBill> getAllVipLiveInByHostel(int hostelId){
+        String hql=baseHql_withDetail+ENTITY_TYPE_HOSTEL+"="+hostelId+" AND "
+                +ENTITY_TYPE_VIP+">0"+hqlTail;
+        System.err.println("HQL= "+hql);
+        return baseDao.getByHql(LiveBill.class,hql);
+    }
 
     @Override
     public List<LiveBill> getAllByHostelId(int hostelId) {

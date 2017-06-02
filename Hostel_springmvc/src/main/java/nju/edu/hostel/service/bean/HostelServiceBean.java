@@ -467,7 +467,6 @@ public class HostelServiceBean implements HostelService {
             map.put(priceRange,++num);
         }
         return DataVO.mapToVO(map);
-
     }
 
 
@@ -654,25 +653,41 @@ public class HostelServiceBean implements HostelService {
 
     @Override
     public List<DataVO> getLiveInNumByGuestType(int hostelId) {
-
-        return null;//TODO
+        List<LiveBill> bills_vip=liveBillDao.getAllVipLiveInByHostel(hostelId);
+        List<LiveBill> bills_all=liveBillDao.getAllByHostelId(hostelId);
+        List<DataVO> vos=new ArrayList<DataVO>();
+        vos.add(new DataVO("会员",bills_vip.size()));
+        vos.add(new DataVO("非会员",bills_all.size()-bills_vip.size()));
+        return vos;
+    }
+    private List<DataVO> getLiveInVipRateByDate_Helper(int hostelId,int dateType){
+        List<LiveBill> bills_vip=liveBillDao.getAllVipLiveInByHostel(hostelId);
+        List<LiveBill> bills_all=liveBillDao.getAllByHostelId(hostelId);
+        Map<String,Double> vip_map=getLiveInNumByDate_Helper(bills_vip,dateType);
+        Map<String,Double> all_map=getLiveInNumByDate_Helper(bills_all,dateType);
+        for(String key:all_map.keySet()){
+            double rate=0;
+            if(vip_map.containsKey(key)){
+                rate=DO_DIVIDE(vip_map.get(key),all_map.get(key));
+            }
+            vip_map.put(key,rate);
+        }
+        return DataVO.mapToVO(vip_map);
     }
     @Override
     public List<DataVO> getLiveInVipRateByYear(int hostelId) {
-        return null;//TODO
+        return getLiveInVipRateByDate_Helper(hostelId,Calendar.YEAR);
     }
 
     @Override
     public List<DataVO> getLiveInVipRateByMonth(int hostelId) {
-        return null;//TODO
+        return getLiveInVipRateByDate_Helper(hostelId,Calendar.MONTH);
     }
 
-    @Override
-    public List<DataVO> getLiveInVipRateByWeek(int hostelId) {
-        return null;//TODO
-    }
+
     @Override
     public List<DataVO> getVacantRateByRoomType(int hostelId) {
+
         return null;//TODO
     }
 
