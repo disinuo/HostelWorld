@@ -15,6 +15,8 @@ public interface VipMoneyRecordDao {
     public int add(VipMoneyRecord vipMoneyRecord)throws Exception;
     public ResultMessage addNoId(VipMoneyRecord vipMoneyRecord);
     public ResultMessage update(VipMoneyRecord vipMoneyRecord);
+    public ResultMessage record(int vipId, double money, long date, int type);
+
 
 
 

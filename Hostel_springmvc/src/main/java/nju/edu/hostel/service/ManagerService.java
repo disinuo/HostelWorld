@@ -56,12 +56,6 @@ public interface ManagerService {
 
 
     /**
-     * 获取所有通过审批的客栈
-     * 包含了每个客栈的住店、预订、消费的所有记录
-     * @return
-     */
-    public List<Hostel> getAllPermittedHostels();
-    /**
      * 获取所有会员
      * 包含了每个会员的住店、预订、消费的所有记录
      */

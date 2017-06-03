@@ -40,6 +40,11 @@ public class VipMoneyRecordDaoImpl implements VipMoneyRecordDao {
     public int add(VipMoneyRecord vipMoneyRecord) throws Exception {
         return baseDao.save(vipMoneyRecord);
     }
+    @Override
+    public ResultMessage record(int vipId, double money, long date, int type){
+        VipMoneyRecord record=new VipMoneyRecord(vipId,date,money,type);
+        return addNoId(record);
+    }
 
     @Override
     public ResultMessage addNoId(VipMoneyRecord vipMoneyRecord){

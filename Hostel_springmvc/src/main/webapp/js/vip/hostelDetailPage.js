@@ -50,11 +50,15 @@ function getRoomList(){
         },{
             field: 'totalNum',
             title: '房间总数',
-            align: 'center',
+            align: 'center'
         },{
             field: 'bookedNum',
             title: '已预订',
-            align: 'center',
+            align: 'center'
+        },{
+            field: 'vacantNum',
+            title: '空闲数',
+            align: 'center'
         },{
             field:'price',
             title:'房价',
@@ -73,6 +77,12 @@ function operateFormatter(value, row, index) {
         return [
             '<a type="button" class="btn btn-default disabled" ',
             'href="#">预订</a>'
+        ].join('');
+    }
+    if(row.vacantNum<=0||row.bookedNum>=row.totalNum){
+        return [
+            '<a type="button" class="btn btn-default disabled" ',
+            'href="#">已满</a>'
         ].join('');
     }
     return [

@@ -133,7 +133,7 @@ public class HostelServiceBean implements HostelService {
         double discount=1;
         if(highestLevel>0) {//顾客里有会员
             discount=VIP_LEVEL_TO_DISCOUNT(highestLevel);
-            money_after_Discounted*=discount;
+            money_after_Discounted=NumberFormatter.saveOneDecimal(money_after_Discounted*discount);
 
             double eachPay=money_after_Discounted/liveBill.getNumOfPeople();
             /*
@@ -201,41 +201,39 @@ public class HostelServiceBean implements HostelService {
     }
     @Override
     public ResultMessage vipPay(int vipId,int hostelId,double money){
+        long today=new Date().getTime();
         ResultMessage msg=vipService.payMoney(vipId,money);
         if(msg!=ResultMessage.SUCCESS){
             return msg;
         }
         //生成这个vip的money record
-        VipMoneyRecord vipMoneyRecord=new VipMoneyRecord();
-        vipMoneyRecord.setDate(new Date().getTime());
-        vipMoneyRecord.setMoney(-money);
-        vipMoneyRecord.setVipId(vipId);
-        vipMoneyRecord.setType(MoneyType.MONEY_TYPE_PAY.getCode());
-        if(vipMoneyRecordDao.addNoId(vipMoneyRecord)==ResultMessage.SUCCESS)
-           return unVipPay(hostelId,money);
-        return ResultMessage.FAILURE;
+        msg=vipMoneyRecordDao.record(vipId,-money,today,MoneyType.MONEY_TYPE_VIP_PAY.getCode());
+        if(msg!=ResultMessage.SUCCESS) return msg;
+        msg=hostelMoneyRecordDao.record(hostelId,money,today,MoneyType.MONEY_TYPE_VIP_PAY.getCode());
+        if(msg!=ResultMessage.SUCCESS) return msg;
+        msg=bossMoneyRecordDao.record(money,today, MoneyType.MONEY_TYPE_VIP_PAY.getCode());
+        if(msg==ResultMessage.SUCCESS) return pay(money);
+        else return msg;
+    }
+
+    private ResultMessage pay(double money){
+        User manager=userDao.get(MANAGER_ID);
+        manager.setBankMoney(manager.getBankMoney()+money);
+        return userDao.update(manager);
     }
     @Override
     public ResultMessage unVipPay(int hostelId,double money){
-        User manager=userDao.get(MANAGER_ID);
-        manager.setBankMoney(manager.getBankMoney()+money);
+        long today=new Date().getTime();
         HostelMoneyRecord hostelMoneyRecord=new HostelMoneyRecord(
                 hostelId,
                 money,
                 new Date().getTime(),
-                MoneyType.MONEY_TYPE_PAY.getCode()
+                MoneyType.MONEY_TYPE_VIP_PAY.getCode()
         );
-        ResultMessage msg=hostelMoneyRecordDao.addNoId(hostelMoneyRecord);
-        if(msg==ResultMessage.SUCCESS){
-            msg=bossMoneyRecordDao.record(
-                    money,
-                    new Date().getTime(),
-                    MoneyType.MONEY_TYPE_PAY.getCode()
-
-            );
-        }
-        if(msg==ResultMessage.SUCCESS)
-            return userDao.update(manager);
+        ResultMessage msg=hostelMoneyRecordDao.record(hostelId,money,today,MoneyType.MONEY_TYPE_UN_VIP_PAY.getCode());
+        if(msg!=ResultMessage.SUCCESS) return msg;
+        msg=bossMoneyRecordDao.record(money,today,MoneyType.MONEY_TYPE_UN_VIP_PAY.getCode());
+        if(msg==ResultMessage.SUCCESS) return pay(money);
         return ResultMessage.FAILURE;
     }
     @Override
@@ -649,8 +647,8 @@ public class HostelServiceBean implements HostelService {
         System.err.print(map);
         List<Object[]> vos=new ArrayList<>(map.size());
         for(String key:map.keySet()){
-            int y=Integer.parseInt(key.substring(0,1));
-            int x=Integer.parseInt(key.substring(1));
+            int x=Integer.parseInt(key.substring(0,1));
+            int y=Integer.parseInt(key.substring(1));
             Object z=map.get(key);
             vos.add(new Object[]{x,y,z});
         }
@@ -686,6 +684,11 @@ public class HostelServiceBean implements HostelService {
     public List<DataVO> getLiveInNumByGuestType(int hostelId) {
         List<LiveBill> bills_vip=liveBillDao.getAllVipLiveInByHostel(hostelId);
         List<LiveBill> bills_all=liveBillDao.getAllByHostelId(hostelId);
+        System.err.println("全部："+bills_all.size());
+        for(LiveBill bill:bills_all) System.out.println(bill.getId());
+        System.err.println("会员："+bills_vip.size());
+        for(LiveBill bill:bills_vip) System.out.println(bill.getId());
+
         List<DataVO> vos=new ArrayList<DataVO>();
         vos.add(new DataVO("会员",bills_vip.size()));
         vos.add(new DataVO("非会员",bills_all.size()-bills_vip.size()));

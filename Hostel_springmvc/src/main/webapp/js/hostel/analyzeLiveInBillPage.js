@@ -23,7 +23,7 @@ $(function () {
     mapChart_container=$('#mapChart-container');
     weekChart_container=$('#weekChart-container');
     dayChart_container=$('#dayChart-container');
-    showWeek();
+    showDay();
 
 });
 
@@ -452,8 +452,8 @@ function initDayChart(data_liveInNum) {
     var data = data_liveInNum.z;
     option = {
         title: {
-            text: 'Punch Card of Github',
-            link: 'https://github.com/pissang/echarts-next/graphs/punch-card'
+            text: '入住单数-时段图',
+            // link: 'https://github.com/pissang/echarts-next/graphs/punch-card'
         },
         legend: {
             data: ['Punch Card'],

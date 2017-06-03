@@ -153,7 +153,7 @@ public class ManagerServiceBean implements ManagerService {
     @Override
     public List<IncomeVO> getHostelIncomes(){
         List<IncomeVO> ans=new ArrayList<IncomeVO>();
-        List<Hostel> hostels=getAllPermittedHostels();
+        List<Hostel> hostels=hostelService.getAllPermittedHostels();
         for(Hostel hostel:hostels){
             double income=hostelService.getIncome(hostel.getId());
             IncomeVO incomeVO=new IncomeVO();
@@ -167,7 +167,7 @@ public class ManagerServiceBean implements ManagerService {
     @Override
     public List<LiveInNumVO> getLiveInNums(){
         List<LiveInNumVO> ans=new ArrayList<LiveInNumVO>();
-        List<Hostel> hostels=getAllPermittedHostels();
+        List<Hostel> hostels=hostelService.getAllPermittedHostels();
         for(Hostel hostel:hostels){
            LiveInNumVO vo=new LiveInNumVO();
            vo.setName(hostel.getName());
@@ -178,10 +178,6 @@ public class ManagerServiceBean implements ManagerService {
     }
 
 
-    @Override
-    public List<Hostel> getAllPermittedHostels(){
-        return hostelService.getAllPermittedHostels();
-    }
     @Override
     public List<Vip> getAllVips(){
         return vipDao.getAll();

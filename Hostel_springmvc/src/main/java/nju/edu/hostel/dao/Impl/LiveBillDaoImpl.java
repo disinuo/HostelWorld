@@ -22,7 +22,7 @@ public class LiveBillDaoImpl implements LiveBillDao {
     @Autowired
     BaseDao baseDao;
     private String baseHql_withDetail=
-            "SELECT bill FROM LiveBill as bill,LiveDetail as detail"+
+            "SELECT DISTINCT bill FROM LiveBill as bill,LiveDetail as detail"+
             " WHERE detail.liveBill.id=bill.id AND ";
     private String baseHql=
             "SELECT DISTINCT bill FROM LiveBill as bill WHERE ";
