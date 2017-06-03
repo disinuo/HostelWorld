@@ -17,10 +17,11 @@ var dateChart_container=null;
 var pieChart_container=null;
 var mapChart_container=null;
 $(function () {
-    showProvince();
     dateChart_container=$('#dateChart-container');
     pieChart_container=$('#pieChart-container');
     mapChart_container=$('#mapChart-container');
+    showProvince();
+
 });
 
 

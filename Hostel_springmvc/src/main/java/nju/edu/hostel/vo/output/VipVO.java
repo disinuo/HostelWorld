@@ -2,6 +2,7 @@ package nju.edu.hostel.vo.output;
 
 import nju.edu.hostel.model.Vip;
 import nju.edu.hostel.util.VIPState;
+import static nju.edu.hostel.util.Constants.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -138,4 +139,5 @@ public class VipVO {
     public String getPhone() {
         return phone;
     }
+    public String getLevelStr(){return VIP_LEVEL[getLevel()];}
 }

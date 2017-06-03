@@ -4,13 +4,8 @@ import net.sf.json.JSONObject;
 import nju.edu.hostel.model.*;
 
 import nju.edu.hostel.util.ResultMessage;
-import nju.edu.hostel.vo.output.IncomeVO;
-import nju.edu.hostel.vo.output.LiveInNumVO;
-import nju.edu.hostel.vo.output.RequestModifyVO;
-import nju.edu.hostel.vo.output.RequestOpenVO;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by disinuo on 17/3/2.
@@ -60,28 +55,24 @@ public interface ManagerService {
 
 //====== vip ================================================================
 
+
     /**
-     * 获取所有会员
-     * 包含了每个会员的住店、预订、消费的所有记录
+     * 返回所有会员的入住、消费、等级、状态情况
+     *
+     * 状态用颜色表示：红-停卡，黄-暂停，蓝-正常
+     *
+     * @return
      */
-    public List<Vip> getAllVips();
+    public JSONObject getAllVipLiveNum();
+    /**
+     * 会员有等级：荣耀、王者、钻石、铂金、黄金、白银、青铜
+     * 返回每个等级的会员人数
+     */
+    public JSONObject getVipNumByLevel();
 
 //====== End Of vip ================================================================
 
 //====== Hostel ================================================================
-
-
-    /**
-     * 获取所有客栈的收入金额
-     * @return
-     */
-    public List<IncomeVO> getHostelIncomes();
-
-    /**
-     * 获取所有客栈的住店人数
-     * @return
-     */
-    public List<LiveInNumVO> getLiveInNums();
 
     /**
      * 年度大盘点

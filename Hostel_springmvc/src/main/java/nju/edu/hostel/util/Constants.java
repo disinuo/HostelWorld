@@ -55,6 +55,9 @@ public class Constants {
      */
     public static final int DAY_OF_PAUSE_TO_STOP=365;
 
+    public static final String[] VIP_LEVEL={
+          "老铁","青铜","白银","黄金","铂金","钻石","王者","荣耀","至尊"
+    };
     /**
      *会员等级与消费折扣的转换
      */
@@ -141,6 +144,13 @@ public class Constants {
         return x/y;
     }
 //========= Create Constant Map ===================================
+    public static Map CREATE_VIP_LEVEL_MAP(){
+        Map<String,Integer> map=new LinkedHashMap<>();
+        for(String level:VIP_LEVEL){
+            map.put(level,0);
+        }
+        return map;
+    }
     public static Map CREATE_DATE_MAP(int dateType){
         switch (dateType){
             case Calendar.MONTH:return CREATE_MONTH_MAP();

@@ -14,14 +14,21 @@
 <%@include file="../common/header.jsp" %>
 <%@include file="component/navigation.jsp" %>
 
+
 <div class="big-container ">
-    <div class="col-lg-12 col-md-12">
-        <table id="table" class=" table table-striped">
-        </table>
+    <div class="col-lg-2 col-md-2 col-xs-2">
+        <ul class="nav nav-pills nav-stacked">
+            <li id="vipLevel"><a href="#">会员等级</a></li>
+            <li id="vip_"><a href="#">会员占位功能区</a></li>
+
+        </ul>
     </div>
-
+    <div class="col-lg-10 col-md-10 col-xs-10">
+        <%--<div id="container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>--%>
+        <div id="levelChart-container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>
+        <div id="chart-container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>
+    </div>
 </div>
-
 
 <%@include file="../common/tail.jsp" %>
 <script type="text/javascript" src="/js/manager/analyseVipsPage.js"></script>

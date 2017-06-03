@@ -6,17 +6,18 @@ import nju.edu.hostel.dao.*;
 import nju.edu.hostel.service.HostelService;
 import nju.edu.hostel.service.ManagerService;
 import nju.edu.hostel.service.UserService;
+import nju.edu.hostel.service.VIPService;
 import nju.edu.hostel.util.*;
 import nju.edu.hostel.model.*;
-import nju.edu.hostel.vo.output.IncomeVO;
-import nju.edu.hostel.vo.output.LiveInNumVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
+import static nju.edu.hostel.util.Constants.CREATE_VIP_LEVEL_MAP;
 import static nju.edu.hostel.util.Constants.MANAGER_ID;
+import static nju.edu.hostel.util.Constants.VIP_LEVEL;
 
 
 /**
@@ -219,38 +220,28 @@ public class ManagerServiceBean implements ManagerService {
         }
 
     }
-    @Override
-    public List<IncomeVO> getHostelIncomes(){
-        List<IncomeVO> ans=new ArrayList<IncomeVO>();
-        List<Hostel> hostels=hostelService.getAllPermittedHostels();
-        for(Hostel hostel:hostels){
-            double income=hostelService.getIncome(hostel.getId());
-            IncomeVO incomeVO=new IncomeVO();
-            incomeVO.setValue(income);
-            incomeVO.setName(hostel.getName());
-            incomeVO.setHostelId(hostel.getId());
-            ans.add(incomeVO);
-        }
-        return ans;
-    }
-    @Override
-    public List<LiveInNumVO> getLiveInNums(){
-        List<LiveInNumVO> ans=new ArrayList<LiveInNumVO>();
-        List<Hostel> hostels=hostelService.getAllPermittedHostels();
-        for(Hostel hostel:hostels){
-           LiveInNumVO vo=new LiveInNumVO();
-           vo.setName(hostel.getName());
-           vo.setY(hostelService.getTotalLiveInNum(hostel.getId()));
-           ans.add(vo);
-        }
-        return ans;
-    }
 
 
     @Override
-    public List<Vip> getAllVips(){
-        return vipDao.getAll();
+    public JSONObject getAllVipLiveNum() {
+        return null;//TODO
     }
+
+    @Override
+    public JSONObject getVipNumByLevel() {
+        JSONObject jsonObject=new JSONObject();
+        List<Vip> vips=vipDao.getAll();
+        Map<String,Integer> map=CREATE_VIP_LEVEL_MAP();
+        for(Vip vip:vips){
+            String level=VIP_LEVEL[vip.getLevel()];
+            int num=map.get(level);
+            map.put(level,++num);
+        }
+        jsonObject.put("total",vips.size());
+        jsonObject.put("data",map);
+        return jsonObject;
+    }
+
     @Override
     public List<BossMoneyRecord> getAllMoneyRecords(){
         return bossMoneyRecordDao.getByBoss(MANAGER_ID);

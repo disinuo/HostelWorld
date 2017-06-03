@@ -33,7 +33,7 @@ function initInfo() {
             $('#vip_info_id').html(data.id);
             $('#vip_info_name').html(data.realName);
             $('#vip_info_moneyLeft').html(data.moneyLeft);
-            $('#vip_info_level').html(data.level);
+            $('#vip_info_level').html(data.levelStr);
             $('#vip_info_score').html(data.score);
             $('#vip_info_moneyPaid').html(data.moneyPaid);
             $('#vip_info_state').html(data.stateStr);

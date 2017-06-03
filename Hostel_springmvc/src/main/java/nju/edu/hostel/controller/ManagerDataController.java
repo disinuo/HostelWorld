@@ -25,74 +25,74 @@ import java.util.Map;
 @RequestMapping("/data/boss")
 @ResponseBody
 public class ManagerDataController {
+
+
+    @RequestMapping(value = "/getVipNum/level")
+    public JSONObject getViplList() {
+        return managerService.getVipNumByLevel();
+
+    }
+
+    @RequestMapping(value = "/getSummaryNumOfAllHostels")
+    public JSONObject getSummaryNumOfAllHostels() {
+        return managerService.getSummaryNumOfAllHostels();
+    }
+
+    @RequestMapping(value = "/getSummaryNumByCity")
+    public JSONObject getSummaryNumByCity() {
+        return managerService.getSummaryNumByCity();
+    }
+
+    @RequestMapping(value = "/getOpenRequests")
+    public List<RequestOpenVO> getOpenRequests() {
+        return RequestOpenVO.entityToVO(managerService.getOpenRequests());
+    }
+
+    @RequestMapping(value = "/getModifyRequests")
+    public List<RequestModifyVO> getModifyRequests() {
+        return RequestModifyVO.entityToVO(managerService.getModifyRequests());
+    }
+
+    @RequestMapping(value = "/getHostelList")
+    public List<HostelVO> getHostelList() {
+        return HostelVO.entityToVO(hostelService.getAllPermittedHostels());
+    }
+
+
+    @RequestMapping(value = "/getMoneyRecord")
+    public List<MoneyRecordVO> getMoneyRecord(HttpSession session) {
+        return MoneyRecordVO.entityToVO_boss(managerService.getAllMoneyRecords());
+    }
+
+    @RequestMapping(value = "/hostel/getLiveList")
+    public List<LiveBillVO> getHostelLveList(int hostelId) {
+        return LiveBillVO.entityToVO(hostelService.getAllLiveBills(hostelId));
+    }
+
+    @RequestMapping(value = "/hostel/getTotalLiveInNum")
+    public int getHostelTotalLiveNumber(int hostelId) {
+        return hostelService.getTotalLiveInNum(hostelId);
+    }
+
+    @RequestMapping(value = "/hostel/getPresentLiveInNum")
+    public int getHostelPresentLiveNumber(int hostelId) {
+        return hostelService.getPresentLiveInNum(hostelId);
+    }
+
+    @RequestMapping(value = "/vip/getPayList")
+    public List<PayBillVO> getPayList(int vipId) {
+        return PayBillVO.entityToVO(vipService.getAllPayBills(vipId));
+    }
+
+    @RequestMapping(value = "/vip/getBookList")
+    public List<BookBillVO> getBookList(int vipId) {
+        return BookBillVO.entityToVO(vipService.getValidBookBills(vipId));
+    }
+
     @Autowired
     ManagerService managerService;
     @Autowired
     HostelService hostelService;
     @Autowired
     VIPService vipService;
-
-    @RequestMapping(value = "/getSummaryNumOfAllHostels")
-    public JSONObject getSummaryNumOfAllHostels(){
-        return managerService.getSummaryNumOfAllHostels();
-    }
-
-    @RequestMapping(value = "/getSummaryNumByCity")
-    public JSONObject getSummaryNumByCity(){
-        return managerService.getSummaryNumByCity();
-    }
-
-    @RequestMapping(value = "/getOpenRequests")
-    public List<RequestOpenVO> getOpenRequests(){
-        return RequestOpenVO.entityToVO(managerService.getOpenRequests());
-    }
-    @RequestMapping(value = "/getModifyRequests")
-    public List<RequestModifyVO> getModifyRequests(){
-        return RequestModifyVO.entityToVO(managerService.getModifyRequests());
-    }
-    @RequestMapping(value = "/getHostelList")
-    public List<HostelVO> getHostelList(){
-        return HostelVO.entityToVO(hostelService.getAllPermittedHostels());
-    }
-    @RequestMapping(value = "/getVipList")
-    public List<VipVO> getViplList(){
-        return VipVO.entityToVO(managerService.getAllVips());
-    }
-    @RequestMapping(value = "/getMoneyRecord")
-    public List<MoneyRecordVO> getMoneyRecord(HttpSession session){
-        return MoneyRecordVO.entityToVO_boss(managerService.getAllMoneyRecords());
-    }
-
-    @RequestMapping(value="/hostel/getLiveList")
-    public List<LiveBillVO> getHostelLveList(int hostelId){
-        return LiveBillVO.entityToVO(hostelService.getAllLiveBills(hostelId));
-    }
-    @RequestMapping(value="/hostel/getTotalLiveInNum")
-    public int getHostelTotalLiveNumber(int hostelId){
-        return hostelService.getTotalLiveInNum(hostelId);
-    }
-    @RequestMapping(value="/hostel/getPresentLiveInNum")
-    public int getHostelPresentLiveNumber(int hostelId){
-        return hostelService.getPresentLiveInNum(hostelId);
-    }
-
-    @RequestMapping(value = "/vip/getPayList")
-    public List<PayBillVO> getPayList(int vipId){
-        return PayBillVO.entityToVO(vipService.getAllPayBills(vipId));
-    }
-    @RequestMapping(value = "/vip/getBookList")
-    public List<BookBillVO> getBookList(int vipId){
-        return BookBillVO.entityToVO(vipService.getValidBookBills(vipId));
-    }
-
-    @RequestMapping(value = "/getHostelsIncome")
-    public List<IncomeVO> getIncomes(){
-        List<IncomeVO> ans=managerService.getHostelIncomes();
-        System.out.print("in manager data controller : "+ans.size());
-        return ans;
-    }
-    @RequestMapping(value = "/getHostelsLiveInNum")
-    public List<LiveInNumVO> getLiveIns(){
-        return managerService.getLiveInNums();
-    }
 }

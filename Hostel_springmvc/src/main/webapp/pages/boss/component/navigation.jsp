@@ -21,7 +21,7 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li class="active"><a href="/boss/analyse/company">公司情况</a></li>
-                <li><a href="/boss/analyse/hostel">客栈情况</a></li>
+                <%--<li><a href="/boss/analyse/hostel">客栈情况</a></li>--%>
                 <li><a href="/boss/analyse/vip">会员情况</a></li>
                 <li><a href="/boss/count">结算</a></li>
                 <li><a href="/boss/moneyRecord">收支明细</a></li>
