@@ -1,5 +1,6 @@
 package nju.edu.hostel.controller;
 
+import net.sf.json.JSONArray;
 import nju.edu.hostel.model.BossMoneyRecord;
 import nju.edu.hostel.model.RequestModify;
 import nju.edu.hostel.service.HostelService;
@@ -29,6 +30,11 @@ public class ManagerDataController {
     HostelService hostelService;
     @Autowired
     VIPService vipService;
+
+    @RequestMapping(value = "/getSummaryNumOfAllHostels")
+    public JSONArray getSummaryNumOfAllHostels(){
+        return managerService.getSummaryNumOfAllHostels();
+    }
 
     @RequestMapping(value = "/getOpenRequests")
     public List<RequestOpenVO> getOpenRequests(){

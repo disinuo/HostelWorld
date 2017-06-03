@@ -346,7 +346,12 @@ public class HostelServiceBean implements HostelService {
         room.setPrice(roomVO.getPrice());
         room.setCapacity(roomVO.getCapacity());
         room.setDescrip(roomVO.getDescrip());
+        int originalTotalNum=room.getTotalNum();
+        int differ=roomVO.getTotalNum()-originalTotalNum;
+        int vacant_original=room.getVacantNum();
         room.setTotalNum(roomVO.getTotalNum());
+        room.setVacantNum(vacant_original+differ);
+
         room.setStartDate(DateHandler.strToLong(roomVO.getStartDate()));
         room.setEndDate(DateHandler.strToLong(roomVO.getEndDate()));
         room.setState(countRoomState(room));

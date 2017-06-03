@@ -34,37 +34,40 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.35326514">
+    <splitter split-orientation="horizontal" split-proportion="0.25097275">
       <split-first>
         <leaf>
-          <file leaf-file-name="analyzeBookBillPage.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/webapp/js/hostel/analyzeBookBillPage.js">
+          <file leaf-file-name="analyseCompanyPage.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/webapp/js/manager/analyseCompanyPage.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-3926">
-                  <caret line="34" column="3" lean-forward="true" selection-start-line="34" selection-start-column="3" selection-end-line="34" selection-end-column="3" />
+                <state relative-caret-position="210">
+                  <caret line="70" column="47" lean-forward="false" selection-start-line="70" selection-start-column="47" selection-end-line="70" selection-end-column="47" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="analyzeLiveInBillPage.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/webapp/js/hostel/analyzeLiveInBillPage.js">
+          <file leaf-file-name="HostelServiceBean.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/bean/HostelServiceBean.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="139">
-                  <caret line="62" column="0" lean-forward="true" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+                <state relative-caret-position="311">
+                  <caret line="352" column="48" lean-forward="false" selection-start-line="352" selection-start-column="48" selection-end-line="352" selection-end-column="48" />
                   <folding>
-                    <element signature="n#!!block;n#initRegionChart#0" expanded="false" />
-                    <element signature="n#!!block;n#initDateChart#0" expanded="false" />
+                    <element signature="imports" expanded="true" />
+                    <element signature="method#init#0;class#HostelServiceBean#0" expanded="false" />
+                    <element signature="method#requestManager#0;class#HostelServiceBean#0" expanded="false" />
+                    <element signature="e#8984#8996#0" expanded="true" />
+                    <element signature="method#addRoom#1;class#HostelServiceBean#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="HostelService.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/HostelService.java">
+          <file leaf-file-name="sideBar.jsp" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/hostel/component/sideBar.jsp">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="45">
-                  <caret line="211" column="7" lean-forward="true" selection-start-line="211" selection-start-column="7" selection-end-line="211" selection-end-column="7" />
+                <state relative-caret-position="319">
+                  <caret line="27" column="39" lean-forward="false" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="39" />
                   <folding />
                 </state>
               </provider>
@@ -74,41 +77,21 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="demo.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/webapp/test/demo.js">
+          <file leaf-file-name="HostelService.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/HostelService.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1215">
-                  <caret line="81" column="8" lean-forward="false" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="8" />
+                <state relative-caret-position="223">
+                  <caret line="272" column="39" lean-forward="true" selection-start-line="272" selection-start-column="39" selection-end-line="272" selection-end-column="39" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="LiveInNumVO.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/vo/output/LiveInNumVO.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="75">
-                  <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ManagerService.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/ManagerService.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="332">
-                  <caret line="81" column="35" lean-forward="false" selection-start-line="81" selection-start-column="35" selection-end-line="81" selection-end-column="35" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ManagerServiceBean.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="ManagerServiceBean.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/bean/ManagerServiceBean.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="148">
-                  <caret line="167" column="20" lean-forward="true" selection-start-line="167" selection-start-column="20" selection-end-line="167" selection-end-column="20" />
+                <state relative-caret-position="150">
+                  <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -134,8 +117,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>RoomTy</find>
-      <find>Dao</find>
       <find>key</find>
       <find>dateFieldToShow</find>
       <find>WE</find>
@@ -163,7 +144,9 @@
       <find>单</find>
       <find>,1990</find>
       <find>Week</find>
+      <find>visu</find>
       <find>too</find>
+      <find>upda</find>
     </findStrings>
     <replaceStrings>
       <replace>BossMoneyRecord</replace>
@@ -206,9 +189,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/model/LiveBill.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/vo/output/Data_3D_VO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/util/Constants.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/js/hostel/liveInPage.js" />
         <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/dao/PayBillDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/dao/Impl/PayBillDaoImpl.java" />
@@ -235,7 +215,6 @@
         <option value="$PROJECT_DIR$/src/main/webapp/pages/hostel/hostelInfo.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/controller/HostelCommitController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/js/hostel/enrollPayPage.js" />
-        <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/bean/ManagerServiceBean.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/js/vip/hostelDetailPage.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/js/hostel/analyzeBookBillPage.js" />
         <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/model/Room.java" />
@@ -253,10 +232,14 @@
         <option value="$PROJECT_DIR$/src/main/webapp/pages/hostel/analyzeLiveInBillPage.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/util/DateHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/test/BaseTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/bean/HostelServiceBean.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/js/hostel/analyzeLiveInBillPage.js" />
-        <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/ManagerService.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/test/demo.js" />
+        <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/ManagerService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/controller/ManagerDataController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/pages/boss/analyseCompanyPage.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/js/manager/analyseCompanyPage.js" />
+        <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/bean/HostelServiceBean.java" />
+        <option value="$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/bean/ManagerServiceBean.java" />
       </list>
     </option>
   </component>
@@ -295,8 +278,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="171" />
-    <option name="y" value="29" />
+    <option name="x" value="-58" />
+    <option name="y" value="68" />
     <option name="width" value="1313" />
     <option name="height" value="738" />
   </component>
@@ -460,11 +443,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="hostel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="component" />
+              <option name="myItemId" value="common" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -494,7 +473,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
+              <option name="myItemId" value="boss" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -550,7 +529,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="vip" />
+              <option name="myItemId" value="manager" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -771,6 +750,36 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="bean" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hostel_springmvc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hostel_springmvc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="hostel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1434,7 +1443,7 @@
       <workItem from="1495678702634" duration="3374000" />
       <workItem from="1495864961369" duration="94253000" />
       <workItem from="1496089653840" duration="72989000" />
-      <workItem from="1496270036582" duration="95809000" />
+      <workItem from="1496270036582" duration="99217000" />
     </task>
     <servers />
   </component>
@@ -1471,7 +1480,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="923261000" />
+    <option name="totallyTimeSpent" value="926669000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -1483,7 +1492,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="171" y="29" width="1313" height="738" extended-state="0" />
+    <frame x="-58" y="68" width="1313" height="738" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1505,12 +1514,12 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19912791" sideWeight="0.4881356" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19814241" sideWeight="0.4881356" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32817337" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25650558" sideWeight="0.5813953" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17230527" sideWeight="0.41860464" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17230527" sideWeight="0.41860464" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19386107" sideWeight="0.36981758" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.68903434" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1787,30 +1796,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/hostel/addRoomPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/common/header.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/hostel/component/navigation.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="17" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/common/head.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="169">
@@ -1823,14 +1808,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="173">
           <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/hostel/analyzeBookBillPage.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1903,14 +1880,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="19" column="4" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/hostel/component/sideBar.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="29" column="10" lean-forward="true" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
           <folding />
         </state>
       </provider>
@@ -2139,64 +2108,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/bean/HostelServiceBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="710" column="7" lean-forward="false" selection-start-line="710" selection-start-column="7" selection-end-line="710" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#init#0;class#HostelServiceBean#0" expanded="false" />
-            <element signature="method#requestManager#0;class#HostelServiceBean#0" expanded="false" />
-            <element signature="e#8984#8996#0" expanded="true" />
-            <element signature="method#addRoom#1;class#HostelServiceBean#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/test/BaseTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="9" column="19" lean-forward="true" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/vo/output/LiveInNumVO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/HostelService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="211" column="7" lean-forward="true" selection-start-line="211" selection-start-column="7" selection-end-line="211" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/bean/ManagerServiceBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="167" column="20" lean-forward="true" selection-start-line="167" selection-start-column="20" selection-end-line="167" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/hostel/analyzeBookBillPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3926">
-          <caret line="34" column="3" lean-forward="true" selection-start-line="34" selection-start-column="3" selection-end-line="34" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/ManagerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="81" column="35" lean-forward="false" selection-start-line="81" selection-start-column="35" selection-end-line="81" selection-end-column="35" />
           <folding />
         </state>
       </provider>
@@ -2212,10 +2127,107 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/controller/ManagerDataController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-299">
+          <caret line="33" column="55" lean-forward="false" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="55" />
+          <folding>
+            <element signature="e#1053#1054#0" expanded="true" />
+            <element signature="e#1118#1119#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/hostel/analyzeBookBillPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3926">
+          <caret line="34" column="3" lean-forward="true" selection-start-line="34" selection-start-column="3" selection-end-line="34" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/hostel/component/sideBar.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="27" column="39" lean-forward="false" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/hostel/analyzeBookBillPage.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="49" column="112" lean-forward="true" selection-start-line="49" selection-start-column="38" selection-end-line="49" selection-end-column="112" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/boss/analyseCompanyPage.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/vo/output/LiveInNumVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/test/demo.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1215">
-          <caret line="81" column="8" lean-forward="false" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="8" />
+        <state relative-caret-position="-240">
+          <caret line="24" column="16" lean-forward="true" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/ManagerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="82" column="20" lean-forward="false" selection-start-line="82" selection-start-column="20" selection-end-line="82" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/js/manager/analyseCompanyPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="70" column="47" lean-forward="false" selection-start-line="70" selection-start-column="47" selection-end-line="70" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/bean/HostelServiceBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="352" column="48" lean-forward="false" selection-start-line="352" selection-start-column="48" selection-end-line="352" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#init#0;class#HostelServiceBean#0" expanded="false" />
+            <element signature="method#requestManager#0;class#HostelServiceBean#0" expanded="false" />
+            <element signature="e#8984#8996#0" expanded="true" />
+            <element signature="method#addRoom#1;class#HostelServiceBean#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/HostelService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="272" column="39" lean-forward="true" selection-start-line="272" selection-start-column="39" selection-end-line="272" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/nju/edu/hostel/service/bean/ManagerServiceBean.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
           <folding />
         </state>
       </provider>

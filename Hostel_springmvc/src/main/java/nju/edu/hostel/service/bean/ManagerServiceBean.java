@@ -1,12 +1,12 @@
 package nju.edu.hostel.service.bean;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import nju.edu.hostel.dao.*;
 import nju.edu.hostel.service.HostelService;
 import nju.edu.hostel.service.ManagerService;
 import nju.edu.hostel.service.UserService;
-import nju.edu.hostel.util.MoneyType;
-import nju.edu.hostel.util.RequestState;
-import nju.edu.hostel.util.ResultMessage;
+import nju.edu.hostel.util.*;
 import nju.edu.hostel.model.*;
 import nju.edu.hostel.vo.output.IncomeVO;
 import nju.edu.hostel.vo.output.LiveInNumVO;
@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -27,6 +28,33 @@ import static nju.edu.hostel.util.Constants.MANAGER_ID;
 @Transactional
 @Service
 public class ManagerServiceBean implements ManagerService {
+    /**
+     * 年度大盘点
+     * 返回所有有效酒店的以下信息
+     * 本年度：总收入、总住店人数、房间总数，酒店名称-ID
+     */
+    @Override
+    public JSONArray getSummaryNumOfAllHostels(){
+        JSONArray jsonArray=new JSONArray();
+        List<Hostel> hostels=hostelService.getAllPermittedHostels();
+        for(Hostel hostel:hostels){
+            int hostelId=hostel.getId();
+            double income=0;
+            int liveNum=0;
+            int roomNum=0;
+            String hostelName=hostel.getName();
+            //总收入
+            List<PayBill> payBills=hostelService.getRecentYearPayBills(hostelId);
+            for(PayBill bill:payBills) income+=bill.getMoney();
+            //总住店人数
+            List<LiveBill> liveBills=hostelService.getRecentYearLiveBills(hostelId);
+            for(LiveBill bill:liveBills) liveNum+=bill.getNumOfPeople();
+            List<Room> rooms=hostelService.getAllValidRooms(hostelId);
+            for(Room room:rooms) roomNum+=room.getTotalNum();
+            jsonArray.add(new Object[]{NumberFormatter.saveOneDecimal(income),liveNum,roomNum,hostelName+":"+hostelId});
+        }
+        return jsonArray;
+    }
     @Override
     public List<RequestOpen> getOpenRequests(){
         return requestDao.getUncheckedOpenRequests();

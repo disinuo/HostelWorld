@@ -1,4 +1,5 @@
 package nju.edu.hostel.service;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import nju.edu.hostel.model.*;
 
@@ -79,6 +80,6 @@ public interface ManagerService {
      * 返回所有有效酒店的以下信息
      * 本年度：总收入、总住店人数、房间总数，酒店名称-ID
      */
-    public JSONObject getSummaryNumOfAllHostels();
+    public JSONArray getSummaryNumOfAllHostels();
     public List<BossMoneyRecord> getAllMoneyRecords();
 }

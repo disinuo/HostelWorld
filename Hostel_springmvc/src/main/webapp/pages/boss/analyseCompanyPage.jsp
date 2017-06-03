@@ -19,13 +19,10 @@
 这是查看整个公司的统计数据界面
 <%--<div class="big-container">--%>
 <div class="big-container">
-    <div class="col-lg-6 col-md-6 chart-container">
-        <h2>收入情况</h2>
-        <div id="income"  ></div>
-    </div>
-    <div class="col-lg-6 col-md-6 chart-container">
-        <h2>入住情况</h2>
-        <div id="liveIn" ></div>
+
+    <div class="col-lg-12 col-md-12 col-xs-12">
+        <div id="summaryChart-container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>
+
     </div>
 
 </div>
