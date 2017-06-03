@@ -19,7 +19,7 @@
 这是查看整个公司的统计数据界面
 <%--<div class="big-container">--%>
 <div class="big-container">
-    <div class="col-lg-0 col-md-0 col-xs-0">
+    <div class="col-lg-2 col-md-2 col-xs-2">
         <h4>年度盘点</h4>
         <ul class="nav nav-pills nav-stacked">
 
@@ -30,7 +30,7 @@
         </ul>
     </div>
     <div class="col-lg-10 col-md-10 col-xs-10">
-        <div class="dark-container col-lg-10 col-md-10 col-xs-10">
+        <div class=" col-lg-10 col-md-10 col-xs-10">
             <div id="summaryChart-container" style="height: 500px; min-width: 310px; max-width: 1000px; margin: 0 auto"></div>
             <div id="mapChart-container" style="height: 500px; min-width: 310px; max-width: 1000px; margin: 0 auto"></div>
 

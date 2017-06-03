@@ -9,13 +9,14 @@ $(document).ready(function () {
 function getPayList() {
     $('#table').bootstrapTable({
         url: '/data/hostel/getMoneyRecord',
+        pagination:true,
+        height:TABLE_HEIGHT,
         search:true,
         columns: [{
             field: 'date',
             title: '时间',
             align: 'center',
             sortable:true
-
         },{
             field: 'money',
             title: '',

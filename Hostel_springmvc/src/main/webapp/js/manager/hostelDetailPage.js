@@ -13,38 +13,48 @@ function getLiveBillList() {
 
     $('#table').bootstrapTable({
         url: '/data/boss/hostel/getLiveList?hostelId='+hostelId,
+        search:true,
+        pagination:true,
+        height:TABLE_HEIGHT,
         columns: [{
             field: 'date',
             title: '时间',
             align: 'center',
+            sortable:true
+
         }, {
             field: 'roomName',
             title: '房型',
-            align: 'center',
+            align: 'center'
             // events: operateEvents
         }, {
             field: 'roomPrice',
             title: '房价',
             align: 'center',
+            sortable:true,
             formatter:moneyFormatter
         },{
             field: 'vipId',
             title: '会员编号',
             align: 'center',
+            sortable:true
+
         },{
             field: 'userRealName',
             title: '住户真名',
-            align: 'center',
+            align: 'center'
         },{
             field: 'idCard',
             title: '住户身份证',
-            align: 'center',
+            align: 'center'
         },{
             field: 'inHostel',
             title: '',
             align: 'center',
             formatter: typeFormatter,
-        }],
+            sortable:true
+
+        }]
     });
 }
 function typeFormatter(value,row,index) {

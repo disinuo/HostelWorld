@@ -244,12 +244,21 @@ function initDateChart(data_liveInRate, data_validRate, data_bookNum) {
             right: '20%'
         },
         toolbox: {
-            feature: {
-                dataView: {show: true, readOnly: false},
-                restore: {show: true},
-                saveAsImage: {show: true}
+            show : true,
+            feature : {
+                dataView : {show: true, readOnly: false},
+                magicType : {show: true, type: ['line', 'bar']},
+                restore : {show: true},
+                saveAsImage : {show: true}
             }
         },
+        // toolbox: {
+        //     feature: {
+        //         dataView: {show: true, readOnly: false},
+        //         restore: {show: true},
+        //         saveAsImage: {show: true}
+        //     }
+        // },
         legend: {
             data:[NAME_LIVE_IN_RATE,NAME_VALID_RATE,NAME_BOOK_NUM]
 

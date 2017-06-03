@@ -31,7 +31,7 @@ public class HostelDaoImpl implements HostelDao{
 
     @Override
     public List<Hostel> getAllPermitted() {
-        String hql="SELECT hostel FROM Hostel as hostel WHERE hostel.permitted=true ORDER BY hostel.id DESC";
+        String hql="SELECT hostel FROM Hostel as hostel WHERE hostel.permitted=true ORDER BY hostel.numOfPeople DESC";
         return baseDao.getByHql(Hostel.class,hql);
     }
 

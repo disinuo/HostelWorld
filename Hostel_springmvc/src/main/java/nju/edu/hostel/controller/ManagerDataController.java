@@ -30,7 +30,10 @@ public class ManagerDataController {
     @RequestMapping(value = "/getVipNum/level")
     public JSONObject getViplList() {
         return managerService.getVipNumByLevel();
-
+    }
+    @RequestMapping(value = "/getVipSummary/city")
+    public JSONObject getAllVipLiveNumByCity(){
+        return managerService.getAllVipLiveNumByCity();
     }
 
     @RequestMapping(value = "/getSummaryNumOfAllHostels")

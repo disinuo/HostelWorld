@@ -46,7 +46,7 @@ function getLiveBillList() {
 
         },{
             field: 'vipId',
-            title: '会员编号',
+            title: '住户信息',
             align: 'center',
             formatter:guestWithIDCardFormatter
 

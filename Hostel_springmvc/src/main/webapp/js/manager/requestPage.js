@@ -9,14 +9,19 @@ $(document).ready(function () {
 function getRequestOpenList(){
     $('#requestOpenTable').bootstrapTable({
         url: '/data/boss/getOpenRequests',
+        search:true,
+        pagination:true,
+        height:TABLE_HEIGHT,
         columns: [{
             field: 'hostel_id',
             title: '客栈编号',
             align: 'center',
+            sortable:true
+
         }, {
             field: 'hostel_name',
             title: '客栈名',
-            align: 'center',
+            align: 'center'
         }, {
             field: 'hostel_address',
             title: '客栈地址',

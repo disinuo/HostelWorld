@@ -20,7 +20,7 @@
     <div class="col-lg-3 col-md-3 vip-self-panel">
         <jsp:include page="component/selfPanel.jsp" flush="true"/>
     </div>
-    <div class="col-lg-9 clo-md-9">
+    <div class="col-lg-9 col-md-9 col-xs-9">
         <div class="flex-container">
             <button id="btn_month" class="btn btn-primary">最近30天</button>
             <button id="btn_week" class="btn btn-primary">最近7天</button>

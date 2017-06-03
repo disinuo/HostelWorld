@@ -11,6 +11,9 @@ function getPayBillList() {
 
     $('#payTable').bootstrapTable({
         url: '/data/boss/vip/getPayList?vipId='+vipId,
+        search:true,
+        pagination:true,
+        height:TABLE_HEIGHT,
         columns: [{
             field: 'createDate',
             title: '时间',

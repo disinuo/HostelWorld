@@ -26,77 +26,7 @@ import static nju.edu.hostel.util.Constants.VIP_LEVEL;
 @Transactional
 @Service
 public class ManagerServiceBean implements ManagerService {
-    /**
-     * 年度大盘点
-     * 返回所有有效酒店的以下信息
-     * 本年度：总收入、总住店人数、房间总数，酒店名称-ID
-     */
-    @Override
-    public JSONObject getSummaryNumOfAllHostels(){
-        JSONArray jsonArray=new JSONArray();
-        List<Hostel> hostels=hostelService.getAllPermittedHostels();
-        for(Hostel hostel:hostels){
-            int hostelId=hostel.getId();
-            String hostelName=hostel.getName();
-            //总收入
-            double income=getAllIncomeThisYearByHostel(hostelId);
-            //总住店人数
-            int liveNum=getAllLiveInNumThisYearByHostel(hostelId);
-            int roomNum=0;
-            List<Room> rooms=hostelService.getAllValidRooms(hostelId);
-            for(Room room:rooms) roomNum+=room.getTotalNum();
-            jsonArray.add(new Object[]{NumberFormatter.saveOneDecimal(income),liveNum,roomNum,hostelName,hostelId});
-        }
-        JSONObject jsonObject=new JSONObject();
-        jsonObject.put("year",DateHandler.GET_CURRENT_YEAR());
-        jsonObject.put("data",jsonArray);
-        return jsonObject;
-    }
-    private int getAllLiveInNumThisYearByHostel(int hostelId){
-        int liveNum=0;
-        List<LiveBill> liveBills=hostelService.getRecentYearLiveBills(hostelId);
-        for(LiveBill bill:liveBills) liveNum+=bill.getNumOfPeople();
-        return liveNum;
-    }
-    private double getAllIncomeThisYearByHostel(int hostelId){
-        double income=0;
-        List<PayBill> payBills=hostelService.getRecentYearPayBills(hostelId);
-        for(PayBill bill:payBills) income+=bill.getMoney();
-        return income;
-    }
-    /**
-     * 统计各城市收入、住店人数
-     * 返回的数据要放在地图里
-     * @return
-     * 本年度：
-     *   {name: 城市名, value: 住店人数, income:收入}
-     */
-    @Override
-    public JSONObject getSummaryNumByCity(){
-        //TODO
-        JSONObject jsonObject=new JSONObject();
-        List<Hostel> hostels=hostelService.getAllPermittedHostels();
-        Map<String,Integer> map_liveInNum=new HashMap();
-        Map<String,Double> map_income=new HashMap();
-        for(Hostel hostel:hostels){
-            String city=hostel.getCity();
-            int num_liveInNum=0;
-            double num_income=0;
-            if(map_liveInNum.containsKey(city)){
-                num_liveInNum=map_liveInNum.get(city);
-                num_income=map_income.get(city);
-            }
-            map_liveInNum.put(city,num_liveInNum+getAllLiveInNumThisYearByHostel(hostel.getId()));
-            map_income.put(city,num_income+getAllIncomeThisYearByHostel(hostel.getId()));
-        }
-        JSONArray array=new JSONArray();
-        for(String city:map_liveInNum.keySet()){
-            array.add(new Object[]{city,map_liveInNum.get(city),NumberFormatter.saveOneDecimal(map_income.get(city))});
-        }
-        jsonObject.put("year",DateHandler.GET_CURRENT_YEAR());
-        jsonObject.put("data",array);
-        return jsonObject;
-    }
+
     @Override
     public List<RequestOpen> getOpenRequests(){
         return requestDao.getUncheckedOpenRequests();
@@ -218,13 +148,129 @@ public class ManagerServiceBean implements ManagerService {
             }
             return ResultMessage.SUCCESS;
         }
-
     }
 
-
+//============ Hostel =================
+    /**
+     * 年度大盘点
+     * 返回所有有效酒店的以下信息
+     * 本年度：总收入、总住店人数、房间总数，酒店名称-ID
+     */
     @Override
-    public JSONObject getAllVipLiveNum() {
-        return null;//TODO
+    public JSONObject getSummaryNumOfAllHostels(){
+        JSONArray jsonArray=new JSONArray();
+        List<Hostel> hostels=hostelService.getAllPermittedHostels();
+        for(Hostel hostel:hostels){
+            int hostelId=hostel.getId();
+            String hostelName=hostel.getName();
+            //总收入
+            double income=getAllIncomeThisYearByHostel(hostelId);
+            //总住店人数
+            int liveNum=getAllLiveInNumThisYearByHostel(hostelId);
+            int roomNum=0;
+            List<Room> rooms=hostelService.getAllValidRooms(hostelId);
+            for(Room room:rooms) roomNum+=room.getTotalNum();
+            jsonArray.add(new Object[]{NumberFormatter.saveOneDecimal(income),liveNum,roomNum,hostelName,hostelId});
+        }
+        JSONObject jsonObject=new JSONObject();
+        jsonObject.put("year",DateHandler.GET_CURRENT_YEAR());
+        jsonObject.put("data",jsonArray);
+        return jsonObject;
+    }
+    private int getAllLiveInNumThisYearByHostel(int hostelId){
+        int liveNum=0;
+        List<LiveBill> liveBills=hostelService.getRecentYearLiveBills(hostelId);
+        for(LiveBill bill:liveBills) liveNum+=bill.getNumOfPeople();
+        return liveNum;
+    }
+    private double getAllIncomeThisYearByHostel(int hostelId){
+        double income=0;
+        List<PayBill> payBills=hostelService.getRecentYearPayBills(hostelId);
+        for(PayBill bill:payBills) income+=bill.getMoney();
+        return income;
+    }
+    /**
+     * 统计各城市收入、住店人数
+     * 返回的数据要放在地图里
+     * @return
+     * 本年度：
+     *   {name: 城市名, value: 住店人数, income:收入}
+     */
+    @Override
+    public JSONObject getSummaryNumByCity(){
+        JSONObject jsonObject=new JSONObject();
+        List<Hostel> hostels=hostelService.getAllPermittedHostels();
+        Map<String,Integer> map_liveInNum=new HashMap();
+        Map<String,Double> map_income=new HashMap();
+        for(Hostel hostel:hostels){
+            String city=hostel.getCity();
+            int num_liveInNum=0;
+            double num_income=0;
+            if(map_liveInNum.containsKey(city)){
+                num_liveInNum=map_liveInNum.get(city);
+                num_income=map_income.get(city);
+            }
+            map_liveInNum.put(city,num_liveInNum+getAllLiveInNumThisYearByHostel(hostel.getId()));
+            map_income.put(city,num_income+getAllIncomeThisYearByHostel(hostel.getId()));
+        }
+        JSONArray array=new JSONArray();
+        for(String city:map_liveInNum.keySet()){
+            array.add(new Object[]{city,map_liveInNum.get(city),NumberFormatter.saveOneDecimal(map_income.get(city))});
+        }
+        jsonObject.put("year",DateHandler.GET_CURRENT_YEAR());
+        jsonObject.put("data",array);
+        return jsonObject;
+    }
+//============ End Of Hostel ======================================
+
+    private int getAllLiveInNumThisYearByVip(int vipId){
+        int liveNum=0;
+        List<LiveBill> liveBills=vipService.getRecentYearLiveBills(vipId);
+        for(LiveBill bill:liveBills) liveNum++;
+        return liveNum;
+    }
+    private double getAllExpenseThisYearByVip(int vipId){
+        double income=0;
+        List<PayBill> payBills=vipService.getRecentYearPayBills(vipId);
+        for(PayBill bill:payBills) income+=bill.getMoney();
+        return income;
+    }
+    /**
+     * 返回所有会员的入住、消费、等级、状态情况
+     *
+     * 状态用颜色表示：红-停卡，黄-暂停，蓝-正常
+     *
+     * @return
+     */
+    @Override
+    public JSONObject getAllVipLiveNumByCity() {
+        JSONObject jsonObject=new JSONObject();
+        List<Vip> vips=vipDao.getAll();
+
+
+        Map<String,Integer> map_liveInNum=new HashMap();
+        Map<String,Double> map_expense=new HashMap();
+        for(Vip vip:vips){
+            String city=vip.getCity();
+            int num_liveInNum=0;
+            double num_expense=0;
+            if(map_liveInNum.containsKey(city)){
+                num_liveInNum=map_liveInNum.get(city);
+                num_expense=map_expense.get(city);
+            }
+            map_liveInNum.put(city,num_liveInNum+getAllLiveInNumThisYearByVip(vip.getId()));
+            map_expense.put(city,num_expense+getAllExpenseThisYearByVip(vip.getId()));
+        }
+        JSONArray array=new JSONArray();
+        for(String city:map_liveInNum.keySet()){
+            array.add(new Object[]{
+                    city,
+                    map_liveInNum.get(city),
+                    NumberFormatter.saveOneDecimal(map_expense.get(city))});
+        }
+        jsonObject.put("year",DateHandler.GET_CURRENT_YEAR());
+        jsonObject.put("data",array);
+        return jsonObject;
     }
 
     @Override
@@ -265,4 +311,6 @@ public class ManagerServiceBean implements ManagerService {
     private HostelService hostelService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private VIPService vipService;
 }

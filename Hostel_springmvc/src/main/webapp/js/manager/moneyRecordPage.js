@@ -10,6 +10,8 @@ function getPayList() {
     $('#table').bootstrapTable({
         url: '/data/boss/getMoneyRecord',
         search:true,
+        pagination:true,
+        height:TABLE_HEIGHT,
         columns: [{
             field: 'date',
             title: '时间',

@@ -63,7 +63,7 @@ public interface ManagerService {
      *
      * @return
      */
-    public JSONObject getAllVipLiveNum();
+    public JSONObject getAllVipLiveNumByCity();
     /**
      * 会员有等级：荣耀、王者、钻石、铂金、黄金、白银、青铜
      * 返回每个等级的会员人数

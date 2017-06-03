@@ -8,14 +8,19 @@ $(document).ready(function () {
 function getMoneyList(){
     $('#moneyTable').bootstrapTable({
         url: '/data/boss/getHostelList',
+        search:true,
+        pagination:true,
+        height:TABLE_HEIGHT,
         columns: [{
             field: 'id',
             title: '客栈编号',
             align: 'center',
+            sortable:true
+
         }, {
             field: 'name',
             title: '客栈名',
-            align: 'center',
+            align: 'center'
         }, {
             field: 'address',
             title: '客栈地址',
@@ -24,7 +29,9 @@ function getMoneyList(){
             field: 'moneyUncounted',
             title: '未结算金额',
             align: 'center',
-            formatter:moneyCounter
+            formatter:moneyCounter,
+            sortable:true
+
         }]
     });
 }

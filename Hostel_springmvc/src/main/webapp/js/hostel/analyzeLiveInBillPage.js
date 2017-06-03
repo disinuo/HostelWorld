@@ -452,6 +452,11 @@ function initDayChart(data_liveInNum) {
     var days = data_liveInNum.y;
 
     var data = data_liveInNum.z;
+    var data_larger=[];
+    data.forEach(function (item) {
+        var value=item[2]*3;
+        data_larger.push([item[0],item[1],value]);
+    });
     option = {
         title: {
             text: '入住人数-时段图',
@@ -499,7 +504,7 @@ function initDayChart(data_liveInNum) {
             symbolSize: function (val) {
                 return val[2] * 2;
             },
-            data: data,
+            data: data_larger,//TODO 为了效果暂时放大
             animationDelay: function (idx) {
                 return idx * 5;
             }
