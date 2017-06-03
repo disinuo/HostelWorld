@@ -256,10 +256,15 @@ public class HostelDataController {
         int id= ControllerHelper.getUserIdFromSession(session);
         return hostelService.getLiveInNumByRoomPrice(id);
     }
-    @RequestMapping(value = "/getLiveInNum/guestType")
+    @RequestMapping(value = "/getLiveInNum/guest/type")
     public List<DataVO> getLiveInNumByguestType(HttpSession session){
         int id= ControllerHelper.getUserIdFromSession(session);
         return hostelService.getLiveInNumByGuestType(id);
+    }
+    @RequestMapping(value = "/getLiveInNum/guest/age")
+    public List<DataVO> getLiveInNumByguestAge(HttpSession session) {
+        int id= ControllerHelper.getUserIdFromSession(session);
+        return hostelService.getLiveNumByGuestAge(id);
     }
 //    @RequestMapping(value = "/getVacantRate/roomType")
 //    public List<DataVO> getVacantRateByRoomType(HttpSession session){

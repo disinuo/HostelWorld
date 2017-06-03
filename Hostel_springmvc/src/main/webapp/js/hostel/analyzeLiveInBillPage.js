@@ -6,8 +6,7 @@ var NAME_LIVEIN_NUM='订单量';
 var NAME_ROOM_PRICE='房价(/元)';
 var NAME_ROOM_TYPE='房型';
 var NAME_GUEST_TYPE='顾客类型';
-var NAME_PROVINCE='省';
-var NAME_CITY='市';
+var NAME_GUEST_AGE="顾客年龄"
 var myChart=null;
 var data_liveInVipRate=null;
 var data_liveInNum=null;
@@ -48,6 +47,9 @@ $('#roomPrice').click(function (e) {
 });
 $('#guestType').click(function (e) {
    showGuestType();
+});
+$('#guestAge').click(function (e) {
+    showGuestAge();
 });
 
 function initPieChart(data_input,name) {
@@ -611,10 +613,22 @@ function showRoomPrice() {
 }
 function showGuestType() {
     $.ajax({
-        url: '/data/hostel/getLiveInNum/guestType',
+        url: '/data/hostel/getLiveInNum/guest/type',
         success: function (data) {
             console.log(data);
             initPieChart(data,NAME_GUEST_TYPE);
+        },
+        error:function (data) {
+            alert('showProvince ERROR!');
+        }
+    });
+}
+function showGuestAge() {
+    $.ajax({
+        url: '/data/hostel/getLiveInNum/guest/age',
+        success: function (data) {
+            console.log(data);
+            initPieChart(data,NAME_GUEST_AGE);
         },
         error:function (data) {
             alert('showProvince ERROR!');

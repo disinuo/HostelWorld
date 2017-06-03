@@ -41,6 +41,7 @@
             </li>
 
             <li id="guestType"><a href="#">住户类型</a></li>
+            <li id="guestAge"><a href="#">住户年龄</a></li>
 
         </ul>
     </div>

@@ -1,6 +1,7 @@
 package nju.edu.hostel.dao;
 
 import nju.edu.hostel.model.LiveBill;
+import nju.edu.hostel.model.LiveDetail;
 import nju.edu.hostel.util.ResultMessage;
 
 import java.util.List;
@@ -23,6 +24,8 @@ public interface LiveBillDao {
      */
     public List<LiveBill> getAllByVipId(int vipId);
     public List<LiveBill> getAllByHostelId(int hostelId);
+
+    public List<LiveDetail> getAllGuestInfoByHostel(int hostelId);
 
     /**
      * 返回此酒店所有【会员入住】的记录

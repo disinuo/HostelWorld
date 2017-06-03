@@ -30,7 +30,7 @@
                             </div>
                             <div class="form-group pmd-textfield pmd-textfield-floating-label">
                                 <label for="money" class="control-label">金额</label>
-                                <input id="money" name="money" type="number" class="form-control">
+                                <input id="money" name="money"  class="form-control">
                             </div>
 
                             <input id="btnLogin"  class="btn btn-primary" type="submit" value="保存"/>

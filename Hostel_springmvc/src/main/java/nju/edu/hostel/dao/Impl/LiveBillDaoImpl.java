@@ -21,6 +21,9 @@ import static nju.edu.hostel.util.Constants.DEFAULT_NUM_OF_DATA;
 public class LiveBillDaoImpl implements LiveBillDao {
     @Autowired
     BaseDao baseDao;
+    private String baseHql_returnDetail=
+            "SELECT detail FROM LiveBill as bill,LiveDetail as detail"+
+            " WHERE detail.liveBill.id=bill.id AND ";
     private String baseHql_withDetail=
             "SELECT DISTINCT bill FROM LiveBill as bill,LiveDetail as detail"+
             " WHERE detail.liveBill.id=bill.id AND ";
@@ -48,6 +51,11 @@ public class LiveBillDaoImpl implements LiveBillDao {
         String hql=baseHql_withDetail+ENTITY_TYPE_VIP+"="+vipId+hqlTail;
         System.err.println("HQL= "+hql);
         return baseDao.getByHql(LiveBill.class,hql);
+    }
+    @Override
+    public List<LiveDetail> getAllGuestInfoByHostel(int hostelId){
+        String hql=baseHql_returnDetail+ENTITY_TYPE_HOSTEL+"="+hostelId;
+        return baseDao.getByHql(LiveDetail.class,hql);
     }
     @Override
     public List<LiveBill> getAllVipLiveInByHostel(int hostelId){

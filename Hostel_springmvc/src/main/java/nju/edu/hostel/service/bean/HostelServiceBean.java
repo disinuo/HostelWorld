@@ -679,7 +679,21 @@ public class HostelServiceBean implements HostelService {
         }
         return DataVO.mapToVO(map);
     }
+    @Override
+    public List<DataVO>  getLiveNumByGuestAge(int hostelId){
+        int currentYear=DateHandler.getFieldFromLong(Calendar.YEAR,new Date().getTime());
+        List<LiveDetail> guests=liveBillDao.getAllGuestInfoByHostel(hostelId);
+        Map<String,Double>map= CREATE_AGE_MAP();
+        for(LiveDetail guest:guests){
+            int birthYear=guest.getBirthYear();
+            int age=currentYear-birthYear;
+            String ageRange=AGE_TO_RANGE(age);
+            double num=map.get(ageRange);
+            map.put(ageRange,++num);
+        }
+        return DataVO.mapToVO(map);
 
+    }
     @Override
     public List<DataVO> getLiveInNumByGuestType(int hostelId) {
         List<LiveBill> bills_vip=liveBillDao.getAllVipLiveInByHostel(hostelId);

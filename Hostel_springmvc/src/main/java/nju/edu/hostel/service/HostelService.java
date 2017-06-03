@@ -235,6 +235,9 @@ public interface HostelService {
 
     public List<DataVO> getLiveInNumByRoomType(int hostelId);
     public List<DataVO> getLiveInNumByRoomPrice(int hostelId);
+    // 分组标准【顾客的年龄段：<18,18~30,30~50,>50】
+    public List<DataVO>  getLiveNumByGuestAge(int hostelId);
+
 
 
 //TODO 还要加接口---预订并入住了的会员，实际入住的日期区间与预订日期区间的比较
