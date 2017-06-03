@@ -32,7 +32,8 @@ public class VipMoneyRecordDaoImpl implements VipMoneyRecordDao {
 
     @Override
     public List<VipMoneyRecord> getByVipId(int vipId) {
-        String hql="SELECT record FROM VipMoneyRecord as record WHERE record.vipId="+vipId;
+        String hql="SELECT record FROM VipMoneyRecord as record WHERE record.vipId="+vipId
+                +" ORDER BY record.id DESC" ;
         return baseDao.getByHql(VipMoneyRecord.class,hql);
     }
 

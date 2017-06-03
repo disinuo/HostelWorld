@@ -21,10 +21,11 @@
                 <span class="input-group-addon">预订单号</span>
                 <input id="bookBillId" name="bookBillId" type="number" class="form-control" placeholder="预订单号" aria-describedby="sizing-addon3" >
             </div>
-            <div class="input-group input-group-sm">
-                <span class="input-group-addon">房间编号</span>
-                <input id="roomId" name="roomId" type="number" class="form-control" placeholder="" aria-describedby="sizing-addon3" required>
-            </div>
+            <select id="roomId">
+
+            </select>
+            <div id="roomInfo" class="pmd-chip"></div>
+
             <h3>顾客信息   <div id="addBtn" class="btn btn-primary btn-toolbar">+</div></h3>
 
             <div id="guests">

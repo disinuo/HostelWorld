@@ -42,6 +42,26 @@ $("#liveInForm").submit(function(e) {
     e.preventDefault(); // avoid to execute the actual submit of the form.
 });
 $(function() {
+    $.ajax({
+        type: "POST",
+        url: '/data/hostel/getRooms',
+        success: function(data) {
+            console.log(data);
+            data.forEach(function (room) {
+                $('#roomId').append([
+                        ' <option value="' ,
+                        room.id,
+                        '">',
+                        room.id+"  "+room.name+"  ￥"+room.price+" 空房数 "+room.vacantNum,
+                        '</option>'
+                    ].join('')
+                );
+            });
+        },
+        error:function (data) {
+            alert('ERROR!!!: '+JSON.stringify(data));
+        }
+    });
     $('#bookBillId').blur(function () {
         var billId=$('#bookBillId').val();
         $.ajax({
@@ -57,6 +77,28 @@ $(function() {
                 $('.vipId').val(data.vipId);
             }
         });
+    });
+    $('#roomId').blur(function () {
+        var roomId= $('#roomId').val();
+        $.ajax({
+            type:'GET',
+            url:'/data/hostel/getRoom',
+            data:{roomId:roomId},
+            success:function (data) {
+                console.log(data);
+                var info=[data.name,
+                '￥'+data.price,
+                data.descrip].join('<br>');
+                $('#roomInfo').html(info);
+            },
+            error:function (data) {
+                alert('ERROR');
+                console.log(data);
+            }
+        });
+
+
+
     });
     $('#addBtn').click(function () {
         var panel=$(' .guest:first-child').clone();

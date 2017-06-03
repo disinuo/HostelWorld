@@ -18,6 +18,12 @@ import static nju.edu.hostel.util.Constants.ROLE_HOSTEL;
 @Controller
 @RequestMapping("/hostel")
 public class HostelViewController {
+
+    @RequestMapping(value = "/moneyRecord",method = RequestMethod.GET)
+    public ModelAndView showMoneyRecordPage(HttpSession session){
+        ModelAndView model=checkRole(session);
+        return model==null?( new ModelAndView("hostel/moneyRecordPage")):model;
+    }
     @RequestMapping(value="/analyze/bookBill")
     public ModelAndView showAnalyzeBookBillPage(HttpSession session){
         ModelAndView model=checkRole(session);

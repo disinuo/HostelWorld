@@ -26,6 +26,7 @@
                 <li><a href="/hostel/bookBills">预订记录</a></li>
                 <li><a href="/hostel/payBills">财政收入</a></li>
                 <li><a href="/hostel/liveBills">住房记录</a></li>
+                <li><a href="/hostel/moneyRecord">收支明细</a></li>
                 <li><a href="/hostel/info">基本信息</a></li>
 
                 <li class="dropdown">

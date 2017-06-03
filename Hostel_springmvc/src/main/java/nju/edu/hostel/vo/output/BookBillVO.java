@@ -34,6 +34,7 @@ public class BookBillVO {
     }
 
     public BookBillVO(BookBill bookBillEntity){
+        if (bookBillEntity==null) return;
         this.id=bookBillEntity.getId();
         this.liveInDate= bookBillEntity.getLiveInDateStr();
         this.checkOutDate = bookBillEntity.getCheckOutDateStr();

@@ -9,6 +9,7 @@ $(function () {
     mapChart_container=$('#mapChart-container');
     summaryChart_container=$('#summaryChart-container');
     showMap();
+    checkRequest();
 });
 $('#province').click(function () {
     showMap();
@@ -18,8 +19,17 @@ $('#3D-Bubble').click(function () {
     showSummary();
 });
 
+function checkRequest() {
+    $.ajax({
+        url:'/data/boss/getOpenRequests',
+        success:function (data) {
+            if(data.length>0){
+                alert('您有申请要审批！~~');
+            }
+        }
+    });
+}
 function showSummary() {
-
     $.ajax({
         url:'/data/boss/getSummaryNumOfAllHostels' ,
         success:function (data) {

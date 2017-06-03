@@ -27,7 +27,8 @@ public class BossMoneyRecordDaoImpl implements BossMoneyRecordDao {
 
     @Override
     public List<BossMoneyRecord> getByBoss(int bossId) {
-        String hql="SELECT record FROM BossMoneyRecord as record WHERE record.bossId="+bossId;
+        String hql="SELECT record FROM BossMoneyRecord as record WHERE record.bossId="+bossId
+                +" ORDER BY record.id DESC" ;
         return baseDao.getByHql(BossMoneyRecord.class,hql);
     }
 

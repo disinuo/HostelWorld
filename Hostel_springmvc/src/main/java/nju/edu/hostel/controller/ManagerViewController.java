@@ -20,6 +20,11 @@ public class ManagerViewController {
         ModelAndView model=checkRole(session);         
         return model==null?( new ModelAndView("boss/countPage")):model;
     }
+    @RequestMapping(value = "/moneyRecord",method = RequestMethod.GET)
+    public ModelAndView showMoneyRecordPage(HttpSession session){
+        ModelAndView model=checkRole(session);
+        return model==null?( new ModelAndView("boss/moneyRecordPage")):model;
+    }
     @RequestMapping(value = "/checkRequestOpen")
     public ModelAndView showRequestsOpenPage(HttpSession session){
         ModelAndView model=checkRole(session);         return model==null?( new ModelAndView("boss/requestsOpenPage")):model;

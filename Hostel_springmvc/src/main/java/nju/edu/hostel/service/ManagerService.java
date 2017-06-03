@@ -16,6 +16,7 @@ import java.util.Map;
  * Created by disinuo on 17/3/2.
  */
 public interface ManagerService {
+//====== Request ================================================================
     /**
      * 总经理点击【审批开店申请】or登陆的时候调用
      * 返回所有未审批的开店申请
@@ -44,6 +45,7 @@ public interface ManagerService {
      * @return FAILURE,SUCCESS
      */
     public ResultMessage updateModifyRequest(int requestId,String requestState);
+//====== End Of Request ================================================================
 
     /**
      * 总经理结算
@@ -56,12 +58,18 @@ public interface ManagerService {
      */
     public ResultMessage count(int managerId, String bankPassword);
 
+//====== vip ================================================================
 
     /**
      * 获取所有会员
      * 包含了每个会员的住店、预订、消费的所有记录
      */
     public List<Vip> getAllVips();
+
+//====== End Of vip ================================================================
+
+//====== Hostel ================================================================
+
 
     /**
      * 获取所有客栈的收入金额
@@ -90,5 +98,8 @@ public interface ManagerService {
      *   {name: 城市名, value: 住店人数, income:收入}
      */
     public JSONObject getSummaryNumByCity();
+
+//====== End OfHostel ================================================================
+
     public List<BossMoneyRecord> getAllMoneyRecords();
 }
