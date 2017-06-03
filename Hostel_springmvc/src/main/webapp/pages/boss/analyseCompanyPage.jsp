@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: disinuo
   Date: 17/3/4
-  Time: 01:25
+  Time: 01:05
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -19,9 +19,22 @@
 这是查看整个公司的统计数据界面
 <%--<div class="big-container">--%>
 <div class="big-container">
+    <div class="col-lg-0 col-md-0 col-xs-0">
+        <h4>年度盘点</h4>
+        <ul class="nav nav-pills nav-stacked">
 
-    <div class="col-lg-12 col-md-12 col-xs-12">
-        <div id="summaryChart-container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>
+            <li id="province"><a href="#">地图分布</a></li>
+
+            <li id="3D-Bubble"><a href="#">酒店入住-收入-规模一览</a></li>
+
+        </ul>
+    </div>
+    <div class="col-lg-10 col-md-10 col-xs-10">
+        <div class="dark-container col-lg-10 col-md-10 col-xs-10">
+            <div id="summaryChart-container" style="height: 500px; min-width: 310px; max-width: 1000px; margin: 0 auto"></div>
+            <div id="mapChart-container" style="height: 500px; min-width: 310px; max-width: 1000px; margin: 0 auto"></div>
+
+        </div>
 
     </div>
 

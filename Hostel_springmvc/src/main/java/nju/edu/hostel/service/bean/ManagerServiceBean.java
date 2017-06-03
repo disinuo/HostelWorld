@@ -14,10 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import static nju.edu.hostel.util.Constants.MANAGER_ID;
 
@@ -34,26 +31,70 @@ public class ManagerServiceBean implements ManagerService {
      * 本年度：总收入、总住店人数、房间总数，酒店名称-ID
      */
     @Override
-    public JSONArray getSummaryNumOfAllHostels(){
+    public JSONObject getSummaryNumOfAllHostels(){
         JSONArray jsonArray=new JSONArray();
         List<Hostel> hostels=hostelService.getAllPermittedHostels();
         for(Hostel hostel:hostels){
             int hostelId=hostel.getId();
-            double income=0;
-            int liveNum=0;
-            int roomNum=0;
             String hostelName=hostel.getName();
             //总收入
-            List<PayBill> payBills=hostelService.getRecentYearPayBills(hostelId);
-            for(PayBill bill:payBills) income+=bill.getMoney();
+            double income=getAllIncomeThisYearByHostel(hostelId);
             //总住店人数
-            List<LiveBill> liveBills=hostelService.getRecentYearLiveBills(hostelId);
-            for(LiveBill bill:liveBills) liveNum+=bill.getNumOfPeople();
+            int liveNum=getAllLiveInNumThisYearByHostel(hostelId);
+            int roomNum=0;
             List<Room> rooms=hostelService.getAllValidRooms(hostelId);
             for(Room room:rooms) roomNum+=room.getTotalNum();
-            jsonArray.add(new Object[]{NumberFormatter.saveOneDecimal(income),liveNum,roomNum,hostelName+":"+hostelId});
+            jsonArray.add(new Object[]{NumberFormatter.saveOneDecimal(income),liveNum,roomNum,hostelName,hostelId});
         }
-        return jsonArray;
+        JSONObject jsonObject=new JSONObject();
+        jsonObject.put("year",DateHandler.GET_CURRENT_YEAR());
+        jsonObject.put("data",jsonArray);
+        return jsonObject;
+    }
+    private int getAllLiveInNumThisYearByHostel(int hostelId){
+        int liveNum=0;
+        List<LiveBill> liveBills=hostelService.getRecentYearLiveBills(hostelId);
+        for(LiveBill bill:liveBills) liveNum+=bill.getNumOfPeople();
+        return liveNum;
+    }
+    private double getAllIncomeThisYearByHostel(int hostelId){
+        double income=0;
+        List<PayBill> payBills=hostelService.getRecentYearPayBills(hostelId);
+        for(PayBill bill:payBills) income+=bill.getMoney();
+        return income;
+    }
+    /**
+     * 统计各城市收入、住店人数
+     * 返回的数据要放在地图里
+     * @return
+     * 本年度：
+     *   {name: 城市名, value: 住店人数, income:收入}
+     */
+    @Override
+    public JSONObject getSummaryNumByCity(){
+        //TODO
+        JSONObject jsonObject=new JSONObject();
+        List<Hostel> hostels=hostelService.getAllPermittedHostels();
+        Map<String,Integer> map_liveInNum=new HashMap();
+        Map<String,Double> map_income=new HashMap();
+        for(Hostel hostel:hostels){
+            String city=hostel.getCity();
+            int num_liveInNum=0;
+            double num_income=0;
+            if(map_liveInNum.containsKey(city)){
+                num_liveInNum=map_liveInNum.get(city);
+                num_income=map_income.get(city);
+            }
+            map_liveInNum.put(city,num_liveInNum+getAllLiveInNumThisYearByHostel(hostel.getId()));
+            map_income.put(city,num_income+getAllIncomeThisYearByHostel(hostel.getId()));
+        }
+        JSONArray array=new JSONArray();
+        for(String city:map_liveInNum.keySet()){
+            array.add(new Object[]{city,map_liveInNum.get(city),NumberFormatter.saveOneDecimal(map_income.get(city))});
+        }
+        jsonObject.put("year",DateHandler.GET_CURRENT_YEAR());
+        jsonObject.put("data",array);
+        return jsonObject;
     }
     @Override
     public List<RequestOpen> getOpenRequests(){

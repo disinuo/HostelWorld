@@ -80,6 +80,15 @@ public interface ManagerService {
      * 返回所有有效酒店的以下信息
      * 本年度：总收入、总住店人数、房间总数，酒店名称-ID
      */
-    public JSONArray getSummaryNumOfAllHostels();
+    public JSONObject getSummaryNumOfAllHostels();
+
+    /**
+     * 统计各城市收入、住店人数
+     * 返回的数据要放在地图里
+     * @return
+     * 本年度：
+     *   {name: 城市名, value: 住店人数, income:收入}
+     */
+    public JSONObject getSummaryNumByCity();
     public List<BossMoneyRecord> getAllMoneyRecords();
 }

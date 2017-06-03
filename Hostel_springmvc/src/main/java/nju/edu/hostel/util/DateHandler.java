@@ -13,6 +13,9 @@ import static nju.edu.hostel.util.Constants.*;
  * Created by disinuo on 17/3/10.
  */
 public class DateHandler {
+    public static int GET_CURRENT_YEAR(){
+        return getFieldFromLong(Calendar.YEAR,new Date().getTime());
+    }
     public static long fieldToLong(int dateType,int value){
         Calendar c=Calendar.getInstance();
         c.setTimeInMillis(0);
