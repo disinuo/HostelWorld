@@ -454,7 +454,7 @@ function initDayChart(data_liveInNum) {
     var data = data_liveInNum.z;
     option = {
         title: {
-            text: '入住单数-时段图',
+            text: '入住人数-时段图',
             // link: 'https://github.com/pissang/echarts-next/graphs/punch-card'
         },
         legend: {
@@ -464,7 +464,7 @@ function initDayChart(data_liveInNum) {
         polar: {},
         tooltip: {
             formatter: function (params) {
-                return  days[params.value[0]]+":"+ hours[params.value[1]] +'<br>'+ params.value[2] + '单入住';
+                return  days[params.value[0]]+":"+ hours[params.value[1]] +'<br>'+ params.value[2] + '人 入住';
             }
         },
         angleAxis: {

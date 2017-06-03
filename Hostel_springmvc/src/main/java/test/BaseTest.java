@@ -15,8 +15,8 @@ import java.util.*;
 
 public class BaseTest {
     public static void main(String[]args){
-        long date= new Date().getTime();
-        int hour=DateHandler.getFieldFromLong(Calendar.HOUR,date);
+        long date= 1496467396484L;//2017-6-3 13:23
+        int hour=DateHandler.getFieldFromLong(Calendar.HOUR_OF_DAY,date);
         System.out.println(hour);
     }
 

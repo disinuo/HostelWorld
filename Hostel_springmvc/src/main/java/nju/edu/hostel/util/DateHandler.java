@@ -99,7 +99,7 @@ public class DateHandler {
         return helper.getTimeInMillis();
     }
     private static SimpleDateFormat formatter_noTime=new SimpleDateFormat("yyyy-MM-dd");
-    private static SimpleDateFormat formatter_withTime=new SimpleDateFormat("yyyy-MM-dd hh:mm");
+    private static SimpleDateFormat formatter_withTime=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
     public static void main(String[] args){
 //        long today=1496428315841L;

@@ -608,9 +608,9 @@ public class HostelServiceBean implements HostelService {
             String dateFieldStr=DateHandler.dateFieldToShow(dateType,dateField);
             if(map.containsKey(dateFieldStr)){
                 double num=map.get(dateFieldStr);
-                map.put(dateFieldStr,++num);
+                map.put(dateFieldStr,num+bill.getNumOfPeople());
             }else {
-                map.put(dateFieldStr,1.0);
+                map.put(dateFieldStr,bill.getNumOfPeople()+0.0);
             }
         }
         return map;
@@ -636,15 +636,18 @@ public class HostelServiceBean implements HostelService {
         Map<String,Double>map= CREATE_DAY_MAP();
         List<LiveBill> bills=getAllLiveBills(hostelId);
         for(LiveBill bill:bills){
-            int hour=DateHandler.getFieldFromLong(Calendar.HOUR,bill.getDate());
+            int hour=DateHandler.getFieldFromLong(Calendar.HOUR_OF_DAY,bill.getDate());
             int hourIndex=HOUR_TO_RANGE_INDEX(hour);
             int dayOfWeekIndex=DateHandler.getFieldFromLong(Calendar.WEDNESDAY,bill.getDate())-1;
             String key=dayOfWeekIndex+""+hourIndex;
             double num=map.get(key);
-            map.put(key,++num);
+            map.put(key,num+bill.getNumOfPeople());
+            System.err.println("billId="+bill.getId()+","+DateHandler.longToStr_withTime(bill.getDate())+
+                    ", 周"+dayOfWeekIndex+", hourIndex="+hourIndex);
+
         }
-        System.err.println(map.size());
-        System.err.print(map);
+//        System.err.println(map.size());
+//        System.err.print(map);
         List<Object[]> vos=new ArrayList<>(map.size());
         for(String key:map.keySet()){
             int x=Integer.parseInt(key.substring(0,1));
@@ -662,7 +665,7 @@ public class HostelServiceBean implements HostelService {
         for(LiveBill bill:bills){
             String roomType=bill.getRoom().getName();
             double num=map.get(roomType);
-            map.put(roomType,++num);
+            map.put(roomType,num+bill.getNumOfPeople());
         }
         return DataVO.mapToVO(map);
     }
@@ -675,7 +678,7 @@ public class HostelServiceBean implements HostelService {
             double roomPrice=bill.getRoom().getPrice();
             String roomPriceStr=ROOM_PRICE_TO_RANGE(roomPrice);
             double num=map.get(roomPriceStr);
-            map.put(roomPriceStr,++num);
+            map.put(roomPriceStr,num+bill.getNumOfPeople());
         }
         return DataVO.mapToVO(map);
     }
@@ -696,17 +699,23 @@ public class HostelServiceBean implements HostelService {
     }
     @Override
     public List<DataVO> getLiveInNumByGuestType(int hostelId) {
-        List<LiveBill> bills_vip=liveBillDao.getAllVipLiveInByHostel(hostelId);
-        List<LiveBill> bills_all=liveBillDao.getAllByHostelId(hostelId);
-        System.err.println("全部："+bills_all.size());
-        for(LiveBill bill:bills_all) System.out.println(bill.getId());
-        System.err.println("会员："+bills_vip.size());
-        for(LiveBill bill:bills_vip) System.out.println(bill.getId());
-
-        List<DataVO> vos=new ArrayList<DataVO>();
-        vos.add(new DataVO("会员",bills_vip.size()));
-        vos.add(new DataVO("非会员",bills_all.size()-bills_vip.size()));
-        return vos;
+        String VIP_NAME="会员";
+        String UNVIP_NAME="非会员";
+        List<LiveDetail> guests=liveBillDao.getAllGuestInfoByHostel(hostelId);
+        Map<String,Double> map=new LinkedHashMap<>(2);
+        map.put(VIP_NAME,0.0);
+        map.put(UNVIP_NAME,0.0);
+        for(LiveDetail guest:guests){
+            double num;
+            if(guest.getVip()!=null){
+                num=map.get(VIP_NAME);
+                map.put(VIP_NAME,++num);
+            }else {
+                num=map.get(UNVIP_NAME);
+                map.put(UNVIP_NAME,++num);
+            }
+        }
+        return DataVO.mapToVO(map);
     }
     private List<DataVO> getLiveInVipRateByDate_Helper(int hostelId,int dateType){
         List<LiveBill> bills_vip=liveBillDao.getAllVipLiveInByHostel(hostelId);
