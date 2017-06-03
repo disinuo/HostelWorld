@@ -17,7 +17,7 @@ public class User {
     private String type="vip";
     private String bankId;//AutoSet = 111111111111 + id
     private String bankPassword="bankroot";
-    private double bankMoney=3000;
+    private double bankMoney=30000;
 
     @Id
     @Column(name = "id", nullable = false)

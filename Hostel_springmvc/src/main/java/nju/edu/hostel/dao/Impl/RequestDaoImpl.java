@@ -36,7 +36,7 @@ public class RequestDaoImpl implements RequestDao {
 
     @Override
     public List<RequestOpen> getUncheckedOpenRequests() {
-        String hql=baseHql_open+"request.state="+ RequestState.UNCHECKED.toString();
+        String hql=baseHql_open+"request.state='"+ RequestState.UNCHECKED.toString()+"'";
         return baseDao.getByHql(RequestOpen.class,hql);
     }
 

@@ -115,24 +115,33 @@ public class UserServiceBean implements UserService {
 
     @Override
     public User login(String userName, String password) {
-        System.out.println("UserServiceBean-login "+userName+"  "+password);
-        Map map=new HashMap<String,Object>();
-        map.put("userName",userName);
-        map.put("password",password);
-        List<User> ans=userDao.getByUserName(userName);
-        if(ans==null||ans.size()==0) {
-            return null;
-        }else if(ans.get(0).getPassword().equals(password)){
-            return ans.get(0);
-        }else {
-            return null;
+        try{
+            int userId=Integer.parseInt(userName);
+            return userDao.get(userId);
+        }catch (Exception e){
+            return userDao.getByUserName(userName).get(0);
         }
     }
     @Override
     public ResultMessage checkUser(String userName,String password){
+
         List<User> users=userDao.getByUserName(userName);
         if(users==null||users.size()==0){
-            return ResultMessage.NOT_EXIST;
+            try {
+                int userId=Integer.parseInt(userName);
+                User user=userDao.get(userId);
+                if(user!=null){
+                    if(user.getPassword().equals(password)){
+                        return ResultMessage.SUCCESS;
+                    }else{
+                        return ResultMessage.WRONG_PASSWORD;
+                    }
+                }else {
+                    return ResultMessage.NOT_EXIST;
+                }
+            }catch (Exception e){
+                return ResultMessage.NOT_EXIST;
+            }
         }
         User user=users.get(0);
         if(user.getPassword().equals(password)){
