@@ -276,13 +276,19 @@ public class ManagerServiceBean implements ManagerService {
         JSONObject jsonObject=new JSONObject();
         List<Vip> vips=vipDao.getAll();
         Map<String,Integer> map=CREATE_VIP_LEVEL_MAP();
+        Map<String,Double> map_age=CREATE_AGE_MAP();
         for(Vip vip:vips){
             String level=VIP_LEVEL[vip.getLevel()];
             int num=map.get(level);
             map.put(level,++num);
+            int currentYear=DateHandler.GET_CURRENT_YEAR();
+            String age=AGE_TO_RANGE(currentYear-vip.getBirthYear());
+            double num_age=map_age.get(age);
+            map_age.put(age,++num_age);
         }
         jsonObject.put("total",vips.size());
-        jsonObject.put("data",map);
+        jsonObject.put("level",map);
+        jsonObject.put("age",map_age);
         return jsonObject;
     }
 

@@ -22,7 +22,14 @@ public class VipDataController {
     private final String CHECKOUT_DATE="checkOutDate";
     @Autowired
     VIPService vipService;
-//============= BookList========================================================
+    @RequestMapping(value = "/getLiveInNum/province")
+    public List<DataVO> getLiveInNumByProvince(HttpSession session){
+        OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");
+        int id=user.getId();
+        return vipService.getLiveInNumByProvince(id);
+    }
+
+    //============= BookList========================================================
     @RequestMapping(value = "/getAllBookList")
     public List<BookBillVO> getAllBookList(HttpSession session){
         OnLineUserVO user=(OnLineUserVO)session.getAttribute("user");

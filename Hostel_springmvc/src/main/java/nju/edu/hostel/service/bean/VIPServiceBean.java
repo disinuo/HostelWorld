@@ -1,5 +1,6 @@
 package nju.edu.hostel.service.bean;
 
+import net.sf.json.JSONArray;
 import nju.edu.hostel.dao.*;
 import nju.edu.hostel.model.Vip;
 import nju.edu.hostel.service.HostelService;
@@ -11,13 +12,12 @@ import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.model.*;
 import nju.edu.hostel.util.VIPState;
 import nju.edu.hostel.vo.input.BookVO;
+import nju.edu.hostel.vo.output.DataVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import static nju.edu.hostel.util.Constants.*;
 
@@ -408,6 +408,20 @@ public class VIPServiceBean implements VIPService{
     @Override
     public List<VipMoneyRecord> getAllMoneyRecords(int vipId){
         return vipMoneyRecordDao.getByVipId(vipId);
+    }
+    @Override
+    public List<DataVO> getLiveInNumByProvince(int vipId){
+        Map<String,Integer> map=new HashMap<>();
+        List<LiveBill> liveBills=liveBillDao.getAllByVipId(vipId);
+        for(LiveBill bill:liveBills){
+            String province=bill.getHostel().getProvince();
+            int num=0;
+            if(map.containsKey(province)){
+                num=map.get(province);
+            }
+            map.put(province,++num);
+        }
+        return DataVO.mapToVO(map);
     }
     @Autowired
     VIPDao vipDao;

@@ -16,24 +16,19 @@
 
 
 <div class="big-container ">
-    <div class="col-lg-2 col-md-2 col-xs-2">
-        <ul class="nav nav-pills nav-stacked">
-            <li id="vipLevel"><a href="#">会员概况</a></li>
-            <li id="vipMap"><a href="#">城市分布</a></li>
-            <li id="guest"><a href="#">消费统计</a></li>
 
-        </ul>
-    </div>
-    <div class="col-lg-10 col-md-10 col-xs-10">
+    <div class="dark-container col-lg-12 col-md-12 col-xs-12">
         <%--<div id="container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>--%>
-        <div id="levelChart-container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>
+        <div id="dateChart-container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>
+        <div id="pieChart-container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>
         <div id="mapChart-container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>
-        <div id="monthChart-container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>
     </div>
 </div>
 
 <%@include file="../common/tail.jsp" %>
-<script type="text/javascript" src="/js/manager/analyseVipsPage.js"></script>
+<%@include file="component/vipTail.jsp"%>
+
+<script type="text/javascript" src="../../js/vip/analyzePage.js"></script>
 
 
 </body>

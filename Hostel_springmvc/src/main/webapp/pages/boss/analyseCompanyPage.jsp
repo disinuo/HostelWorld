@@ -25,7 +25,7 @@
 
             <li id="province"><a href="#">地图分布</a></li>
 
-            <li id="3D-Bubble"><a href="#">酒店入住-收入-规模一览</a></li>
+            <li id="3D-Bubble"><a href="#">综合评价</a></li>
 
         </ul>
     </div>

@@ -24,6 +24,7 @@
                 <li><a href="/vip/payList">我的消费</a></li>
                 <li><a href="/vip/liveList">住房记录</a></li>
                 <li><a href="/vip/moneyRecord">交易记录</a></li>
+                <li><a href="/vip/analyze">我的足迹</a></li>
                 <li><a class="btn btn-primary" href="/logout">登出</a></li>
             </ul>
         </div>

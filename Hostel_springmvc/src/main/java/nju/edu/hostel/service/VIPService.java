@@ -1,8 +1,10 @@
 package nju.edu.hostel.service;
 
+import net.sf.json.JSONArray;
 import nju.edu.hostel.util.ResultMessage;
 import nju.edu.hostel.model.*;
 import nju.edu.hostel.vo.input.BookVO;
+import nju.edu.hostel.vo.output.DataVO;
 
 import java.util.List;
 
@@ -143,5 +145,9 @@ public interface VIPService {
     public List<Hostel> getAllPermittedHostels();
 
     public List<VipMoneyRecord> getAllMoneyRecords(int vipId);
+//    ======= Analyze ===============================
+    public List<DataVO> getLiveInNumByProvince(int vipId);
+//    ======= End Of Analyze ===============================
+
 
 }

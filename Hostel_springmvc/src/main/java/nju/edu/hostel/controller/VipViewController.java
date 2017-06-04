@@ -49,6 +49,11 @@ public class VipViewController {
     public ModelAndView showmoneyRecord(HttpSession session){
         ModelAndView model=checkRole(session);         return model==null?( new ModelAndView("vip/moneyRecordPage")):model;
     }
+    @RequestMapping(value = "/analyze")
+    public ModelAndView showAnalyze(HttpSession session){
+        ModelAndView model=checkRole(session);         return model==null?( new ModelAndView("vip/analyzePage")):model;
+    }
+
 
     @RequestMapping(value = "/bookList")
     public ModelAndView showBookList(HttpSession session){
