@@ -24,7 +24,7 @@
                     时间 <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li id="year"><a href="#">年</a></li>
+                    <li id="year"><a href="#">近3年</a></li>
                     <li id="month"><a href="#">月</a></li>
                     <li id="week"><a href="#">周</a></li>
                 </ul>

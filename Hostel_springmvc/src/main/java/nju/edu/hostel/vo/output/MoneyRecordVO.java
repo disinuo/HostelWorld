@@ -5,6 +5,7 @@ import nju.edu.hostel.model.HostelMoneyRecord;
 import nju.edu.hostel.model.VipMoneyRecord;
 import nju.edu.hostel.util.DateHandler;
 import nju.edu.hostel.util.MoneyType;
+import nju.edu.hostel.util.NumberFormatter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +66,7 @@ public class MoneyRecordVO {
     }
 
     public double getMoney() {
-        return money;
+        return NumberFormatter.saveOneDecimal(money);
     }
 
     public String getDate() {

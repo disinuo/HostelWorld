@@ -20,7 +20,7 @@
         <ul class="nav nav-pills nav-stacked">
             <li id="vipLevel"><a href="#">会员等级</a></li>
             <li id="vipMap"><a href="#">城市分布</a></li>
-            <li id="guest"><a href="#">住户分布</a></li>
+            <li id="guest"><a href="#">类型分布</a></li>
 
         </ul>
     </div>
@@ -28,6 +28,7 @@
         <%--<div id="container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>--%>
         <div id="levelChart-container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>
         <div id="mapChart-container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>
+        <div id="monthChart-container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>
     </div>
 </div>
 

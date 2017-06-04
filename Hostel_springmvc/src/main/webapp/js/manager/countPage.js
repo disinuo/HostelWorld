@@ -47,13 +47,13 @@ $('#countForm').submit(function (e) {
             alert(data);
             location.reload();
         }
-    })
+    });
     e.preventDefault(); // avoid to execute the actual submit of the form.
 })
 
 function moneyCounter(value,row,index) {
    total=total+value;
-    $('#total').html(total);
+    $('#total').html(total.toFixed(1));
    return value;
 }
 var total=0;

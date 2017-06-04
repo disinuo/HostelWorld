@@ -156,7 +156,7 @@ public class Constants {
         switch (dateType){
             case Calendar.MONTH:return CREATE_MONTH_MAP();
             case Calendar.WEDNESDAY:return CREATE_WEEK_MAP();
-            case Calendar.YEAR:return new LinkedHashMap();
+            case Calendar.YEAR:return CREATE_YEAR_MAP();
             case Calendar.HOUR:return CREATE_DAY_MAP();
             default:return CREATE_WEEK_MAP();
         }
@@ -173,6 +173,14 @@ public class Constants {
 
     }
 
+    public static Map CREATE_YEAR_MAP(){
+        Map map=new LinkedHashMap();
+        int year=DateHandler.GET_CURRENT_YEAR();
+        for(int i=2;i>=0;i--){
+            map.put((year-i)+"年",0.0);
+        }
+        return map;
+    }
     public static Map CREATE_MONTH_MAP(){
         Map map=new LinkedHashMap();
         for(int i=0;i<12;i++){
