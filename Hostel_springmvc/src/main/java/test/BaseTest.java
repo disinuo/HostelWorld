@@ -18,6 +18,8 @@ public class BaseTest {
         long date= 1496467396484L;//2017-6-3 13:23
         int hour=DateHandler.getFieldFromLong(Calendar.HOUR_OF_DAY,date);
         System.out.println(hour);
+        long today=new Date().getTime();
+        System.out.println(DateHandler.longToStr_withTime(today));
     }
 
 

@@ -18,6 +18,22 @@ $('#vipLevel').click(function () {
 $('#vipMap').click(function () {
     showVipMap();
 });
+$('#guest').click(function () {
+    showGuest();
+});
+function showGuest() {
+    $.ajax({
+        url:'/data/boss/getGuestNum/month',
+        success:function (data) {
+            console.log(data);
+            initMonthChart(data);
+        },
+        error:function (data) {
+            alert('ERROR');
+            console.log(data);
+        }
+    });
+}
 function showVipMap() {
     $.ajax({
         url:'/data/boss/getVipSummary/city',
@@ -39,6 +55,9 @@ function showVipLevel() {
             initBar_PieChart(data,NAME_VIP_LEVEL)
         }
     });
+}
+function initMonthChart(data) {
+    //TODO
 }
 function initBar_PieChart(data,name) {
     levelChart_container.css("display", "block");

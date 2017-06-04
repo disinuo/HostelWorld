@@ -22,6 +22,17 @@ public class DateHandler {
         c.set(dateType,value);
         return c.getTimeInMillis();
     }
+
+    /**
+     * 比如 输入2016-->先构建2016-1-1 0：0：0再转换成long
+     * @param year
+     * @return
+     */
+    public static long yearToLong(int year){
+        Calendar helper=Calendar.getInstance();
+        helper.set(year,0,1,0,0,0);
+        return helper.getTimeInMillis();
+    }
     public static long calculateStartOfToday(long date){
         int year=getFieldFromLong(Calendar.YEAR,date);
         int month=getFieldFromLong(Calendar.MONTH,date);
@@ -105,18 +116,12 @@ public class DateHandler {
     private static SimpleDateFormat formatter_withTime=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
     public static void main(String[] args){
-//        long today=1496428315841L;
-        long today=1496828515841L;
-        System.out.println(longToStr_withTime(today)+"   "+today);
-        long start=1496394046976L;
-        System.out.println(longToStr_withTime(start)+"   "+start);
-
-        Calendar start_helper=Calendar.getInstance();
-        start_helper.setTimeInMillis(start);
-
-        Calendar today_helper=Calendar.getInstance();
-        today_helper.setTimeInMillis(today);
-        System.out.print(today_helper.compareTo(start_helper));
-
+        int currentYear=DateHandler.GET_CURRENT_YEAR();
+        long startOfThisYear=DateHandler.yearToLong(currentYear);
+        long startOfSecondYear=DateHandler.add(startOfThisYear,Calendar.YEAR,-1);
+        long startOfFirstYear=DateHandler.add(startOfThisYear,Calendar.YEAR,-2);
+        System.out.println(longToStr_withTime(startOfThisYear));
+        System.out.println(longToStr_withTime(startOfSecondYear));
+        System.out.println(longToStr_withTime(startOfFirstYear));
     }
 }

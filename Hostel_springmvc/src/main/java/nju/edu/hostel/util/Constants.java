@@ -12,6 +12,7 @@ public class Constants {
     public static final String ROLE_VIP="vip";
     public static final String ROLE_HOSTEL="hostel";
     public static final String ROLE_MANAGER="manager";
+    public static final int NUM_OF_MONTHS=12;
 
 
     public static final int REGIONTYPE_PROVINCE=0;

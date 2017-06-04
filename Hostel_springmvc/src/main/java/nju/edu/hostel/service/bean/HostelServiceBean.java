@@ -194,6 +194,7 @@ public class HostelServiceBean implements HostelService {
             jsonObject.put("finalPrice",money_after_Discounted);
             jsonObject.put("discount",discount);
             return jsonObject;
+
         }catch (Exception e){
             e.printStackTrace();
             return null;

@@ -59,8 +59,10 @@ public class LiveBillDaoImpl implements LiveBillDao {
         return baseDao.getByHql(LiveDetail.class,hql);
     }
     @Override
-    public List<LiveDetail> getAllGuestInfo(){
-        return baseDao.getAll(LiveDetail.class);
+    public List<LiveBill> getAllByDate(long start,long end){
+        String hql=baseHql+" bill.date BETWEEN "+start+" AND "+end+
+                hqlTail;
+        return baseDao.getByHql(LiveBill.class,hql);
     }
     @Override
     public List<LiveBill> getAllVipLiveInByHostel(int hostelId){

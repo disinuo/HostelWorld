@@ -74,7 +74,7 @@ public interface ManagerService {
      * 每个月 会员住店人数、非会员住店人数
      * @return
      */
-    public JSONObject getGuestNumByMonth();
+    public JSONObject getGuestLiveNumByMonth_3Years();
 
 //====== End Of vip ================================================================
 

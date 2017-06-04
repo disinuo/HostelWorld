@@ -15,9 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
-import static nju.edu.hostel.util.Constants.CREATE_VIP_LEVEL_MAP;
-import static nju.edu.hostel.util.Constants.MANAGER_ID;
-import static nju.edu.hostel.util.Constants.VIP_LEVEL;
+import static nju.edu.hostel.util.Constants.*;
 
 
 /**
@@ -288,6 +286,57 @@ public class ManagerServiceBean implements ManagerService {
         return jsonObject;
     }
 
+    private Map getGuestNumByMonth_Helper(List<LiveBill> bills){
+        Map map=new HashMap();
+        int[] vipNumArray=new int[NUM_OF_MONTHS];
+        int[] unvipNumArray=new int[NUM_OF_MONTHS];
+        for(LiveBill bill:bills){
+            int month=DateHandler.getFieldFromLong(Calendar.MONTH,bill.getDate());
+            for(LiveDetail guest:bill.getLiveDetails()){
+                if(guest.getVip()==null) unvipNumArray[month]++;
+                else vipNumArray[month]++;
+            }
+        }
+        map.put("vip",vipNumArray);
+        map.put("unvip",unvipNumArray);
+        return map;
+    }
+    /**
+     * 近三年数据
+     * @return
+     */
+    @Override
+    public JSONObject getGuestLiveNumByMonth_3Years(){
+        JSONObject ans=new JSONObject();
+        int currentYear=DateHandler.GET_CURRENT_YEAR();
+        //今年的1-1 0：0：0
+        long startOfThisYear=DateHandler.yearToLong(currentYear);
+        //去年
+        long startOfSecondYear=DateHandler.add(startOfThisYear,Calendar.YEAR,-1);
+        //前年
+        long startOfFirstYear=DateHandler.add(startOfThisYear,Calendar.YEAR,-2);
+        List<LiveBill> bills_firstYear=liveBillDao.getAllByDate(startOfFirstYear,startOfSecondYear);
+        List<LiveBill> bills_secondYear=liveBillDao.getAllByDate(startOfSecondYear,startOfThisYear);
+        List<LiveBill> bills_thirdYear=liveBillDao.getAllByDate(startOfThisYear,new Date().getTime());
+        Map firstYear=getGuestNumByMonth_Helper(bills_firstYear);
+        Map secondYear=getGuestNumByMonth_Helper(bills_secondYear);
+        Map thirdYear=getGuestNumByMonth_Helper(bills_thirdYear);
+        JSONObject vipNums=new JSONObject();
+        JSONObject unvipNums=new JSONObject();
+
+
+        vipNums.put(currentYear-2,firstYear.get("vip"));
+        vipNums.put(currentYear-1,secondYear.get("vip"));
+        vipNums.put(currentYear,thirdYear.get("vip"));
+        unvipNums.put(currentYear-2,firstYear.get("unvip"));
+        unvipNums.put(currentYear-1,secondYear.get("unvip"));
+        unvipNums.put(currentYear,thirdYear.get("unvip"));
+
+        ans.put("vip",vipNums);
+        ans.put("unvip",unvipNums);
+        return ans;
+
+    }
     @Override
     public List<BossMoneyRecord> getAllMoneyRecords(){
         return bossMoneyRecordDao.getByBoss(MANAGER_ID);
@@ -301,6 +350,8 @@ public class ManagerServiceBean implements ManagerService {
     private VIPDao vipDao;
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private LiveBillDao liveBillDao;
     @Autowired
     private RequestDao requestDao;
     @Autowired

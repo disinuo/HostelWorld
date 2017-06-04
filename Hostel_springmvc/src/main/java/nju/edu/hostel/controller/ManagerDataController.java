@@ -37,7 +37,7 @@ public class ManagerDataController {
     }
 
     @RequestMapping(value = "/getGuestNum/month")
-    public JSONObject getGuestNumByMonth(){return managerService.getGuestNumByMonth();}
+    public JSONObject getGuestLiveNumByMonth_3Years(){return managerService.getGuestLiveNumByMonth_3Years();}
     @RequestMapping(value = "/getSummaryNumOfAllHostels")
     public JSONObject getSummaryNumOfAllHostels() {
         return managerService.getSummaryNumOfAllHostels();
