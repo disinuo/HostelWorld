@@ -21,7 +21,7 @@ a:link{color:#383838}
     margin: auto;
     height: 250px;
     width: 500px;
-    background-color: #2b4252;
+    background-color: #2b4252;/*rgba(43,66,82,0.4);*/
     text-align: center;
     padding: 10px 80px 50px 80px;
     opacity: 0.4;
@@ -37,9 +37,9 @@ a:link{color:#383838}
     height: 350px;
     width: 500px;
     background-color: #2b4252;
+    opacity: 0.4;
     text-align: center;
     padding: 10px 80px 50px 80px;
-    opacity: 0.4;
     border-radius: 10px;
 }
 .label{
