@@ -53,7 +53,7 @@ function initAvg_Income_DateChart(data_incomeAvg) {
             left: 'center',
             top: 20,
             textStyle: {
-                color: '#ccc'
+                color: '#000'
             }
         },
         tooltip: {
@@ -79,7 +79,9 @@ function initAvg_Income_DateChart(data_incomeAvg) {
             data: data_x
         },
         yAxis: {
-
+            axisLabel: {
+                formatter: '{value} 元'
+            }
         },
         series: [
             { // For shadow
@@ -155,10 +157,10 @@ function initVip_Income_DateChart(data_income) {
     var option = {
         title:{
             text:'会员收入/总收入',
-            left: 'center',
-            top: 20,
+            top: 10,
             textStyle: {
-                color: '#ccc'
+                color: 'rgba(0,0,0,0.5)',
+                fontSize:10
             }
         },
 

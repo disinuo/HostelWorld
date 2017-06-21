@@ -202,7 +202,7 @@ function initBubbleChart(data) {
         //     color: '#cdd0d5'
         // }]),
         title: {
-            text: currentYear+'年度各酒店的收入、入住、房间数总结'
+            text: currentYear+'年度各酒店业绩盘点'
         },
         tooltip: {
             trigger: 'item',

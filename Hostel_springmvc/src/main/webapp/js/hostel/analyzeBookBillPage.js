@@ -66,7 +66,7 @@ function initPieChart(data_input,name) {
             left: 'center',
             top: 20,
             textStyle: {
-                color: '#ccc'
+                color: '#000'
             }
         },
         visualMap: {
@@ -108,14 +108,16 @@ function initPieChart(data_input,name) {
                 label: {
                     normal: {
                         textStyle: {
-                            color: 'rgba(255, 255, 255, 0.3)'
+                            color: 'rgba(0, 0, 0, 0.3)'
+
                         }
                     }
                 },
                 labelLine: {
                     normal: {
                         lineStyle: {
-                            color: 'rgba(255, 255, 255, 0.3)'
+                            color: 'rgba(0, 0, 0, 0.3)'
+
                         },
                         smooth: 0.2,
                         length: 10,
@@ -192,9 +194,6 @@ function initRegionChart(data_input) {
         ]
     };
     myChart.setOption(option);
-}
-function randomData() {
-    return Math.round(Math.random()*1000);
 }
 
 function initDateChart(data_liveInRate, data_validRate, data_bookNum) {

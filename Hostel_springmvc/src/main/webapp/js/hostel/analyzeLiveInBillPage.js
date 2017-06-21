@@ -72,7 +72,7 @@ function initPieChart(data_input,name) {
             left: 'center',
             top: 20,
             textStyle: {
-                color: '#ccc'
+                color: '#000'
             }
         },
         visualMap: {
@@ -114,14 +114,14 @@ function initPieChart(data_input,name) {
                 label: {
                     normal: {
                         textStyle: {
-                            color: 'rgba(255, 255, 255, 0.3)'
+                            color: 'rgba(0, 0, 0, 0.3)'
                         }
                     }
                 },
                 labelLine: {
                     normal: {
                         lineStyle: {
-                            color: 'rgba(255, 255, 255, 0.3)'
+                            color: 'rgba(0, 0, 0, 0.3)'
                         },
                         smooth: 0.2,
                         length: 10,
@@ -201,9 +201,6 @@ function initRegionChart(data_input) {
     };
     myChart.setOption(option);
 }
-function randomData() {
-    return Math.round(Math.random()*1000);
-}
 
 function initDateChart(data_liveInNum,data_liveInVipRate) {
     dateChart_container.css("display", "block");
@@ -234,7 +231,10 @@ function initDateChart(data_liveInNum,data_liveInVipRate) {
         // '#abcf2e',
         '#FFA039'];
     var option = {
-
+        title: {
+            text: '入住情况',
+            left: 'center',
+        },
         color: colors,
 
         tooltip: {
@@ -348,7 +348,10 @@ function initWeekChart(data_liveInNum) {
     var option = {
 
         // color: colors,
-
+        title: {
+            text: '入住情况',
+            left: 'center'
+        },
         tooltip: {
             trigger: 'axis',
             axisPointer: {
@@ -458,11 +461,14 @@ function initDayChart(data_liveInNum) {
     option = {
         title: {
             text: '入住人数-时段图',
-            // link: 'https://github.com/pissang/echarts-next/graphs/punch-card'
+            left: 'center',
         },
         legend: {
             data: ['Punch Card'],
-            left: 'right'
+            left: 'right',
+            textStyle:{
+                // color:'#fff'
+            }
         },
         polar: {},
         tooltip: {
@@ -477,7 +483,7 @@ function initDayChart(data_liveInNum) {
             splitLine: {
                 show: true,
                 lineStyle: {
-                    color: '#fff',
+                    color: '#000',
                     type: 'dashed'
                 }
             },

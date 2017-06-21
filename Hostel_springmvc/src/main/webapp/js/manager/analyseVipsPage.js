@@ -428,7 +428,7 @@ function initMapChart(data) {
     option = {
         backgroundColor: '#404a59',
         title: {
-            text: currentYear+'年全国会员注册城市分布',
+            text: currentYear+'年全国会员购买力盘点',
             left: 'center',
             textStyle: {
                 color: '#fff'

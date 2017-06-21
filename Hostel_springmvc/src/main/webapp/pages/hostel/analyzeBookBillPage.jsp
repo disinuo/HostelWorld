@@ -45,11 +45,11 @@
     </div>
 
 
-    <div class="dark-container col-lg-10 col-md-10 col-xs-10">
+    <div class=" col-lg-10 col-md-10 col-xs-10">
         <%--<div id="container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>--%>
         <div id="dateChart-container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>
         <div id="pieChart-container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>
-        <div id="mapChart-container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>
+        <div class="dark-container" id="mapChart-container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>
     </div>
 </div>
 

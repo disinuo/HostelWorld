@@ -43,10 +43,11 @@
         </ul>
     </div>
 
-    <div class="dark-container col-lg-10 col-md-10 col-xs-10">
+    <div class=" col-lg-10 col-md-10 col-xs-10">
         <div class="flex-container">
-            <div class="flex-container"><h4>今日收入</h4><div id="incomeToday"></div></div>
-            <div class="flex-container"><h4>今日人均消费</h4><div id="incomeAvgToday"></div></div>
+            <div class="flex-container"><h2>今日收入： </h2><h3 id="incomeToday"></h3></div>
+            <h2>  ，  </h2>
+            <div class="flex-container"><h2>今日人均消费：</h2><h3 id="incomeAvgToday"></h3></div>
         </div>
 
         <%--<div id="container" style="height: 500px; min-width: 310px; max-width: 1200px; margin: 0 auto"></div>--%>
