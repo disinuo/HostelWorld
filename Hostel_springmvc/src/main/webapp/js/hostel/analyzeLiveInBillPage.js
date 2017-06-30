@@ -232,7 +232,7 @@ function initDateChart(data_liveInNum,data_liveInVipRate) {
         '#FFA039'];
     var option = {
         title: {
-            text: '入住情况',
+            // text: '入住情况',
             left: 'center',
         },
         color: colors,
