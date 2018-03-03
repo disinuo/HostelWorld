@@ -21,7 +21,7 @@ public class RequestDaoImpl implements RequestDao {
     @Autowired
     BaseDao baseDao;
     String baseHql_open="SELECT request FROM RequestOpen as request WHERE ";
-    String baseHql_modify="SELECT request FROM RequestOpen as request WHERE ";
+    String baseHql_modify="SELECT request FROM RequestModify as request WHERE ";
 
     @Override
     public RequestOpen getOpenRequest(int id) {
@@ -62,7 +62,7 @@ public RequestModify getModifyRequest(int id) {
 
     @Override
     public List<RequestModify> getUncheckedModifyRequests() {
-        String hql=baseHql_modify+"request.state="+ RequestState.UNCHECKED.toString();
+        String hql=baseHql_modify+"request.state='"+ RequestState.UNCHECKED.toString()+"'";
         return baseDao.getByHql(RequestModify.class,hql);
     }
 

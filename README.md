@@ -1,4 +1,102 @@
-# HostelWorld 客栈服务系统
+# HostelWorld 酒店管理统计系统
+### 技术
+- springMVC+hibernate+mysql
+### 功能
+（本系统使用者有三种角色）
+ - 会员
+   - 预订房间
+   - 享受会员优惠：折扣、积分换钱
+   - 管理个人信息：昵称、手机号、年龄、生日、密码
+   - 查看住店信息：查看预订记录、住店离店记录
+ - 酒店经理
+   - 发布房间计划
+   - 登记入店、离店、支付记录
+   - 查看本店的统计数据
+ - 网站总经理
+   - 审批酒店开店申请
+   - 将收入结算给各个酒店
+   - 查看整个网站的统计数据(按客栈、按会员)
+
+   ------
+
+下面是部分运行时截图
+
+## Part1基本操作
+1. 会员主页
+![会员主页][1]
+
+- 会员预订房间
+![会员预订房间][2]
+
+- 会员预订订单
+![会员预订订单][3]
+
+- 会员住店记录
+![会员住店记录][4]
+
+- 会员消费记录
+![会员消费记录][5]
+
+- 酒店主页（发布的房间）
+![酒店主页（发布的房间）][6]
+
+- 酒店对顾客住店登记
+![酒店对顾客住店登记][7]
+
+- 酒店信息页
+![酒店信息页][8]
+
+- 总经理登录后若有申请未处理则会弹窗提醒
+![弹窗提醒][20]
+
+- 总经理处理酒店的申请
+![处理酒店的申请][21]
+
+## Part2统计分析
+
+### 酒店对经营情况统计分析
+
+1. 全国各地预订单数量
+![全国各地预订单数量][9]
+
+- 近三年预订情况
+（入住率=预订并入住的订单量/预订单总量，有效率=预订且没取消的/预订单总量）
+![近三年预订情况][10]
+
+- 各个房型的预订情况
+![各个房型的预订情况][11]
+
+- 会员不同年龄段的预订情况
+![会员不同年龄段的预订情况][12]
+
+- 每天各时段的入住人数统计
+![每天各时段的入住人数统计][13]
+
+- 会员与非会员的住店数量统计
+![会员与非会员的住店数量统计][14]
+
+- 本年度会员与非会员的消费水平比较
+![本年度会员与非会员的消费水平比较][15]
+
+
+###网站总经理对所有酒店经营情况统计分析###
+
+1. 本年度 全国各城市的酒店经营情况
+![全国各城市的酒店经营情况][16]
+
+- 本年度 本网站的所有酒店业绩盘点
+![本网站的所有酒店业绩盘点][17]
+
+- 本年度 全国各城市的会员购买力盘点
+![全国各城市的会员购买力盘点][18]
+
+- 使用本网站的会员的等级、年龄分布
+![使用本网站的会员的等级、年龄分布][19]
+
+
+
+
+
 ### TODO
 - 会员
   - 增加【类型】（给酒店、总经理看的）：重要价值、重要发展、重要挽留、重要保持
@@ -49,3 +147,26 @@
    - 将收入结算给各个酒店
    - 查看整个网站的统计数据(按客栈、按会员)
  第一次自己好好认真的写完一个项目~会不定期维护的！^ ^
+
+
+[1]:screenshots/vip_home.png
+[2]:screenshots/vip_book.png
+[3]:screenshots/vip_booklist.png
+[4]:screenshots/vip_liveinlist.png
+[5]:screenshots/vip_payrecord.png
+[6]:screenshots/hotel_home.png
+[7]:screenshots/hotel_business.png
+[8]:screenshots/hotel_info.png
+[9]:screenshots/hotel_statistic_book_region.png
+[10]:screenshots/hotel_statistic_book_time.png
+[11]:screenshots/hotel_statistic_book_room.png
+[12]:screenshots/hotel_statistic_book_vip.png
+[13]:screenshots/hotel_statistic_livein_time.png
+[14]:screenshots/hotel_statistic_livein_guest.png
+[15]:screenshots/hotel_statistic_income.png
+[16]:screenshots/boss_statistic_hostel_map.png
+[17]:screenshots/boss_statistic_hostel_score.png
+[18]:screenshots/boss_statistic_vip_map.png
+[19]:screenshots/boss_statistic_vip.png
+[20]:screenshots/boss_notice.png
+[21]:screenshots/boss_request.png
